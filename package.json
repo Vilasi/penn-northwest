@@ -1,0 +1,27 @@
+{
+  "name": "penn-northwest",
+  "version": "1.0.0",
+  "description": "The Penn-Northwest Website and Web Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vilasi/penn-northwest.git"
+  },
+  "author": "Joe Vilasi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vilasi/penn-northwest/issues"
+  },
+  "homepage": "https://github.com/Vilasi/penn-northwest#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "ejs-mate": "^4.0.0",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^7.0.2"
+  }
+}
