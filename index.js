@@ -2,7 +2,11 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+const engine = require('ejs-mate');
+const morgan = require('morgan');
 require('express-async-errors');
+const app = express();
+const PORT = 3000;
 
 // Connect to MongoDB
 main()
@@ -15,10 +19,8 @@ async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/test');
 }
 
-const app = express();
-const PORT = 3000;
-
-//! SET VIEW ENGINE
+//! SET VIEW ENGINE || SET EJS-Mate Template Engine
+app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
@@ -38,3 +40,15 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 // override with POST having ?_method=DELETE, such that:
 //[IN <FORM>]: action="http://localhost:3000/comments/<%= desiredComment.id %>?_method=PATCH"
 app.use(methodOverride('_method'));
+
+//* Morgan Logger Middleware
+app.use(morgan('dev'));
+
+app.get('/', (req, res) => {
+  // res.send('Welcome to the Penn Northwest Site!');
+  res.render('landing');
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port: ${PORT}`);
+});
