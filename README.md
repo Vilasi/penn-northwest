@@ -6,4 +6,8 @@ The Penn-Northwest Website
 
 ### Landing Page:
 
--
+### NAV
+
++Home
++Events
++Membership
