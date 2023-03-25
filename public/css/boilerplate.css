@@ -1,8 +1,8 @@
 :root {
   --ff-1: georgia, serif;
   --ff-2: 'Quicksand', sans-serif;
-  --ff-3: 'Quattrocento Sans', sans-serif;
-  --ff-4: helvetica;
+  --ff-3: 'Playfair Display', serif;
+  --ff-4: 'Raleway', sans-serif;
 
   /*! Spacing */
   /** Widths */
@@ -12,6 +12,9 @@
 
   /** Line Height */
   --default-line-height: 1.75;
+
+  /** Max Text Width */
+  --max-text-width: 65ch;
 
   /*! Colors */
   /** Oranges */
@@ -33,6 +36,10 @@ body {
 /*! Spacing */
 .letter-spacing-1 {
   letter-spacing: var(--letter-spacing-1);
+}
+
+.max-text-width {
+  max-width: var(--max-text-width);
 }
 
 /*! Background Color Definitions */
@@ -66,6 +73,14 @@ body {
   font-family: var(--ff-2);
 }
 
+.ff-3 {
+  font-family: var(--ff-3);
+}
+
+.ff-4 {
+  font-family: var(--ff-4);
+}
+
 /*! Font Size Definitions */
 .font-size-1 {
   font-size: 4.209rem;
@@ -85,5 +100,3 @@ body {
 .font-size-6 {
   font-size: 1rem;
 }
-
-/*! Line Height */
