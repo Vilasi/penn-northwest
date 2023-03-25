@@ -11,3 +11,5 @@ The Penn-Northwest Website
 +Home
 +Events
 +Membership
+
+Checkout the google font "Georama"
