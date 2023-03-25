@@ -8,7 +8,7 @@ require('express-async-errors');
 const app = express();
 const PORT = 3000;
 
-// Connect to MongoDB
+//* Connect to MongoDB
 main()
   .then(() => {
     console.log('Mongoose Database Connection Open!');
@@ -50,5 +50,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port: ${PORT}`);
+  console.log(`Penn-Northwest Web Server running on port: ${PORT}`);
 });

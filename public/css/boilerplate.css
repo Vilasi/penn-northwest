@@ -1,0 +1,89 @@
+:root {
+  --ff-1: georgia, serif;
+  --ff-2: 'Quicksand', sans-serif;
+  --ff-3: 'Quattrocento Sans', sans-serif;
+  --ff-4: helvetica;
+
+  /*! Spacing */
+  /** Widths */
+  --max-text-width: 60ch;
+  /** Letter Spacing  */
+  --letter-spacing-1: 0.1em;
+
+  /** Line Height */
+  --default-line-height: 1.75;
+
+  /*! Colors */
+  /** Oranges */
+  --pndc-orange: #f97521;
+
+  /** Blues */
+  --pndc-blue: #003a69;
+
+  /** Whites */
+  --bg-platinum: #dce0d9;
+}
+
+/*! HTML/Body Definitions */
+html,
+body {
+  line-height: var(--default-line-height) !important;
+}
+
+/*! Spacing */
+.letter-spacing-1 {
+  letter-spacing: var(--letter-spacing-1);
+}
+
+/*! Background Color Definitions */
+.background-transparent {
+  background-color: transparent;
+}
+
+/** Orange */
+.background-pndc-orange-1 {
+  background-color: var(--pndc-orange);
+}
+/** Blue */
+.background-pndc-blue-1 {
+  background-color: var(--pndc-blue);
+}
+
+/*! Color Definitions */
+.pndc-orange {
+  color: var(--pndc-orange);
+}
+
+.pndc-blue {
+  color: var(--pndc-blue);
+}
+
+/*! Font Family Definitions */
+.ff-1 {
+  font-family: var(--ff-1);
+}
+.ff-2 {
+  font-family: var(--ff-2);
+}
+
+/*! Font Size Definitions */
+.font-size-1 {
+  font-size: 4.209rem;
+}
+.font-size-2 {
+  font-size: 3.157rem;
+}
+.font-size-3 {
+  font-size: 2.369rem;
+}
+.font-size-4 {
+  font-size: 1.777rem;
+}
+.font-size-5 {
+  font-size: 1.333rem;
+}
+.font-size-6 {
+  font-size: 1rem;
+}
+
+/*! Line Height */
