@@ -1,0 +1,31 @@
+/* section {
+  background-color: black;
+} */
+
+.blue-gradient {
+  /* background: linear-gradient(to bottom, #f8f9fa, #004777); */
+  /* background: linear-gradient(to bottom, #f8f9fa, #004777, #f97521, #f8f9fa); */
+  background: linear-gradient(
+    to bottom,
+    #004777,
+    #f8f9fa 50%,
+    #f8f9fa 50%,
+    #f97521
+  );
+}
+
+.max-height-100-vh {
+  max-height: 100vh;
+}
+
+.max-height-80-vh {
+  max-height: 80vh;
+}
+
+.max-height-85-vh {
+  max-height: 85vh;
+}
+
+#main {
+  max-height: 100vh;
+}

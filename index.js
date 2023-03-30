@@ -46,7 +46,7 @@ app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
   // res.send('Welcome to the Penn Northwest Site!');
-  res.render('landing');
+  res.render('pages/home');
 });
 
 app.listen(PORT, () => {

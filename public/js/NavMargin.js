@@ -18,7 +18,7 @@ const main = document.querySelector('#main');
 function repositionMain() {
   //   const style = window.getComputedStyle(nav);
   const height = nav.offsetHeight;
-  main.style.marginTop = `${height + 32}px`;
+  main.style.paddingTop = `${height}px`;
 }
 repositionMain();
 
