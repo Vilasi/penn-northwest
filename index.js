@@ -44,9 +44,31 @@ app.use(methodOverride('_method'));
 //* Morgan Logger Middleware
 app.use(morgan('dev'));
 
+//! Routes
+//* Home
 app.get('/', (req, res) => {
   // res.send('Welcome to the Penn Northwest Site!');
   res.render('pages/home');
+});
+
+//* Jobs
+app.get('/jobs', (req, res) => {
+  res.send('Welcome to Jobs Page');
+});
+
+//* Events
+app.get('/events', (req, res) => {
+  res.send('/events');
+});
+
+//* Membership
+app.get('/membership', (req, res) => {
+  res.send('/membership');
+});
+
+//* About
+app.get('/about', (req, res) => {
+  res.send('/about');
 });
 
 app.listen(PORT, () => {

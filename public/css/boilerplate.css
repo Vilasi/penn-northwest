@@ -42,6 +42,11 @@ body {
   max-width: var(--max-text-width);
 }
 
+/*! Borders and Box-Sizing */
+.border-box {
+  box-sizing: border-box;
+}
+
 /*! Background Color Definitions */
 .background-transparent {
   background-color: transparent;

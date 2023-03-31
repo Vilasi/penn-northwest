@@ -33,6 +33,15 @@ body::-webkit-scrollbar {
 
 .max-height-100-vh {
   max-height: 100vh;
+  /* overflow-y: hidden; */
+}
+
+.min-height-100-vh {
+  min-height: 100vh;
+}
+.max-height-90-vh {
+  max-height: 90vh;
+  overflow-y: hidden;
 }
 
 .max-height-80-vh {
@@ -43,6 +52,6 @@ body::-webkit-scrollbar {
   max-height: 85vh;
 }
 
-#main {
+/* #main {
   max-height: 100vh;
-}
+} */
