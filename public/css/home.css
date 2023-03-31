@@ -2,6 +2,23 @@
   background-color: black;
 } */
 
+/* Hide scrollbar on all browsers */
+
+/* Hide scrollbar in Internet Explorer and Microsoft Edge */
+/* body {
+}
+body::-webkit-scrollbar {
+  display: none;
+} */
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .blue-gradient {
   /* background: linear-gradient(to bottom, #f8f9fa, #004777); */
   /* background: linear-gradient(to bottom, #f8f9fa, #004777, #f97521, #f8f9fa); */
