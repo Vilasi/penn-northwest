@@ -1,0 +1,26 @@
+.navbar {
+  background-color: transparent;
+  transition: background-color 2s ease-in-out;
+}
+
+.navbar.scroll {
+  background-color: #003a69;
+}
+
+.navbar-toggler-icon {
+  color: #dce0d9;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background-color: #003a69;
+  }
+
+  .navbar.scroll .navbar-collapse {
+    background-color: #003a69;
+  }
+}
+
+.navbar.scroll {
+  background-color: #003a69;
+}
