@@ -25,6 +25,7 @@
 
   /** Whites */
   --bg-platinum: #dce0d9;
+  --bg-pearl: #efe3c7;
 }
 
 /*! HTML/Body Definitions */
@@ -61,6 +62,11 @@ body {
   background-color: var(--pndc-blue);
 }
 
+/** Whites */
+.background-pearl {
+  background-color: var(--bg-pearl);
+}
+
 /*! Color Definitions */
 .pndc-orange {
   color: var(--pndc-orange);
@@ -68,6 +74,10 @@ body {
 
 .pndc-blue {
   color: var(--pndc-blue);
+}
+
+.pearl {
+  color: var(--bg-pearl);
 }
 
 /*! Font Family Definitions */

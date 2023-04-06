@@ -11,6 +11,15 @@
   color: #dce0d9;
 }
 
+hr {
+  transition: all 2s ease-in-out;
+}
+
+hr.m-0.scroll {
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+
 @media (max-width: 991.98px) {
   .navbar-collapse {
     background-color: #003a69;
