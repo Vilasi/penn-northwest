@@ -41,6 +41,11 @@
   --pndc-blue-9: #b3c3d2;
   --pndc-blue-10: #ccd8e1;
 
+  --mercer-county-blue: #054467;
+
+  /** Yellows */
+  --mercer-county-yellow: #f4d35e;
+
   /** Whites */
   --bg-platinum: #dce0d9;
   --bg-pearl: #efe3c7;
@@ -135,6 +140,15 @@ body {
   background-color: var(--pndc-blue-10);
 }
 
+.background-mercer-county-blue {
+  background-color: var(--mercer-county-blue);
+}
+
+/** Yellows */
+.background-mercer-county-yellow {
+  background-color: var(--mercer-county-yellow);
+}
+
 /** Whites */
 .background-pearl {
   background-color: var(--bg-pearl);
@@ -172,6 +186,10 @@ body {
   color: var(--pndc-orange-10);
 }
 
+.mercer-county-yellow {
+  color: var(--mercer-county-yellow) !important;
+}
+
 .pndc-blue {
   color: var(--pndc-blue);
 }
@@ -201,6 +219,10 @@ body {
 }
 .pndc-blue-10 {
   color: var(--pndc-blue-10);
+}
+
+.mercer-county-blue {
+  color: var(--mercer-county-blue);
 }
 
 .pearl {
