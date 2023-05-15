@@ -36,9 +36,8 @@
   display: none;
 }
 
-.blue-gradient {
-  /* background: linear-gradient(to bottom, #f8f9fa, #004777); */
-  /* background: linear-gradient(to bottom, #f8f9fa, #004777, #f97521, #f8f9fa); */
+/* .blue-gradient {
+ 
   background: linear-gradient(
     to bottom,
     #004777,
@@ -46,7 +45,7 @@
     #f8f9fa 50%,
     #f97521
   );
-}
+} */
 
 .max-height-100-vh {
   max-height: 100vh;

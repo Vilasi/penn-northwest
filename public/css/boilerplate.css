@@ -42,6 +42,7 @@
   --pndc-blue-10: #ccd8e1;
 
   --mercer-county-blue: #054467;
+  --stratosphere-blue: #004777;
 
   /** Yellows */
   --mercer-county-yellow: #f4d35e;
@@ -49,6 +50,7 @@
   /** Whites */
   --bg-platinum: #dce0d9;
   --bg-pearl: #efe3c7;
+  --bootstrap-white: #f8f9fa;
 }
 
 /*! HTML/Body Definitions */
@@ -263,4 +265,17 @@ body {
 }
 .font-size-6 {
   font-size: 1rem;
+}
+
+/*! Background Color Gradient */
+.blue-gradient {
+  /* background: linear-gradient(to bottom, #f8f9fa, #004777); */
+  /* background: linear-gradient(to bottom, #f8f9fa, #004777, #f97521, #f8f9fa); */
+  background: linear-gradient(
+    to bottom,
+    var(--stratosphere-blue),
+    var(--bootstrap-white) 50%,
+    var(--bootstrap-white) 50%,
+    var(--pndc-orange)
+  );
 }

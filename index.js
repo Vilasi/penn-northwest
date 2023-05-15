@@ -32,10 +32,8 @@ app.use(express.static(pathToPublic));
 //! MIDDLEWARE
 //* Allows express to be able to parse incoming JSON payloads
 app.use(express.json());
-
 //* This lets express parse the request body of POST requests
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
 //* Method Override for Overriding POST requests
 // override with POST having ?_method=DELETE, such that:
 //[IN <FORM>]: action="http://localhost:3000/comments/<%= desiredComment.id %>?_method=PATCH"
@@ -47,28 +45,27 @@ app.use(morgan('dev'));
 //! Routes
 //* Home
 app.get('/', (req, res) => {
-  // res.send('Welcome to the Penn Northwest Site!');
   res.render('pages/home');
 });
 
 //* Jobs
 app.get('/jobs', (req, res) => {
-  res.send('Welcome to Jobs Page');
+  res.render('pages/jobs');
 });
 
 //* Events
 app.get('/events', (req, res) => {
-  res.send('/events');
+  res.render('pages/events');
 });
 
 //* Membership
 app.get('/membership', (req, res) => {
-  res.send('/membership');
+  res.render('pages/membership');
 });
 
 //* About
 app.get('/about', (req, res) => {
-  res.send('/about');
+  res.render('pages/about');
 });
 
 app.listen(PORT, () => {
