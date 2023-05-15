@@ -51,9 +51,9 @@
   max-height: 100vh;
 }
 
-.min-height-100-vh {
+/* .min-height-100-vh {
   min-height: 100vh;
-}
+} */
 .max-height-90-vh {
   max-height: 90vh;
   overflow-y: hidden;
