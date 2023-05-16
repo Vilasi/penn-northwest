@@ -20,6 +20,18 @@ hr.m-0.scroll {
   border-color: #f8f9fa;
 }
 
+.nav-link:hover {
+  position: relative;
+  top: 1px;
+  /** shadow-lg */
+  box-shadow: 0 1rem 3rem rgba(33, 37, 41, 0.175);
+}
+
+.nav-link:active {
+  position: relative;
+  top: 3px;
+}
+
 @media (max-width: 991.98px) {
   .navbar-collapse {
     background-color: #003a69;
