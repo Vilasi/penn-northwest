@@ -21,15 +21,16 @@ hr.m-0.scroll {
 }
 
 .nav-link:hover {
-  position: relative;
-  top: 1px;
+  /* position: relative;
+  top: 1px; */
+  text-decoration: underline;
   /** shadow-lg */
   box-shadow: 0 1rem 3rem rgba(33, 37, 41, 0.175);
 }
 
 .nav-link:active {
   position: relative;
-  top: 3px;
+  top: 2px;
 }
 
 @media (max-width: 991.98px) {
