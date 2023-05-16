@@ -33,6 +33,10 @@ hr.m-0.scroll {
   top: 2px;
 }
 
+.start-40 {
+  left: 40%;
+}
+
 @media (max-width: 991.98px) {
   .navbar-collapse {
     background-color: #003a69;
