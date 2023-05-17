@@ -1,5 +1,9 @@
+:root {
+  /** Colors */
+  --bootstrap-white: #f8f9fa;
+}
+
 .navbar {
-  /* background-color: transparent; */
   transition: background-color 2s ease-in-out;
 }
 
@@ -7,9 +11,9 @@
   background-color: #003a69;
 }
 
-.navbar-toggler-icon {
+/* .navbar-toggler-icon {
   color: #dce0d9;
-}
+} */
 
 hr {
   transition: all 2s ease-in-out;
@@ -21,8 +25,6 @@ hr.m-0.scroll {
 }
 
 .nav-link:hover {
-  /* position: relative;
-  top: 1px; */
   text-decoration: underline;
   /** shadow-lg */
   box-shadow: 0 1rem 3rem rgba(33, 37, 41, 0.175);
@@ -31,6 +33,19 @@ hr.m-0.scroll {
 .nav-link:active {
   position: relative;
   top: 2px;
+}
+
+/** Edits the mobile nav dropdown toggle button */
+.navbar-toggler {
+  color: var(--bootstrap-white) !important;
+  /* border-color: var(--bootstrap-white); */
+  border: none;
+}
+
+/** Controls the svg icon for mobile nav dropdown menu button */
+/* stroke='rgba%28248, 249, 250, 1%29' controls the color. %28 and %29 are the escaped values for ( and ) respectively */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28248, 249, 250, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 @media (max-width: 991.98px) {
