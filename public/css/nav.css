@@ -43,7 +43,8 @@ hr.m-0.scroll {
 }
 
 /** Controls the svg icon for mobile nav dropdown menu button */
-/* stroke='rgba%28248, 249, 250, 1%29' controls the color. %28 and %29 are the escaped values for ( and ) respectively */
+/* stroke='rgba%28248, 249, 250, 1%29' controls the color. %28 and %29 are the URL Encoding escaped values for ( and ) respectively */
+/*  URL encoding is a method of representing special characters within a URL by replacing them with a "%" followed by their ASCII code in hexadecimal representation. */
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28248, 249, 250, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
