@@ -26,6 +26,8 @@
   /** Whites */
   --bg-platinum: #dce0d9;
   --bg-pearl: #efe3c7;
+  --dun-shade-1: rgba(209, 198, 173, 1);
+  --dun-shade-2: #a79e8a;
 }
 
 .no-scrollbar {
@@ -68,27 +70,9 @@
 }
 
 #test-color {
-  /* background-color: #d1c6ad; */
-  /* background-color: #bbada0; */
-  /* background: radial-gradient(at center, #33302a, #968e7a, #33302a); */
-
-  /* background: radial-gradient(circle at center, #33302a, #33302a 70%, #968e7a); */
-  /* background: linear-gradient(to right, #33302a, #968e7a, #33302a); */
-
-  /* background: radial-gradient(circle at center, #968e7a, #968e7a 70%, #33302a);
-  background: linear-gradient(to right, #33302a, #968e7a, #33302a); */
-
-  /* background: radial-gradient(circle at center, #d1c6ad, #d1c6ad 70%, #33302a);
-  background: linear-gradient(to right,   #33302a, #d1c6ad, #33302a); */
-
-  /* background: linear-gradient(#d1c6ad, #d1c6ad) center/100% 95% no-repeat,
-    #33302a; */
-
-  /* background: radial-gradient(closest-corner, #d1c6ad, #33302a); */
-
   background: radial-gradient(
     ellipse,
-    rgba(209, 198, 173, 1) 50%,
-    #a79e8a 100%
+    var(--dun-shade-1) 50%,
+    var(--dun-shade-2) 100%
   );
 }
