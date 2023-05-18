@@ -69,10 +69,16 @@
   max-height: 85vh;
 }
 
-#test-color {
+#icon-divider {
   background: radial-gradient(
     ellipse,
     var(--dun-shade-1) 50%,
     var(--dun-shade-2) 100%
   );
+}
+
+#test {
+  background-image: url(../assets/svgs/working.svg);
+  /* width: 50rem;
+  height: 50rem; */
 }
