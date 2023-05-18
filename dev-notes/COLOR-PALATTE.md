@@ -4,3 +4,8 @@ persian-blue: #072AC8
 prussian-blue: #253d5b
 
 pndc-orange: #f97521
+
+<!-- Contenders for Separator -->
+
+Khaki: #bbada0
+Dun: #d1c6ad;
