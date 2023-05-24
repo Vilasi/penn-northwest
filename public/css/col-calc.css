@@ -1,0 +1,9 @@
+#cost-of-living-calculator-aside {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url(../assets/images/calc-2.jpg);
+  background-size: contain;
+  background-attachment: local;
+}
