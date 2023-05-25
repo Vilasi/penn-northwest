@@ -274,8 +274,6 @@ body {
 
 /*! Background Color Gradient */
 .blue-gradient {
-  /* background: linear-gradient(to bottom, #f8f9fa, #004777); */
-  /* background: linear-gradient(to bottom, #f8f9fa, #004777, #f97521, #f8f9fa); */
   background: linear-gradient(
     to bottom,
     var(--stratosphere-blue),
