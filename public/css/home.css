@@ -67,3 +67,8 @@
   padding-top: 1.75em;
   padding-bottom: 1.75em;
 }
+
+#blob {
+  background-image: url(../assets/svgs/blob.svg);
+  background-repeat: no-repeat;
+}
