@@ -68,7 +68,15 @@
   padding-bottom: 1.75em;
 }
 
-#blob {
+.hero-gradient {
+  background: linear-gradient(to bottom, #f8f9fa 50%, transparent 100%);
+}
+
+.make-it-in-gradient {
+  background: linear-gradient(to bottom, #f8f9fa 75%, transparent 100%);
+}
+
+/* #blob {
   background-image: url(../assets/svgs/blob.svg);
   background-repeat: no-repeat;
-}
+} */
