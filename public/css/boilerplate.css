@@ -279,6 +279,15 @@ body {
     var(--stratosphere-blue),
     var(--bootstrap-white) 50%,
     var(--bootstrap-white) 50%,
-    var(--pndc-orange)
+    var(--stratosphere-blue)
   );
 }
+/* .blue-gradient {
+  background: linear-gradient(
+    to bottom,
+    var(--stratosphere-blue),
+    var(--bootstrap-white) 50%,
+    var(--bootstrap-white) 50%,
+    var(--pndc-orange)
+  );
+} */
