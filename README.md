@@ -13,3 +13,9 @@ The Penn-Northwest Website
 +Membership
 
 Checkout the google font "Georama"
+
+## Payment
+
+stripe connect
+
+https://stripe.com/connect
