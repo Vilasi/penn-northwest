@@ -83,7 +83,6 @@
   background-attachment: fixed;
 }
 
-/* #blob {
-  background-image: url(../assets/svgs/blob.svg);
-  background-repeat: no-repeat;
-} */
+#test {
+  max-height: 15rem;
+}
