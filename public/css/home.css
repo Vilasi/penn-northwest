@@ -69,11 +69,18 @@
 }
 
 .hero-gradient {
-  background: linear-gradient(to bottom, #f8f9fa 50%, transparent 100%);
+  background: linear-gradient(150deg, #f8f9fa 50%, transparent 100%);
 }
 
 .make-it-in-gradient {
   background: linear-gradient(to bottom, #f8f9fa 75%, transparent 100%);
+}
+
+#dividing-section {
+  background-image: url(../assets/images/membership-1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* #blob {

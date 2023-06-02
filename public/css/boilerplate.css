@@ -272,6 +272,10 @@ body {
   min-height: 100vh;
 }
 
+.dividing-section-height {
+  min-height: 33dvh;
+}
+
 /*! Background Color Gradient */
 .blue-gradient {
   background: linear-gradient(
