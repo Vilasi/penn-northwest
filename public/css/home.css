@@ -71,6 +71,9 @@
 .hero-gradient {
   background: linear-gradient(150deg, #f8f9fa 50%, transparent 100%);
 }
+.hero-gradient {
+  background: linear-gradient(180deg, #f8f9fa 50%, transparent 100%);
+}
 
 .make-it-in-gradient {
   background: linear-gradient(to bottom, #f8f9fa 75%, transparent 100%);
