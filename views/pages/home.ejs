@@ -467,7 +467,9 @@
   <!--! Services Section ----------------------------------------------------------------------------------------------------------------------->
   <section class="bg-light">
     <header class="mt-5 px-0 d-flex flex-column align-items-center">
-      <h2 class="ff-4 font-size-1 display-1">Explore Our Services</h2>
+      <h2 class="ff-4 font-size-1 display-1 text-center">
+        Explore Our Services
+      </h2>
       <p class="lead max-text-width text-center">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus
         metus a massa pellentesque, vitae tempor sem tempor id. In vel tincidunt
@@ -497,30 +499,38 @@
             County, providing valuable insights and resources for local
             businesses to thrive.
           </p>
-          <button id="modal-test-button" class="btn btn-lg btn-success mb-3">
+          <button
+            id="discover-mc-business-podcast-button"
+            data-modal-index-number="0"
+            class="modal-button btn btn-lg btn-success mb-3"
+          >
             Click to Watch!
           </button>
         </article>
         <dialog
-          id="modal-test"
-          class="shadow-lg border border-dark-subtle rounded"
+          id="discover-mc-business-podcast-dialog"
+          class="dialog shadow-lg px-5 border border-dark-subtle rounded"
         >
           <div class="d-flex flex-column align-items-center">
-            <h2 class="display-6 mb-4">
+            <h2 class="display-5 mb-4 border-bottom text-center">
               Discover Mercer County Business Podcast
             </h2>
             <!-- <div class="ratio ratio-16x9">
-          </div> -->
+            </div> -->
             <iframe
-              class="rounded shadow-lg border ratio ratio-16x9"
+              class="my-3 rounded shadow-lg border ratio ratio-16x9"
               width="560"
               height="315"
-              src="https://www.youtube.com/embed/y2gzfP0XTlY"
+              src="https://www.youtube.com/embed/QE_epMua0RY"
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
             ></iframe>
+            <p class="lead mt-3">
+              In this episode, Rod talks to Adrienne Sabo and Tony Marr, two of
+              the founders of Clever Marketing
+            </p>
           </div>
         </dialog>
       </div>
@@ -541,7 +551,12 @@
             Lorem ipsum dolor sit amet consectetur, adipisicing elit.
             Recusandae. This is placehodler text.
           </p>
-          <button class="btn btn-lg btn-success mb-3">Click to Watch!</button>
+          <button
+            data-modal-index-number="1"
+            class="modal-button btn btn-lg btn-success mb-3"
+          >
+            Click to Watch!
+          </button>
         </article>
       </div>
 
@@ -561,7 +576,12 @@
             Lorem ipsum dolor sit amet consectetur, adipisicing elit.
             Recusandae. This is placehodler text.
           </p>
-          <button class="btn btn-lg btn-success mb-3">Click Me</button>
+          <button
+            data-modal-index-number="2"
+            class="modal-button btn btn-lg btn-success mb-3"
+          >
+            Click Me
+          </button>
         </article>
       </div>
       <div class="col-lg-6 d-flex flex-column align-items-center">
@@ -579,7 +599,13 @@
             Lorem ipsum dolor sit amet consectetur, adipisicing elit.
             Recusandae. This is placehodler text.
           </p>
-          <button class="btn btn-lg btn-success mb-3">Click Me</button>
+
+          <button
+            data-modal-index-number="3"
+            class="modal-button btn btn-lg btn-success mb-3"
+          >
+            Click Me
+          </button>
         </article>
       </div>
     </section>

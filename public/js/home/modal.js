@@ -1,23 +1,48 @@
-//* This file will control the modal openings in the Services section on the home.ejs page
+//* This file will control the modal/dialog openings in the Services section on the home.ejs page
 
-const modalButton = document.querySelector('#modal-test-button');
-const dialog = document.querySelector('#modal-test');
+const dialogs = document.querySelectorAll('.dialog');
+const modalButtons = document.querySelectorAll('.modal-button');
 
-modalButton.addEventListener('click', (e) => {
-  dialog.showModal();
-});
+//* This function opens the appropriately indexed modal
+function openModal(index) {
+  switch (index) {
+    case '0':
+      dialogs[0].showModal();
+      break;
+    case '1':
+      dialogs[1].showModal();
+      break;
+    case '2':
+      dialogs[2].showModal();
+      break;
+    case '3':
+      dialogs[3].showModal();
+      break;
+
+    default:
+      break;
+  }
+}
+
+//* This adds an event listener to all buttons, and fires the openModal function, passing the appropriate dataset index number
+for (let modalButton of modalButtons) {
+  modalButton.addEventListener('click', (e) => {
+    const modalIndex = modalButton.dataset.modalIndexNumber;
+    openModal(modalIndex);
+  });
+}
 
 //* This allows the user to close the modal if they click outside of it
-// dialog.addEventListener('click', (e) => {
-//   const dialogDimensions = dialog.getBoundingClientRect();
-//   console.log(dialogDimensions);
-//   console.log(e);
-//   if (
-//     e.clientX < dialogDimensions.left ||
-//     e.clientX > dialogDimensions.right ||
-//     e.clientY < dialogDimensions.top ||
-//     e.clientY > dialogDimensions.bottom
-//   ) {
-//     dialog.close();
-//   }
-// });
+for (let dialog of dialogs) {
+  dialog.addEventListener('click', (e) => {
+    const dialogDimensions = dialog.getBoundingClientRect();
+    if (
+      e.clientX < dialogDimensions.left ||
+      e.clientX > dialogDimensions.right ||
+      e.clientY < dialogDimensions.top ||
+      e.clientY > dialogDimensions.bottom
+    ) {
+      dialog.close();
+    }
+  });
+}
