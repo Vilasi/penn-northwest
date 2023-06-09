@@ -17,6 +17,12 @@
   --max-text-width: 65ch;
 
   /*! Colors */
+
+  /** Whites */
+  --bg-platinum: #dce0d9;
+  --bg-pearl: #efe3c7;
+  --bootstrap-white: #f8f9fa;
+
   /** Oranges */
   --pndc-orange: #f97521;
   --pndc-orange-2: #fa8337;
@@ -28,6 +34,9 @@
   --pndc-orange-8: #fdd6bc;
   --pndc-orange-9: #fee3d3;
   --pndc-orange-10: #fef1e9;
+
+  /** Yellows */
+  --mercer-county-yellow: #f4d35e;
 
   /** Blues */
   --pndc-blue: #003a69;
@@ -44,13 +53,12 @@
   --mercer-county-blue: #054467;
   --stratosphere-blue: #004777;
 
-  /** Yellows */
-  --mercer-county-yellow: #f4d35e;
-
-  /** Whites */
-  --bg-platinum: #dce0d9;
-  --bg-pearl: #efe3c7;
-  --bootstrap-white: #f8f9fa;
+  /** Browns */
+  --dun: #d1c6ad;
+  --dun-shade-1: rgba(209, 198, 173, 1);
+  --dun-shade-2: #a79e8a;
+  --khaki: #bbada0;
+  --cinnamon: #8f8073;
 }
 
 /*! HTML/Body Definitions */
@@ -73,7 +81,7 @@ body {
   box-sizing: border-box;
 }
 
-/*! Background Color Definitions */
+/*! Background Color Definitions *******************************************************/
 .background-transparent {
   background-color: transparent;
 }
@@ -156,7 +164,18 @@ body {
   background-color: var(--bg-pearl);
 }
 
-/*! Color Definitions */
+/** Browns */
+.background-dun {
+  background-color: var(--dun);
+}
+.background-khaki {
+  background-color: var(--khaki);
+}
+.background-cinnamon {
+  background-color: var(--cinnamon);
+}
+
+/*! Color Definitions ***********************************************************/
 .pndc-orange {
   color: var(--pndc-orange);
 }
@@ -227,11 +246,23 @@ body {
   color: var(--mercer-county-blue);
 }
 
+/** Whites */
 .pearl {
   color: var(--bg-pearl);
 }
 
-/*! Font Family Definitions */
+/** Browns */
+.dun {
+  color: var(--dun);
+}
+.khaki {
+  color: var(--khaki);
+}
+.cinnamon {
+  color: var(--cinnamon);
+}
+
+/*! Font Family Definitions ***********************************************************/
 .ff-1 {
   font-family: var(--ff-1);
 }
