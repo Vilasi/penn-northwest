@@ -2,3 +2,18 @@ footer {
   background: #c9b79c;
   min-height: 33dvh;
 }
+
+a {
+  /* color: #f8f9fa; */
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  position: relative;
+  top: 1px;
+}
