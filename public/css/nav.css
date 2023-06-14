@@ -38,7 +38,6 @@ hr.m-0.scroll {
 /** Edits the mobile nav dropdown toggle button */
 .navbar-toggler {
   color: var(--bootstrap-white) !important;
-  /* border-color: var(--bootstrap-white); */
   border: none;
 }
 
