@@ -6,7 +6,27 @@ const eventSchema = new Schema({
   title: {
     type: String,
   },
-  price: {
-    type: Number,
+  description: {
+    type: String,
   },
+  date: {
+    type: String,
+  },
+  location: {
+    type: String,
+  },
+  time: {
+    type: String,
+  },
+  // image: {
+  //   type: String,
+  // },
 });
+//TODO ADD:
+//? - Date
+//? - Location
+//? - Time
+//? - Map??
+
+const Event = mongoose.model('Event', eventSchema);
+module.exports = Event;
