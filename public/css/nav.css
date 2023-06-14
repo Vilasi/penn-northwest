@@ -11,9 +11,9 @@
   background-color: #003a69;
 }
 
-/* .navbar-toggler-icon {
-  color: #dce0d9;
-} */
+#home-link:hover {
+  text-decoration: none;
+}
 
 hr {
   transition: all 2s ease-in-out;
