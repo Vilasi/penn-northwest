@@ -8,6 +8,9 @@ require('express-async-errors');
 const app = express();
 const PORT = 3000;
 
+//* Import Routers
+const membershipRoutes = require('./routes/membership');
+
 //* Connect to MongoDB
 main()
   .then(() => {
@@ -48,6 +51,8 @@ app.get('/', (req, res) => {
   res.render('pages/home');
 });
 
+app.use('/membership', membershipRoutes);
+
 //* Jobs
 app.get('/jobs', (req, res) => {
   res.render('pages/jobs');
@@ -59,9 +64,9 @@ app.get('/events', (req, res) => {
 });
 
 //* Membership
-app.get('/membership', (req, res) => {
-  res.render('pages/membership');
-});
+// app.get('/membership', (req, res) => {
+//   res.render('pages/membership');
+// });
 
 //* About
 app.get('/about', (req, res) => {
