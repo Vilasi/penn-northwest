@@ -1,38 +1,53 @@
 <% layout('layouts/boilerplate') %>
 
 <section
-  class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5"
+  class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5 rounded"
 >
   <main class="bg-light">
-    <header>
+    <!-- <header class="mb-5">
       <h1
         class="ff-2 mt-4 max-text-width display-3 mb-3 border-bottom border-2 text-center"
       >
         Membership at Penn-Northwest
       </h1>
-    </header>
+    </header> -->
 
-    <section class="row mt-5">
+    <section class="row mt-5 pt-3">
       <article
-        class="col-lg-4 d-flex flex-column align-items-center mb-5 mb-lg-0"
+        class="col-lg-4 p-3 d-flex flex-column align-items-center mb-5 mb-lg-0"
       >
-        <a class="w-90 d-flex flex-column align-items-center border"
-          >Membership Incentives</a
-        >
+        <a class="w-90 d-flex flex-column align-items-center">
+          <img
+            class="img-fluid mb-3"
+            src="/assets/svgs/membership/reason-to-join.svg"
+            alt="Fun with balloons"
+          />
+          <h2 class="display-6">Membership Incentives</h2>
+        </a>
       </article>
       <article
-        class="col-lg-4 d-flex flex-column align-items-center mb-5 mb-lg-0"
+        class="col-lg-4 p-3 d-flex flex-column align-items-center mb-5 mb-lg-0 shadow"
       >
-        <a class="w-90 d-flex flex-column align-items-center border"
-          >Become a Member!</a
-        >
+        <a class="w-90 d-flex flex-column align-items-center">
+          <img
+            class="img-fluid mb-3"
+            src="/assets/svgs/membership/join.svg"
+            alt="Fun with balloons"
+          />
+          <h2 class="display-5">Become a Member!</h2>
+        </a>
       </article>
       <article
-        class="col-lg-4 d-flex flex-column align-items-center mb-5 mb-lg-0"
+        class="col-lg-4 p-3 d-flex flex-column align-items-center mb-5 mb-lg-0"
       >
-        <a class="w-90 d-flex flex-column align-items-center border"
-          >Our Members</a
-        >
+        <a class="w-90 d-flex flex-column align-items-center">
+          <img
+            class="img-fluid mb-3"
+            src="/assets/svgs/membership/team.svg"
+            alt="Fun with balloons"
+          />
+          <h2 class="display-6">Our Members</h2>
+        </a>
       </article>
     </section>
   </main>
