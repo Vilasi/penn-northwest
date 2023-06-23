@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/css/membership.css" />
 
 <section
   class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5 rounded"
@@ -12,9 +13,11 @@
       </h1>
     </header> -->
 
+    <!--! Membership Buttons -->
     <section class="row mt-5 pt-3">
+      <!--* Incentives -->
       <article
-        class="col-lg-4 p-3 d-flex flex-column align-items-center mb-5 mb-lg-0"
+        class="col-lg-4 p-3 d-flex flex-column align-items-center mb-5 mb-lg-0 hover-shadow rounded"
       >
         <a class="w-90 d-flex flex-column align-items-center">
           <img
@@ -22,11 +25,15 @@
             src="/assets/svgs/membership/reason-to-join.svg"
             alt="Fun with balloons"
           />
-          <h2 class="display-6">Membership Incentives</h2>
+          <button href="" class="btn btn-success bg-orange-2 border border-0">
+            <h2 class="display-6 text-light">Membership Incentives</h2>
+          </button>
         </a>
       </article>
+
+      <!--* Become a Member -->
       <article
-        class="col-lg-4 p-3 d-flex flex-column align-items-center mb-5 mb-lg-0 shadow"
+        class="col-lg-4 px-3 py-5 d-flex flex-column align-items-center mb-5 mb-lg-0 shadow rounded no-hover-shadow"
       >
         <a class="w-90 d-flex flex-column align-items-center">
           <img
@@ -34,11 +41,15 @@
             src="/assets/svgs/membership/join.svg"
             alt="Fun with balloons"
           />
-          <h2 class="display-5">Become a Member!</h2>
+          <button href="" class="btn btn-primary bg-true-blue border border-0">
+            <h2 class="display-5">Become a Member!</h2>
+          </button>
         </a>
       </article>
+
+      <!--* Our Members -->
       <article
-        class="col-lg-4 p-3 d-flex flex-column align-items-center mb-5 mb-lg-0"
+        class="col-lg-4 p-3 d-flex flex-column align-items-center mb-5 mb-lg-0 hover-shadow rounded"
       >
         <a class="w-90 d-flex flex-column align-items-center">
           <img
@@ -46,7 +57,9 @@
             src="/assets/svgs/membership/team.svg"
             alt="Fun with balloons"
           />
-          <h2 class="display-6">Our Members</h2>
+          <button href="" class="btn btn-success bg-orange-2 border border-0">
+            <h2 class="display-6 text-light">Our Members</h2>
+          </button>
         </a>
       </article>
     </section>

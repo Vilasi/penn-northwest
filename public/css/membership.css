@@ -1,0 +1,58 @@
+:root {
+  --hover-shadow: 0 0.5rem 1rem rgba(33, 37, 41, 0.15) !important;
+}
+
+/*! Color Definitions **********************************************************/
+
+.true-blue {
+  color: #3066be;
+}
+
+.bg-true-blue {
+  background-color: #3066be;
+}
+
+.pndc-orange {
+  color: #f7941d;
+}
+.bg-pndc-orange {
+  background-color: #f7941d;
+}
+
+.orange-2 {
+  color: #fb5607;
+}
+.bg-orange-2 {
+  background-color: #fb5607;
+}
+
+.bg-orange-2:hover {
+  background-color: #fb5607;
+}
+/*! END Color Definitions **********************************************************/
+/*! END Color Definitions **********************************************************/
+/*! END Color Definitions **********************************************************/
+
+a:hover {
+  position: relative;
+  top: 1px;
+  cursor: pointer;
+  text-decoration: underline !important;
+  text-decoration-color: #f8f9fa !important;
+}
+
+.hover-shadow:hover {
+  box-shadow: var(--hover-shadow);
+}
+
+.no-hover-shadow:hover {
+  box-shadow: none !important;
+}
+
+.btn:hover {
+  /* background-color: inherit; */
+  /* color: inherit; */
+}
+
+/* box-shadow: 0 .5rem 1rem rgba(var(--bs-body-color-rgb),.15) !important; */
+/* 33 37 41 0.15 */

@@ -5,6 +5,7 @@ prussian-blue: #253d5b
 true-blue: #3066BE (Use this for icons)
 
 pndc-orange: #f97521
+orange-2: #FB5607
 
 <!-- Contenders for Separator -->
 
