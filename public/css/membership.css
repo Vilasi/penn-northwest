@@ -49,10 +49,6 @@ a:hover {
   box-shadow: none !important;
 }
 
-.btn:hover {
-  /* background-color: inherit; */
-  /* color: inherit; */
+.pointer-style {
+  cursor: pointer;
 }
-
-/* box-shadow: 0 .5rem 1rem rgba(var(--bs-body-color-rgb),.15) !important; */
-/* 33 37 41 0.15 */
