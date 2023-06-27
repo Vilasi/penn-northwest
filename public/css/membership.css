@@ -1,5 +1,6 @@
 :root {
-  --hover-shadow: 0 0.5rem 1rem rgba(33, 37, 41, 0.15) !important;
+  /* --hover-shadow: 0 0.5rem 1rem rgba(33, 37, 41, 0.15) !important; */
+  --hover-shadow: 0 0.25rem 0.5rem rgba(33, 37, 41, 0.15) !important;
 }
 
 /*! Color Definitions **********************************************************/
@@ -41,6 +42,10 @@ a:hover {
   text-decoration-color: #f8f9fa !important;
 }
 
+.bottom-shadow {
+  box-shadow: var(--hover-shadow);
+}
+
 .hover-shadow:hover {
   box-shadow: var(--hover-shadow);
 }
@@ -51,4 +56,21 @@ a:hover {
 
 .pointer-style {
   cursor: pointer;
+}
+
+/* #svg-color {
+  color: red;
+} */
+
+.underline-container {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-svg {
+  position: absolute;
+  bottom: -2px;
+  right: 0px;
+  width: 100%;
+  height: 2px;
 }

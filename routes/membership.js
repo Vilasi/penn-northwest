@@ -1,9 +1,11 @@
 //! Events Routes
+
+//* Import Controllers
+const memberships = require('../controllers/membership.js');
+
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 
-router.get('/', (req, res) => {
-  res.render('pages/membership');
-});
+router.route('/').get(memberships.renderMembershipPage);
 
 module.exports = router;

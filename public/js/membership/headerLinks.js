@@ -3,7 +3,6 @@ const membershipButtons = document.querySelector('#membership-buttons');
 console.log(headerLinks);
 
 for (let article of membershipButtons.children) {
-  //   console.log(article.style);
   article.addEventListener('mouseover', (e) => {
     article.style.cursor = 'pointer';
   });
@@ -13,10 +12,3 @@ for (let article of membershipButtons.children) {
     window.location.href = '#test';
   });
 }
-
-// for (let anchorTag of headerLinks) {
-//   anchorTag.addEventListener('mouseover', (e) => {
-//     e.stopPropagation();
-//     console.log(e.target);
-//   });
-// }
