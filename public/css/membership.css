@@ -34,6 +34,7 @@
 /*! END Color Definitions **********************************************************/
 /*! END Color Definitions **********************************************************/
 
+/** Header intra-page nav button stylings */
 a:hover {
   position: relative;
   top: 1px;
@@ -58,18 +59,23 @@ a:hover {
   cursor: pointer;
 }
 
-/* #svg-color {
-  color: red;
-} */
-
+/** Underline SVG Styling Rules */
 .underline-container {
   position: relative;
   display: inline-block;
 }
 
-.underline-svg {
+#underline-svg {
   position: absolute;
   bottom: -2px;
+  right: 0px;
+  width: 100%;
+  height: 2px;
+}
+
+#underline-svg-2 {
+  position: absolute;
+  bottom: -10px;
   right: 0px;
   width: 100%;
   height: 2px;
