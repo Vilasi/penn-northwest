@@ -8,4 +8,6 @@ const router = express.Router({ mergeParams: true });
 
 router.route('/').get(memberships.renderMembershipPage);
 
+router.route('/membership-brochure').get(memberships.getMembershipBrochure);
+
 module.exports = router;
