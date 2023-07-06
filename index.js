@@ -5,6 +5,10 @@ const methodOverride = require('method-override');
 const engine = require('ejs-mate');
 const morgan = require('morgan');
 require('express-async-errors');
+const session = require('express-session');
+const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
 const app = express();
 const PORT = 3000;
 
@@ -62,11 +66,6 @@ app.get('/jobs', (req, res) => {
 app.get('/events', (req, res) => {
   res.render('pages/events');
 });
-
-//* Membership
-// app.get('/membership', (req, res) => {
-//   res.render('pages/membership');
-// });
 
 //* About
 app.get('/about', (req, res) => {
