@@ -1,10 +1,10 @@
 const path = require('path');
 
-module.exports.renderMembershipPage = (req, res) => {
+module.exports.renderMembershipPage = async (req, res) => {
   res.render('pages/membership');
 };
 
-module.exports.getMembershipBrochure = async (req, res, next) => {
+module.exports.getMembershipBrochure = (req, res, next) => {
   //? These resolve the root directory of the project and then joins that to the location of the pdf
   const rootDir = path.resolve(__dirname, '../');
   const filePath = path.join(
@@ -14,7 +14,7 @@ module.exports.getMembershipBrochure = async (req, res, next) => {
 
   return res.sendFile(filePath);
 };
-module.exports.getLevelsBrochure = async (req, res, next) => {
+module.exports.getLevelsBrochure = (req, res, next) => {
   //? These resolve the root directory of the project and then joins that to the location of the pdf
   const rootDir = path.resolve(__dirname, '../');
   const filePath = path.join(

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -14,18 +15,20 @@ const LocalStrategy = require('passport-local');
 const app = express();
 const PORT = 3000;
 
+//* Import Error Handlers
+const errorHandler = require('./utils/error-handlers/errorHandler');
+
 //* Import Routers
 const membershipRoutes = require('./routes/membership');
 
 //* Connect to MongoDB
-main()
-  .then(() => {
-    console.log('Mongoose Database Connection Open!');
-  })
-  .catch((err) => console.log(err));
+main().catch((err) => console.log(err));
+mongoose.connection.once('open', () => {
+  console.log('Database Connected!');
+});
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/test');
+  await mongoose.connect('mongodb://127.0.0.1:27017/penn-northwest');
 }
 
 //! SET VIEW ENGINE && SET EJS-Mate Template Engine
@@ -38,7 +41,7 @@ const pathToPublic = path.join(__dirname, '/public');
 //* Links up static files (CSS, JS, Bootstrap, etc)
 app.use(express.static(pathToPublic));
 
-//! MIDDLEWARE
+//! Initialization Middleware
 //* Allows express to be able to parse incoming JSON payloads
 app.use(express.json());
 //* This lets express parse the request body of POST requests
@@ -51,27 +54,59 @@ app.use(methodOverride('_method'));
 //* Morgan Logger Middleware
 app.use(morgan('dev'));
 
+app.use(
+  session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: false,
+    // rolling: true,
+    cookie: {
+      //One week from today
+      // maxAge: Date.now() + 60480000,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      //This sets the httpOnly to true - preventing client-side scripts from gaining access to the cookie
+      httpOnly: true,
+    },
+  })
+);
+app.use(flash());
+//TODO------------- CONTINUE INITIALIZING PASSPORTJS
+//TODO------------- CONTINUE INITIALIZING PASSPORTJS
+//TODO------------- CONTINUE INITIALIZING PASSPORTJS
+//TODO------------- CONTINUE INITIALIZING PASSPORTJS
+//TODO------------- CONTINUE INITIALIZING PASSPORTJS
+//TODO------------- CONTINUE INITIALIZING PASSPORTJS
+//TODO------------- CONTINUE INITIALIZING PASSPORTJS
+//TODO------------- CONTINUE INITIALIZING PASSPORTJS
+
 //! Routes
 //* Home
 app.get('/', (req, res) => {
+  console.log(req.session);
   res.render('pages/home');
 });
 
 app.use('/membership', membershipRoutes);
 
 //* Jobs
-app.get('/jobs', (req, res) => {
+app.get('/jobs', async (req, res) => {
   res.render('pages/jobs');
 });
 
 //* Events
-app.get('/events', (req, res) => {
+app.get('/events', async (req, res) => {
   res.render('pages/events');
 });
 
 //* About
-app.get('/about', (req, res) => {
+app.get('/about', async (req, res) => {
   res.render('pages/about');
+});
+
+app.use((err, req, res, next) => {
+  if (errorHandler.handleMongooseError('test')) {
+  }
+  return res.status(500).send('Error, internal server error');
 });
 
 app.listen(PORT, () => {
