@@ -89,17 +89,17 @@ app.get('/', (req, res) => {
 app.use('/membership', membershipRoutes);
 
 //* Jobs
-app.get('/jobs', async (req, res) => {
+app.get('/jobs', (req, res) => {
   res.render('pages/jobs');
 });
 
 //* Events
-app.get('/events', async (req, res) => {
+app.get('/events', (req, res) => {
   res.render('pages/events');
 });
 
 //* About
-app.get('/about', async (req, res) => {
+app.get('/about', (req, res) => {
   res.render('pages/about');
 });
 
