@@ -9,6 +9,8 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+
+//* Initialize Express App and Port:
 const app = express();
 const PORT = 3000;
 
@@ -26,7 +28,7 @@ async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/test');
 }
 
-//! SET VIEW ENGINE || SET EJS-Mate Template Engine
+//! SET VIEW ENGINE && SET EJS-Mate Template Engine
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
