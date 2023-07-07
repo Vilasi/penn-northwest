@@ -15,9 +15,11 @@ async function main() {
 async function addDevAccount() {
   const user = new User({
     email: 'vilasicoding@gmail.com',
+    username: 'vilasi',
   });
 
-  await user.save();
+  const registeredUser = await User.register(user, 'mytestpassword');
+  console.log(registeredUser);
 }
 
 addDevAccount().then(() => {
