@@ -7,8 +7,14 @@
       <h1 class="ff-2 display-2 mt-4 max-text-width mb-3">Register</h1>
     </header>
 
+    <!--TODO------ BUILD VALIDATIONS, Mongoose and Joi  -->
     <main class="container">
-      <form class="row g-3 needs-validation" novalidate>
+      <form
+        class="row g-3 needs-validation"
+        action="/register"
+        method="post"
+        novalidate
+      >
         <!--* First name -->
         <div class="col-md-4">
           <label for="validationCustom01" class="form-label">First name</label>
