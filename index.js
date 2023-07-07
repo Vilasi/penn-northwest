@@ -87,6 +87,9 @@ passport.deserializeUser(User.deserializeUser());
 //* Connect-Flash variable definitions
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
+  res.locals.deleted = req.flash('deleted');
   next();
 });
 
@@ -95,6 +98,7 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   // console.log(req.session);
   // console.dir(User);
+  // res.flash('success', "You've done it!");
   res.render('pages/home');
 });
 
@@ -119,8 +123,10 @@ app.get('/about', (req, res) => {
 app.use('/', userRoutes);
 
 app.use((err, req, res, next) => {
+  console.log(err);
   if (errorHandler.handleMongooseError('test')) {
   }
+
   return res.status(500).send('Error, internal server error');
 });
 

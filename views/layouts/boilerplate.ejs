@@ -40,7 +40,9 @@
     <!--! Main Content -->
     <main>
       <!-- div is used to shift content down for gradient/nav effect -->
-      <div id="main" class="blue-gradient min-height-100-vh"><%- body %></div>
+      <div id="main" class="blue-gradient min-height-100-vh">
+        <%- include('../partials/flash.ejs') %> <%- body %>
+      </div>
     </main>
 
     <!--! Footer -->

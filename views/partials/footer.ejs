@@ -9,7 +9,7 @@
       <div class="d-inline-block">
         <img src="/assets/images/PN.png" alt="" class="img-fluid" />
         <div class="mt-3 d-flex justify-content-evenly">
-          <% if (!currentUser) {%>
+          <% if (currentUser) {%>
           <form action="/logout" method="post" class="inline">
             <button class="link-button" type="submit">Logout</button>
           </form>
