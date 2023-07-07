@@ -1,4 +1,4 @@
-//! Events Routes
+//! Membership Routes
 
 //* Import Controllers
 const memberships = require('../controllers/membership.js');

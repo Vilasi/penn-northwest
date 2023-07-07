@@ -26,6 +26,7 @@ async function addDevAccount() {
   const user = new User({
     email: 'vilasicoding@gmail.com',
     username: 'vilasi',
+    role: 'admin',
   });
 
   const registeredUser = await User.register(user, 'mytestpassword');

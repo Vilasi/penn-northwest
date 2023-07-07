@@ -6,14 +6,25 @@
     <!--* Logo -->
     <aside class="col-lg-3 text-center">
       <!-- <img src="/assets/images/ico-192.png" alt="" class="img-fluid" /> -->
-      <img src="/assets/images/PN.png" alt="" class="img-fluid" />
+      <div class="d-inline-block">
+        <img src="/assets/images/PN.png" alt="" class="img-fluid" />
+        <div class="mt-3 d-flex justify-content-evenly">
+          <% if (!currentUser) {%>
+          <form action="/logout" method="post" class="inline">
+            <button class="link-button" type="submit">Logout</button>
+          </form>
+          <% } else { %>
+          <a href="/login">Login</a>
+          <a href="/register">Register</a>
+          <% } %>
+        </div>
+      </div>
     </aside>
 
     <!--* Links -->
     <article class="col-lg-5 py-5 py-lg-0">
       <div class="row d-flex justify-content-evenly">
         <nav class="col-2 col-lg-3 me-5 me-lg-0">
-          <!-- <h5>Links</h5> -->
           <ul class="list-unstyled">
             <li class="mb-4"><a class="ff-4" href="/">Home</a></li>
             <li class="mb-4"><a class="ff-4" href="/about">Events</a></li>
@@ -25,7 +36,6 @@
           </ul>
         </nav>
         <nav class="col-2 col-lg-3">
-          <!-- <h5>Resources</h5> -->
           <ul class="list-unstyled">
             <li class="mb-4">
               <a class="ff-4" href="/resources">Resources</a>

@@ -17,3 +17,33 @@ a:active {
   position: relative;
   top: 1px;
 }
+
+/** The below will make the form logout button in the nav look like a normal link */
+.inline {
+  display: inline;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  /* color: rgba(248, 249, 250, 0.65); */
+  color: black;
+  cursor: pointer;
+  font-size: 1em;
+  /* font-family: serif; */
+
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+.link-button:focus {
+  outline: none;
+}
+.link-button:hover {
+  /* color: rgba(248, 249, 250, 0.8); */
+  text-decoration: underline;
+}
+/* .link-button:active {
+  color: rgba(248, 249, 250, 0.8);
+} */
+/***************************************************************  */

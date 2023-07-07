@@ -23,6 +23,7 @@ const errorHandler = require('./utils/error-handlers/errorHandler');
 
 //* Import Routers
 const membershipRoutes = require('./routes/membership');
+const userRoutes = require('./routes/users');
 
 //* Connect to MongoDB
 main().catch((err) => console.log(err));
@@ -72,15 +73,9 @@ app.use(
     },
   })
 );
+
+//* Initialize connect-flash
 app.use(flash());
-//TODO------------- CONTINUE INITIALIZING PASSPORTJS
-//TODO------------- CONTINUE INITIALIZING PASSPORTJS
-//TODO------------- CONTINUE INITIALIZING PASSPORTJS
-//TODO------------- CONTINUE INITIALIZING PASSPORTJS
-//TODO------------- CONTINUE INITIALIZING PASSPORTJS
-//TODO------------- CONTINUE INITIALIZING PASSPORTJS
-//TODO------------- CONTINUE INITIALIZING PASSPORTJS
-//TODO------------- CONTINUE INITIALIZING PASSPORTJS
 
 //* Initialize Passport and setup User Session Serialization for storing User info in the session
 app.use(passport.initialize());
@@ -88,6 +83,13 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+//* Connect-Flash variable definitions
+app.use((req, res, next) => {
+  console.log(req.user);
+  res.locals.currentUser = req.user;
+  next();
+});
 
 //! Routes
 //* Home
@@ -113,6 +115,9 @@ app.get('/events', (req, res) => {
 app.get('/about', (req, res) => {
   res.render('pages/about');
 });
+
+//* Login/Register
+app.use('/', userRoutes);
 
 app.use((err, req, res, next) => {
   if (errorHandler.handleMongooseError('test')) {
