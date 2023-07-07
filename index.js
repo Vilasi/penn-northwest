@@ -15,6 +15,9 @@ const LocalStrategy = require('passport-local');
 const app = express();
 const PORT = 3000;
 
+//* Import Models
+const User = require('./models/users');
+
 //* Import Error Handlers
 const errorHandler = require('./utils/error-handlers/errorHandler');
 
@@ -79,10 +82,18 @@ app.use(flash());
 //TODO------------- CONTINUE INITIALIZING PASSPORTJS
 //TODO------------- CONTINUE INITIALIZING PASSPORTJS
 
+//* Initialize Passport and setup User Session Serialization for storing User info in the session
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 //! Routes
 //* Home
 app.get('/', (req, res) => {
-  console.log(req.session);
+  // console.log(req.session);
+  // console.dir(User);
   res.render('pages/home');
 });
 
