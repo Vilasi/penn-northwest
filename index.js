@@ -87,6 +87,7 @@ passport.deserializeUser(User.deserializeUser());
 
 //* Connect-Flash variable definitions
 app.use((req, res, next) => {
+  console.log(req.user);
   res.locals.currentUser = req.user;
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
@@ -122,6 +123,7 @@ app.use('/', userRoutes);
 
 //! ERROR Handler -----------------------------------
 app.use((err, req, res, next) => {
+  console.log('THE ERROR MESSAGE FOLLOWS. [From index.js]'.yellow);
   console.log(err);
   if (errorHandler.handleMongooseError('test')) {
   }

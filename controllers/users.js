@@ -10,12 +10,49 @@ module.exports.getRegisterPage = (req, res) => {
   res.render('users/register');
 };
 
-//* /register POST
-module.exports.registerUser = async (req, res) => {
-  // const registrationData = req.body.register;
+//* Register new user
+module.exports.registerUser = async (req, res, next) => {
+  console.log(req.body.register);
+  //* Make and register the new user
+  //? Validations will have already been completed in a Joi middleware
+  try {
+    const { firstName, lastName, email, username, company, password } =
+      req.body.register;
+    const newUser = new User({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      username: username,
+      company: company,
+    });
+    const registeredUser = await User.register(newUser, password);
 
-  // res.send('Looks good!');
+    req.login(registeredUser, (err) => {
+      if (err) {
+        return next(err);
+      }
+      req.flash(
+        'success',
+        `User ${username} with ${company} successfully created!`
+      );
+      return res.redirect('/');
+    });
+  } catch (err) {
+    //This handles "Email already in use" errors
+    if (err.code === 11000) {
+      req.flash('error', 'Email address already in use.');
+    } else {
+      req.flash('error', err.message);
+    }
+    res.redirect('/register');
+  }
+};
 
-  req.flash('success', 'Hello! Welcome back, guy :)');
-  return res.redirect('/');
+module.exports.logout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    return res.redirect('/');
+  });
 };

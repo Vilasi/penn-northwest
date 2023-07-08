@@ -16,4 +16,6 @@ router
   .get(users.getRegisterPage)
   .post(registrationValidation, users.registerUser);
 
+router.route('/logout').post(users.logout);
+
 module.exports = router;
