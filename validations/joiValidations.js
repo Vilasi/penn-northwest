@@ -8,5 +8,5 @@ module.exports.registrationSchema = Joi.object({
   email: Joi.string().email().required(),
   username: Joi.string().min(2).required(),
   company: Joi.string().required(),
-  password: Joi.string().min(8).required(),
+  password: Joi.string().min(6).required(),
 });

@@ -6,16 +6,16 @@ const registrationValidation = async (req, res, next) => {
   //   console.log(registrationData);
 
   const result = joiValidations.registrationSchema.validate(registrationData);
-  console.log(result.error.details[0].message);
+  //   console.log(result.error.details[0].message);
 
   if (result.error) {
     const message = result.error.details[0].message;
     req.flash('error', message);
 
     return res.redirect('/register');
+  } else {
+    next();
   }
-
-  next();
 };
 
 module.exports = registrationValidation;

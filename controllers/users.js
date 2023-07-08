@@ -14,5 +14,8 @@ module.exports.getRegisterPage = (req, res) => {
 module.exports.registerUser = async (req, res) => {
   // const registrationData = req.body.register;
 
-  res.send('Looks good!');
+  // res.send('Looks good!');
+
+  req.flash('success', 'Hello! Welcome back, guy :)');
+  return res.redirect('/');
 };

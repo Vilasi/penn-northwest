@@ -100,9 +100,14 @@
             name="register[password]"
             id="password"
             placeholder="*********"
+            pattern="^(?=.*[A-Z])(?=.*\d).+$"
+            minlength="6"
             required
           />
-          <div class="invalid-feedback">Please provide a valid password.</div>
+          <div class="invalid-feedback">
+            Password must be at least 6 characters long and include at least one
+            capital letter and one number
+          </div>
         </div>
 
         <!--* Terms and Conditions Button -->
