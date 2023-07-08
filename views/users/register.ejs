@@ -20,12 +20,14 @@
           <label for="validationCustom01" class="form-label">First name</label>
           <input
             type="text"
+            name="register[firstName]"
+            id="firstName"
             class="form-control"
-            id="validationCustom01"
             placeholder="First name"
             required
           />
           <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please provide a first name.</div>
         </div>
 
         <!--* Last name -->
@@ -33,12 +35,14 @@
           <label for="validationCustom02" class="form-label">Last name</label>
           <input
             type="text"
+            name="register[lastName]"
+            id="lastName"
             class="form-control"
-            id="validationCustom02"
             placeholder="Last name"
             required
           />
           <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please provide a last name.</div>
         </div>
 
         <!--* Email -->
@@ -48,13 +52,14 @@
             <span class="input-group-text" id="inputGroupPrepend">@</span>
             <input
               type="email"
+              name="register[email]"
+              id="email"
               class="form-control"
-              id="validationCustomUsername"
               aria-describedby="inputGroupPrepend"
               placeholder="name@site.com"
               required
             />
-            <div class="invalid-feedback">Please choose a username.</div>
+            <div class="invalid-feedback">Please enter your email.</div>
           </div>
         </div>
 
@@ -63,12 +68,13 @@
           <label for="validationCustom03" class="form-label">Username</label>
           <input
             type="text"
+            name="register[username]"
+            id="username"
             class="form-control"
-            id="validationCustom03"
             placeholder="Username"
             required
           />
-          <div class="invalid-feedback">Please provide a valid city.</div>
+          <div class="invalid-feedback">Please enter a username.</div>
         </div>
 
         <!--* Company -->
@@ -76,24 +82,30 @@
           <label for="validationCustom04" class="form-label">Company</label>
           <input
             type="text"
+            name="register[company]"
+            id="company"
             class="form-control"
-            id="validationCustom03"
             placeholder="Company"
             required
           />
-          <div class="invalid-feedback">Please select a valid state.</div>
+          <div class="invalid-feedback">Please enter your company name.</div>
         </div>
+
+        <!--* Password -->
         <div class="col-md-3">
           <label for="validationCustom05" class="form-label">Password</label>
           <input
             type="password"
             class="form-control"
-            id="validationCustom05"
+            name="register[password]"
+            id="password"
             placeholder="*********"
             required
           />
-          <div class="invalid-feedback">Please provide a valid zip.</div>
+          <div class="invalid-feedback">Please provide a valid password.</div>
         </div>
+
+        <!--* Terms and Conditions Button -->
         <div class="col-12">
           <div class="form-check">
             <input
@@ -112,7 +124,7 @@
           </div>
         </div>
         <div class="col-12">
-          <button class="btn btn-primary" type="submit">Submit form</button>
+          <button class="btn btn-primary" type="submit">Submit</button>
         </div>
       </form>
     </main>

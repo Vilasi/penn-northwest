@@ -8,6 +8,7 @@ const morgan = require('morgan');
 require('express-async-errors');
 const session = require('express-session');
 const flash = require('connect-flash');
+const colors = require('colors');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
@@ -128,8 +129,9 @@ app.get('/about', (req, res) => {
 //* Login/Register
 app.use('/', userRoutes);
 
+//! ERROR Handler -----------------------------------
 app.use((err, req, res, next) => {
-  console.log(err);
+  // console.log(err);
   if (errorHandler.handleMongooseError('test')) {
   }
 
