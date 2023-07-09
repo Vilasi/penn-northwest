@@ -95,6 +95,16 @@ app.use((req, res, next) => {
   next();
 });
 
+//* req.user logger
+//! DEV ONLY - DELETE LATER
+app.use((req, res, next) => {
+  if (req.user) {
+    console.log('req.user was found, [log from index.js]:'.yellow);
+    console.log(req.user);
+  }
+  next();
+});
+
 //! Routes
 //* Home
 app.get('/', (req, res) => {

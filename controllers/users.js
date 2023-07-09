@@ -1,11 +1,6 @@
 const User = require('../models/users');
 const joiValidations = require('../validations/joiValidations.js');
 
-module.exports.getLoginPage = (req, res) => {
-  // console.log(joiValidations.registrationSchema);
-  res.render('users/login');
-};
-
 module.exports.getRegisterPage = (req, res) => {
   res.render('users/register');
 };
@@ -46,6 +41,19 @@ module.exports.registerUser = async (req, res, next) => {
     }
     res.redirect('/register');
   }
+};
+
+module.exports.getLoginPage = (req, res) => {
+  // console.log(joiValidations.registrationSchema);
+  res.render('users/login');
+};
+
+// module.exports.preLoginUrlSave = async (req, res, next) => {
+
+// }
+module.exports.afterLoginRedirect = async (req, res, next) => {
+  req.flash('success', `Welcome back, ${req.user.username}!`);
+  return res.redirect('/');
 };
 
 module.exports.logout = (req, res, next) => {

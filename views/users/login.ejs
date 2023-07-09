@@ -1,9 +1,47 @@
 <% layout('layouts/boilerplate') %>
+
+<link rel="stylesheet" href="/css/login.css" />
 <section
   class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5"
 >
   <section class="bg-light rounded">
-    <h1 class="ff-2 display-1 mt-4 max-text-width mb-3 text-center">Login</h1>
+    <header>
+      <h1 class="ff-2 display-3 mt-4 max-text-width mb-3 text-center">Login</h1>
+    </header>
+
+    <main class="container d-flex justify-content-center">
+      <form class="needs-validation" action="/login" method="post" novalidate>
+        <!--* Username -->
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            name="username"
+            id="username"
+            type="text"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Username must not be blank.</div>
+        </div>
+
+        <!--* Password -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            name="password"
+            id="password"
+            type="password"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Password must not be blank.</div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Login</button>
+      </form>
+    </main>
   </section>
 </section>
 
