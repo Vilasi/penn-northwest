@@ -1,4 +1,5 @@
 const path = require('path');
+const joi = require('../validations/joiSchemas.js');
 
 module.exports.renderMembershipPage = async (req, res) => {
   res.render('pages/membership');
@@ -24,3 +25,7 @@ module.exports.getLevelsBrochure = (req, res, next) => {
 
   return res.sendFile(filePath);
 };
+
+// module.exports.handleMembershipForm = async (req, res) => {
+
+// };

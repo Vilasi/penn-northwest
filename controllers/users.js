@@ -1,5 +1,5 @@
 const User = require('../models/users');
-const joiValidations = require('../validations/joiValidations.js');
+const joiValidations = require('../validations/joiSchemas.js');
 
 module.exports.getRegisterPage = (req, res) => {
   res.render('users/register');

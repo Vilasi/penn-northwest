@@ -7,15 +7,11 @@ const applicationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  companyWebsite: {
+  website: {
     type: String,
     required: true,
   },
   representative: {
-    type: String,
-    required: true,
-  },
-  representativeTitle: {
     type: String,
     required: true,
   },
@@ -43,11 +39,11 @@ const applicationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  applicantPrimaryActivity: {
+  descriptionOfBusiness: {
     type: String,
     required: true,
   },
-  membershipRequest: {
+  companyType: {
     type: String,
     enum: [
       'Private Sector',
@@ -60,7 +56,7 @@ const applicationSchema = new mongoose.Schema({
     type: String,
   },
   annualContribution: {
-    type: Number,
+    type: String,
     required: true,
   },
   dateSubmitted: {
