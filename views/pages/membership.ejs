@@ -286,6 +286,84 @@
         </div>
       </div>
     </section>
+
+    <section class="container mt-5 pt-5">
+      <header class="mb-5">
+        <h2 class="display-4">Apply for Membership:</h2>
+        <hr />
+      </header>
+
+      <section class="container">
+        <form action="/membership" method="post" class="row">
+          <div class="mb-3 col-lg-3 col-md-6">
+            <label for="companyName" class="form-label">Company Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="companyName"
+              name="application[companyName]"
+              placeholder="Company Name"
+              required
+            />
+          </div>
+          <div class="mb-3 col-lg-3 col-md-6">
+            <label for="companyName" class="form-label">Website</label>
+            <input
+              type="url"
+              class="form-control"
+              id="website"
+              name="application[companyWebsite]"
+              placeholder="website.com"
+              required
+            />
+          </div>
+          <div class="mb-3 col-lg-3 col-md-6">
+            <label for="companyName" class="form-label">Representative</label>
+            <input
+              type="text"
+              class="form-control"
+              id="representative"
+              name="application[representative]"
+              placeholder="First Last"
+              required
+            />
+          </div>
+          <div class="mb-3 col-lg-3 col-md-6">
+            <label for="companyName" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="application[email]"
+              placeholder="john@smith.com"
+              required
+            />
+          </div>
+          <div class="mb-3 col-lg-3 col-md-6">
+            <label for="companyName" class="form-label">Phone Number</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="phone"
+              name="application[phone]"
+              placeholder="Phone"
+              required
+            />
+          </div>
+          <div class="mb-3 col-lg-3 col-md-6">
+            <label for="companyName" class="form-label">Address</label>
+            <input
+              type=""
+              class="form-control"
+              id="phone"
+              name="application[phone]"
+              placeholder="Phone"
+              required
+            />
+          </div>
+        </form>
+      </section>
+    </section>
   </main>
 </section>
 

@@ -30,25 +30,6 @@ const eventSchema = new Schema({
       ref: 'User', // Reference to the User model
     },
   ],
-
-  // title: {
-  //   type: String,
-  // },
-  // description: {
-  //   type: String,
-  // },
-  // date: {
-  //   type: String,
-  // },
-  // location: {
-  //   type: String,
-  // },
-  // time: {
-  //   type: String,
-  // },
-  // image: {
-  //   type: String,
-  // },
 });
 //TODO ADD:
 //? - Date
