@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const express = require('express');
-const User = require('./models/users');
+const User = require('../models/users');
 
 //* Connect to MongoDB
 main().catch((err) => console.log(err));
