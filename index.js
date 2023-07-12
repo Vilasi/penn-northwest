@@ -95,6 +95,7 @@ app.use((req, res, next) => {
 //* req.user logger
 //! DEV ONLY - DELETE LATER
 app.use((req, res, next) => {
+  // console.log(process.env.STG_EMAIL_API_KEY);
   if (req.user) {
     console.log('req.user was found, [log from index.js]:'.yellow);
     console.log(req.user);
