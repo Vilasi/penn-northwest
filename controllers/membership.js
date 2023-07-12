@@ -1,7 +1,8 @@
 const path = require('path');
 const joi = require('../validations/joiSchemas.js');
-const Membership = require('../models/memberships.js');
 const createError = require('http-errors');
+const sendMessage = require('../utils/sendMemberEmail.js');
+const Membership = require('../models/memberships.js');
 
 module.exports.renderMembershipPage = async (req, res) => {
   res.render('pages/membership');
@@ -50,6 +51,8 @@ module.exports.handleMembershipForm = async (req, res, next) => {
     'success',
     `Thank you, ${application.submittedBy}, your application has been submitted! You will hear from us soon.`
   );
+
+  sendMessage(application);
   // console.log(newMembershipDoc);
   // console.log(createError);
   // console.log(application);
