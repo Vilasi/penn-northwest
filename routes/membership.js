@@ -12,18 +12,11 @@ const {
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 
-//TODO BUILD OUT MEMBERSHIP ROUTES - EMAIL, DATABASE, ETC
-//TODO BUILD OUT MEMBERSHIP ROUTES - EMAIL, DATABASE, ETC
-//TODO BUILD OUT MEMBERSHIP ROUTES - EMAIL, DATABASE, ETC
-//TODO BUILD OUT MEMBERSHIP ROUTES - EMAIL, DATABASE, ETC
-//TODO BUILD OUT MEMBERSHIP ROUTES - EMAIL, DATABASE, ETC
+//* Membership Routes
 router
   .route('/')
   .get(memberships.renderMembershipPage)
-  .post(membershipApplicationValidation, (req, res) => {
-    console.log(req.body);
-    res.json(req.body);
-  });
+  .post(membershipApplicationValidation, memberships.handleMembershipForm);
 
 router.route('/membership-brochure-pdf').get(memberships.getMembershipBrochure);
 

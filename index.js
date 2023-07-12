@@ -9,6 +9,7 @@ require('express-async-errors');
 const session = require('express-session');
 const flash = require('connect-flash');
 const colors = require('colors');
+const createError = require('http-errors');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
@@ -36,29 +37,28 @@ async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/penn-northwest');
 }
 
-//! SET VIEW ENGINE && SET EJS-Mate Template Engine
+//* SET VIEW ENGINE && SET EJS-Mate Template Engine
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
-//! LOAD STATIC FILES
+//* LOAD STATIC FILES
 const pathToPublic = path.join(__dirname, '/public');
-//* Links up static files (CSS, JS, Bootstrap, etc)
 app.use(express.static(pathToPublic));
 
-//! Initialization Middleware
-//* Allows express to be able to parse incoming JSON payloads
+//* Initialization Middleware
+//*----- Related blocks are separated by //? comments
+//? Allows express to be able to parse incoming JSON payloads
 app.use(express.json());
-//* This lets express parse the request body of POST requests
+//? Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-//* Method Override for Overriding POST requests
+//? Method Override for Overriding POST requests
 // override with POST having ?_method=DELETE, such that:
 //[IN <FORM>]: action="http://localhost:3000/comments/<%= desiredComment.id %>?_method=PATCH"
 app.use(methodOverride('_method'));
-
-//* Morgan Logger Middleware
+//? Morgan Logger Middleware
 app.use(morgan('dev'));
-
+//? Express Session Middleware
 app.use(
   session({
     secret: process.env.SECRET_KEY,
@@ -74,11 +74,9 @@ app.use(
     },
   })
 );
-
-//* Initialize connect-flash
+//? Initialize connect-flash
 app.use(flash());
-
-//* Initialize Passport and setup User Session Serialization for storing User info in the session
+//? Initialize Passport and setup User Session Serialization for storing User info in the session
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -87,7 +85,6 @@ passport.deserializeUser(User.deserializeUser());
 
 //* Connect-Flash variable definitions
 app.use((req, res, next) => {
-  console.log(req.user);
   res.locals.currentUser = req.user;
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
@@ -124,21 +121,34 @@ app.get('/events', (req, res) => {
 });
 
 //* About
-app.get('/about', (req, res) => {
+app.get('/about', (req, res, next) => {
+  console.dir(createError);
+  return next(createError(404, 'This is a test error'));
   res.render('pages/about');
 });
 
 //* Login/Register
 app.use('/', userRoutes);
 
+//* Catchall 404
+app.get('*', (req, res, next) => {
+  return next(createError(404, 'Page not found'));
+});
+
 //! ERROR Handler -----------------------------------
 app.use((err, req, res, next) => {
   console.log('THE ERROR MESSAGE FOLLOWS. [From index.js]'.yellow);
   console.log(err);
-  if (errorHandler.handleMongooseError('test')) {
+  //* Mongoose Error
+  if (errorHandler.handleMongooseError(err)) {
+    const error = createError(
+      500,
+      'Internal error. Please try your request again later.'
+    );
+    return res.status(error.status).render('pages/error', { error });
   }
 
-  return res.status(500).send('Error, internal server error');
+  return res.status(err.status).render('pages/error', { err });
 });
 
 app.listen(PORT, () => {

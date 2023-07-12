@@ -1,5 +1,7 @@
 const path = require('path');
 const joi = require('../validations/joiSchemas.js');
+const Membership = require('../models/memberships.js');
+const createError = require('http-errors');
 
 module.exports.renderMembershipPage = async (req, res) => {
   res.render('pages/membership');
@@ -15,6 +17,7 @@ module.exports.getMembershipBrochure = (req, res, next) => {
 
   return res.sendFile(filePath);
 };
+
 module.exports.getLevelsBrochure = (req, res, next) => {
   //? These resolve the root directory of the project and then joins that to the location of the pdf
   const rootDir = path.resolve(__dirname, '../');
@@ -26,6 +29,30 @@ module.exports.getLevelsBrochure = (req, res, next) => {
   return res.sendFile(filePath);
 };
 
-// module.exports.handleMembershipForm = async (req, res) => {
+module.exports.handleMembershipForm = async (req, res, next) => {
+  const application = req.body.application;
+  const newMembershipDoc = new Membership(application);
 
-// };
+  //* Make Document Error Handler
+  if (!newMembershipDoc) {
+    return next(
+      createError(
+        500,
+        'There was an issue processing your application. Please try again later.'
+      )
+    );
+  }
+
+  const submittedApplication = await newMembershipDoc.save();
+  console.log(submittedApplication);
+
+  req.flash(
+    'success',
+    `Thank you, ${application.submittedBy}, your application has been submitted! You will hear from us soon.`
+  );
+  // console.log(newMembershipDoc);
+  // console.log(createError);
+  // console.log(application);
+
+  res.redirect('/membership');
+};

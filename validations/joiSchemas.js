@@ -29,7 +29,7 @@ module.exports.membershipApplicationSchema = Joi.object({
       'Public Sector'
     )
     .required(),
-  affiliations: Joi.string(),
+  affiliations: Joi.string().required(),
   annualContribution: Joi.string().required(),
   submittedBy: Joi.string().required(),
   submitterTitle: Joi.string().required(),
