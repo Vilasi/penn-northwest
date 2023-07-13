@@ -33,6 +33,11 @@ module.exports.getLevelsBrochure = (req, res, next) => {
 
 //* Membership Application Submission Functionality
 module.exports.handleMembershipForm = async (req, res, next) => {
+  // Honeypot Catch Field
+  if (req.body.honey) {
+    return res.redirect('/pages/error');
+  }
+
   // Validate reCAPTCHA response
   const captchaValidateBoolean = await validateReCaptcha(req);
 
