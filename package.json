@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Vilasi/penn-northwest#readme",
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
+    "axios": "^1.4.0",
     "colors": "^1.4.0",
     "connect-flash": "^0.1.1",
     "ejs": "^3.1.9",

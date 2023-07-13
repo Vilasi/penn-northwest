@@ -1,7 +1,8 @@
 const path = require('path');
 const joi = require('../validations/joiSchemas.js');
 const createError = require('http-errors');
-const sendMessage = require('../utils/sendMemberEmail.js');
+const sendMessage = require('../utils/middleware/sendMemberEmail.js');
+const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
 const Membership = require('../models/memberships.js');
 
 module.exports.renderMembershipPage = async (req, res) => {
@@ -31,6 +32,8 @@ module.exports.getLevelsBrochure = (req, res, next) => {
 };
 
 module.exports.handleMembershipForm = async (req, res, next) => {
+  // console.log('The member application request body is as follows:'.yellow);
+  // console.log(req.body['g-recaptcha-response']);
   const application = req.body.application;
   const newMembershipDoc = new Membership(application);
 
@@ -45,17 +48,16 @@ module.exports.handleMembershipForm = async (req, res, next) => {
   }
 
   const submittedApplication = await newMembershipDoc.save();
-  console.log(submittedApplication);
+  // console.log(submittedApplication);
 
   req.flash(
     'success',
     `Thank you, ${application.submittedBy}, your application has been submitted! You will hear from us soon.`
   );
 
-  sendMessage(application);
-  // console.log(newMembershipDoc);
-  // console.log(createError);
-  // console.log(application);
+  //? EMAIL SENDER
+  // sendMessage(application);
+  //? EMAIL SENDER
 
   res.redirect('/membership');
 };
