@@ -3,9 +3,6 @@
 //* Import Controllers
 const memberships = require('../controllers/membership.js');
 
-//* Import Middleware
-const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
-
 //* Import Validations
 const {
   membershipApplicationValidation,
@@ -19,11 +16,7 @@ const router = express.Router({ mergeParams: true });
 router
   .route('/')
   .get(memberships.renderMembershipPage)
-  .post(
-    membershipApplicationValidation,
-    validateReCaptcha,
-    memberships.handleMembershipForm
-  );
+  .post(membershipApplicationValidation, memberships.handleMembershipForm);
 
 router.route('/membership-brochure-pdf').get(memberships.getMembershipBrochure);
 

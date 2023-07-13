@@ -123,7 +123,7 @@ app.get('/events', (req, res) => {
 
 //* About
 app.get('/about', (req, res, next) => {
-  console.dir(createError);
+  // console.dir(createError);
   return next(createError(404, 'This is a test error'));
   res.render('pages/about');
 });

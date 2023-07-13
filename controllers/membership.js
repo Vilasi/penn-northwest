@@ -31,13 +31,27 @@ module.exports.getLevelsBrochure = (req, res, next) => {
   return res.sendFile(filePath);
 };
 
+//* Membership Application Submission Functionality
 module.exports.handleMembershipForm = async (req, res, next) => {
-  // console.log('The member application request body is as follows:'.yellow);
-  // console.log(req.body['g-recaptcha-response']);
+  // Validate reCAPTCHA response
+  const captchaValidateBoolean = await validateReCaptcha(req);
+
+  // If reCAPTCHA validation fails, display an error message and redirect to the membership application page
+  if (!captchaValidateBoolean) {
+    req.flash(
+      'error',
+      'The captcha check failed to validate. Please retry the membership application, or contact us directly.'
+    );
+    return res.redirect('/membership');
+  }
+
   const application = req.body.application;
+
+  // Create a new Membership document based on the application data
   const newMembershipDoc = new Membership(application);
 
   //* Make Document Error Handler
+  // If there is an issue creating the new document, return an error using the next middleware function
   if (!newMembershipDoc) {
     return next(
       createError(
@@ -48,16 +62,16 @@ module.exports.handleMembershipForm = async (req, res, next) => {
   }
 
   const submittedApplication = await newMembershipDoc.save();
-  // console.log(submittedApplication);
 
+  // Display a success message and redirect to the membership page
   req.flash(
     'success',
     `Thank you, ${application.submittedBy}, your application has been submitted! You will hear from us soon.`
   );
 
   //? EMAIL SENDER
-  // sendMessage(application);
-  //? EMAIL SENDER
+  // Send an email using the application data
+  sendMessage(application);
 
   res.redirect('/membership');
 };
