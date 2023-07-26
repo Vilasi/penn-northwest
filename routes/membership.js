@@ -16,7 +16,7 @@ const router = express.Router({ mergeParams: true });
 router
   .route('/')
   .get(memberships.renderMembershipPage)
-  .post(membershipApplicationValidation, memberships.handleMembershipForm);
+  .post(membershipApplicationValidation, memberships.handleApplicationForm);
 
 router.route('/membership-brochure-pdf').get(memberships.getMembershipBrochure);
 

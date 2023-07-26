@@ -32,7 +32,7 @@ module.exports.getLevelsBrochure = (req, res, next) => {
 };
 
 //* Membership Application Submission Functionality
-module.exports.handleMembershipForm = async (req, res, next) => {
+module.exports.handleApplicationForm = async (req, res, next) => {
   // Honeypot Catch Field
   if (req.body.honey) {
     return res.redirect('/pages/error');
