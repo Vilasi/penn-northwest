@@ -3,7 +3,7 @@ const joi = require('../validations/joiSchemas.js');
 const createError = require('http-errors');
 const sendMessage = require('../utils/middleware/sendMemberEmail.js');
 const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
-const Membership = require('../models/memberships.js');
+const Application = require('../models/applications.js');
 
 module.exports.renderMembershipPage = async (req, res) => {
   res.render('pages/membership');
@@ -53,11 +53,11 @@ module.exports.handleApplicationForm = async (req, res, next) => {
   const application = req.body.application;
 
   // Create a new Membership document based on the application data
-  const newMembershipDoc = new Membership(application);
+  const newApplicationDoc = new Application(application);
 
   //* Make Document Error Handler
   // If there is an issue creating the new document, return an error using the next middleware function
-  if (!newMembershipDoc) {
+  if (!newApplicationDoc) {
     return next(
       createError(
         500,
@@ -66,7 +66,7 @@ module.exports.handleApplicationForm = async (req, res, next) => {
     );
   }
 
-  const submittedApplication = await newMembershipDoc.save();
+  const submittedApplication = await newApplicationDoc.save();
 
   // Display a success message and redirect to the membership page
   req.flash(

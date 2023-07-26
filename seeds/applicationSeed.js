@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const express = require('express');
-const Membership = require('../models/memberships');
+const Application = require('../models/applications');
 
 //* Connect to MongoDB
 main().catch((err) => console.log(err));
@@ -15,8 +15,8 @@ async function main() {
 }
 
 async function addSeedMember() {
-  await Membership.deleteMany({});
-  const newMember = new Membership({
+  await Application.deleteMany({});
+  const newApplication = new Application({
     companyName: 'Example Company',
     website: 'http://www.example.com',
     representative: 'John Doe',
@@ -34,9 +34,9 @@ async function addSeedMember() {
     submitterTitle: 'Manager',
   });
 
-  console.log(newMember);
+  console.log(newApplication);
   //   console.log('Member Application Database Cleared and Seeded'.green);
-  await newMember.save();
+  await newApplication.save();
 }
 
 addSeedMember().then(() => {

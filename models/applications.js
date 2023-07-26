@@ -73,6 +73,6 @@ const applicationSchema = new mongoose.Schema({
   },
 });
 
-const Membership = mongoose.model('Membership', applicationSchema);
+const Application = mongoose.model('Application', applicationSchema);
 
-module.exports = Membership;
+module.exports = Application;
