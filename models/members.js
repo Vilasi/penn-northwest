@@ -10,3 +10,25 @@ const memberSchema = new Schema({
     type: String,
   },
 });
+
+let childList5 = document.querySelector('#testtesttesttest').children;
+
+let allMembers4 = [...childList5].map((p) => {
+  if (p.children.length > 0) {
+    return {
+      href: `${p.children[0].href}`,
+      name: `${p.children[0].innerText}`,
+    };
+  } else {
+    return {
+      href: ``,
+      name: `${p.innerText}`,
+    };
+  }
+});
+
+// for (let p of childList) {
+//     if (p.children.length > 0) {
+
+//     }
+// }
