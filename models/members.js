@@ -11,9 +11,9 @@ const memberSchema = new Schema({
   },
 });
 
-const filteredArray = array.filter((obj) => {
-  return obj.href !== 'undefined';
-});
+const Member = mongoose.model('Member', memberSchema);
+
+module.exports = Member;
 
 //* This is for retrieving the members list from the original website
 // let childList5 = document.querySelector('#testtesttesttest').children;
@@ -30,4 +30,9 @@ const filteredArray = array.filter((obj) => {
 //       name: `${p.innerText}`,
 //     };
 //   }
+// });
+
+//* To filter out the alphabet letters
+// const filteredArray = array.filter((obj) => {
+//   return obj.href !== 'undefined';
 // });
