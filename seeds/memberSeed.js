@@ -817,8 +817,8 @@ addMembers(membersArray).then(() => {
   mongoose.connection.close();
 });
 
-// [
 //   //* Below is the storage with alphabet included, A, B, C, etc
+// [
 //   ({
 //     href: 'undefined',
 //     name: 'A',

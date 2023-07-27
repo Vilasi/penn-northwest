@@ -4,8 +4,19 @@ const createError = require('http-errors');
 const sendMessage = require('../utils/middleware/sendMemberEmail.js');
 const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
 const Application = require('../models/applications.js');
+const Member = require('../models/members.js');
 
-module.exports.renderMembershipPage = async (req, res) => {
+module.exports.renderMembershipPage = async (req, res, next) => {
+  const errorTest = createError(404, 'This is a test error');
+  // return next(errorTest);
+  // console.log(createError(404, 'This is a test error'))
+  // throw createError(404, 'This is a test error');
+
+  const members = await Member.find({});
+  // if (!members) throw createError('')
+
+  console.log('BELOW IS THE MEMBERS-------------------------------------'.red);
+  console.log(members);
   res.render('pages/membership');
 };
 

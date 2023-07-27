@@ -80,3 +80,7 @@ a:hover {
   width: 100%;
   height: 2px;
 }
+
+#background-photo-1 {
+  background-image: url('../assets/images/0001.jpg');
+}

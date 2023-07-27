@@ -140,7 +140,7 @@ app.get('*', (req, res, next) => {
 
 //! ERROR Handler -----------------------------------
 app.use((err, req, res, next) => {
-  console.log('THE ERROR MESSAGE FOLLOWS. [From index.js]'.yellow);
+  console.log('THE ERROR MESSAGE FOLLOWS. [From index.js error handler]'.red);
   console.log(err);
   //* Mongoose Error
   if (errorHandler.handleMongooseError(err)) {
