@@ -23,6 +23,12 @@ async function addDevAccount() {
     await User.findByIdAndDelete(foundUser._id);
   }
 
+  const foundByEmail = await User.findOne({ email: 'vilasicoding@gmail.com' });
+  if (foundByEmail) {
+    console.log(foundByEmail);
+    await User.findByIdAndDelete(foundByEmail._id);
+  }
+
   const user = new User({
     email: 'vilasicoding@gmail.com',
     username: 'vilasi',
