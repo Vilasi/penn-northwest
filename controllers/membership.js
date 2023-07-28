@@ -11,16 +11,6 @@ const memberSorter = require('../utils/memberSorter.js');
 const Application = require('../models/applications.js');
 const Member = require('../models/members.js');
 
-module.exports.renderMembershipPage = async (req, res, next) => {
-  //TODO Error Handle This
-  const members = await Member.find({});
-  const sortedMembers = memberSorter(members);
-
-  console.log('BELOW IS THE REQ.USER-------------------------------------'.red);
-  console.log(req.user);
-  res.render('pages/membership', { members: sortedMembers });
-};
-
 module.exports.getMembershipBrochure = (req, res, next) => {
   //? These resolve the root directory of the project and then joins that to the location of the pdf
   const rootDir = path.resolve(__dirname, '../');
@@ -91,6 +81,18 @@ module.exports.handleApplicationForm = async (req, res, next) => {
   sendMessage(application);
 
   res.redirect('/membership');
+};
+
+module.exports.renderMembershipPage = async (req, res, next) => {
+  //TODO Error Handle This
+  const members = await Member.find({});
+  const sortedMembers = memberSorter(members);
+
+  // console.log('BELOW IS THE REQ.USER-------------------------------------'.red);
+
+  const user = req.user || null;
+
+  res.render('pages/membership', { members: sortedMembers, user });
 };
 
 //

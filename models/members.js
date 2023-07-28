@@ -8,6 +8,7 @@ const memberSchema = new Schema({
   },
   href: {
     type: String,
+    default: '',
   },
 });
 

@@ -634,6 +634,28 @@
     <section class="mt-5">
       <h2 class="display-3 mb-5 text-center border-bottom">Our Members</h2>
 
+      <% if (user && user.role === 'admin') {%>
+        <!--* This form is for ADMINS ONLY to add new members. -->
+        <form class="my-5 d-flex flex-column align-items-center" action="/post-new-member" method="post">
+          <header class="mb-3">
+            <h2 class="display-6 text-center text-decoration-underline">Add New Member</h2>
+          </header>
+
+          <div class="row">
+            <div class="mb-3">
+              <label for="member-name-input" class="form-label">Member Name:</label>
+              <input name="newMember[name]" type="text" class="form-control" id="member-name-input" aria-describedby="memberName" required>
+              <div id="emailHelp" class="form-text">This form is only viewable to Admins</div>
+            </div>
+            <div class="mb-3">
+              <label for="website-link" class="form-label">Website Link</label>
+              <input name="newMember[href]" type="text" class="form-control" id="website-link" placeholder="Leave Blank if N/A">
+            </div>  
+          </div>
+        </form>
+      <% } %>
+       
+
       <section class="row">
         <!--* Picture/Members Row 1 ------------------------------------------------------->
         <div class="col-lg-6 mb-5">
