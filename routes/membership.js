@@ -9,6 +9,9 @@ const {
   newMemberValidation,
 } = require('../utils/middleware/joiValidations.js');
 
+//* Import Middleware
+const isLoggedIn = require('../utils/middleware/isLoggedIn.js');
+
 //* Init Router
 const express = require('express');
 const router = express.Router({ mergeParams: true });
@@ -21,7 +24,7 @@ router
 
 router
   .route('/post-new-member')
-  .post(newMemberValidation, memberships.postNewMember);
+  .post(isLoggedIn, newMemberValidation, memberships.postNewMember);
 
 router.route('/membership-brochure-pdf').get(memberships.getMembershipBrochure);
 

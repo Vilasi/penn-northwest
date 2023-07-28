@@ -84,7 +84,9 @@ module.exports.handleApplicationForm = async (req, res, next) => {
 };
 
 module.exports.postNewMember = async (req, res, next) => {
-  console.log(req.body);
+  const newMember = req.body.newMember;
+  console.log(newMember);
+
   res.send(req.body);
 };
 
