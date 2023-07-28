@@ -408,10 +408,6 @@ const membersArray = [
     name: 'Interstate Pipe & Supply',
   },
   {
-    href: '',
-    name: '',
-  },
-  {
     href: 'https://jcl.energy/',
     name: 'JCL Energy',
   },

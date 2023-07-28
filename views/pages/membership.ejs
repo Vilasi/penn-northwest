@@ -628,10 +628,10 @@
     </section>
 
     <section class="mt-5">
-      <h2 class="display-3 mb-5 text-center">Our Members</h2>
+      <h2 class="display-3 mb-5 text-center border-bottom">Our Members</h2>
 
       <section class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6 mb-5">
           <img
             class="img-fluid rounded shadow-lg"
             src="/assets/images/0001.jpg"
@@ -639,8 +639,19 @@
             srcset=""
           />
         </div>
-        <div class="col-lg-6 container">
+        <div class="col-lg-3 container">
           <% for (let i = 0; i < 10; i++) {%> <% if (members[i].href) {%>
+          <p>
+            <a class="text-decoration-underline" href="members[i].href"
+              ><%= members[i].name %></a
+            >
+          </p>
+          <% } else {%>
+          <p><%= members[i].name %></p>
+          <% } %> <% } %>
+        </div>
+        <div class="col-lg-3 container">
+          <% for (let i = 11; i < 21; i++) {%> <% if (members[i].href) {%>
           <p>
             <a class="text-decoration-underline" href="members[i].href"
               ><%= members[i].name %></a

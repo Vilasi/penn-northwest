@@ -3,22 +3,22 @@ const joi = require('../validations/joiSchemas.js');
 const createError = require('http-errors');
 const sendMessage = require('../utils/middleware/sendMemberEmail.js');
 const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
+
+//* Import Middleware
+const memberSorter = require('../utils/memberSorter.js');
+
+//* Import Models
 const Application = require('../models/applications.js');
 const Member = require('../models/members.js');
 
 module.exports.renderMembershipPage = async (req, res, next) => {
-  const errorTest = createError(404, 'This is a test error');
-  // return next(errorTest);
-  // console.log(createError(404, 'This is a test error'))
-  // throw createError(404, 'This is a test error');
-
   //TODO Error Handle This
   const members = await Member.find({});
-  // if (!members) throw createError(500, '')
+  const sortedMembers = memberSorter(members);
 
   console.log('BELOW IS THE MEMBERS-------------------------------------'.red);
-  console.log(members);
-  res.render('pages/membership', { members });
+  console.log(sortedMembers);
+  res.render('pages/membership', { members: sortedMembers });
 };
 
 module.exports.getMembershipBrochure = (req, res, next) => {
