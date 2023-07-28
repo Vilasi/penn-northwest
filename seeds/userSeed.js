@@ -38,7 +38,7 @@ async function addDevAccount() {
     company: 'Vilasi Web Consulting LLC',
   });
 
-  const registeredUser = await User.register(user, 'mytestpassword');
+  const registeredUser = await User.register(user, 'pieistastey');
   console.log(registeredUser);
 }
 

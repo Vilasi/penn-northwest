@@ -6,6 +6,7 @@ const memberships = require('../controllers/membership.js');
 //* Import Validations
 const {
   membershipApplicationValidation,
+  newMemberValidation,
 } = require('../utils/middleware/joiValidations.js');
 
 //* Init Router
@@ -18,7 +19,9 @@ router
   .get(memberships.renderMembershipPage)
   .post(membershipApplicationValidation, memberships.handleApplicationForm);
 
-router.route('/post-new-member').post();
+router
+  .route('/post-new-member')
+  .post(newMemberValidation, memberships.postNewMember);
 
 router.route('/membership-brochure-pdf').get(memberships.getMembershipBrochure);
 

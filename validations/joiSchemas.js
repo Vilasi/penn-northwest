@@ -34,3 +34,10 @@ module.exports.membershipApplicationSchema = Joi.object({
   submittedBy: Joi.string().required(),
   submitterTitle: Joi.string().required(),
 });
+
+module.exports.newMemberSchema = Joi.object({
+  newMember: Joi.object({
+    name: Joi.string().required(),
+    href: Joi.string().default(''),
+  }).required(),
+});

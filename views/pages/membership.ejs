@@ -636,7 +636,7 @@
 
       <% if (user && user.role === 'admin') {%>
         <!--* This form is for ADMINS ONLY to add new members. -->
-        <form class="my-5 d-flex flex-column align-items-center" action="/post-new-member" method="post">
+        <form class="my-5 d-flex flex-column align-items-center" action="/membership/post-new-member" method="post">
           <header class="mb-3">
             <h2 class="display-6 text-center text-decoration-underline">Add New Member</h2>
           </header>
@@ -652,6 +652,8 @@
               <input name="newMember[href]" type="text" class="form-control" id="website-link" placeholder="Leave Blank if N/A">
             </div>  
           </div>
+
+          <button class="btn btn-primary" type="submit">Submit</button>
         </form>
       <% } %>
        

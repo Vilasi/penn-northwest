@@ -83,6 +83,11 @@ module.exports.handleApplicationForm = async (req, res, next) => {
   res.redirect('/membership');
 };
 
+module.exports.postNewMember = async (req, res, next) => {
+  console.log(req.body);
+  res.send(req.body);
+};
+
 module.exports.renderMembershipPage = async (req, res, next) => {
   //TODO Error Handle This
   const members = await Member.find({});

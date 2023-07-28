@@ -10,6 +10,8 @@ const registrationValidation = async (req, res, next) => {
   if (result.error) {
     const message = result.error.details[0].message;
     req.flash('error', message);
+    console.log('Joi Error'.yellow);
+    console.log(result.error.details[0].message);
 
     return res.redirect('/register');
   } else {
@@ -35,4 +37,22 @@ const membershipApplicationValidation = async (req, res, next) => {
   }
 };
 
-module.exports = { registrationValidation, membershipApplicationValidation };
+const newMemberValidation = async (req, res, next) => {
+  const result = joiValidations.newMemberSchema.validate(req.body);
+
+  if (result.error) {
+    const message = result.error.details[0].message;
+    req.flash('error', message);
+    console.log('Joi Error'.yellow);
+    console.log(result.error.details[0].message);
+    return res.redirect('/membership');
+  } else {
+    next();
+  }
+};
+
+module.exports = {
+  registrationValidation,
+  membershipApplicationValidation,
+  newMemberValidation,
+};
