@@ -86,8 +86,19 @@ module.exports.handleApplicationForm = async (req, res, next) => {
 module.exports.postNewMember = async (req, res, next) => {
   const newMember = req.body.newMember;
   console.log(newMember);
+  const member = new Member(newMember);
 
-  res.send(req.body);
+  try {
+    const createdMember = await member.save();
+    req.flash(
+      'success',
+      `New member created, Name: ${createdMember.name}. Website: ${createdMember.href}`
+    );
+
+    res.redirect('/membership');
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports.renderMembershipPage = async (req, res, next) => {
