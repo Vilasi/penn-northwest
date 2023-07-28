@@ -627,10 +627,15 @@
       </section>
     </section>
 
+    <!--* Start Members List Section -->
+    <!-- This programmatically generates the list of members from a general members collection call to the DB -->
+    <!-- The # members displayed per section is for optimal responsive sizing -->
+    <!-- If member.href is truthy , render <a></a>. Else render only member.name <p></p> -->
     <section class="mt-5">
       <h2 class="display-3 mb-5 text-center border-bottom">Our Members</h2>
 
       <section class="row">
+        <!--* Picture/Members Row 1 ------------------------------------------------------->
         <div class="col-lg-6 mb-5">
           <img
             class="img-fluid rounded shadow-lg"
@@ -642,7 +647,10 @@
         <div class="col-lg-3 container">
           <% for (let i = 0; i < 10; i++) {%> <% if (members[i].href) {%>
           <p>
-            <a class="text-decoration-underline" href="members[i].href"
+            <a
+              class="text-decoration-underline"
+              href="<%= members[i].href %>"
+              target="_blank"
               ><%= members[i].name %></a
             >
           </p>
@@ -653,7 +661,10 @@
         <div class="col-lg-3 container">
           <% for (let i = 11; i < 21; i++) {%> <% if (members[i].href) {%>
           <p>
-            <a class="text-decoration-underline" href="members[i].href"
+            <a
+              class="text-decoration-underline"
+              href="<%= members[i].href %>"
+              target="_blank"
               ><%= members[i].name %></a
             >
           </p>
@@ -661,43 +672,86 @@
           <p><%= members[i].name %></p>
           <% } %> <% } %>
         </div>
-        <!-- <div class="col-lg-6 row py-3">
-          <div class="col-lg-6 text-center">
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-          </div>
-          <div class="col-lg-6 text-center">
-            <p>Eastern Atlantic States Regional Council of Carpenters</p>
-          </div>
-        </div> -->
-      </section>
+        <!--* ----------------------------->
 
-      <% for (let member of members) {%>
-      <p><%= member.name %></p>
-      <% } %>
+        <!--* Picture/Members Row 2 ------------------------------------------------------->
+        <div class="col-lg-3 container">
+          <% for (let i = 22; i < 33; i++) {%> <% if (members[i].href) {%>
+          <p>
+            <a
+              class="text-decoration-underline"
+              href="<%= members[i].href %>"
+              target="_blank"
+              ><%= members[i].name %></a
+            >
+          </p>
+          <% } else {%>
+          <p><%= members[i].name %></p>
+          <% } %> <% } %>
+        </div>
+        <div class="col-lg-3 container">
+          <% for (let i = 34; i < 45; i++) {%> <% if (members[i].href) {%>
+          <p>
+            <a
+              class="text-decoration-underline"
+              href="<%= members[i].href %>"
+              target="_blank"
+              ><%= members[i].name %></a
+            >
+          </p>
+          <% } else {%>
+          <p><%= members[i].name %></p>
+          <% } %> <% } %>
+        </div>
+        <div class="col-lg-6 mb-5">
+          <img
+            class="img-fluid rounded shadow-lg"
+            src="/assets/images/0002.jpg"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <!--* -------------------------- -->
+
+        <!--* Picture/Members Row 3 ------------------------------------------------------->
+        <div class="col-lg-6 mb-5">
+          <img
+            class="img-fluid rounded shadow-lg"
+            src="/assets/images/0003.jpg"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div class="col-lg-3 container">
+          <% for (let i = 46; i < 57; i++) {%> <% if (members[i].href) {%>
+          <p>
+            <a
+              class="text-decoration-underline"
+              href="<%= members[i].href %>"
+              target="_blank"
+              ><%= members[i].name %></a
+            >
+          </p>
+          <% } else {%>
+          <p><%= members[i].name %></p>
+          <% } %> <% } %>
+        </div>
+        <div class="col-lg-3 container">
+          <% for (let i = 58; i < 69; i++) {%> <% if (members[i].href) {%>
+          <p>
+            <a
+              class="text-decoration-underline"
+              href="<%= members[i].href %>"
+              target="_blank"
+              ><%= members[i].name %></a
+            >
+          </p>
+          <% } else {%>
+          <p><%= members[i].name %></p>
+          <% } %> <% } %>
+        </div>
+        <!--* -------------------------- -->
+      </section>
     </section>
   </main>
 </section>
