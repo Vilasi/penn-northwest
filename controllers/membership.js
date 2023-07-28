@@ -16,8 +16,8 @@ module.exports.renderMembershipPage = async (req, res, next) => {
   const members = await Member.find({});
   const sortedMembers = memberSorter(members);
 
-  console.log('BELOW IS THE MEMBERS-------------------------------------'.red);
-  console.log(sortedMembers);
+  console.log('BELOW IS THE REQ.USER-------------------------------------'.red);
+  console.log(req.user);
   res.render('pages/membership', { members: sortedMembers });
 };
 
@@ -92,3 +92,5 @@ module.exports.handleApplicationForm = async (req, res, next) => {
 
   res.redirect('/membership');
 };
+
+//
