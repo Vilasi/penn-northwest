@@ -628,40 +628,65 @@
     </section>
 
     <section class="mt-5">
-      <h2 class="display-3 mb-3 text-center">Our Members</h2>
+      <h2 class="display-3 mb-5 text-center">Our Members</h2>
 
       <section class="row">
         <div class="col-lg-6">
           <img
-            class="img-fluid"
+            class="img-fluid rounded shadow-lg"
             src="/assets/images/0001.jpg"
             alt=""
             srcset=""
           />
         </div>
-        <div class="col-lg-6">d</div>
+        <div class="col-lg-6 container">
+          <% for (let i = 0; i < 10; i++) {%> <% if (members[i].href) {%>
+          <p>
+            <a class="text-decoration-underline" href="members[i].href"
+              ><%= members[i].name %></a
+            >
+          </p>
+          <% } else {%>
+          <p><%= members[i].name %></p>
+          <% } %> <% } %>
+        </div>
+        <!-- <div class="col-lg-6 row py-3">
+          <div class="col-lg-6 text-center">
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+          </div>
+          <div class="col-lg-6 text-center">
+            <p>Eastern Atlantic States Regional Council of Carpenters</p>
+          </div>
+        </div> -->
       </section>
 
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
-      <p class="lead">test</p>
+      <% for (let member of members) {%>
+      <p><%= member.name %></p>
+      <% } %>
     </section>
   </main>
 </section>

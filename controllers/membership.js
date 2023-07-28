@@ -12,12 +12,13 @@ module.exports.renderMembershipPage = async (req, res, next) => {
   // console.log(createError(404, 'This is a test error'))
   // throw createError(404, 'This is a test error');
 
+  //TODO Error Handle This
   const members = await Member.find({});
-  // if (!members) throw createError('')
+  // if (!members) throw createError(500, '')
 
   console.log('BELOW IS THE MEMBERS-------------------------------------'.red);
   console.log(members);
-  res.render('pages/membership');
+  res.render('pages/membership', { members });
 };
 
 module.exports.getMembershipBrochure = (req, res, next) => {
