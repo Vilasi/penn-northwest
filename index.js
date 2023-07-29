@@ -144,11 +144,11 @@ app.use((err, req, res, next) => {
   console.log(err);
   //* Mongoose Error
   if (errorHandler.handleMongooseError(err)) {
-    const error = createError(
+    const err = createError(
       500,
       'Internal error. Please try your request again later.'
     );
-    return res.status(error.status).render('pages/error', { error });
+    return res.status(err.status).render('pages/error', { err });
   }
 
   return res.status(err.status).render('pages/error', { err });

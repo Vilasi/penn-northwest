@@ -671,31 +671,43 @@
         <div class="col-lg-3 container">
           <% for (let i = 0; i < 10; i++) {%> 
             <% if (members[i].href) {%>
-              <p>
-                <a
-                  class="text-decoration-underline"
-                  href="<%= members[i].href %>"
-                  target="_blank"
-                  ><%= members[i].name %></a
-                >
-              </p>
+              <div class="position-relative">
+                <p class="">
+                  <a
+                    class="text-decoration-underline"
+                    href="<%= members[i].href %>"
+                    target="_blank"
+                    ><%= members[i].name %></a
+                  >
+                </p>
+                <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+              </div>
             <% } else {%>
-            <p><%= members[i].name %></p>
+              <div class="position-relative">
+                <p><%= members[i].name %></p>
+                <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;"  type="submit">Delete</button></form>
+              </div>
           <% } %> <% } %>
         </div>
         <div class="col-lg-3 container">
           <% for (let i = 11; i < 21; i++) {%> 
             <% if (members[i].href) {%>
-              <p>
-                <a
-                  class="text-decoration-underline"
-                  href="<%= members[i].href %>"
-                  target="_blank"
-                  ><%= members[i].name %></a
-                >
-              </p>
+              <div class="position-relative">
+                <p>
+                  <a
+                    class="text-decoration-underline"
+                    href="<%= members[i].href %>"
+                    target="_blank"
+                    ><%= members[i].name %></a
+                  >
+                </p>
+                <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+              </div>
             <% } else {%>
-            <p><%= members[i].name %></p>
+              <div class="position-relative">
+                <p><%= members[i].name %></p>
+                <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+              </div>
           <% } %> <% } %>
         </div>
         <!--* ----------------------------->
