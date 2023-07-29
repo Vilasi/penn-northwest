@@ -26,7 +26,9 @@ router
   .route('/post-new-member')
   .post(isLoggedIn, newMemberValidation, memberships.postNewMember);
 
-router.route('/post-new-member/:id').delete(isLoggedIn);
+router
+  .route('/post-new-member/:id')
+  .delete(isLoggedIn, memberships.deleteMember);
 
 router.route('/membership-brochure-pdf').get(memberships.getMembershipBrochure);
 

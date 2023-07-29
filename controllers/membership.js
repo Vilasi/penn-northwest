@@ -11,6 +11,14 @@ const memberSorter = require('../utils/memberSorter.js');
 const Application = require('../models/applications.js');
 const Member = require('../models/members.js');
 
+module.exports.deleteMember = (req, res, next) => {
+  const { id } = req.params;
+
+  console.log('BELOW IS THE REQ.PARAMS---------------------------'.red);
+  console.log(req.params);
+  console.log(id);
+};
+
 module.exports.getMembershipBrochure = (req, res, next) => {
   //? These resolve the root directory of the project and then joins that to the location of the pdf
   const rootDir = path.resolve(__dirname, '../');
@@ -85,7 +93,7 @@ module.exports.handleApplicationForm = async (req, res, next) => {
 
 module.exports.postNewMember = async (req, res, next) => {
   const newMember = req.body.newMember;
-  console.log(newMember);
+  console.log('A new member document has been detected: ', newMember);
   const member = new Member(newMember);
 
   try {

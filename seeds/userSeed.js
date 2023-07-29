@@ -18,9 +18,14 @@ async function main() {
 //? If the user has already been created, it first deletes that user.
 async function addDevAccount() {
   const foundUser = await User.findByUsername('vilasi');
+  const foundUser2 = await User.findByUsername('a');
   if (foundUser) {
     console.log(foundUser);
     await User.findByIdAndDelete(foundUser._id);
+  }
+  if (foundUser2) {
+    console.log(foundUser2);
+    await User.findByIdAndDelete(foundUser2._id);
   }
 
   const foundByEmail = await User.findOne({ email: 'vilasicoding@gmail.com' });
@@ -31,14 +36,14 @@ async function addDevAccount() {
 
   const user = new User({
     email: 'vilasicoding@gmail.com',
-    username: 'vilasi',
+    username: 'a',
     role: 'admin',
     firstName: 'Joe',
     lastName: 'Vilasi',
     company: 'Vilasi Web Consulting LLC',
   });
 
-  const registeredUser = await User.register(user, 'pieistastey');
+  const registeredUser = await User.register(user, 'a');
   console.log(registeredUser);
 }
 
