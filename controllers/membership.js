@@ -11,12 +11,22 @@ const memberSorter = require('../utils/memberSorter.js');
 const Application = require('../models/applications.js');
 const Member = require('../models/members.js');
 
-module.exports.deleteMember = (req, res, next) => {
+module.exports.deleteMember = async (req, res, next) => {
   const { id } = req.params;
+  const member = await Member.findByIdAndDelete(id);
+  console.log('BELOW IS THE MEMBER---------------------------'.red);
+  console.log('id: ', id);
+  console.log('member: ', member);
+  if (!member) {
+    req.flash('error', 'The member was not found in the database.');
+    return res.redirect('/membership');
+  }
 
-  console.log('BELOW IS THE REQ.PARAMS---------------------------'.red);
-  console.log(req.params);
-  console.log(id);
+  req.flash(
+    'success',
+    `Member Deleted. Name: ${member.name}. Website: ${member.href}`
+  );
+  res.redirect('/membership');
 };
 
 module.exports.getMembershipBrochure = (req, res, next) => {

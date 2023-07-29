@@ -631,7 +631,7 @@
     <!-- This programmatically generates the list of members from a general members collection call to the DB -->
     <!-- The # members displayed per section is for optimal responsive sizing -->
     <!-- If member.href is truthy , render <a></a>. Else render only member.name <p></p> -->
-    <section class="mt-5">
+    <section id="member-list" class="mt-5">
       <h2 class="display-3 mb-5 text-center border-bottom">Our Members</h2>
 
       <% if (user && user.role === 'admin') {%>
@@ -681,14 +681,14 @@
                   >
                 </p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
             <% } else {%>
               <div class="position-relative">
                 <p><%= members[i].name %></p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
           <% } %> <% } %>
@@ -706,14 +706,14 @@
                   >
                 </p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
             <% } else {%>
               <div class="position-relative">
                 <p><%= members[i].name %></p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
           <% } %> <% } %>
@@ -734,14 +734,14 @@
                   >
                 </p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>            
             <% } else {%>
               <div class="position-relative">
                 <p><%= members[i].name %></p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
             <% } %> <% } %>
@@ -759,14 +759,14 @@
                   >
                 </p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
             <% } else {%>
               <div class="position-relative">
                 <p><%= members[i].name %></p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
             <% } %> <% } %>
@@ -803,14 +803,14 @@
                   >
                 </p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
             <% } else {%>
               <div class="position-relative">
                 <p><%= members[i].name %></p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
             <% } %> <% } %>
@@ -828,14 +828,14 @@
                   >
                 </p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
             <% } else {%>
               <div class="position-relative">
                 <p><%= members[i].name %></p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
             <% } %> <% } %>
@@ -856,14 +856,14 @@
                   >
                 </p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
             <% } else {%>
               <div class="position-relative">
                 <p><%= members[i].name %></p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
           <% } %> <% } %>
@@ -881,14 +881,14 @@
                   >
                 </p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
             <% } else {%>
               <div class="position-relative">
                 <p><%= members[i].name %></p>
                 <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
                 <% } %>
               </div>
             <% } %> <% } %>
@@ -929,14 +929,14 @@
                 >
               </p>
               <% if (user && user.role === 'admin') {%> 
-                <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
               <% } %>
             </div>
           <% } else {%>
             <div class="position-relative">
               <p><%= members[i].name %></p>
               <% if (user && user.role === 'admin') {%> 
-                <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
               <% } %>
             </div>
           <% } %> <% }%>
@@ -955,14 +955,14 @@
                 >
               </p>
               <% if (user && user.role === 'admin') {%> 
-                <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
               <% } %>
             </div>
           <% } else {%>
             <div class="position-relative">
               <p><%= members[i].name %></p>
               <% if (user && user.role === 'admin') {%> 
-                <form class="position-absolute top-0 end-0" action="/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                <form class="position-absolute top-0 end-0" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
               <% } %>
             </div>
           <% } %> <% } %>
