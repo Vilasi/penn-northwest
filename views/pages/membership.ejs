@@ -2,11 +2,11 @@
 <link rel="stylesheet" href="/css/membership.css" />
 <link rel="stylesheet" href="/css/scrollin.css" />
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script>
+<!-- <script>
   function onSubmit(token) {
     document.getElementById('member-application-form').submit();
   }
-</script>
+</script> -->
 
 <section
   class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5 rounded"
@@ -306,7 +306,7 @@
       </header>
 
       <section class="container">
-        <form id="member-application-form" action="/membership" method="post">
+        <form class="needs-validation" id="member-application-form" action="/membership" method="post" novalidate>
           <!--* Row 1 -->
           <section class="row">
             <!--? False -->
@@ -323,6 +323,8 @@
                 placeholder="Company Name"
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter a company name.</div>
             </div>
             <!--? Website -->
             <div class="mb-3 col-lg-3 col-md-6">
@@ -335,6 +337,8 @@
                 placeholder="website.com"
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter a website.</div>
             </div>
           </section>
 
@@ -351,6 +355,8 @@
                 placeholder="First Last"
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter a name.</div>
             </div>
 
             <!--? Email -->
@@ -364,6 +370,8 @@
                 placeholder="john@smith.com"
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter a valid email.</div>
             </div>
 
             <!--? Phone Number -->
@@ -378,6 +386,8 @@
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter a phone number in the format ###-###-####.</div>
             </div>
           </section>
 
@@ -394,6 +404,8 @@
                 placeholder="123 Main St."
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter an address.</div>
             </div>
 
             <!--? City  -->
@@ -407,6 +419,8 @@
                 placeholder="Eg. Hermitage"
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter a city.</div>
             </div>
 
             <!--? State  -->
@@ -476,6 +490,8 @@
                 <option value="AA">ARMED FORCES AMERICA (EXCEPT CANADA)</option>
                 <option value="AP">ARMED FORCES PACIFIC</option>
               </select>
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please select a state.</div>
             </div>
 
             <!--? Zip Code -->
@@ -489,6 +505,8 @@
                 placeholder="12345"
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter a zip code.</div>
             </div>
           </section>
 
@@ -506,6 +524,7 @@
                   name="application[companyType]"
                   id="privateSector"
                   value="Private Sector"
+                  required
                 />
                 <label class="form-check-label" for="flexRadioDefault1">
                   Private Sector
@@ -518,6 +537,7 @@
                   name="application[companyType]"
                   id="nonProfit"
                   value="Non-Profit/Charitable/Misc. Sector"
+                  required
                 />
                 <label class="form-check-label" for="flexRadioDefault1">
                   Non-Profit/Charitable/Misc. Sector
@@ -530,10 +550,13 @@
                   name="application[companyType]"
                   id="publicSector"
                   value="Public Sector"
+                  required
                 />
                 <label class="form-check-label" for="flexRadioDefault1">
                   Public Sector
                 </label>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please select a company type.</div>
               </div>
             </div>
           </section>
@@ -553,6 +576,8 @@
                 placeholder="Eg. $500"
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter an annual contribution.</div>
             </div>
 
             <!--? Submitted By -->
@@ -566,6 +591,8 @@
                 placeholder="John Smith"
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter your name.</div>
             </div>
 
             <!--? Title -->
@@ -579,6 +606,8 @@
                 placeholder="Eg. CEO"
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter your title.</div>
             </div>
           </section>
 
@@ -594,12 +623,16 @@
                 id="descriptionOfBusiness"
                 name="application[descriptionOfBusiness]"
                 rows="3"
+                required
               ></textarea>
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please describe your business.</div>
             </div>
           </section>
 
           <!--* Row 7 -->
           <section class="row">
+            <!--? Affiliations -->
             <div class="mb-3">
               <label for="affiliations" class="form-label">
                 List current affiliations, if any, with economic development
@@ -611,15 +644,19 @@
                 id="affiliations"
                 name="application[affiliations]"
                 rows="3"
+                required
               ></textarea>
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter your affiliations or enter N/A if none.</div>
             </div>
           </section>
 
-          <!-- <button class="btn btn-lg btn-primary mb-5 mt-3">Submit</button> -->
+          <!--? reCaptcha -->
+          <div class="g-recaptcha" data-sitekey="6LcHjhwnAAAAAKUz7L5QMTZaM4HJG0Jgv3QhG3Bp" data-callback="onSubmit"></div>
+
           <button
-            class="g-recaptcha btn btn-lg btn-primary mb-5 mt-3"
-            data-sitekey="6LcHjhwnAAAAAKUz7L5QMTZaM4HJG0Jgv3QhG3Bp"
-            data-callback="onSubmit"
+            type="submit"
+            class="btn btn-lg btn-primary mb-5 mt-3"
           >
             Submit
           </button>
@@ -972,5 +1009,10 @@
   </main>
 </section>
 
+
+<script src="/js/formValidation.js"></script>
+<script src="/js/manualCaptchaValidation.js"></script>
 <script src="/js/membership/headerLinks.js"></script>
 <script src="/js/scrollin.js"></script>
+
+

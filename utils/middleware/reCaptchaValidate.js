@@ -6,6 +6,7 @@ const axios = require('axios');
  * @returns {Promise<boolean>} - A promise that resolves to true if the reCAPTCHA response is valid, and false otherwise.
  */
 async function validateReCaptcha(req) {
+  console.log('THIS IS THE RECAPTCHA VALIDATOR');
   // Check if the reCAPTCHA response exists in the request body
   if (!req.body['g-recaptcha-response']) {
     return false;
@@ -24,6 +25,7 @@ async function validateReCaptcha(req) {
 
     // Extract the verification result from the response data
     const captchaVerificationResults = response.data.success;
+    console.log(captchaVerificationResults);
     return captchaVerificationResults;
   } catch (err) {
     console.log(err);
