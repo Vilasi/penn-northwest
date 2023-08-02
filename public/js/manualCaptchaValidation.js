@@ -1,4 +1,5 @@
-//
+//*This applies client-side validations (from Bootstrap) and programmatically executes Google's reCaptcha
+//*--Only submitting the form once both are validated.
 
 const memberApplicationForm = document.querySelector(
   '#member-application-form'
