@@ -28,6 +28,7 @@ const errorHandler = require('./utils/error-handlers/errorHandler');
 //* Import Routers
 const membershipRoutes = require('./routes/membership');
 const userRoutes = require('./routes/users');
+const eventRoutes = require('./routes/events');
 
 //* Connect to MongoDB
 main().catch((err) => console.log(err));
@@ -112,15 +113,11 @@ app.get('/', (req, res) => {
 });
 
 app.use('/membership', membershipRoutes);
+app.use('/events', eventRoutes);
 
 //* Jobs
 app.get('/jobs', (req, res) => {
   res.render('pages/jobs');
-});
-
-//* Events
-app.get('/events', (req, res) => {
-  res.render('pages/events');
 });
 
 //* About
