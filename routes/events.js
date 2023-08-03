@@ -8,8 +8,6 @@ const events = require('../controllers/events.js');
 //* Import Middleware
 const isLoggedIn = require('../utils/middleware/isLoggedIn.js');
 
-router.route('/').get(async (req, res) => {
-  res.render('pages/events');
-});
+router.route('/').get(events.index);
 
 module.exports = router;
