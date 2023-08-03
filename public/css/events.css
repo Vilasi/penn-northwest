@@ -5,6 +5,15 @@
 
 .h1-heading-margin-top {
   font-family: helvetica;
-  margin-top: 4rem;
-  font-weight: 200;
+  margin-top: 9rem;
+  font-weight: 600;
+}
+
+#call-to-action-button-div {
+  /* height: auto; */
+  margin-top: 22rem;
+}
+
+#call-to-action-button {
+  border: 1px solid #f8f9fa6c;
 }

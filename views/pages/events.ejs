@@ -1,5 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/css/events.css" />
+<link rel="stylesheet" href="/css/buttons.css" />
 
 <section
   class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5"
@@ -21,7 +22,23 @@
       >
         Upcoming Events
       </h1>
-      <p>Test</p>
+
+      <div
+        id="call-to-action-button-div"
+        class="position-absolute top-0 w-100 d-flex justify-content-center"
+      >
+        <a
+          href="#icon-divider"
+          id="call-to-action-button"
+          class="rounded btn-background-slide my-4 d-none d-sm-flex ff-4"
+        >
+          Click to Explore!
+          <i class="gg-arrow-right d-inline-block"></i>
+          <div
+            class="text-light btn-background-slide--blue btn-background-slide-bg"
+          ></div>
+        </a>
+      </div>
     </header>
   </section>
 </section>
