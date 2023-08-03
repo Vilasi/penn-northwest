@@ -1,0 +1,10 @@
+#header {
+  max-height: 80dvh;
+  overflow-y: hidden;
+}
+
+.h1-heading-margin-top {
+  font-family: helvetica;
+  margin-top: 4rem;
+  font-weight: 200;
+}
