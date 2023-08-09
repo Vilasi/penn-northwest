@@ -14,6 +14,7 @@ const colors = require('colors');
 const createError = require('http-errors');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const mongoSanitize = require('express-mongo-sanitize');
 
 //* Initialize Express App and Port:
 const app = express();
@@ -85,6 +86,13 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+//* Database input sanitization
+app.use(
+  mongoSanitize({
+    replaceWith: '_',
+  })
+);
 
 //* Connect-Flash variable definitions
 app.use((req, res, next) => {
