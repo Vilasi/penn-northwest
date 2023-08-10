@@ -64,20 +64,7 @@
             src="https://www.penn-northwest.com/wp-content/uploads/2023/07/Imparo-logo-final-large-1.png"
             alt=""
           />
-          <p class="text-center d-none d-lg-block">Short title.</p>
-        </aside>
-
-        <article class="col-lg-6 d-flex flex-column align-items-center">
-          <h3 class="display-6 event-article-heading text-decoration-underline">
-            Imparo Coaching
-          </h3>
-          <p class="text-center">
-            This is a description of the event, sit amet consectetur adipisicing
-            elit. Deleniti quas, sed temporibus quos quaerat ipsa, laborum
-            earum?
-          </p>
-
-          <ul class="list-group list-group-flush">
+          <ul class="list-group list-group-flush text-center">
             <li class="list-group-item bg-light">This is a descriptor test</li>
             <li class="list-group-item bg-light">
               A second item and other stuff
@@ -86,6 +73,46 @@
             <li class="list-group-item bg-light">A fourth item</li>
             <li class="list-group-item bg-light">And a fifth one</li>
           </ul>
+        </aside>
+
+        <article class="col-lg-6 d-flex flex-column align-items-center">
+          <h3 class="display-6 event-article-heading text-decoration-underline">
+            Imparo Coaching
+          </h3>
+          <p class="text-center mb-3">
+            This is a description of the event, sit amet consectetur adipisicing
+            elit. Deleniti quas, sed temporibus quos quaerat ipsa, laborum
+            earum?
+          </p>
+
+          <hr />
+          <p><strong>Price: </strong></p>
+          <hr />
+
+          <!--* The buy ticket form -->
+          <form action="" method="post">
+            <div class="mb-3">
+              <select
+                id="date-select"
+                class="form-select"
+                aria-label="Default select example"
+              >
+                <option selected>
+                  Select which date you would like to attend
+                </option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="ticketNumber" class="form-label">Tickets:</label>
+              <input type="number" class="form-control" id="ticketNumber" />
+            </div>
+
+            <button class="btn btn-success" type="submit">Checkout</button>
+          </form>
         </article>
       </section>
     </main>

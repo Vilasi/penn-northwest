@@ -3,25 +3,28 @@ const { Schema } = mongoose;
 const objectIdType = Schema.Types.ObjectId;
 
 const eventSchema = new Schema({
-  title: {
+  name: {
     type: String,
+    required: true,
+  },
+  priceInCents: {
+    type: Number,
     required: true,
   },
   description: {
     type: String,
     required: true,
   },
-  date: {
+  listDescription: {
+    type: String,
+    required: true,
+  },
+  dates: {
     type: Date,
     required: true,
   },
   location: {
     type: String,
-    required: true,
-  },
-  organizer: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Reference to the User model
     required: true,
   },
   attendees: [
