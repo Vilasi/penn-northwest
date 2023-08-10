@@ -2,6 +2,15 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const objectIdType = Schema.Types.ObjectId;
 
+const imageSchema = new Schema({
+  url: String,
+  filename: String,
+});
+
+imageSchema.virtual('thumbnail').get(function () {
+  return this.url.replace('/upload', '/upload/w_200');
+});
+
 const eventSchema = new Schema({
   name: {
     type: String,
@@ -25,6 +34,7 @@ const eventSchema = new Schema({
       required: true,
     },
   ],
+  image: { imageSchema },
   location: {
     type: String,
     required: true,
