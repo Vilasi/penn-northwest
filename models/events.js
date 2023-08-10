@@ -19,20 +19,26 @@ const eventSchema = new Schema({
     type: String,
     required: true,
   },
-  dates: {
-    type: Date,
-    required: true,
-  },
+  dates: [
+    {
+      type: Date,
+      required: true,
+    },
+  ],
   location: {
     type: String,
     required: true,
   },
-  attendees: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User', // Reference to the User model
-    },
-  ],
+  attendees: {
+    type: Number,
+    default: 0,
+  },
+  // attendees: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'Attendee', // Reference to the User model
+  //   },
+  // ],
 });
 //TODO ADD:
 //? - Date
