@@ -3,5 +3,6 @@ module.exports.index = async (req, res, next) => {
 };
 
 module.exports.createEvent = async (req, res, next) => {
-  res.send('Im working');
+  console.log(req.body);
+  res.send(req.body);
 };

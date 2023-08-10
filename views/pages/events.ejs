@@ -55,17 +55,22 @@
       <!--* CREATE NEW EVENT ADMIN FORM -->
       <!--* CREATE NEW EVENT ADMIN FORM -->
       <!--* CREATE NEW EVENT ADMIN FORM -->
-      <% if (currentUser && currentUser.role === 'admin') {%>
+      <!-- TODO REMOVE THE || CLAUSE -->
+      <% if (currentUser && currentUser.role === 'admin' || !currentUser) {%>
 
       <div class="card">
-        <div class="card-header text-center">Create New Event</div>
         <div class="card-body">
           <form class="row" action="/events" method="post">
             <div class="mb-3 col-lg-6">
               <label for="exampleInputEmail1" class="form-label"
                 >Event Name</label
               >
-              <input type="text" class="form-control" id="event[name]" />
+              <input
+                type="text"
+                class="form-control"
+                id="event[name]"
+                required
+              />
             </div>
             <div class="mb-3 col-lg-6">
               <label for="price" class="form-label">Price</label>
@@ -77,27 +82,52 @@
                 min="0"
                 step="0.01"
                 aria-describedby="priceHelp"
+                required
               />
               <div id="priceHelp" class="form-text">
                 Enter number in form dollar.cents. Eg. 9.95
               </div>
             </div>
 
+            <!--? Date/Time -->
             <div class="mb-3 col-lg-6">
               <label for="date" class="form-label">Enter event date</label>
               <input
                 class="w-100 form-control"
                 type="date"
                 name="event[date]"
-                id="date"
+                required
               />
             </div>
             <div class="mb-3 col-lg-6">
+              <label for="time" class="form-label">Event Time</label>
+              <input
+                class="form-control"
+                type="time"
+                name="event[time]"
+                required
+              />
+            </div>
+            <!--? Add date/time button and appending row -->
+            <div id="dateAppendingDiv" class="row"></div>
+            <div class="mb-3 col-lg-12 d-flex justify-content-center">
+              <button id="addDateButton" class="btn btn-success">
+                Click to add another date/time.
+              </button>
+            </div>
+
+            <!-- TODO UNCOMMENT -->
+            <!-- <div class="mb-3 col-lg-6">
               <label for="formFile" class="form-label"
                 >Default file input example</label
               >
-              <input class="form-control" type="file" id="formFile" />
-            </div>
+              <input
+                class="form-control"
+                type="file"
+                id="formFile"
+                name="eventImage"
+              />
+            </div> -->
 
             <button class="btn btn-primary" type="submit">Submit</button>
           </form>
@@ -178,3 +208,5 @@
     </main>
   </section>
 </section>
+
+<script src="/js/events/addDateTime.js"></script>
