@@ -33,12 +33,20 @@
   font-size: 2rem;
 }
 
+.card {
+  width: 50vw;
+}
+
 /** BEGIN MEDIA QUERIES ***************************************************************************/
 /** Medium Screen */
 @media screen and (max-width: 992px) {
   /* Header H1 margin */
   .h1-heading-margin-top {
     margin-top: 7rem;
+  }
+
+  .card {
+    width: 90vw;
   }
   /* Header button margin */
   #call-to-action-button-div {

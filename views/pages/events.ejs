@@ -50,8 +50,45 @@
           This a little bit of placeholder text aint it neat?
         </p>
       </header>
-      <% if (currentUser && currentUser.role === 'user') {%>
-      <p>Hello, <%= currentUser %>!</p>
+
+      <!--? CREATE NEW EVENT ADMIN FORM -->
+      <!--* CREATE NEW EVENT ADMIN FORM -->
+      <!--* CREATE NEW EVENT ADMIN FORM -->
+      <!--* CREATE NEW EVENT ADMIN FORM -->
+      <% if (currentUser && currentUser.role === 'admin') {%>
+
+      <div class="card">
+        <div class="card-header text-center">Create New Event</div>
+        <div class="card-body">
+          <form class="row" action="/events" method="post">
+            <div class="mb-3 col-lg-6">
+              <label for="exampleInputEmail1" class="form-label"
+                >Event Name</label
+              >
+              <input type="text" class="form-control" id="event[name]" />
+            </div>
+            <div class="mb-3 col-lg-6">
+              <label for="price" class="form-label">Price</label>
+              <input
+                type="number"
+                class="form-control"
+                id="price"
+                name="event[price]"
+                min="0"
+                step="0.01"
+                aria-describedby="priceHelp"
+              />
+              <div id="priceHelp" class="form-text">
+                Enter number in form dollar.cents. Eg. 9.95
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+        </div>
+        <!-- <div class="card-footer text-body-secondary">2 days ago</div> -->
+      </div>
+
       <% } %>
 
       <!--* Vertical Rule -->
@@ -87,12 +124,16 @@
             elit. Deleniti quas, sed temporibus quos quaerat ipsa, laborum
             earum?
           </p>
+          <p><em>Location</em></p>
 
           <hr />
           <p><strong>Price: </strong></p>
           <hr />
 
-          <!--* The buy ticket form -->
+          <!--* The buy ticket form STRIPE -->
+          <!--* The buy ticket form STRIPE -->
+          <!--* The buy ticket form STRIPE -->
+          <!--* The buy ticket form STRIPE -->
           <form action="" method="post">
             <div class="mb-3">
               <select
