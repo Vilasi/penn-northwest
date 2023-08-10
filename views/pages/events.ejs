@@ -50,6 +50,9 @@
           This a little bit of placeholder text aint it neat?
         </p>
       </header>
+      <% if (currentUser && currentUser.role === 'user') {%>
+      <p>Hello, <%= currentUser %>!</p>
+      <% } %>
 
       <!--* Vertical Rule -->
       <div class="d-flex justify-content-center my-3" style="height: 12.5rem">
