@@ -56,19 +56,20 @@
       <!--* CREATE NEW EVENT ADMIN FORM -->
       <!--* CREATE NEW EVENT ADMIN FORM -->
       <!-- TODO REMOVE THE || CLAUSE -->
+      <!-- TODO ADD DELETE BUTTON TO DATE/BULLET POINT -->
       <% if (currentUser && currentUser.role === 'admin' || !currentUser) {%>
 
       <div class="card">
         <div class="card-body">
           <form class="row" action="/events" method="post">
+            <!--? Event name and price -->
             <div class="mb-3 col-lg-6">
-              <label for="exampleInputEmail1" class="form-label"
-                >Event Name</label
-              >
+              <label for="name" class="form-label">Event Name</label>
               <input
                 type="text"
                 class="form-control"
-                id="event[name]"
+                name="event[name]"
+                id="name"
                 required
               />
             </div>
@@ -95,7 +96,7 @@
               <input
                 class="w-100 form-control"
                 type="date"
-                name="event[date]"
+                name="event[dates]"
                 required
               />
             </div>
@@ -103,31 +104,79 @@
               <label for="time" class="form-label">Event Time</label>
               <input
                 class="form-control"
-                type="time"
                 name="event[time]"
+                type="time"
                 required
               />
             </div>
+
             <!--? Add date/time button and appending row -->
             <div id="dateAppendingDiv" class="row"></div>
             <div class="mb-3 col-lg-12 d-flex justify-content-center">
-              <button id="addDateButton" class="btn btn-success">
+              <button id="addDateButton" class="btn btn-outline-success">
                 Click to add another date/time.
               </button>
             </div>
 
-            <!-- TODO UNCOMMENT -->
-            <!-- <div class="mb-3 col-lg-6">
+            <!--? Photo Upload and Location -->
+            <div class="mb-3 col-lg-6">
               <label for="formFile" class="form-label"
-                >Default file input example</label
+                >Event Header Photo</label
               >
               <input
                 class="form-control"
                 type="file"
                 id="formFile"
                 name="eventImage"
+                required
               />
-            </div> -->
+            </div>
+            <div class="mb-3 col-lg-6">
+              <label for="location" class="form-label">Location</label>
+              <input
+                class="form-control"
+                name="event[location]"
+                type="text"
+                placeholder="123 Main St. Sharon, PA"
+                required
+              />
+            </div>
+
+            <!--? Description -->
+            <div class="mb-3 col-lg-12">
+              <label for="description" class="form-label"
+                >Event Description</label
+              >
+              <textarea
+                class="form-control"
+                name="event[description]"
+                id="description"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+
+            <!--? Bullet List Event Descriptors  -->
+            <div class="mb-3 col-lg-12">
+              <label class="form-label">Bullet point descriptor</label>
+              <input
+                type="text"
+                name="event[bulletPoints]"
+                class="form-control"
+                placeholder="Add a short event descriptor."
+              />
+            </div>
+
+            <!--? bulletPoints button and appending row -->
+            <div id="bulletPointsAppendingDiv" class="row"></div>
+            <div class="mb-3 col-lg-12 d-flex justify-content-center">
+              <button
+                id="bulletPointsButton"
+                class="btn btn btn-outline-success"
+              >
+                Click to add another bullet point.
+              </button>
+            </div>
 
             <button class="btn btn-primary" type="submit">Submit</button>
           </form>
@@ -210,3 +259,4 @@
 </section>
 
 <script src="/js/events/addDateTime.js"></script>
+<script src="/js/events/addBulletPoint.js"></script>

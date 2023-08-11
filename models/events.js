@@ -24,10 +24,12 @@ const eventSchema = new Schema({
     type: String,
     required: true,
   },
-  listDescription: {
-    type: String,
-    required: true,
-  },
+  bulletPoints: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   dates: [
     {
       type: Date,

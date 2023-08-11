@@ -20,7 +20,7 @@ addDateButton.addEventListener('click', (e) => {
   timeDiv.classList.add('mb-3', 'col-lg-6');
 
   // Set innerHTML of the date and time div elements to create input fields.
-  dateDiv.innerHTML = `<label for="date" class="form-label">Enter event date</label><input class="w-100 form-control" type="date" name="event[date]" required/>`;
+  dateDiv.innerHTML = `<label for="date" class="form-label">Enter event date</label><input class="w-100 form-control" type="date" name="event[dates]" required/>`;
   timeDiv.innerHTML = `<label for="time" class="form-label">Event Time</label><input class="form-control" type="time" name="event[time]" required/>`;
 
   // Append the date and time div elements to the container 'appendingDiv'.
