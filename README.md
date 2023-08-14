@@ -8,9 +8,9 @@ The Penn-Northwest Website
 
 ### NAV
 
-+Home
-+Events
-+Membership
+- Home
+- Events
+- Membership
 
 Checkout the google font "Georama"
 
@@ -19,3 +19,9 @@ Checkout the google font "Georama"
 stripe connect
 
 https://stripe.com/connect
+
+## Connected Accounts Requiring Handoff -----
+
+- Cloudinary
+- SendGrid Email
+- (Maybe) reCaptcha
