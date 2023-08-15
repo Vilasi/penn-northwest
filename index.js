@@ -41,6 +41,9 @@ async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/penn-northwest');
 }
 
+const test = require('./cloudinary/index.js');
+console.log(test);
+
 //* SET VIEW ENGINE && SET EJS-Mate Template Engine
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
