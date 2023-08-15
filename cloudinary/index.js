@@ -13,10 +13,9 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    //The name of the folder in cloudinary
     folder: 'penn-northwest-website',
     allowedFormats: ['jpg', 'jpeg', 'png'],
   },
 });
 
-module.exports = test;
+module.exports = { cloudinary, storage };
