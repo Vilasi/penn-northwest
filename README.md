@@ -25,3 +25,7 @@ https://stripe.com/connect
 - Cloudinary
 - SendGrid Email
 - (Maybe) reCaptcha
+
+## Packages to Look at
+
+Dinero.js for handling monetary value conversions (maybe)
