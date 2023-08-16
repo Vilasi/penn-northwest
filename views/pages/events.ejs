@@ -61,7 +61,7 @@
 
       <div class="card">
         <div class="card-body">
-          <form class="row" action="/events" method="post">
+          <form id="add-event-form" class="row" action="/events" method="post">
             <!--? Event name and price -->
             <div class="mb-3 col-lg-6">
               <label for="name" class="form-label">Event Name</label>
@@ -109,6 +109,9 @@
                 required
               />
             </div>
+            <!-- <div class="mb-3 col-sm-2 d-flex align-items-end">
+              <button class="btn btn-danger">Delete</button>
+            </div> -->
 
             <!--? Add date/time button and appending row -->
             <div id="dateAppendingDiv" class="row"></div>
