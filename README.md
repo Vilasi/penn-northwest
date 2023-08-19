@@ -20,6 +20,12 @@ stripe connect
 
 https://stripe.com/connect
 
+## Cloudinary Image Hosting
+
+- The url returned is in the following format
+
+  https://res.cloudinary.com/<cloud_name>/<asset_type>/<delivery_type>/<transformations>/<version>/<public_id_full_path>.<extension>
+
 ## Connected Accounts Requiring Handoff -----
 
 - Cloudinary
