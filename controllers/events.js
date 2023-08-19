@@ -15,6 +15,7 @@ module.exports.createEvent = async (req, res, next) => {
   // TODO Handle req.file photo storage on document
   const newEvent = req.body.event;
 
+  //If an image was uploaded, set it on newEvent
   if (req.file) {
     const images = {
       url: req.file.path,
