@@ -66,8 +66,7 @@ const eventSchema = new Schema(
 
 //* Virtual definitions
 
-// Define a virtual property 'formattedPrice' for the 'eventSchema'.
-// This property will be used to retrieve a formatted price string.
+// This virtual property will be used to retrieve a formatted price string.
 eventSchema.virtual('formattedPrice').get(function () {
   // Create a new instance of Intl.NumberFormat to format currency.
   // Using 'en-US' locale for formatting.
