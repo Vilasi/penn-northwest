@@ -1,6 +1,5 @@
 //! -- Joi Data Validations
 const Joi = require('joi');
-// console.log(Joi);
 
 module.exports.eventSchema = Joi.object({
   name: Joi.string().required(),
@@ -10,7 +9,6 @@ module.exports.eventSchema = Joi.object({
     Joi.array().items(Joi.string()),
     Joi.string()
   ),
-  // bulletPoints: Joi.array().items(Joi.string()),
   dates: Joi.alternatives().try(
     Joi.array().items(Joi.date().required()).required(),
     Joi.date().required()
@@ -19,7 +17,6 @@ module.exports.eventSchema = Joi.object({
     Joi.array().items(Joi.string().required()).required(),
     Joi.string().required()
   ),
-  // dates: Joi.array().items(Joi.date().required()).required(),
   location: Joi.string().required(),
   attendees: Joi.number().default(0),
 });

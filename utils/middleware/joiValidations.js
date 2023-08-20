@@ -16,8 +16,6 @@ const eventValidation = async (req, res, next) => {
     next();
   }
 
-  // console.log('THIS IS FROM THE EVENT VALIDATIONS'.red);
-  // console.log(event);
   next();
 };
 
