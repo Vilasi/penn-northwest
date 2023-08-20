@@ -6,8 +6,20 @@ module.exports.eventSchema = Joi.object({
   name: Joi.string().required(),
   priceInCents: Joi.string().required(),
   description: Joi.string().required(),
-  bulletPoints: Joi.array().items(Joi.string()),
-  dates: Joi.array().items(Joi.date().required()).required(),
+  bulletPoints: Joi.alternatives().try(
+    Joi.array().items(Joi.string()),
+    Joi.string()
+  ),
+  // bulletPoints: Joi.array().items(Joi.string()),
+  dates: Joi.alternatives().try(
+    Joi.array().items(Joi.date().required()).required(),
+    Joi.date().required()
+  ),
+  times: Joi.alternatives().try(
+    Joi.array().items(Joi.string().required()).required(),
+    Joi.string().required()
+  ),
+  // dates: Joi.array().items(Joi.date().required()).required(),
   location: Joi.string().required(),
   attendees: Joi.number().default(0),
 });

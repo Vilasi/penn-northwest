@@ -40,6 +40,12 @@ const eventSchema = new Schema(
         required: true,
       },
     ],
+    times: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     image: { imageSchema },
     location: {
       type: String,

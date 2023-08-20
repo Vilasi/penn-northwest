@@ -1,5 +1,26 @@
 const joiValidations = require('../../validations/joiSchemas');
 
+//* Event creation validation middleware:
+const eventValidation = async (req, res, next) => {
+  const event = req.body.event;
+  const result = joiValidations.eventSchema.validate(event);
+
+  if (result.error) {
+    const message = result.error.details[0].message;
+    req.flash('error', message);
+    console.log('Joi Error'.yellow);
+    console.log(result.error.details[0].message);
+
+    return res.redirect('/events');
+  } else {
+    next();
+  }
+
+  // console.log('THIS IS FROM THE EVENT VALIDATIONS'.red);
+  // console.log(event);
+  next();
+};
+
 //* Handles validation for the image upload
 const imageUploadValidation = async (req, res, next) => {
   //If an image upload from multer-storage-cloudinary is detected, validate it
@@ -77,6 +98,7 @@ const newMemberValidation = async (req, res, next) => {
 };
 
 module.exports = {
+  eventValidation,
   imageUploadValidation,
   registrationValidation,
   membershipApplicationValidation,

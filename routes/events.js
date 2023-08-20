@@ -9,7 +9,10 @@ const upload = multer({ storage });
 const events = require('../controllers/events.js');
 
 //* Import Validations
-const { imageUploadValidation } = require('../utils/middleware/joiValidations');
+const {
+  imageUploadValidation,
+  eventValidation,
+} = require('../utils/middleware/joiValidations');
 
 //* Import Middleware
 const isLoggedIn = require('../utils/middleware/isLoggedIn.js');
@@ -17,6 +20,11 @@ const isLoggedIn = require('../utils/middleware/isLoggedIn.js');
 router
   .route('/')
   .get(events.index)
-  .post(upload.single('eventImage'), imageUploadValidation, events.createEvent);
+  .post(
+    upload.single('eventImage'),
+    imageUploadValidation,
+    eventValidation,
+    events.createEvent
+  );
 
 module.exports = router;

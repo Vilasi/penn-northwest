@@ -33,7 +33,7 @@ addDateButton.addEventListener('click', (e) => {
   // Set innerHTML of the date and time div elements to create input fields.
   //-- Also creates a delete button, the first class of which contains the index for targeting deletion
   dateDiv.innerHTML = `<label for="date" class="form-label">Enter event date</label><input class="w-100 form-control" type="date" name="event[dates]" required/>`;
-  timeDiv.innerHTML = `<label for="time" class="form-label">Event Time</label><input class="form-control" type="time" name="event[time]" required/>`;
+  timeDiv.innerHTML = `<label for="time" class="form-label">Event Time</label><input class="form-control" type="time" name="event[times]" required/>`;
   deleteDiv.innerHTML = `<button class="${divInstance} btn btn-danger delete-date-button">Delete</button>`;
 
   // Append the date and time div elements to the container 'appendingDiv'.
