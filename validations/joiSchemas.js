@@ -2,6 +2,21 @@
 const Joi = require('joi');
 // console.log(Joi);
 
+module.exports.eventSchema = Joi.object({
+  name: Joi.string().required(),
+  priceInCents: Joi.string().required(),
+  description: Joi.string().required(),
+  bulletPoints: Joi.array().items(Joi.string()),
+  dates: Joi.array().items(Joi.date().required()).required(),
+  location: Joi.string().required(),
+  attendees: Joi.number().default(0),
+});
+
+module.exports.imageSchema = Joi.object({
+  url: Joi.string.required(),
+  filename: Joi.string().required(),
+});
+
 module.exports.registrationSchema = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
