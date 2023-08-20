@@ -13,7 +13,7 @@ module.exports.eventSchema = Joi.object({
 });
 
 module.exports.imageSchema = Joi.object({
-  url: Joi.string.required(),
+  url: Joi.string().required(),
   filename: Joi.string().required(),
 });
 

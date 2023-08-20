@@ -1,5 +1,30 @@
 const joiValidations = require('../../validations/joiSchemas');
 
+//* Handles validation for the image upload
+const imageUploadValidation = async (req, res, next) => {
+  //If an image upload from multer-storage-cloudinary is detected, validate it
+  if (req.file) {
+    const image = {
+      url: req.file.path,
+      filename: req.file.filename,
+    };
+
+    const result = joiValidations.imageSchema.validate(image);
+
+    //Detect if image validation fails, pass to next middleware if it passes
+    if (result.error) {
+      const message = result.error.details[0].message;
+      req.flash('error', message);
+      return res.redirect('/events');
+    } else {
+      console.log('Image validation passed');
+      next();
+    }
+  } else {
+    next();
+  }
+};
+
 //* Handles validation for the user registration form
 const registrationValidation = async (req, res, next) => {
   const registrationData = req.body.register;
@@ -52,6 +77,7 @@ const newMemberValidation = async (req, res, next) => {
 };
 
 module.exports = {
+  imageUploadValidation,
   registrationValidation,
   membershipApplicationValidation,
   newMemberValidation,
