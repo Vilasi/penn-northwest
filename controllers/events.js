@@ -5,6 +5,9 @@ const upload = multer({ storage });
 //* Import db models
 const Event = require('../models/events');
 
+//* Connect Stripe
+const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY);
+
 module.exports.index = async (req, res, next) => {
   res.render('pages/events');
 };

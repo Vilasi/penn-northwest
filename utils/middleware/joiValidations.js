@@ -12,8 +12,6 @@ const eventValidation = async (req, res, next) => {
     console.log(result.error.details[0].message);
 
     return res.redirect('/events');
-  } else {
-    next();
   }
 
   next();
@@ -23,6 +21,10 @@ const eventValidation = async (req, res, next) => {
 const imageUploadValidation = async (req, res, next) => {
   //If an image upload from multer-storage-cloudinary is detected, validate it
   if (req.file) {
+    console.log(
+      'BELOW IS THE REQ.FILE---------------------------------------'.red
+    );
+    console.log(req.file);
     const image = {
       url: req.file.path,
       filename: req.file.filename,
