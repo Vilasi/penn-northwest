@@ -141,6 +141,7 @@ app.use('/', userRoutes);
 
 //* Catchall 404
 app.get('*', (req, res, next) => {
+  // next();
   return next(createError(404, 'Page not found'));
 });
 
@@ -157,7 +158,15 @@ app.use((err, req, res, next) => {
     return res.status(err.status).render('pages/error', { err });
   }
 
-  return res.status(err.status).render('pages/error', { err });
+  // const error = createError(500, 'Something went wrong');
+  //*If the status was set as 404, return createError object. Else return default 500 error
+  if (err.status === 404) {
+    return res.status(err.status).render('pages/error', { err });
+  } else {
+    return res
+      .status(500)
+      .render('pages/error', { err: createError(500, 'Something went wrong') });
+  }
 });
 
 app.listen(PORT, () => {
