@@ -51,12 +51,6 @@
         </p>
       </header>
 
-      <!--! Database Lookup Failure Logic -->
-      <!--TODO Flesh this out -->
-      <% if (eventFailure) { %>
-      <h1>Database Connection Error. Please try again later.</h1>
-      <% } %>
-
       <!--? CREATE NEW EVENT ADMIN FORM -->
       <!--* CREATE NEW EVENT ADMIN FORM -->
       <!--* CREATE NEW EVENT ADMIN FORM -->
@@ -204,6 +198,23 @@
 
       <!--* Event example -->
       <section class="row container">
+        <!--! Database Lookup Failure Logic -->
+        <!--TODO Flesh this out -->
+        <% if (eventFailure) { %>
+        <div class="col-12 flex justify-content-center">
+          <h1 class="text-center">Database Connection Error.</h1>
+        </div>
+        <% } else {%>
+          <% for (let event of events) {%>
+            
+          <% } %>
+        <% } %>
+
+
+
+
+
+
         <aside class="col-lg-6 d-flex flex-column align-items-center">
           <img
             class="img-fluid event-image mb-4"

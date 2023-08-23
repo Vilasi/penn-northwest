@@ -9,8 +9,8 @@ const Event = require('../models/events');
 const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY);
 
 module.exports.index = async (req, res, next) => {
-  // const events = await Event.find({});
-  const events = null;
+  const events = await Event.find({});
+  // const events = null;
 
   //* This logic will handle a database lookup failure
   if (!events) {
