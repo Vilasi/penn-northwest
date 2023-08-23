@@ -134,6 +134,7 @@
                 type="file"
                 id="formFile"
                 name="eventImage"
+
               />
             </div>
             <div class="mb-3 col-lg-6">
@@ -196,7 +197,6 @@
         <div class="vr"></div>
       </div>
 
-      <!--* Event example -->
       <section class="row container">
         <!--! Database Lookup Failure Logic -->
         <!--TODO Flesh this out -->
@@ -205,20 +205,21 @@
           <h1 class="text-center">Database Connection Error.</h1>
         </div>
         <% } else {%>
+          <!--* Begin event creation -->
           <% for (let event of events) {%>
-            
+            <h1><%= event.name %></h1>
           <% } %>
         <% } %>
 
 
+        <!-- https://www.penn-northwest.com/wp-content/uploads/2023/07/Imparo-logo-final-large-1.png -->
 
 
-
-
+        <!--* Event example -->
         <aside class="col-lg-6 d-flex flex-column align-items-center">
           <img
             class="img-fluid event-image mb-4"
-            src="https://www.penn-northwest.com/wp-content/uploads/2023/07/Imparo-logo-final-large-1.png"
+            src="https://res.cloudinary.com/dypchgtip/image/upload/v1692771876/penn-northwest-website/omcwig0tniucxrhnqnqn.png"
             alt=""
           />
           <ul class="list-group list-group-flush text-center">

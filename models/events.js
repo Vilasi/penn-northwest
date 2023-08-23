@@ -3,8 +3,15 @@ const { Schema } = mongoose;
 const objectIdType = Schema.Types.ObjectId;
 
 const imageSchema = new Schema({
-  url: String,
-  filename: String,
+  url: {
+    type: String,
+    default:
+      'https://res.cloudinary.com/dypchgtip/image/upload/v1692771876/penn-northwest-website/omcwig0tniucxrhnqnqn.png',
+  },
+  filename: {
+    type: String,
+    default: 'penn-northwest-website/omcwig0tniucxrhnqnqn',
+  },
 });
 
 imageSchema.virtual('thumbnail').get(function () {
