@@ -13,7 +13,15 @@ module.exports.eventSchema = Joi.object({
     Joi.array().items(Joi.date().required()).required(),
     Joi.date().required()
   ),
-  times: Joi.alternatives().try(
+  // times: Joi.alternatives().try(
+  //   Joi.array().items(Joi.string().required()).required(),
+  //   Joi.string().required()
+  // ),
+  startTimes: Joi.alternatives().try(
+    Joi.array().items(Joi.string().required()).required(),
+    Joi.string().required()
+  ),
+  endTimes: Joi.alternatives().try(
     Joi.array().items(Joi.string().required()).required(),
     Joi.string().required()
   ),

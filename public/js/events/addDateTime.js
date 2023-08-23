@@ -15,12 +15,14 @@ addDateButton.addEventListener('click', (e) => {
 
   // Create div elements for the date and time input fields.
   const dateDiv = document.createElement('div');
-  const timeDiv = document.createElement('div');
+  const startTimeDiv = document.createElement('div');
+  const endTimeDiv = document.createElement('div');
   const deleteDiv = document.createElement('div');
 
   // Add CSS classes to the date and time div elements for styling.
-  dateDiv.classList.add('mb-3', 'col-lg-6', `div-instance-${divInstance}`);
-  timeDiv.classList.add('mb-3', 'col-lg-5', `div-instance-${divInstance}`);
+  dateDiv.classList.add('mb-3', 'col-lg-4', `div-instance-${divInstance}`);
+  startTimeDiv.classList.add('mb-3', 'col-lg-3', `div-instance-${divInstance}`);
+  endTimeDiv.classList.add('mb-3', 'col-lg-3', `div-instance-${divInstance}`);
   deleteDiv.classList.add(
     'mb-3',
     'col-sm-1',
@@ -33,11 +35,12 @@ addDateButton.addEventListener('click', (e) => {
   // Set innerHTML of the date and time div elements to create input fields.
   //-- Also creates a delete button, the first class of which contains the index for targeting deletion
   dateDiv.innerHTML = `<label for="date" class="form-label">Enter event date</label><input class="w-100 form-control" type="date" name="event[dates]" required/>`;
-  timeDiv.innerHTML = `<label for="time" class="form-label">Event Time</label><input class="form-control" type="time" name="event[times]" required/>`;
+  startTimeDiv.innerHTML = `<label for="startTime" class="form-label">Event Time</label><input class="form-control" type="time" name="event[startTimes]" required/>`;
+  endTimeDiv.innerHTML = `<label for="time" class="form-label">End Time</label><input class="form-control" type="time" name="event[endTimes]" required/>`;
   deleteDiv.innerHTML = `<button class="${divInstance} btn btn-danger delete-date-button">Delete</button>`;
 
   // Append the date and time div elements to the container 'appendingDiv'.
-  appendingDiv.append(dateDiv, timeDiv, deleteDiv);
+  appendingDiv.append(dateDiv, startTimeDiv, endTimeDiv, deleteDiv);
   divInstance += 1;
 });
 

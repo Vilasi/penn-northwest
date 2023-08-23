@@ -47,7 +47,19 @@ const eventSchema = new Schema(
         required: true,
       },
     ],
-    times: [
+    // times: [
+    //   {
+    //     type: String,
+    //     required: true,
+    //   },
+    // ],
+    startTimes: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+    endTimes: [
       {
         type: String,
         required: true,

@@ -97,7 +97,7 @@
             </div>
 
             <!--? Date/Time -->
-            <div class="mb-3 col-lg-6">
+            <div class="mb-3 col-lg-4">
               <label for="date" class="form-label">Enter event date</label>
               <input
                 class="w-100 form-control"
@@ -106,15 +106,29 @@
                 required
               />
             </div>
-            <div class="mb-3 col-lg-6">
-              <label for="time" class="form-label">Event Time</label>
+            <div class="mb-3 col-lg-4">
+              <label for="time" class="form-label">Start Time</label>
               <input
                 class="form-control"
-                name="event[times]"
+                name="event[startTimes]"
                 type="time"
                 required
               />
             </div>
+            <div class="mb-3 col-lg-4">
+              <label for="time" class="form-label">End Time</label>
+              <input
+                class="form-control"
+                name="event[endTimes]"
+                type="time"
+                required
+              />
+            </div>
+            <!-- <div
+              class="mb-3 col-sm-1 d-flex align-items-end delete-date-button"
+            >
+              <button class="btn btn-danger delete-date-button">Delete</button>
+            </div> -->
 
             <!--? Add date/time button and appending row -->
             <div id="dateAppendingDiv" class="row"></div>
@@ -229,20 +243,22 @@
           </ul>
         </aside>
 
+        <!--* Event Card -->
         <article class="col-lg-6 d-flex flex-column align-items-center">
           <div class="card text-center">
             <div class="card-header">
               <h3 class="display-6">Imparo Coaching</h3>
             </div>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
+              <h5 class="card-title">$15.00 Per Ticket</h5>
               <p class="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
+                This is a description of the event, sit amet consectetur
+                adipisicing elit. Deleniti quas, sed temporibus quos quaerat
+                ipsa, laborum earum?
               </p>
               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
-            <div class="card-footer text-body-secondary">2 days ago</div>
+            <div class="card-footer text-body-secondary">123 Main Street</div>
           </div>
 
           <h3 class="display-6 event-article-heading text-decoration-underline">
