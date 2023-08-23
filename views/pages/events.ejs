@@ -59,7 +59,7 @@
       <!-- TODO ADD DELETE BUTTON TO DATE/BULLET POINT -->
       <% if (currentUser && currentUser.role === 'admin' || !currentUser) {%>
 
-      <div class="card">
+      <div id="event-creation-card" class="card">
         <div class="card-body">
           <form
             id="add-event-form"
@@ -134,7 +134,6 @@
                 type="file"
                 id="formFile"
                 name="eventImage"
-
               />
             </div>
             <div class="mb-3 col-lg-6">
@@ -205,15 +204,12 @@
           <h1 class="text-center">Database Connection Error.</h1>
         </div>
         <% } else {%>
-          <!--* Begin event creation -->
-          <% for (let event of events) {%>
-            <h1><%= event.name %></h1>
-          <% } %>
-        <% } %>
-
+        <!--* Begin event creation -->
+        <% for (let event of events) {%>
+        <h1><%= event.name %></h1>
+        <% } %> <% } %>
 
         <!-- https://www.penn-northwest.com/wp-content/uploads/2023/07/Imparo-logo-final-large-1.png -->
-
 
         <!--* Event example -->
         <aside class="col-lg-6 d-flex flex-column align-items-center">
@@ -234,6 +230,21 @@
         </aside>
 
         <article class="col-lg-6 d-flex flex-column align-items-center">
+          <div class="card text-center">
+            <div class="card-header">
+              <h3 class="display-6">Imparo Coaching</h3>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">
+                With supporting text below as a natural lead-in to additional
+                content.
+              </p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            <div class="card-footer text-body-secondary">2 days ago</div>
+          </div>
+
           <h3 class="display-6 event-article-heading text-decoration-underline">
             Imparo Coaching
           </h3>

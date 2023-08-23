@@ -33,7 +33,7 @@
   font-size: 2rem;
 }
 
-.card {
+#event-creation-card {
   width: 50vw;
 }
 
@@ -45,7 +45,7 @@
     margin-top: 7rem;
   }
 
-  .card {
+  #event-creation-card {
     width: 90vw;
   }
   /* Header button margin */
