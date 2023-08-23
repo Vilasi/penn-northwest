@@ -46,7 +46,7 @@ const eventSchema = new Schema(
         required: true,
       },
     ],
-    image: { imageSchema },
+    image: imageSchema,
     location: {
       type: String,
       required: true,
