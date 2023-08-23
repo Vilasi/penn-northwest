@@ -55,6 +55,7 @@ const eventSchema = new Schema(
       type: Number,
       default: 0,
     },
+    //? The below commented out attendees is saved for potential later reintegration
     // attendees: [
     //   {
     //     type: mongoose.Schema.Types.ObjectId,

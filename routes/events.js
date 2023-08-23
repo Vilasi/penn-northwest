@@ -16,7 +16,7 @@ const {
 
 //* Import Middleware
 const isLoggedIn = require('../utils/middleware/isLoggedIn.js');
-//Dont forget to put isLoggedIn back into the router "/" post
+//TODO Don't forget to put isLoggedIn back into the router "/" post
 router
   .route('/')
   .get(events.index)

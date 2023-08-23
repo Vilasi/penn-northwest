@@ -9,13 +9,23 @@ const Event = require('../models/events');
 const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY);
 
 module.exports.index = async (req, res, next) => {
-  res.render('pages/events');
+  // const events = await Event.find({});
+  const events = null;
+
+  //* This logic will handle a database lookup failure
+  if (!events) {
+    res.render('pages/events', { eventFailure: true });
+  }
+  console.log('events----------------------------------------------'.red);
+  console.log(events);
+  console.log(
+    'events length----------------------------------------------'.red
+  );
+  console.log(events.length);
+  res.render('pages/events', { events, eventFailure: false });
 };
 
 module.exports.createEvent = async (req, res, next) => {
-  // TODO -- convert price to price in cents
-  // TODO -- build event object
-  // TODO Handle req.file photo storage on document
   const newEvent = req.body.event;
 
   newEvent.priceInCents = Number(newEvent.priceInCents) * 100;
@@ -38,5 +48,7 @@ module.exports.createEvent = async (req, res, next) => {
     next(createError(500, 'Failed to create event.'));
   }
 
-  res.send(finalDoc);
+  // res.send(finalDoc);
+  req.flash('success', `Your event, ${finalDoc.name}, has been created!`);
+  res.redirect('/events');
 };
