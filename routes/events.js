@@ -4,6 +4,7 @@ const router = express.Router({ mergeParams: true });
 const multer = require('multer');
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
+const errorHandler = require('../utils/error-handlers/errorHandler');
 
 //* Import Controllers
 const events = require('../controllers/events.js');
@@ -22,6 +23,7 @@ router
   .get(events.index)
   .post(
     upload.single('eventImage'),
+    errorHandler.handleCloudinaryError,
     imageUploadValidation,
     eventValidation,
     events.createEvent
