@@ -16,12 +16,12 @@ module.exports.index = async (req, res, next) => {
   if (!events) {
     res.render('pages/events', { eventFailure: true });
   }
-  console.log('events----------------------------------------------'.red);
-  console.log(events);
-  console.log(
-    'events length----------------------------------------------'.red
-  );
-  console.log(events.length);
+  // console.log('events----------------------------------------------'.red);
+  // console.log(events);
+  // console.log(
+  //   'events length----------------------------------------------'.red
+  // );
+  // console.log(events.length);
   res.render('pages/events', { events, eventFailure: false });
 };
 
