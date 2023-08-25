@@ -16,8 +16,8 @@ module.exports.index = async (req, res, next) => {
   if (!events) {
     res.render('pages/events', { eventFailure: true });
   }
-  // console.log('events----------------------------------------------'.red);
-  // console.log(events);
+  console.log('events----------------------------------------------'.red);
+  console.log(events);
   // console.log(
   //   'events length----------------------------------------------'.red
   // );

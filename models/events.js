@@ -2,21 +2,23 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const objectIdType = Schema.Types.ObjectId;
 
-const imageSchema = new Schema({
-  url: {
-    type: String,
-    default:
-      'https://res.cloudinary.com/dypchgtip/image/upload/v1692771876/penn-northwest-website/omcwig0tniucxrhnqnqn.png',
-  },
-  filename: {
-    type: String,
-    default: 'penn-northwest-website/omcwig0tniucxrhnqnqn',
-  },
-});
+// const imageSchema = new Schema({
+//   // url: {
+//   //   type: String,
+//   //   default:
+//   //     'https://res.cloudinary.com/dypchgtip/image/upload/v1692771876/penn-northwest-website/omcwig0tniucxrhnqnqn.png',
+//   // },
+//   // filename: {
+//   //   type: String,
+//   //   default: 'penn-northwest-website/omcwig0tniucxrhnqnqn',
+//   // },
+//   url: String,
+//   filename: String,
+// });
 
-imageSchema.virtual('thumbnail').get(function () {
-  return this.url.replace('/upload', '/upload/w_200');
-});
+// imageSchema.virtual('thumbnail').get(function () {
+//   return this.url.replace('/upload', '/upload/w_200');
+// });
 
 //This ensures that the virtuals are available when converting a doc to JSON
 const options = { toJSON: { virtuals: true } };
@@ -65,7 +67,31 @@ const eventSchema = new Schema(
         required: true,
       },
     ],
-    image: imageSchema,
+    image: {
+      url: {
+        type: String,
+        default:
+          'https://res.cloudinary.com/dypchgtip/image/upload/v1692771876/penn-northwest-website/omcwig0tniucxrhnqnqn.png',
+      },
+      filename: {
+        type: String,
+        default: 'penn-northwest-website/omcwig0tniucxrhnqnqn',
+      },
+    },
+    // image: {
+    //   type: imageSchema,
+    //   default: {
+    //     url: {
+    //       type: String,
+    //       default:
+    //         'https://res.cloudinary.com/dypchgtip/image/upload/v1692771876/penn-northwest-website/omcwig0tniucxrhnqnqn.png',
+    //     },
+    //     filename: {
+    //       type: String,
+    //       default: 'penn-northwest-website/omcwig0tniucxrhnqnqn',
+    //     },
+    //   },
+    // },
     location: {
       type: String,
       required: true,
@@ -83,6 +109,7 @@ const eventSchema = new Schema(
     // ],
   },
   options
+  // { typeKey: '$type' }
 );
 //TODO ADD:
 //? - Date
@@ -106,6 +133,30 @@ eventSchema.virtual('formattedPrice').get(function () {
   // since 'priceInCents' is stored in cents.
   // Format the calculated price using the currencyFormatter and return the formatted string.
   return currencyFormatter.format(this.priceInCents / 100);
+});
+
+eventSchema.virtual('formattedDates').get(function () {
+  const isoDates = this.dates.map((date) => new Date(date));
+  const formattedDateArray = isoDates.map((date) => {
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  });
+  console.log('isoDates-----------------------------------'.red);
+  console.log(isoDates);
+  console.log('formattedDateArray-----------------------------------'.red);
+  console.log(formattedDateArray);
+  return formattedDateArray;
+  // return this.dates;
+  // return this.dates.map((date) => {
+  //   date.toLocaleDateString('en-US', {
+  //     year: 'numeric',
+  //     month: 'short',
+  //     day: 'numeric',
+  //   });
+  // });
 });
 
 const Event = mongoose.model('Event', eventSchema);

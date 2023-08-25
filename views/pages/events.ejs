@@ -222,7 +222,7 @@
         <% } else {%>
         <!--* Begin event creation -->
           <% for (let event of events) {%>
-            <aside class="col-lg-6 mt-5 d-flex flex-column align-items-center border-top border-bottom py-5">
+            <aside class="col-lg-6 mt-5 d-flex flex-column align-items-center py-5">
               <img
                 class="img-fluid event-image mb-4"
                 src="<%= event.image.url %>"
@@ -236,7 +236,7 @@
             </aside>
 
             <!--* Buy Ticket Card -->
-            <article class="col-lg-6 mt-5 d-flex flex-column align-items-center border-top border-bottom py-5">
+            <article class="col-lg-6 mt-5 d-flex flex-column align-items-center py-5">
               <div class="card text-center shadow w-100">
                 <div class="card-header">
                   <h3 class="display-6"><%= event.name %></h3>
@@ -254,8 +254,13 @@
                     <%= event.description %>
                   </p>
 
+                  
+                  <form action="" method="post">
+                    <% for (let date of event.formattedDates) {%>
+                      <h1><%= date %></h1>
+                    <% } %>
+
                   <% if (event.priceInCents === 0) {%>
-                    <form action="" method="post">
                       <a href="#" class="btn btn-success">Click to Register</a>
 
                   <% } %>
