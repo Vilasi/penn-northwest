@@ -2,24 +2,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const objectIdType = Schema.Types.ObjectId;
 
-// const imageSchema = new Schema({
-//   // url: {
-//   //   type: String,
-//   //   default:
-//   //     'https://res.cloudinary.com/dypchgtip/image/upload/v1692771876/penn-northwest-website/omcwig0tniucxrhnqnqn.png',
-//   // },
-//   // filename: {
-//   //   type: String,
-//   //   default: 'penn-northwest-website/omcwig0tniucxrhnqnqn',
-//   // },
-//   url: String,
-//   filename: String,
-// });
-
-// imageSchema.virtual('thumbnail').get(function () {
-//   return this.url.replace('/upload', '/upload/w_200');
-// });
-
 //This ensures that the virtuals are available when converting a doc to JSON
 const options = { toJSON: { virtuals: true } };
 
@@ -49,12 +31,6 @@ const eventSchema = new Schema(
         required: true,
       },
     ],
-    // times: [
-    //   {
-    //     type: String,
-    //     required: true,
-    //   },
-    // ],
     startTimes: [
       {
         type: String,
@@ -78,20 +54,6 @@ const eventSchema = new Schema(
         default: 'penn-northwest-website/omcwig0tniucxrhnqnqn',
       },
     },
-    // image: {
-    //   type: imageSchema,
-    //   default: {
-    //     url: {
-    //       type: String,
-    //       default:
-    //         'https://res.cloudinary.com/dypchgtip/image/upload/v1692771876/penn-northwest-website/omcwig0tniucxrhnqnqn.png',
-    //     },
-    //     filename: {
-    //       type: String,
-    //       default: 'penn-northwest-website/omcwig0tniucxrhnqnqn',
-    //     },
-    //   },
-    // },
     location: {
       type: String,
       required: true,
@@ -109,7 +71,6 @@ const eventSchema = new Schema(
     // ],
   },
   options
-  // { typeKey: '$type' }
 );
 //TODO ADD:
 //? - Date
