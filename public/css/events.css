@@ -37,6 +37,10 @@
   width: 50vw;
 }
 
+#checkout-form {
+  max-width: fit-content;
+}
+
 /** BEGIN MEDIA QUERIES ***************************************************************************/
 /** Medium Screen */
 @media screen and (max-width: 992px) {

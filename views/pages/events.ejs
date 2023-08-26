@@ -56,7 +56,7 @@
       <!--* CREATE NEW EVENT ADMIN FORM -->
       <!--* CREATE NEW EVENT ADMIN FORM -->
       <!-- TODO REMOVE THE || CLAUSE -->
-      <% if (currentUser && currentUser.role === 'admin' || !currentUser) {%>
+      <% if (currentUser && currentUser.role === 'admin') {%>
 
       <div id="event-creation-card" class="card">
         <div class="card-body">
@@ -229,12 +229,12 @@
           <% for (let event of events) {%>
             <section class="row d-flex justify-content-center mx-0 mx-sm-5">
 
-              <!--* Individual Event Card -->
-              <section class="row shadow-lg">
+              <!--* Individual Event Card ----------------------------------------------------------------------->
+              <section class="row shadow-lg rounded">
 
                 <aside class="col-lg-6 mt-3 d-flex flex-column align-items-center py-5">
                   <img
-                    class="img-fluid event-image mb-4"
+                    class="img-fluid rounded shadow-sm event-image mb-4"
                     src="<%= event.image.url %>"
                     alt="<%= event.name %> Event Image"
                   />
@@ -245,34 +245,43 @@
                   </ul>
                 </aside>
     
-                <!--* Buy Ticket Card -->
+                <!--* Buy Ticket Card -------------------------------------------------------------------->
                 <article class="col-lg-6 mt-3 d-flex flex-column align-items-center py-5 px-0 px-sm-5">
                   <div class="card text-center shadow w-100">
                     <div class="card-header">
                       <h3 class="display-6"><%= event.name %></h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column align-items-center">
                       <!--? Price -->
                       <% if (event.priceInCents === 0) {%>
-                        <h5 class="card-title">Free Event</h5>
+                        <h4 class="card-title">Free Event</h4>
                       <% } else {%>
-                        <h5 class="card-title"><%= event.formattedPrice %></h5>
+                        <h4 class="card-title"><%= event.formattedPrice %></h4>
                       <% } %>
     
                       <!--? Description -->
-                      <p class="card-text">
+                      <p class="card-text lead">
                         <%= event.description %>
                       </p>
     
-                      
-                      <form action="" method="post">
-                        <% for (let date of event.formattedDates) {%>
-                          <h1><%= date %></h1>
+                      <!--? Signup Form ----------------------------------------------------------->
+                      <p><strong>Choose Date and Time for Event Attendance:</strong></p>
+                      <form id="checkout-form" action="" method="post" class="w-auto">
+                        <!--? Date/Time Selection -->
+                        <% for (let i = 0; i < event.dates.length; i++) {%>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="attendant[dateTime]" value="<%= event.formattedStartTimes[i] %> - <%= event.formattedDates[i] %>" >
+                            <label class="form-check-label" >
+                              <%= event.formattedDates[i] %> &mdash; <%= event.formattedStartTimes[i] %> - <%= event.formattedEndTimes[i] %>
+                            </label>
+                          </div>
+
                         <% } %>
+
+                       
     
                       <% if (event.priceInCents === 0) {%>
-                          <a href="#" class="btn btn-success">Click to Register</a>
-    
+                          <button href="#" class="btn btn-success">Click to Register</button>
                       <% } %>
     
                       </form>

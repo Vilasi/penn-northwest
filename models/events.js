@@ -96,6 +96,7 @@ eventSchema.virtual('formattedPrice').get(function () {
   return currencyFormatter.format(this.priceInCents / 100);
 });
 
+//* Dates human-readable formatting virtual property function
 eventSchema.virtual('formattedDates').get(function () {
   const isoDates = this.dates.map((date) => new Date(date));
   const formattedDateArray = isoDates.map((date) => {
@@ -105,19 +106,54 @@ eventSchema.virtual('formattedDates').get(function () {
       day: 'numeric',
     });
   });
-  console.log('isoDates-----------------------------------'.red);
-  console.log(isoDates);
-  console.log('formattedDateArray-----------------------------------'.red);
-  console.log(formattedDateArray);
+
   return formattedDateArray;
-  // return this.dates;
-  // return this.dates.map((date) => {
-  //   date.toLocaleDateString('en-US', {
-  //     year: 'numeric',
-  //     month: 'short',
-  //     day: 'numeric',
-  //   });
-  // });
+});
+
+//* Formats the Times from 12 hour clock to 24 hour clock
+eventSchema.virtual('formattedStartTimes').get(function () {
+  const times = [...this.startTimes];
+  const formattedTimes = times.map((time) => {
+    const hourHand = Number(time.split(':')[0]);
+    const minuteHand = time.split(':')[1];
+
+    if (hourHand === 12) {
+      return `${12}:${minuteHand}PM`;
+    }
+    if (hourHand === 0) {
+      return `${12}:${minuteHand}AM`;
+    }
+
+    if (hourHand >= 12) {
+      return `${hourHand % 12}:${minuteHand} PM`;
+    } else {
+      return `${hourHand}:${minuteHand}AM`;
+    }
+  });
+
+  return formattedTimes;
+});
+eventSchema.virtual('formattedEndTimes').get(function () {
+  const times = [...this.endTimes];
+  const formattedTimes = times.map((time) => {
+    const hourHand = Number(time.split(':')[0]);
+    const minuteHand = time.split(':')[1];
+
+    if (hourHand === 12) {
+      return `${12}:${minuteHand}PM`;
+    }
+    if (hourHand === 0) {
+      return `${12}:${minuteHand}AM`;
+    }
+
+    if (hourHand >= 12) {
+      return `${hourHand % 12}:${minuteHand}PM`;
+    } else {
+      return `${hourHand}:${minuteHand}AM`;
+    }
+  });
+
+  return formattedTimes;
 });
 
 const Event = mongoose.model('Event', eventSchema);
