@@ -1,5 +1,5 @@
 const multer = require('multer');
-const { cloudinary, storage } = require('../cloudinary');
+const { cloudinary, storage } = require('../config/cloudinary');
 const upload = multer({ storage });
 
 //* Import db models
@@ -16,8 +16,8 @@ module.exports.index = async (req, res, next) => {
   if (!events) {
     res.render('pages/events', { eventFailure: true });
   }
-  console.log('events----------------------------------------------'.red);
-  console.log(events);
+  // console.log('events----------------------------------------------'.red);
+  // console.log(events);
   // console.log(
   //   'events length----------------------------------------------'.red
   // );

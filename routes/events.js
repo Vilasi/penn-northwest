@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 const multer = require('multer');
-const { storage } = require('../cloudinary');
+const { storage } = require('../config/cloudinary');
 const upload = multer({ storage });
 const errorHandler = require('../utils/error-handlers/errorHandler');
 
