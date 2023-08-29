@@ -68,28 +68,33 @@ module.exports.handleCheckout = async (req, res, next) => {
 
   console.log(attendant);
   console.log(event);
-  res.send(event);
+  // res.send(event);
 
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
-      line_items: {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: event.name,
-            description: event.description,
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: event.name,
+              description: event.description,
+            },
+            unit_amount: event.priceInCents,
           },
-          unit_amount: event.priceInCents,
+          quantity: attendant.ticketQuantity,
         },
-        quantity: attendant.ticketQuantity,
-      },
+      ],
       success_url: `${process.env.SERVER_URL}/events/checkout/success`,
       cancel_url: `${process.env.SERVER_URL}/events/checkout/cancel`,
     });
-    res.redirect(303, session.url);
-  } catch (err) {}
+    return res.redirect(303, session.url);
+  } catch (err) {
+    //TODO Fully investigate stripe errors
+    return res.status(500).send(err);
+  }
 };
 
 module.exports.checkoutSuccess = async (req, res, next) => {
