@@ -52,3 +52,26 @@ module.exports.createEvent = async (req, res, next) => {
   req.flash('success', `Your event, ${finalDoc.name}, has been created!`);
   res.redirect('/events');
 };
+
+//TODO WRITE VALIDATIONS FOR THIS
+module.exports.handleCheckout = async (req, res, next) => {
+  const attendant = req.body.attendant;
+  const event = await Event.findById(attendant.id);
+
+  if (!event) {
+    req.flash(
+      'error',
+      'Event not found. Please try again or contact us directly.'
+    );
+    res.redirect('/events');
+  }
+
+  console.log(event);
+  res.send(event);
+
+  // try {
+  //   const session = await stripe.checkout.sessions.create({
+  //     payment_method_types: ['card'],
+  //   });
+  // } catch (err) {}
+};

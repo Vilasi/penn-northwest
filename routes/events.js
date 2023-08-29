@@ -29,4 +29,7 @@ router
     events.createEvent
   );
 
+//TODO WRITE VALIDATIONS FOR THIS
+router.route('/create-checkout-session').post(events.handleCheckout);
+
 module.exports = router;
