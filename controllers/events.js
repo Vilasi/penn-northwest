@@ -6,7 +6,7 @@ const upload = multer({ storage });
 const Event = require('../models/events');
 
 //* Connect Stripe
-const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY);
+const stripe = require('../config/stripe');
 
 module.exports.index = async (req, res, next) => {
   const events = await Event.find({});
@@ -98,8 +98,27 @@ module.exports.handleCheckout = async (req, res, next) => {
 };
 
 module.exports.checkoutSuccess = async (req, res, next) => {
-  res.render('/checkout/success');
+  const events = await stripe.events.list({
+    limit: 3,
+  });
+
+  console.log(
+    'BELOW IS THE EVENT RETURNED FROM STRIPE------------------------------------------------'
+      .red
+  );
+  console.log(events);
+
+  const data = events.data.map((datum) => {
+    return datum.data;
+  });
+  console.log(
+    'BELOW IS THE DATA ARRAY------------------------------------------------'
+      .red
+  );
+  console.log(data);
+
+  res.render('checkout/success');
 };
 module.exports.checkoutCancel = async (req, res, next) => {
-  res.render('/checkout/cancel');
+  res.render('checkout/cancel');
 };
