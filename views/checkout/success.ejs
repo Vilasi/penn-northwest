@@ -3,14 +3,44 @@
   class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5"
 >
   <section class="bg-light rounded">
-    <article class="d-flex justify-content-center">
-      <h1></h1>
-      <p>
-        We appreciate your business! If you have any questions, please email
-        <a href="mailto:orders@example.com">orders@example.com</a>.
+    <article class="d-flex flex-column align-items-center">
+      <!--* Large Screens and Up -->
+      <img
+        class="signup-link-anchor img-fluid my-5 w-25 d-none d-lg-block"
+        src="/assets/svgs/checkout/order-confirmed.svg"
+        alt="Fun with balloons"
+      />
+
+      <!--* Small to Medium Screens -->
+      <img
+        class="signup-link-anchor img-fluid my-5 w-50 d-none d-sm-block d-lg-none"
+        src="/assets/svgs/checkout/order-confirmed.svg"
+        alt="Fun with balloons"
+      />
+
+      <img
+        class="signup-link-anchor img-fluid my-5 d-sm-none"
+        src="/assets/svgs/checkout/order-confirmed.svg"
+        alt="Fun with balloons"
+      />
+      <!-- <div class="container"></div> -->
+      <h1 class="display-2 mb-3">You're all set!</h1>
+
+      <p class="lead text-center">
+        Check your email for a receipt, or
+        <a class="text-primary-emphasis" href="<%= receipt.receiptURL %>"
+          >click here</a
+        >
+        to view it in your browser.
+      </p>
+
+      <p class="lead text-center">
+        We appreciate your business! If you have any questions, please email us
+        at
+        <a class="text-primary-emphasis" href="mailto:info@penn-northwest.com"
+          >info@penn-northwest.com</a
+        >.
       </p>
     </article>
   </section>
 </section>
-
-<!-- TODO - Transfer this to ejs/route handling -->

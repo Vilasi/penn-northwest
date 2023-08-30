@@ -126,9 +126,17 @@ module.exports.checkoutSuccess = async (req, res, next) => {
   );
   console.log(data);
 
-  res.render('checkout/success');
+  const receipt = { receiptURL: null };
+  if (data) {
+    console.log(data[0]);
+    receipt.receiptURL = data[0].object.receipt_url;
+  }
+
+  res.render('checkout/success', { receipt });
 };
 
+//* Fires when a user cancels a stripe checkout page
 module.exports.checkoutCancel = async (req, res, next) => {
-  res.render('checkout/cancel');
+  req.flash('error', 'Payment was cancelled.');
+  res.redirect('/events');
 };

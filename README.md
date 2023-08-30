@@ -31,6 +31,7 @@ https://stripe.com/connect
 - Cloudinary
 - SendGrid Email
 - (Maybe) reCaptcha
+- Stripe Connect (Be sure to setup account notifications and customer email settings here https://dashboard.stripe.com/settings --- https://dashboard.stripe.com/settings/user --- https://dashboard.stripe.com/settings/communication-preferences)
 
 ## Packages to Look at
 
