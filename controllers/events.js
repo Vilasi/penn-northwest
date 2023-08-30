@@ -97,9 +97,18 @@ module.exports.handleCheckout = async (req, res, next) => {
   }
 };
 
+//* Handles the checkout success page and gets the event
+//? Relevant docs for the below
+//https://stripe.com/docs/api/events
+//https://stripe.com/docs/api/events/retrieve
+//https://stripe.com/docs/api/events/list?lang=node
+//https://stripe.com/docs/api/events/types?lang=node
+//TODO FINISH SETTING UP RECEIPT DISPLAY
+//TODO FLESH OUT SUCCESS PAGE UI, AND CANCEL PAGE UI
 module.exports.checkoutSuccess = async (req, res, next) => {
   const events = await stripe.events.list({
     limit: 3,
+    type: 'charge.succeeded',
   });
 
   console.log(
@@ -119,6 +128,7 @@ module.exports.checkoutSuccess = async (req, res, next) => {
 
   res.render('checkout/success');
 };
+
 module.exports.checkoutCancel = async (req, res, next) => {
   res.render('checkout/cancel');
 };
