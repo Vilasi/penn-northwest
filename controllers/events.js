@@ -60,6 +60,12 @@ module.exports.handleCheckout = async (req, res, next) => {
 
   console.log('BELOW IS THE ATTENDANT============================='.red);
   console.log(attendant);
+  console.log('BELOW IS THE EVENT============================='.red);
+  console.log(event);
+
+  //* Set event name and ticket quantity to the session
+  req.session.ticketQuantity = attendant.ticketQuantity;
+  req.session.eventName = event.name;
 
   if (!event) {
     req.flash(
@@ -141,8 +147,18 @@ module.exports.checkoutSuccess = async (req, res, next) => {
     receipt.receiptURL = data[0].object.receipt_url;
   }
 
+  console.log(
+    'BELOW IS THE REQ.SESSION============================================'.red
+  );
+  console.log(req.session);
+  //TODO Send the date/time
+  const purchaseInfo = {
+    ticketQuantity: req.session.ticketQuantity,
+    eventName: req.session.eventName,
+  };
+
   // Render the 'checkout/success' view and pass the receipt object to it
-  res.render('checkout/success', { receipt });
+  res.render('checkout/success', { receipt, purchaseInfo });
 };
 
 //* Fires when a user cancels a stripe checkout page

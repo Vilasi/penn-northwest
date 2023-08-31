@@ -63,6 +63,8 @@ app.use(methodOverride('_method'));
 //? Morgan Logger Middleware
 app.use(morgan('dev'));
 //? Express Session Middleware
+//TODO CONFIGURE A PROPER DATASTORE FOR SESSION
+// checkout npm connect-mongo
 app.use(
   session({
     secret: process.env.SECRET_KEY,
