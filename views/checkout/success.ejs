@@ -26,21 +26,29 @@
       <!-- <div class="container"></div> -->
       <h1 class="display-2 mb-3">You're all set!</h1>
 
-      <p class="lead text-center">
+      <% if (receipt.receiptURL === null) {%>
+      <p class="lead text-center mb-3">Check your email for a receipt.</p>
+      <% } else {%>
+      <p class="lead text-center mb-3">
         Check your email for a receipt, or
-        <a class="text-primary-emphasis" href="<%= receipt.receiptURL %>"
+        <a
+          class="text-primary-emphasis"
+          href="<%= receipt.receiptURL %>"
+          target="_blank"
           >click here</a
         >
         to view it in your browser.
       </p>
+      <% } %>
 
       <p class="lead text-center">
         We appreciate your business! If you have any questions, please email us
         at
         <a class="text-primary-emphasis" href="mailto:info@penn-northwest.com"
           >info@penn-northwest.com</a
-        >.
+        >
       </p>
+      <a class="btn btn-primary mt-3" href="/">Return Home</a>
     </article>
   </section>
 </section>

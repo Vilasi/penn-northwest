@@ -58,6 +58,9 @@ module.exports.handleCheckout = async (req, res, next) => {
   const attendant = req.body.attendant;
   const event = await Event.findById(attendant.id);
 
+  console.log('BELOW IS THE ATTENDANT============================='.red);
+  console.log(attendant);
+
   if (!event) {
     req.flash(
       'error',
@@ -65,10 +68,6 @@ module.exports.handleCheckout = async (req, res, next) => {
     );
     res.redirect('/events');
   }
-
-  console.log(attendant);
-  console.log(event);
-  // res.send(event);
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -97,41 +96,52 @@ module.exports.handleCheckout = async (req, res, next) => {
   }
 };
 
-//* Handles the checkout success page and gets the event
+/**
+ ** Handle checkout success
+ *
+ * @param {object} req - The Express request object
+ * @param {object} res - The Express response object
+ * @param {function} next - The Express next middleware function
+ */
 //? Relevant docs for the below
 //https://stripe.com/docs/api/events
 //https://stripe.com/docs/api/events/retrieve
 //https://stripe.com/docs/api/events/list?lang=node
 //https://stripe.com/docs/api/events/types?lang=node
-//TODO FINISH SETTING UP RECEIPT DISPLAY
-//TODO FLESH OUT SUCCESS PAGE UI, AND CANCEL PAGE UI
 module.exports.checkoutSuccess = async (req, res, next) => {
+  // Fetch the last 3 'charge.succeeded' events from Stripe
   const events = await stripe.events.list({
     limit: 3,
     type: 'charge.succeeded',
   });
 
-  console.log(
-    'BELOW IS THE EVENT RETURNED FROM STRIPE------------------------------------------------'
-      .red
-  );
-  console.log(events);
+  // console.log(
+  //   'BELOW IS THE EVENT RETURNED FROM STRIPE------------------------------------------------'
+  //     .red
+  // );
+  // console.log(events);
 
-  const data = events.data.map((datum) => {
-    return datum.data;
+  // Extract the relevant data from each Stripe event
+  const data = events.data.map((event) => {
+    return event.data;
   });
+
   console.log(
     'BELOW IS THE DATA ARRAY------------------------------------------------'
       .red
   );
   console.log(data);
 
+  // Initialize a receipt object with a null URL
   const receipt = { receiptURL: null };
+
+  // Check if data exists, then extract the receipt URL from the first entry
   if (data) {
     console.log(data[0]);
     receipt.receiptURL = data[0].object.receipt_url;
   }
 
+  // Render the 'checkout/success' view and pass the receipt object to it
   res.render('checkout/success', { receipt });
 };
 

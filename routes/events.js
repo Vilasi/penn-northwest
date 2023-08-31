@@ -17,11 +17,11 @@ const {
 
 //* Import Middleware
 const isLoggedIn = require('../utils/middleware/isLoggedIn.js');
-//TODO Don't forget to put isLoggedIn back into the router "/" post
 router
   .route('/')
   .get(events.index)
   .post(
+    isLoggedIn,
     upload.single('eventImage'),
     errorHandler.handleCloudinaryError,
     imageUploadValidation,
