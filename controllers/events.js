@@ -8,20 +8,14 @@ const Event = require('../models/events');
 //* Connect Stripe
 const stripe = require('../config/stripe');
 
+//* Events Index Page
 module.exports.index = async (req, res, next) => {
   const events = await Event.find({});
-  // const events = null;
 
-  //* This logic will handle a database lookup failure
+  // This logic will handle a database lookup failure
   if (!events) {
     res.render('pages/events', { eventFailure: true });
   }
-  // console.log('events----------------------------------------------'.red);
-  // console.log(events);
-  // console.log(
-  //   'events length----------------------------------------------'.red
-  // );
-  // console.log(events.length);
   res.render('pages/events', { events, eventFailure: false });
 };
 
@@ -164,5 +158,19 @@ module.exports.checkoutSuccess = async (req, res, next) => {
 //* Fires when a user cancels a stripe checkout page
 module.exports.checkoutCancel = async (req, res, next) => {
   req.flash('error', 'Payment was cancelled.');
+  res.redirect('/events');
+};
+
+//TODO Handle cloudinary image deletion
+module.exports.deleteEvent = async (req, res, next) => {
+  const { id } = req.params;
+  const event = await Event.findByIdAndDelete(id);
+  if (!event) {
+    req.flash('error', 'Event deletion failed. Event not found in database.');
+    res.redirect('/events');
+  }
+
+  req.flash('success', `Event "${event.name}" Successfully Deleted.`);
+  console.log(req.params);
   res.redirect('/events');
 };

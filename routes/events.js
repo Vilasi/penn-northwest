@@ -17,17 +17,20 @@ const {
 
 //* Import Middleware
 const isLoggedIn = require('../utils/middleware/isLoggedIn.js');
+// TODO Add back in isLoggedIn to '/' POST request
 router
   .route('/')
   .get(events.index)
   .post(
-    isLoggedIn,
     upload.single('eventImage'),
     errorHandler.handleCloudinaryError,
     imageUploadValidation,
     eventValidation,
     events.createEvent
   );
+
+//* For deleting individual events
+router.route('/:id').delete(isLoggedIn, events.deleteEvent);
 
 //TODO WRITE VALIDATIONS FOR THIS
 router.route('/create-checkout-session').post(events.handleCheckout);

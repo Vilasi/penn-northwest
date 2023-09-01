@@ -55,7 +55,6 @@
       <!--* CREATE NEW EVENT ADMIN FORM -->
       <!--* CREATE NEW EVENT ADMIN FORM -->
       <!--* CREATE NEW EVENT ADMIN FORM -->
-      <!-- TODO REMOVE THE || CLAUSE -->
       <% if (currentUser && currentUser.role === 'admin') {%>
 
       <div id="event-creation-card" class="card">
@@ -215,19 +214,21 @@
       <!--* All events section -->
       <section class="container-fluid px-0 px-sm-auto">
         <!--! Database Lookup Failure Logic -->
-        <!--TODO Flesh this out -->
+        <!--TODO Flesh this out (Finish writing the free event logic) -->
+        <!--TODO Add a delete button -->
         <% if (eventFailure) { %>
           <div class="col-12 flex justify-content-center">
             <h1 class="text-center">Database Connection Error.</h1>
           </div>
         <% } else if (events.length === 0) {%>
+          <!--*  -->
           <div class="col-12 flex justify-content-center">
             <h1 class="text-center">There are no upcoming events.</h1>
           </div>
         <% } else { %>
         <!--* Begin event creation -->
           <% for (let event of events) {%>
-            <section class="row d-flex justify-content-center mx-0 mx-sm-5">
+            <section class="row d-flex justify-content-center mx-0 mx-sm-5 event-deletion-target">
 
               <!--* Individual Event Card ----------------------------------------------------------------------->
               <section class="row shadow-lg rounded">
@@ -243,6 +244,12 @@
                       <li class="list-group-item bg-light"><%= listItem %></li>
                     <% } %>
                   </ul>
+                  <!--! Delete Event Route  -->
+                  <% if (currentUser && currentUser.role === 'admin') {%>
+                    <form class="mt-5" action="/events/<%= event._id %>?_method=DELETE" method="post">
+                      <button class="btn btn-danger" type="submit">Delete Event</button>
+                    </form>
+                  <% } %>
                 </aside>
     
                 <!--* Buy Ticket Card -------------------------------------------------------------------->
@@ -311,7 +318,7 @@
             </section>
 
             <!--* Vertical divider -->
-            <div class="d-flex justify-content-center my-5" style="height: 12.5rem">
+            <div class="d-flex justify-content-center my-5 event-deletion-target" style="height: 12.5rem">
               <div class="vr"></div>
             </div>
           <% } %> 
