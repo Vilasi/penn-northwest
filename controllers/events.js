@@ -170,7 +170,10 @@ module.exports.deleteEvent = async (req, res, next) => {
     res.redirect('/events');
   }
 
+  //* This deletes the relevant image in the cloudinary photo repo
+  const filename = event.image.filename;
+  await cloudinary.uploader.destroy(filename);
+
   req.flash('success', `Event "${event.name}" Successfully Deleted.`);
-  console.log(req.params);
   res.redirect('/events');
 };

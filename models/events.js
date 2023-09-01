@@ -47,7 +47,8 @@ const eventSchema = new Schema(
       url: {
         type: String,
         default:
-          'https://res.cloudinary.com/dypchgtip/image/upload/v1692771876/penn-northwest-website/omcwig0tniucxrhnqnqn.png',
+          'https://res.cloudinary.com/dypchgtip/image/upload/v1692771876/penn-northwest-website/PLACEHOLDER_IMAGE_DONT_DELETE.png',
+        // omcwig0tniucxrhnqnqn --- Original filename code. Save for potential reintegration.
       },
       filename: {
         type: String,
