@@ -22,6 +22,7 @@ router
   .route('/')
   .get(events.index)
   .post(
+    isLoggedIn,
     upload.single('eventImage'),
     errorHandler.handleCloudinaryError,
     imageUploadValidation,
