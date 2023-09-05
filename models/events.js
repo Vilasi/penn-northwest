@@ -105,6 +105,7 @@ eventSchema.virtual('formattedDates').get(function () {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
+      timeZone: 'UTC',
     });
   });
 
