@@ -9,6 +9,7 @@ const engine = require('ejs-mate');
 const morgan = require('morgan');
 require('express-async-errors');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const colors = require('colors');
 const createError = require('http-errors');
@@ -68,6 +69,10 @@ app.use(morgan('dev'));
 app.use(
   session({
     secret: process.env.SECRET_KEY,
+    store: MongoStore.create({
+      mongoUrl: 'mongodb://127.0.0.1:27017/penn-northwest',
+      dbName: 'penn-northwest',
+    }),
     resave: false,
     saveUninitialized: false,
     // rolling: true,
@@ -116,6 +121,12 @@ app.use((req, res, next) => {
 //   }
 //   next();
 // });
+
+app.use((req, res, next) => {
+  req.session.test = 'Hello!';
+  console.log(req.session);
+  next();
+});
 
 //! Routes
 //* Home
