@@ -60,6 +60,7 @@ module.exports.handleCheckout = async (req, res, next) => {
   //* Set event name and ticket quantity to the session
   req.session.ticketQuantity = attendant.ticketQuantity;
   req.session.eventName = event.name;
+  req.session.paidAttendant = {};
 
   if (!event) {
     req.flash(

@@ -46,6 +46,7 @@ const imageUploadValidation = async (req, res, next) => {
   }
 };
 
+//* Validates the attendant data using Joi, flashes an error message if validation fails, and redirects to '/events' or proceeds if validation is successful.
 const paidEventValidation = async (req, res, next) => {
   const attendantData = req.body.attendant;
   const result = joiValidations.paidEventSchema.validate(attendantData);

@@ -64,12 +64,12 @@ const eventSchema = new Schema(
       default: 0,
     },
     //? The below commented out attendees is saved for potential later reintegration
-    // attendees: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Attendee', // Reference to the User model
-    //   },
-    // ],
+    attendees: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Attendant', // Reference to the User model
+      },
+    ],
   },
   options
 );
