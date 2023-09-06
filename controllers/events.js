@@ -115,29 +115,16 @@ module.exports.checkoutSuccess = async (req, res, next) => {
     type: 'charge.succeeded',
   });
 
-  // console.log(
-  //   'BELOW IS THE EVENT RETURNED FROM STRIPE------------------------------------------------'
-  //     .red
-  // );
-  // console.log(events);
-
   // Extract the relevant data from each Stripe event
   const data = events.data.map((event) => {
     return event.data;
   });
-
-  console.log(
-    'BELOW IS THE DATA ARRAY------------------------------------------------'
-      .red
-  );
-  console.log(data);
 
   // Initialize a receipt object with a null URL
   const receipt = { receiptURL: null };
 
   // Check if data exists, then extract the receipt URL from the first entry
   if (data) {
-    console.log(data[0]);
     receipt.receiptURL = data[0].object.receipt_url;
   }
 
@@ -146,6 +133,7 @@ module.exports.checkoutSuccess = async (req, res, next) => {
   );
   console.log(req.session);
   //TODO Send the date/time
+  //TODO Send the attendee name/email
   const purchaseInfo = {
     ticketQuantity: req.session.ticketQuantity,
     eventName: req.session.eventName,

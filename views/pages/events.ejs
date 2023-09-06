@@ -279,12 +279,13 @@
                         <button href="#" class="btn btn-success mt-3 mb-1">Click to Register</button>
                       <% } else if (event.priceInCents > 0) {%>
                         <!--! PAID EVENT FORM ======================================================================-->
-                        <form id="checkout-form" action="/events/create-checkout-session" method="post" class="w-auto">
+                        <form id="checkout-form" action="/events/create-checkout-session" method="post" class="w-100 d-flex flex-column align-items-center">
                           <!--? Event ID Input -->
                           <input class="d-none" type="text" name="attendant[id]" value="<%= event.id %>">
-                          <!--? Date/Time Selection -->
+
+                          <!--? Attendant Date/Time Radio Buttons -->
                           <% for (let i = 0; i < event.dates.length; i++) {%>
-                            <div class="form-check">
+                            <div class="form-check text-center">
                               <input class="form-check-input" type="radio" name="attendant[dateTime]" value="<%= event.formattedStartTimes[i] %> - <%= event.formattedDates[i] %>" required>
                               <label class="form-check-label" >
                                 <%= event.formattedDates[i] %> &mdash; <%= event.formattedStartTimes[i] %> - <%= event.formattedEndTimes[i] %>
@@ -292,6 +293,8 @@
                             </div>
 
                           <% } %>
+                          
+                          <!--? Attendant Number of Tickets  -->
                           <div class="my-3">
                             <label for="tickets" class="form-label"><strong>Choose number of tickets</strong></label>
                             <input
@@ -301,8 +304,25 @@
                               name="attendant[ticketQuantity]"
                               min="1"
                               step="1"
+                              value="1"
                               required
                             />
+                          </div>
+
+                          <!--? Attendant Name and Email -->
+                          <div class="row w-100">
+                            <div class="col-xxl-6 mb-3">
+                              <div class="input-group">
+                                <span class="input-group-text" id="name-addon">Name</span>  
+                                <input name="attendant[name]" type="text" class="form-control" id="attendantName" aria-label="Attendant Name" aria-describedby="name-addon">
+                              </div>
+                            </div>
+                            <div class="col-xxl-6 mb-3">
+                              <div class="input-group">
+                                <span class="input-group-text" id="email-addon">Email</span>  
+                                <input name="attendant[email]" type="email" class="form-control" id="attendantEmail" aria-label="Attendant Email" aria-describedby="Email-addon">
+                              </div>
+                            </div>
                           </div>
                           <button href="#" class="btn btn-success mt-3 mb-2">Checkout</button>
                         </form>
