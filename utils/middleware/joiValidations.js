@@ -46,6 +46,23 @@ const imageUploadValidation = async (req, res, next) => {
   }
 };
 
+const paidEventValidation = async (req, res, next) => {
+  const attendantData = req.body.attendant;
+  const result = joiValidations.paidEventSchema.validate(attendantData);
+
+  if (result.error) {
+    const message = result.error.details[0].message;
+    req.flash('error', message);
+    console.log('Joi Error'.yellow);
+    console.log(result.error.details[0].message);
+
+    return res.redirect('/events');
+  } else {
+    console.log('ATTENDANT VALIDATION SUCCESS!!!!'.green);
+    next();
+  }
+};
+
 //* Handles validation for the user registration form
 const registrationValidation = async (req, res, next) => {
   const registrationData = req.body.register;
@@ -100,6 +117,7 @@ const newMemberValidation = async (req, res, next) => {
 module.exports = {
   eventValidation,
   imageUploadValidation,
+  paidEventValidation,
   registrationValidation,
   membershipApplicationValidation,
   newMemberValidation,

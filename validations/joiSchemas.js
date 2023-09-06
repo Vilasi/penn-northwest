@@ -13,10 +13,6 @@ module.exports.eventSchema = Joi.object({
     Joi.array().items(Joi.date().required()).required(),
     Joi.date().required()
   ),
-  // times: Joi.alternatives().try(
-  //   Joi.array().items(Joi.string().required()).required(),
-  //   Joi.string().required()
-  // ),
   startTimes: Joi.alternatives().try(
     Joi.array().items(Joi.string().required()).required(),
     Joi.string().required()
@@ -32,6 +28,14 @@ module.exports.eventSchema = Joi.object({
 module.exports.imageSchema = Joi.object({
   url: Joi.string().required(),
   filename: Joi.string().required(),
+});
+
+module.exports.paidEventSchema = Joi.object({
+  id: Joi.string().required(),
+  dateTime: Joi.string().required(),
+  ticketQuantity: Joi.string().required(),
+  name: Joi.string().required(),
+  email: Joi.string().required(),
 });
 
 module.exports.registrationSchema = Joi.object({

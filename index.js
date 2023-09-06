@@ -122,12 +122,6 @@ app.use((req, res, next) => {
 //   next();
 // });
 
-app.use((req, res, next) => {
-  req.session.test = 'Hello!';
-  console.log(req.session);
-  next();
-});
-
 //! Routes
 //* Home
 app.get('/', (req, res) => {

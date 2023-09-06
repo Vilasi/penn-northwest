@@ -13,6 +13,7 @@ const events = require('../controllers/events.js');
 const {
   imageUploadValidation,
   eventValidation,
+  paidEventValidation,
 } = require('../utils/middleware/joiValidations');
 
 //* Import Middleware
@@ -33,8 +34,10 @@ router
 //* For deleting individual events
 router.route('/:id').delete(isLoggedIn, events.deleteEvent);
 
-//TODO WRITE VALIDATIONS FOR THIS
-router.route('/create-checkout-session').post(events.handleCheckout);
+//* Paid Event Route - Stripe
+router
+  .route('/create-checkout-session')
+  .post(paidEventValidation, events.handleCheckout);
 
 //* Stripe integrated redirects for payment success and payment cancel
 //TODO Flesh these out
