@@ -129,9 +129,8 @@ module.exports.checkoutSuccess = async (req, res, next) => {
     receipt.receiptURL = data[0].object.receipt_url;
   }
 
-  // Set the attendant variable to the session storage attendant object, which has info about the purchase being made
-  // Create new attendant document
-  const attendant = req.session.attendant;
+  const attendant = req.session.attendant; // Get the attendant data from the session
+  // Create a new Attendant document with relevant data
   const newAttendantDoc = new Attendant({
     dateTime: attendant.dateTime,
     ticketQuantity: attendant.ticketQuantity,
@@ -140,18 +139,18 @@ module.exports.checkoutSuccess = async (req, res, next) => {
     email: attendant.email,
     event: attendant.id,
   });
-  console.log('BELOW IS THE ATTENDANT---------------------------'.red);
-  console.log(attendant);
-  console.log('BELOW IS THE newAttendantDoc---------------------------'.red);
-  console.log(newAttendantDoc);
 
-  const createdAttendant = await newAttendantDoc.save();
-  const event = await Event.findById(attendant.id);
+  const createdAttendant = await newAttendantDoc.save(); // Save the new Attendant document to the database
+  const event = await Event.findById(attendant.id); // Find the relevant Event by ID
 
-  console.log('BELOW IS THE event---------------------------'.red);
-  console.log(event);
-  await event.attendees.push(createdAttendant);
-  await event.save();
+  // Log an error message if the event lookup failed
+  if (!event) {
+    console.log('The attendant id has failed to lookup a relevant Event.');
+  } else {
+    // Add the newly created Attendant to the Event's attendees reference array and save the Event
+    await event.attendees.push(createdAttendant);
+    await event.save();
+  }
 
   // Render the 'checkout/success' view and pass the receipt object to it
   res.render('checkout/success', { receipt, attendant });
