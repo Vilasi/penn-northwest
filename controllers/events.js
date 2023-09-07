@@ -34,16 +34,12 @@ module.exports.createEvent = async (req, res, next) => {
     newEvent.image = images;
   }
 
-  console.log('newEvent----------------------------------------------'.red);
-  console.log(newEvent);
-
   const eventDocument = new Event(newEvent);
   const finalDoc = await eventDocument.save();
   if (!finalDoc) {
     next(createError(500, 'Failed to create event.'));
   }
 
-  // res.send(finalDoc);
   req.flash('success', `Your event, ${finalDoc.name}, has been created!`);
   res.redirect('/events');
 };
@@ -60,13 +56,7 @@ module.exports.handleCheckout = async (req, res, next) => {
     res.redirect('/events');
   }
 
-  //TODO Delete these logs
-  console.log('BELOW IS THE ATTENDANT============================='.red);
-  console.log(attendant);
-  console.log('BELOW IS THE EVENT============================='.red);
-  console.log(event);
-
-  //* Set event name and ticket quantity to the session
+  // Builds an attendant object and stores it in the session for retrieval in checkoutSuccess below
   req.session.attendant = {
     id: attendant.id,
     dateTime: attendant.dateTime,
@@ -162,7 +152,6 @@ module.exports.checkoutCancel = async (req, res, next) => {
   res.redirect('/events');
 };
 
-//TODO Handle cloudinary image deletion
 module.exports.deleteEvent = async (req, res, next) => {
   const { id } = req.params;
   const event = await Event.findByIdAndDelete(id);
@@ -171,10 +160,14 @@ module.exports.deleteEvent = async (req, res, next) => {
     res.redirect('/events');
   }
 
-  //* This deletes the relevant image in the cloudinary photo repo
+  // This deletes the relevant image in the cloudinary photo repo
   const filename = event.image.filename;
   await cloudinary.uploader.destroy(filename);
 
   req.flash('success', `Event "${event.name}" Successfully Deleted.`);
   res.redirect('/events');
+};
+
+module.exports.registerFreeEvent = async (req, res, next) => {
+  res.send('working');
 };

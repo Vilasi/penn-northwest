@@ -40,8 +40,9 @@ router
   .post(paidEventValidation, events.handleCheckout);
 
 //* Stripe integrated redirects for payment success and payment cancel
-//TODO Flesh these out
 router.route('/checkout/success').get(events.checkoutSuccess);
 router.route('/checkout/cancel').get(events.checkoutCancel);
+
+router.route('/register-free-event').post(events.registerFreeEvent);
 
 module.exports = router;

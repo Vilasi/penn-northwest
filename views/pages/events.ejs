@@ -270,16 +270,48 @@
                         <%= event.description %>
                       </p>
     
-                      <!--? Signup Form ----------------------------------------------------------->
-                      <p class="mt-3"><strong>Choose Date and Time for Event Attendance:</strong></p>
-
+                      
+                      <!--? Signup Forms ----------------------------------------------------------->
                       <% if (event.priceInCents === 0) {%>
                         <!--! FREE EVENT FORM ======================================================================-->
-                        <!--TODO WRITE FREE EVENT LOGIC -->
-                        <button href="#" class="btn btn-success mt-3 mb-1">Click to Register</button>
+                        <form action="/events/register-free-event" method="post" class="w-100 d-flex flex-column align-items-center border pb-3 rounded">
+                          <p class="mt-3"><strong>Choose Date and Time for Event Attendance:</strong></p>
+                          
+                          <!--? Event ID Input -->
+                           <input class="d-none" type="text" name="attendant[id]" value="<%= event.id %>">
+                           <!--? Attendant Date/Time Radio Buttons -->
+                           <% for (let i = 0; i < event.dates.length; i++) {%>
+                            <div class="form-check text-center">
+                              <input class="form-check-input" type="radio" name="attendant[dateTime]" value="<%= event.formattedStartTimes[i] %> - <%= event.formattedDates[i] %>" required>
+                              <label class="form-check-label" >
+                                <%= event.formattedDates[i] %> &mdash; <%= event.formattedStartTimes[i] %> - <%= event.formattedEndTimes[i] %>
+                              </label>
+                            </div>
+                          <% } %>
+
+                          <div class="row w-100 mt-3">
+                            <!--? Name -->
+                            <div class="col-xxl-6 mb-3">
+                              <div class="input-group">
+                                <span class="input-group-text" id="name-addon">Name</span>  
+                                <input name="attendant[name]" type="text" class="form-control" id="attendantName" aria-label="Attendant Name" aria-describedby="name-addon" required>
+                              </div>
+                            </div>
+                            <!--? Email -->
+                            <div class="col-xxl-6 mb-3">
+                              <div class="input-group">
+                                <span class="input-group-text" id="email-addon">Email</span>  
+                                <input name="attendant[email]" type="email" class="form-control" id="attendantEmail" aria-label="Attendant Email" aria-describedby="Email-addon" required>
+                              </div>
+                            </div>
+                          </div>
+                          <button href="#" class="btn btn-success mt-3 mb-1">Click to Register</button>
+                        </form>
                       <% } else if (event.priceInCents > 0) {%>
                         <!--! PAID EVENT FORM ======================================================================-->
-                        <form id="checkout-form" action="/events/create-checkout-session" method="post" class="w-100 d-flex flex-column align-items-center">
+                        <form id="checkout-form" action="/events/create-checkout-session" method="post" class="w-100 d-flex flex-column align-items-center border pb-3 rounded">
+                          <p class="mt-3"><strong>Choose Date and Time for Event Attendance:</strong></p>
+                          
                           <!--? Event ID Input -->
                           <input class="d-none" type="text" name="attendant[id]" value="<%= event.id %>">
 
@@ -291,7 +323,6 @@
                                 <%= event.formattedDates[i] %> &mdash; <%= event.formattedStartTimes[i] %> - <%= event.formattedEndTimes[i] %>
                               </label>
                             </div>
-
                           <% } %>
                           
                           <!--? Attendant Number of Tickets  -->
@@ -311,14 +342,14 @@
 
                           <!--? Attendant Name and Email -->
                           <div class="row w-100">
-                            <!-- Name -->
+                            <!--? Name -->
                             <div class="col-xxl-6 mb-3">
                               <div class="input-group">
                                 <span class="input-group-text" id="name-addon">Name</span>  
                                 <input name="attendant[name]" type="text" class="form-control" id="attendantName" aria-label="Attendant Name" aria-describedby="name-addon" required>
                               </div>
                             </div>
-                            <!-- Email -->
+                            <!--? Email -->
                             <div class="col-xxl-6 mb-3">
                               <div class="input-group">
                                 <span class="input-group-text" id="email-addon">Email</span>  
