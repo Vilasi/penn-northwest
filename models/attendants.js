@@ -29,5 +29,5 @@ const attendantSchema = new Schema({
   },
 });
 
-const Attendant = mongoose.model('PaidAttendant', attendantSchema);
+const Attendant = mongoose.model('Attendant', attendantSchema);
 module.exports = Attendant;

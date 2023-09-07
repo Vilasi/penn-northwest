@@ -4,6 +4,7 @@ const upload = multer({ storage });
 
 //* Import db models
 const Event = require('../models/events');
+const Attendant = require('../models/attendants');
 
 //* Connect Stripe
 const stripe = require('../config/stripe');
@@ -128,16 +129,29 @@ module.exports.checkoutSuccess = async (req, res, next) => {
     receipt.receiptURL = data[0].object.receipt_url;
   }
 
-  console.log(
-    'BELOW IS THE REQ.SESSION============================================'.red
-  );
-  console.log(req.session);
-  // const purchaseInfo = {
-  //   ticketQuantity: req.session.ticketQuantity,
-  //   eventName: req.session.eventName,
-  // };
-
+  // Set the attendant variable to the session storage attendant object, which has info about the purchase being made
+  // Create new attendant document
   const attendant = req.session.attendant;
+  const newAttendantDoc = new Attendant({
+    dateTime: attendant.dateTime,
+    ticketQuantity: attendant.ticketQuantity,
+    eventName: attendant.eventName,
+    attendantName: attendant.attendantName,
+    email: attendant.email,
+    event: attendant.id,
+  });
+  console.log('BELOW IS THE ATTENDANT---------------------------'.red);
+  console.log(attendant);
+  console.log('BELOW IS THE newAttendantDoc---------------------------'.red);
+  console.log(newAttendantDoc);
+
+  const createdAttendant = await newAttendantDoc.save();
+  const event = await Event.findById(attendant.id);
+
+  console.log('BELOW IS THE event---------------------------'.red);
+  console.log(event);
+  await event.attendees.push(createdAttendant);
+  await event.save();
 
   // Render the 'checkout/success' view and pass the receipt object to it
   res.render('checkout/success', { receipt, attendant });
