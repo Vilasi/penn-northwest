@@ -30,18 +30,14 @@
       <!--TODO Display the Date/Time  -->
       <div class="card my-3">
         <!--? Single Ticket -->
-        <% if (Number(purchaseInfo.ticketQuantity) === 1) {%>
-        <p class="lead card-body mb-0">
-          <%= purchaseInfo.ticketQuantity %> ticket for <%=
-          purchaseInfo.eventName %>
-        </p>
-        <% } else {%>
-        <!--? Multiple Tickets -->
-        <p class="lead card-body mb-0">
-          <%= Number(purchaseInfo.ticketQuantity) %> tickets for <%=
-          purchaseInfo.eventName %>
-        </p>
-        <% } %>
+        <div class="card-body">
+          <p class="lead text-center">
+            <%= attendant.ticketQuantity %> ticket(s) for <%=
+            attendant.eventName %>
+          </p>
+
+          <p class="lead text-center mb-0"><%= attendant.dateTime %></p>
+        </div>
       </div>
 
       <% if (receipt.receiptURL === null) {%>

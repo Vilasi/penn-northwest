@@ -11,7 +11,11 @@ const attendantSchema = new Schema({
     type: String,
     required: true,
   },
-  name: {
+  eventName: {
+    type: String,
+    required: true,
+  },
+  attendantName: {
     type: String,
     required: true,
   },

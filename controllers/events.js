@@ -47,20 +47,9 @@ module.exports.createEvent = async (req, res, next) => {
   res.redirect('/events');
 };
 
-//TODO WRITE VALIDATIONS FOR THIS
 module.exports.handleCheckout = async (req, res, next) => {
   const attendant = req.body.attendant;
   const event = await Event.findById(attendant.id);
-
-  console.log('BELOW IS THE ATTENDANT============================='.red);
-  console.log(attendant);
-  console.log('BELOW IS THE EVENT============================='.red);
-  console.log(event);
-
-  //* Set event name and ticket quantity to the session
-  req.session.ticketQuantity = attendant.ticketQuantity;
-  req.session.eventName = event.name;
-  req.session.paidAttendant = {};
 
   if (!event) {
     req.flash(
@@ -69,6 +58,22 @@ module.exports.handleCheckout = async (req, res, next) => {
     );
     res.redirect('/events');
   }
+
+  //TODO Delete these logs
+  console.log('BELOW IS THE ATTENDANT============================='.red);
+  console.log(attendant);
+  console.log('BELOW IS THE EVENT============================='.red);
+  console.log(event);
+
+  //* Set event name and ticket quantity to the session
+  req.session.attendant = {
+    id: attendant.id,
+    dateTime: attendant.dateTime,
+    ticketQuantity: attendant.ticketQuantity,
+    eventName: event.name,
+    attendantName: attendant.name,
+    email: attendant.email,
+  };
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -97,13 +102,7 @@ module.exports.handleCheckout = async (req, res, next) => {
   }
 };
 
-/**
- ** Handle checkout success
- *
- * @param {object} req - The Express request object
- * @param {object} res - The Express response object
- * @param {function} next - The Express next middleware function
- */
+//* Handle checkout success
 //? Relevant docs for the below
 //https://stripe.com/docs/api/events
 //https://stripe.com/docs/api/events/retrieve
@@ -133,15 +132,15 @@ module.exports.checkoutSuccess = async (req, res, next) => {
     'BELOW IS THE REQ.SESSION============================================'.red
   );
   console.log(req.session);
-  //TODO Send the date/time
-  //TODO Send the attendee name/email
-  const purchaseInfo = {
-    ticketQuantity: req.session.ticketQuantity,
-    eventName: req.session.eventName,
-  };
+  // const purchaseInfo = {
+  //   ticketQuantity: req.session.ticketQuantity,
+  //   eventName: req.session.eventName,
+  // };
+
+  const attendant = req.session.attendant;
 
   // Render the 'checkout/success' view and pass the receipt object to it
-  res.render('checkout/success', { receipt, purchaseInfo });
+  res.render('checkout/success', { receipt, attendant });
 };
 
 //* Fires when a user cancels a stripe checkout page
