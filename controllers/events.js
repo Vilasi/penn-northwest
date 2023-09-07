@@ -152,6 +152,7 @@ module.exports.checkoutCancel = async (req, res, next) => {
   res.redirect('/events');
 };
 
+//TODO Delete all attendants when the event is deleted.
 module.exports.deleteEvent = async (req, res, next) => {
   const { id } = req.params;
   const event = await Event.findByIdAndDelete(id);
@@ -169,5 +170,45 @@ module.exports.deleteEvent = async (req, res, next) => {
 };
 
 module.exports.registerFreeEvent = async (req, res, next) => {
-  res.send('working');
+  const attendant = req.body.attendant;
+  console.log(attendant);
+
+  const event = await Event.findById(attendant.id);
+  if (!event) {
+    req.flash(
+      'error',
+      'Event registration failed. Please try again or contact us directly.'
+    );
+    res.redirect('/events');
+  }
+
+  const newAttendantDoc = new Attendant({
+    dateTime: attendant.dateTime,
+    ticketQuantity: '1',
+    eventName: event.name,
+    attendantName: attendant.name,
+    email: attendant.email,
+    event: attendant.id,
+  });
+
+  const createdAttendant = await newAttendantDoc.save();
+  if (!createdAttendant) {
+    req.flash(
+      'error',
+      'Event registration failed. Please try again or contact us directly.'
+    );
+    res.redirect('/events');
+  }
+
+  event.attendees.push(createdAttendant);
+  const newlySavedEvent = await event.save();
+  if (!newlySavedEvent) {
+    req.flash(
+      'error',
+      'Event registration failed. Please try again or contact us directly.'
+    );
+    res.redirect('/events');
+  }
+
+  res.send(newlySavedEvent);
 };

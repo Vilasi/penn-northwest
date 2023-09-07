@@ -245,8 +245,8 @@
                   </ul>
                   <!--! Delete Event Route  -->
                   <% if (currentUser && currentUser.role === 'admin') {%>
-                    <form class="mt-5" action="/events/<%= event._id %>?_method=DELETE" method="post">
-                      <button class="btn btn-danger" type="submit">Delete Event</button>
+                    <form class="mt-5 delete-form" action="/events/<%= event._id %>?_method=DELETE" method="post">
+                      <button class="btn btn-danger delete-event-button" type="submit">Delete Event</button>
                     </form>
                   <% } %>
                 </aside>
@@ -293,19 +293,20 @@
                             <!--? Name -->
                             <div class="col-xxl-6 mb-3">
                               <div class="input-group">
-                                <span class="input-group-text" id="name-addon">Name</span>  
-                                <input name="attendant[name]" type="text" class="form-control" id="attendantName" aria-label="Attendant Name" aria-describedby="name-addon" required>
+                                <span class="input-group-text" id="free-name-addon">Name</span>  
+                                <input name="attendant[name]" type="text" class="form-control" id="freeAttendantName" aria-label="Attendant Name" aria-describedby="free-name-addon" required>
                               </div>
                             </div>
                             <!--? Email -->
                             <div class="col-xxl-6 mb-3">
                               <div class="input-group">
-                                <span class="input-group-text" id="email-addon">Email</span>  
-                                <input name="attendant[email]" type="email" class="form-control" id="attendantEmail" aria-label="Attendant Email" aria-describedby="Email-addon" required>
+                                <span class="input-group-text" id="free-email-addon">Email</span>  
+                                <input name="attendant[email]" type="email" class="form-control" id="freeAttendantEmail" aria-label="Attendant Email" aria-describedby="free-email-addon" required>
                               </div>
                             </div>
                           </div>
-                          <button href="#" class="btn btn-success mt-3 mb-1">Click to Register</button>
+                          <!--? Submit Button -->
+                          <button id="free-event-submit-button" class="btn btn-success mt-3 mb-1">Click to Register</button>
                         </form>
                       <% } else if (event.priceInCents > 0) {%>
                         <!--! PAID EVENT FORM ======================================================================-->
@@ -353,11 +354,11 @@
                             <div class="col-xxl-6 mb-3">
                               <div class="input-group">
                                 <span class="input-group-text" id="email-addon">Email</span>  
-                                <input name="attendant[email]" type="email" class="form-control" id="attendantEmail" aria-label="Attendant Email" aria-describedby="Email-addon" required>
+                                <input name="attendant[email]" type="email" class="form-control" id="attendantEmail" aria-label="Attendant Email" aria-describedby="email-addon" required>
                               </div>
                             </div>
                           </div>
-                          <button href="#" class="btn btn-success mt-3 mb-2">Checkout</button>
+                          <button class="btn btn-success mt-3 mb-2">Checkout</button>
                         </form>
 
                       <% } %>
@@ -395,3 +396,4 @@
 
 <script src="/js/events/addDateTime.js"></script>
 <script src="/js/events/addBulletPoint.js"></script>
+<script src="/js/events/deleteEventConfirmation.js"></script>
