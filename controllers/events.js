@@ -177,9 +177,11 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     res.redirect('/events');
   }
 
+  // Extracting the 'attendant' object from the request body
   const attendant = req.body.attendant;
 
   const event = await Event.findById(attendant.id);
+  // If the event is not found, redirect to the events page with an error message
   if (!event) {
     req.flash(
       'error',
@@ -188,6 +190,7 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     res.redirect('/events');
   }
 
+  // Creating a new Attendant document with the provided details
   const newAttendantDoc = new Attendant({
     dateTime: attendant.dateTime,
     ticketQuantity: '1',
@@ -196,7 +199,7 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     email: attendant.email,
     event: attendant.id,
   });
-
+  // Storing the attendant details in the session
   req.session.attendant = {
     dateTime: attendant.dateTime,
     ticketQuantity: '1',
@@ -206,8 +209,9 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     eventId: attendant.id,
     location: event.location,
   };
-
+  // Saving the new Attendant document to the database
   const createdAttendant = await newAttendantDoc.save();
+  // If the document is not saved, redirect to the events page with an error message
   if (!createdAttendant) {
     req.flash(
       'error',
@@ -216,8 +220,11 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     res.redirect('/events');
   }
 
+  // Adding the new attendant to the event's attendees array
   event.attendees.push(createdAttendant);
+  // Saving the updated event document to the database
   const eventUpdatedAttendantArray = await event.save();
+  // If the updated event document is not saved, redirect to the events page with an error message
   if (!eventUpdatedAttendantArray) {
     req.flash(
       'error',
@@ -226,6 +233,7 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     res.redirect('/events');
   }
 
+  // Redirecting to the free registration confirmation page
   res.redirect('/events/free-registration-confirmation');
 };
 
