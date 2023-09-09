@@ -5,7 +5,8 @@ const upload = multer({ storage });
 //* Import db models
 const Event = require('../models/events');
 const Attendant = require('../models/attendants');
-
+//* Import Utils
+const sendMessage = require('../utils/middleware/freeEventEmail.js');
 //* Connect Stripe
 const stripe = require('../config/stripe');
 
@@ -191,6 +192,16 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     event: attendant.id,
   });
 
+  req.session.attendant = {
+    dateTime: attendant.dateTime,
+    ticketQuantity: '1',
+    eventName: event.name,
+    attendantName: attendant.name,
+    email: attendant.email,
+    eventId: attendant.id,
+    location: event.location,
+  };
+
   const createdAttendant = await newAttendantDoc.save();
   if (!createdAttendant) {
     req.flash(
@@ -201,8 +212,8 @@ module.exports.registerFreeEvent = async (req, res, next) => {
   }
 
   event.attendees.push(createdAttendant);
-  const newlySavedEvent = await event.save();
-  if (!newlySavedEvent) {
+  const eventUpdatedAttendantArray = await event.save();
+  if (!eventUpdatedAttendantArray) {
     req.flash(
       'error',
       'Event registration failed. Please try again or contact us directly.'
@@ -210,5 +221,16 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     res.redirect('/events');
   }
 
-  res.send(newlySavedEvent);
+  res.redirect('/events/free-registration-confirmation');
+};
+
+module.exports.renderRegistrationConfirmation = async (req, res, next) => {
+  const attendant = req.session.attendant;
+  try {
+    sendMessage(attendant);
+  } catch (error) {
+    req.flash('error', 'Confirmation email failed to send.');
+  }
+
+  res.render('checkout/freeRegistration', { attendant });
 };

@@ -43,6 +43,10 @@ router
 router.route('/checkout/success').get(events.checkoutSuccess);
 router.route('/checkout/cancel').get(events.checkoutCancel);
 
+router
+  .route('/free-registration-confirmation')
+  .get(events.renderRegistrationConfirmation);
+
 router.route('/register-free-event').post(events.registerFreeEvent);
 
 module.exports = router;

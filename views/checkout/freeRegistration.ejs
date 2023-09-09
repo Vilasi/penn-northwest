@@ -6,24 +6,23 @@
     <article class="d-flex flex-column align-items-center">
       <!--* Large Screens and Up -->
       <img
-        class="signup-link-anchor img-fluid my-5 w-25 d-none d-lg-block"
-        src="/assets/svgs/checkout/order-confirmed.svg"
-        alt="Fun with balloons"
+        class="img-fluid my-5 w-25 d-none d-lg-block"
+        src="/assets/svgs/checkout/free-registration.svg"
+        alt="Order Confirmation Image"
       />
 
       <!--* Small to Medium Screens -->
       <img
-        class="signup-link-anchor img-fluid my-5 w-50 d-none d-sm-block d-lg-none"
-        src="/assets/svgs/checkout/order-confirmed.svg"
-        alt="Fun with balloons"
+        class="img-fluid my-5 w-50 d-none d-sm-block d-lg-none"
+        src="/assets/svgs/checkout/free-registration.svg"
+        alt="Order Confirmation Image"
       />
 
       <img
-        class="signup-link-anchor img-fluid my-5 d-sm-none"
-        src="/assets/svgs/checkout/order-confirmed.svg"
-        alt="Fun with balloons"
+        class="img-fluid my-5 d-sm-none"
+        src="/assets/svgs/checkout/free-registration.svg"
+        alt="Order Confirmation Image"
       />
-      <!-- <div class="container"></div> -->
       <h1 class="display-2 mb-3">You're all set!</h1>
 
       <!--* This displays to the user the ticket quantity and event name of the purchased event -->
@@ -32,31 +31,20 @@
         <!--? Single Ticket -->
         <div class="card-body">
           <p class="lead text-center">
-            <%= attendant.ticketQuantity %> ticket(s) for <%=
-            attendant.eventName %>
+            <%= attendant.ticketQuantity %> ticket for <%= attendant.eventName
+            %>
           </p>
           <p class="lead text-center mb-0"><%= attendant.dateTime %></p>
         </div>
       </div>
 
-      <% if (receipt.receiptURL === null) {%>
-      <p class="lead text-center mb-3">Check your email for a receipt.</p>
-      <% } else {%>
       <p class="lead text-center mb-3">
-        Check your email for a receipt, or
-        <a
-          class="text-primary-emphasis"
-          href="<%= receipt.receiptURL %>"
-          target="_blank"
-          >click here</a
-        >
-        to view it in your browser.
+        Check your email for event registration confirmation.
       </p>
-      <% } %>
 
       <p class="lead text-center">
-        We appreciate your business! If you have any questions, please email us
-        at
+        We appreciate your participation! If you have any questions, please
+        email us at
         <a class="text-primary-emphasis" href="mailto:info@penn-northwest.com"
           >info@penn-northwest.com</a
         >

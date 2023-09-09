@@ -5,6 +5,8 @@ sgMail.setApiKey(apiKey);
 //* This function sends an email after a membership application is submitted
 //---- param [app] is short for application
 //! Check the process.env if this is not working!
+
+//TODO Change the `to` field to actual member recipient
 function sendMessage(app) {
   const message = {
     to: 'testtesterson1234567890ahhh@gmail.com', // Change to your recipient
