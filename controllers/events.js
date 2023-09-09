@@ -171,8 +171,13 @@ module.exports.deleteEvent = async (req, res, next) => {
 };
 
 module.exports.registerFreeEvent = async (req, res, next) => {
+  //Honeypot bot catcher
+  if (req.body.honeypot) {
+    req.flash('error', 'Bot detected. Registration cancelled.');
+    res.redirect('/events');
+  }
+
   const attendant = req.body.attendant;
-  console.log(attendant);
 
   const event = await Event.findById(attendant.id);
   if (!event) {
@@ -224,6 +229,7 @@ module.exports.registerFreeEvent = async (req, res, next) => {
   res.redirect('/events/free-registration-confirmation');
 };
 
+//TODO Integrate Google ReCaptcha into this since it can be accessed by unlogged in users
 module.exports.renderRegistrationConfirmation = async (req, res, next) => {
   const attendant = req.session.attendant;
   try {

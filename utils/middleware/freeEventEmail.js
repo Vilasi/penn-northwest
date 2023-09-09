@@ -10,9 +10,9 @@ function sendMessage(att) {
     text: `Event Registration Confirmation:\nCongrats, ${att.attendantName}, you are registered for ${att.eventName}!\nThe event will be at <strong>${att.location}</strong>.\nThe date and time is: ${att.dateTime}\nLooking forward to seeing you there!`,
     html: `
     <h1>Event Registration Confirmation:</h1>
-    <p>Congrats, ${att.attendantName}, you are registered for ${att.eventName}!</p>
+    <p>Congrats, ${att.attendantName}, you are registered for <strong>${att.eventName}</strong>!</p>
     <p>The event will be at <strong>${att.location}</strong>.</p>
-    <p>The date and time is: ${att.dateTime}</p>
+    <p>The date and time is: <strong>${att.dateTime}</strong></p>
     <p>Looking forward to seeing you there!</p>
     `,
   };

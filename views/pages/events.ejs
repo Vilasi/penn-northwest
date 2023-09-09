@@ -277,6 +277,9 @@
                         <form action="/events/register-free-event" method="post" class="w-100 d-flex flex-column align-items-center border pb-3 rounded">
                           <p class="mt-3"><strong>Choose Date and Time for Event Attendance:</strong></p>
                           
+
+                          <!--? Honeypot Field -->
+                          <input class="d-none" type="text" name="honeypot">
                           <!--? Event ID Input -->
                            <input class="d-none" type="text" name="attendant[id]" value="<%= event.id %>">
                            <!--? Attendant Date/Time Radio Buttons -->
