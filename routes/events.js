@@ -18,7 +18,6 @@ const {
 
 //* Import Middleware
 const isLoggedIn = require('../utils/middleware/isLoggedIn.js');
-// TODO Add back in isLoggedIn to '/' POST request
 router
   .route('/')
   .get(events.index)

@@ -14,9 +14,6 @@ const Member = require('../models/members.js');
 module.exports.deleteMember = async (req, res, next) => {
   const { id } = req.params;
   const member = await Member.findByIdAndDelete(id);
-  console.log('BELOW IS THE MEMBER---------------------------'.red);
-  console.log('id: ', id);
-  console.log('member: ', member);
   if (!member) {
     req.flash('error', 'The member was not found in the database.');
     return res.redirect('/membership');
@@ -123,8 +120,6 @@ module.exports.renderMembershipPage = async (req, res, next) => {
   //TODO Error Handle This
   const members = await Member.find({});
   const sortedMembers = memberSorter(members);
-
-  // console.log('BELOW IS THE REQ.USER-------------------------------------'.red);
 
   const user = req.user || null;
 

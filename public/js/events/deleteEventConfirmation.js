@@ -4,9 +4,6 @@ const deleteEventButtons = document.querySelectorAll('.delete-event-button');
 const deleteForms = document.querySelectorAll('.delete-form');
 
 deleteEventButtons.forEach((button, index) => {
-  console.log(button, index);
-  console.log(deleteForms[index]);
-
   button.addEventListener('click', (e) => {
     e.preventDefault();
     const userConfirmed = window.confirm(

@@ -1,3 +1,4 @@
+//* This module sends an email to the user when they register for a free event
 const sgMail = require('@sendgrid/mail');
 const apiKey = process.env.SENDGRID_EMAIL_API_KEY;
 sgMail.setApiKey(apiKey);

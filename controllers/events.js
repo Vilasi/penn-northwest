@@ -7,6 +7,7 @@ const Event = require('../models/events');
 const Attendant = require('../models/attendants');
 //* Import Utils
 const sendMessage = require('../utils/middleware/freeEventEmail.js');
+const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
 //* Connect Stripe
 const stripe = require('../config/stripe');
 
@@ -177,6 +178,18 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     res.redirect('/events');
   }
 
+  // Validate reCAPTCHA response
+  const captchaValidateBoolean = await validateReCaptcha(req);
+
+  // If reCAPTCHA validation fails, display an error message and redirect to the membership application page
+  if (!captchaValidateBoolean) {
+    req.flash(
+      'error',
+      'The captcha check failed to validate. Please retry the membership application, or contact us directly.'
+    );
+    return res.redirect('/events');
+  }
+
   // Extracting the 'attendant' object from the request body
   const attendant = req.body.attendant;
 
@@ -241,7 +254,8 @@ module.exports.registerFreeEvent = async (req, res, next) => {
 module.exports.renderRegistrationConfirmation = async (req, res, next) => {
   const attendant = req.session.attendant;
   try {
-    sendMessage(attendant);
+    //TODO Uncomment out the email bit after reCaptcha is setup
+    // sendMessage(attendant);
   } catch (error) {
     req.flash('error', 'Confirmation email failed to send.');
   }
