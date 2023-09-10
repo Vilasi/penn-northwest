@@ -311,7 +311,7 @@
                           </div>
 
                           <!--? reCaptcha -->
-                          <div class="g-recaptcha my-3" data-sitekey="6LcHjhwnAAAAAKUz7L5QMTZaM4HJG0Jgv3QhG3Bp" data-callback="onSubmit"></div>
+                          <div class="g-recaptcha my-3" data-sitekey="<%= process.env.RECAPTCHA_KEY %>" data-callback="onSubmit"></div>
 
                           <!--? Submit Button -->
                           <button id="free-event-submit-button" class="btn btn-success mt-3 mb-1">Click to Register</button>
