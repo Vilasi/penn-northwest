@@ -1,0 +1,59 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="css/adminIndex.css" />
+<section
+  class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5"
+>
+  <section class="bg-light rounded px-0">
+    <!--* Begin Intrapage navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-secondary">
+      <div class="container-fluid">
+        <!-- <p class="navbar-brand">Test</p> -->
+        <a class="navbar-brand" href="#">Admin Panel</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#adminNavbarNav"
+          aria-controls="adminNavbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="adminNavbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <button
+                class="nav-link btn btn-light adminNavButton active"
+                aria-current="page"
+                href="#"
+              >
+                Events
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link btn btn-light adminNavButton" href="#">
+                Membership Applications
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link btn btn-light adminNavButton" href="#">
+                Members
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link btn btn-light adminNavButton" href="#">
+                Site Users
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Nav ================================================================================-->
+
+    <!--  -->
+  </section>
+</section>
+
+<script src="js/admin/adminIndex.js"></script>

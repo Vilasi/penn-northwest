@@ -31,6 +31,7 @@ const errorHandler = require('./utils/error-handlers/errorHandler');
 const membershipRoutes = require('./routes/membership');
 const userRoutes = require('./routes/users');
 const eventRoutes = require('./routes/events');
+const adminRoutes = require('./routes/admin');
 
 //* Connect to MongoDB
 main().catch((err) => console.log(err));
@@ -128,8 +129,8 @@ app.get('/', (req, res) => {
   res.render('pages/home');
 });
 
-app.use('/membership', membershipRoutes);
 app.use('/events', eventRoutes);
+app.use('/membership', membershipRoutes);
 
 //* Jobs
 app.get('/jobs', (req, res) => {
@@ -139,9 +140,12 @@ app.get('/jobs', (req, res) => {
 //* About
 app.get('/about', (req, res, next) => {
   // console.dir(createError);
-  return next(createError(404, 'This is a test error'));
+  // return next(createError(404, 'This is a test error'));
   res.render('pages/about');
 });
+
+//* Admin
+app.use('/admin', adminRoutes);
 
 //* Login/Register
 app.use('/', userRoutes);
