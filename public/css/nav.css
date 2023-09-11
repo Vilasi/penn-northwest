@@ -9,6 +9,7 @@
 
 .navbar.scroll {
   background-color: #003a69;
+  max-height: 5rem !important;
 }
 
 #home-link:hover {
@@ -48,6 +49,10 @@ hr.m-0.scroll {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28248, 249, 250, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
+.to-hide {
+  display: none !important;
+}
+
 @media (max-width: 991.98px) {
   .navbar-collapse {
     background-color: #003a69;
@@ -60,4 +65,5 @@ hr.m-0.scroll {
 
 .navbar.scroll {
   background-color: #003a69;
+  max-height: 5rem !important;
 }
