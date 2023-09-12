@@ -73,6 +73,19 @@ const applicationSchema = new mongoose.Schema({
   },
 });
 
+//* Dates human-readable formatting virtual property function
+applicationSchema.virtual('formattedDate').get(function () {
+  const isoDates = new Date(this.dateSubmitted);
+  const formattedDate = isoDates.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+
+  return formattedDate;
+});
+
 const Application = mongoose.model('Application', applicationSchema);
 
 module.exports = Application;

@@ -23,26 +23,22 @@
         <div class="collapse navbar-collapse" id="adminNavbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <button
-                class="nav-link btn btn-light adminNavButton active"
-                aria-current="page"
-                href="#"
-              >
+              <button class="nav-link btn btn-light adminNavButton active">
                 Events
               </button>
             </li>
             <li class="nav-item">
-              <button class="nav-link btn btn-light adminNavButton" href="#">
+              <button class="nav-link btn btn-light adminNavButton">
                 Membership Applications
               </button>
             </li>
             <li class="nav-item">
-              <button class="nav-link btn btn-light adminNavButton" href="#">
+              <button class="nav-link btn btn-light adminNavButton">
                 Members
               </button>
             </li>
             <li class="nav-item">
-              <button class="nav-link btn btn-light adminNavButton" href="#">
+              <button class="nav-link btn btn-light adminNavButton">
                 Site Users
               </button>
             </li>
@@ -61,6 +57,27 @@
     <!-- Other option is to generate the html dynamically with JS -->
     <!-- This may not work with the dynamic data calls and the serverside data generation, etc -->
     <!-- Will probably be more work too... -->
+
+    <!--? Membership Applications -->
+    <section>
+      <% if (!data.applications) {%>
+
+        <h1 class="display-2">Database Lookup Failed</h1>
+
+      <% } else if (data.applications.length === 0) { %>
+
+        <h1 class="display-2">There are currently no applications</h1>
+
+      <% } else { %>
+        <h1 class="display-2 m-3">Applications:</h1>
+
+      <!-- Displays Applications -->
+        <% for (let application of data.applications) { %>
+          <p><%= application.formattedDate %></p>
+        <% } %> 
+       
+      <% } %>
+    </section>
   </section>
 </section>
 
