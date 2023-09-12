@@ -34,4 +34,6 @@ router.route('/membership-brochure-pdf').get(memberships.getMembershipBrochure);
 
 router.route('/membership-levels-pdf').get(memberships.getLevelsBrochure);
 
+router.route('/application/:id').delete(memberships.deleteApplication);
+
 module.exports = router;

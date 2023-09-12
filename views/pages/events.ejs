@@ -246,8 +246,8 @@
                   </ul>
                   <!--! Delete Event Route  -->
                   <% if (currentUser && currentUser.role === 'admin') {%>
-                    <form class="mt-5 delete-form" action="/events/<%= event._id %>?_method=DELETE" method="post">
-                      <button class="btn btn-danger delete-event-button" type="submit">Delete Event</button>
+                    <form class="mt-5 delete-document-form" action="/events/<%= event._id %>?_method=DELETE" method="post">
+                      <button class="btn btn-danger delete-document-button" type="submit">Delete Event</button>
                     </form>
                   <% } %>
                 </aside>
@@ -404,4 +404,4 @@
 
 <script src="/js/events/addDateTime.js"></script>
 <script src="/js/events/addBulletPoint.js"></script>
-<script src="/js/events/deleteEventConfirmation.js"></script>
+<script src="/js/deleteDocumentConfirmation.js"></script>

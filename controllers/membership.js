@@ -26,6 +26,21 @@ module.exports.deleteMember = async (req, res, next) => {
   res.redirect('/membership');
 };
 
+module.exports.deleteApplication = async (req, res, next) => {
+  const { id } = req.params;
+  const application = await Application.findByIdAndDelete(id);
+  if (!application) {
+    req.flash('error', `Database Error: Application with ID ${id} not found.`);
+    res.redirect('/admin');
+  }
+
+  req.flash(
+    'success',
+    `${application.companyName} Application Form Successfully Deleted`
+  );
+  res.redirect('/admin');
+};
+
 module.exports.getMembershipBrochure = (req, res, next) => {
   //? These resolve the root directory of the project and then joins that to the location of the pdf
   const rootDir = path.resolve(__dirname, '../');

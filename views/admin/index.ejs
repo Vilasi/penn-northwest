@@ -23,13 +23,13 @@
         <div class="collapse navbar-collapse" id="adminNavbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <button class="nav-link btn btn-light adminNavButton active">
-                Events
+              <button class="nav-link btn btn-light adminNavButton membership active">
+                Membership Applications
               </button>
             </li>
             <li class="nav-item">
-              <button class="nav-link btn btn-light adminNavButton membership">
-                Membership Applications
+              <button class="nav-link btn btn-light adminNavButton">
+                Events
               </button>
             </li>
             <li class="nav-item">
@@ -98,6 +98,12 @@
             </div> -->
             <div class="card-footer text-body-secondary">
                 Submitted <%= app.formattedDate %> by <%= app.submittedBy %>, <%= app.submitterTitle %>
+                <hr />
+                <div class="mb-1">
+                  <form class="delete-document-form" action="/membership/application/<%= app.id %>?_method=DELETE" method="post">
+                    <button class="btn btn-danger delete-document-button" type="submit">Delete</button>
+                  </form>
+                </div>
             </div>
 
           </div>
@@ -111,3 +117,4 @@
 </section>
 
 <script src="js/admin/adminIndex.js"></script>
+<script src="js/deleteDocumentConfirmation.js"></script>
