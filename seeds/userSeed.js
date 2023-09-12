@@ -36,14 +36,17 @@ async function addDevAccount() {
 
   const user = new User({
     email: 'vilasicoding@gmail.com',
-    username: 'a',
+    username: 'vilasi',
     role: 'admin',
     firstName: 'Joe',
     lastName: 'Vilasi',
     company: 'Vilasi Web Consulting LLC',
   });
 
-  const registeredUser = await User.register(user, 'a');
+  const registeredUser = await User.register(
+    user,
+    'saBbKJna3zbYZRDFhvoKtgceQ8tlSVkHmh'
+  );
   console.log(registeredUser);
 }
 

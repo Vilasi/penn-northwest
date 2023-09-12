@@ -18,11 +18,18 @@
           <form action="/logout" method="post" class="inline">
             <button class="link-button" type="submit">Logout</button>
           </form>
+
           <% } else { %>
           <a href="/login">Login</a>
           <a href="/register">Register</a>
           <% } %>
         </div>
+
+        <% if (currentUser) {%>
+        <div class="mt-3 text-center">
+          <p class="lead">Hello, <%= currentUser.username %></p>
+        </div>
+        <% } %>
 
         <!--? Admin Info for parsing Events/Members/Applications/Users, etc -->
         <div class="mt-3">
