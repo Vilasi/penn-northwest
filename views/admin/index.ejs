@@ -28,7 +28,7 @@
               </button>
             </li>
             <li class="nav-item">
-              <button class="nav-link btn btn-light adminNavButton">
+              <button class="nav-link btn btn-light adminNavButton membership">
                 Membership Applications
               </button>
             </li>
@@ -59,7 +59,7 @@
     <!-- Will probably be more work too... -->
 
     <!--? Membership Applications -->
-    <section>
+    <section class="data-sections membership">
       <% if (!data.applications) {%>
 
         <h1 class="display-2">Database Lookup Failed</h1>
@@ -69,12 +69,41 @@
         <h1 class="display-2">There are currently no applications</h1>
 
       <% } else { %>
-        <h1 class="display-2 m-3">Applications:</h1>
+        <h1 class="display-2 m-3 mb-5 text-decoration-underline">Applications:</h1>
+        <div class="container d-flex justify-content-evenly flex-wrap">
+
+        
 
       <!-- Displays Applications -->
-        <% for (let application of data.applications) { %>
-          <p><%= application.formattedDate %></p>
-        <% } %> 
+        <% for (let app of data.applications) { %>
+          <div class="card mb-5" style="width: 18rem;">
+  
+            <div class="card-body">
+              <h5 class="card-title"><strong><%= app.companyName %></strong></h5>
+              <p class="card-text"><%= app.descriptionOfBusiness %></p>
+              <p class="card-text"><strong>Affiliations:</strong> <%= app.affiliations %></p>
+              <p class="card-text"><strong>Rep:</strong> <%= app.representative %></p>
+              <p class="card-text"><%= app.address %>, <%= app.city %>, <%= app.state %> <%= app.zip %></p>
+
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><%= app.email %></li>
+              <li class="list-group-item"><%= app.phone %></li>
+              <li class="list-group-item"><%= app.companyType %></li>
+              <li class="list-group-item"><%= app.annualContribution %> yearly pledge.</li>
+              <li class="list-group-item"><a href="<%= app.website %>" class="card-link text-decoration-underline"><%= app.website %></a></li>
+            </ul>
+            <!-- <div class="card-body">
+              <a href="<%= app.website %>" class="card-link text-decoration-underline"><%= app.website %></a>
+            </div> -->
+            <div class="card-footer text-body-secondary">
+                Submitted <%= app.formattedDate %> by <%= app.submittedBy %>, <%= app.submitterTitle %>
+            </div>
+
+          </div>
+          
+          <% } %> 
+        </div>
        
       <% } %>
     </section>

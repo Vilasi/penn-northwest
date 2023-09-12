@@ -38,7 +38,7 @@ module.exports.adminIndex = async (req, res, next) => {
   } else {
     data.applications = applications;
   }
-  console.log(data);
+  //   console.log(data);
 
   res.render('admin/index', { data });
 };
