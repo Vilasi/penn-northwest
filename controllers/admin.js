@@ -4,6 +4,8 @@ const Event = require('../models/events');
 const Attendant = require('../models/attendants');
 const Application = require('../models/applications');
 
+const memberSorter = require('../utils/memberSorter.js');
+
 module.exports.adminIndex = async (req, res, next) => {
   const data = {};
 
@@ -17,10 +19,11 @@ module.exports.adminIndex = async (req, res, next) => {
 
   //? Members lookup
   const members = await Member.find({});
+  const sortedMembers = memberSorter(members);
   if (!members) {
     data.members = null;
   } else {
-    data.members = members;
+    data.members = sortedMembers;
   }
 
   //? Events lookup

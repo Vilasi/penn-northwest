@@ -26,6 +26,21 @@ module.exports.deleteMember = async (req, res, next) => {
   res.redirect('/membership');
 };
 
+module.exports.adminDeleteMember = async (req, res, next) => {
+  const { id } = req.params;
+  const member = await Member.findByIdAndDelete(id);
+  if (!member) {
+    req.flash('error', 'The member was not found in the database.');
+    return res.redirect('/admin');
+  }
+
+  req.flash(
+    'success',
+    `Member Deleted. Name: ${member.name}. Website: ${member.href}`
+  );
+  res.redirect('/admin');
+};
+
 module.exports.deleteApplication = async (req, res, next) => {
   const { id } = req.params;
   const application = await Application.findByIdAndDelete(id);

@@ -30,10 +30,16 @@ router
   .route('/post-new-member/:id')
   .delete(isLoggedIn, memberships.deleteMember);
 
+router
+  .route('/post-new-member/admin/:id')
+  .delete(memberships.adminDeleteMember);
+
 router.route('/membership-brochure-pdf').get(memberships.getMembershipBrochure);
 
 router.route('/membership-levels-pdf').get(memberships.getLevelsBrochure);
 
-router.route('/application/:id').delete(memberships.deleteApplication);
+router
+  .route('/application/:id')
+  .delete(isLoggedIn, memberships.deleteApplication);
 
 module.exports = router;
