@@ -101,7 +101,7 @@
                 <hr />
                 <div class="mb-1">
                   <form class="delete-document-form" action="/membership/application/<%= app.id %>?_method=DELETE" method="post">
-                    <button class="btn btn-danger delete-document-button" type="submit">Delete</button>
+                    <button class="btn btn-sm btn-danger delete-document-button" type="submit">Delete</button>
                   </form>
                 </div>
             </div>
@@ -201,8 +201,8 @@
               <a href="#" class="card-link">Card link</a>
               <a href="#" class="card-link">Another link</a> -->
               <% if (user.role === 'user') {%>
-                <form class="mb-3" action="" method="post"><button class="btn btn-success" type="submit">Promote to Admin</button></form>
-                <form class="delete-document-form" action="" method="post"><button class="btn btn-danger delete-document-button" type="submit">Delete Account</button></form>
+                <form class="mb-3 delete-document-form" action="" method="post"><button class="btn btn-sm btn-warning delete-document-button" type="submit">Promote to Admin</button></form>
+                <form class="delete-document-form" action="" method="post"><button class="btn btn-sm btn-danger delete-document-button" type="submit">Delete Account</button></form>
                 <div >
                 </div>
                 <div>

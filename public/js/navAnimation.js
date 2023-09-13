@@ -20,7 +20,6 @@ window.addEventListener('scroll', function () {
     navbar.classList.add('scroll');
     hrElements.forEach((hr) => hr.classList.add('scroll'));
     elementsToHide.forEach((el) => {
-      console.log(el);
       return el.classList.add('to-hide');
     });
   } else {
