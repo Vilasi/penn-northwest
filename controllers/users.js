@@ -7,7 +7,11 @@ module.exports.getRegisterPage = (req, res) => {
 
 //* Register new user
 module.exports.registerUser = async (req, res, next) => {
-  console.log(req.body.register);
+  if (req.body.honeypot) {
+    req.flash('error', 'Bot detected');
+    return res.redirect('/');
+  }
+
   //* Make and register the new user
   //? Validations will have already been completed in a Joi middleware
   try {
