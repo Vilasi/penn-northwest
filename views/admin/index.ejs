@@ -69,7 +69,7 @@
         <h1 class="display-2">There are currently no applications</h1>
 
       <% } else { %>
-        <h1 class="display-2 m-3 mb-5 text-decoration-underline">Applications:</h1>
+        <h1 class="display-2 m-3 mb-5 border-bottom">Applications</h1>
         <div class="container d-flex justify-content-evenly flex-wrap">
 
         
@@ -125,7 +125,7 @@
         <h1 class="display-2">There are currently no members.</h1>
 
       <% } else { %>
-        <h1 class="display-2 m-3 mb-5 text-decoration-underline">Members:</h1>
+        <h1 class="display-2 m-3 mb-5 border-bottom">Members</h1>
         <div class="d-flex justify-content-start flex-wrap">
           <% for (let member of data.members) {%>
             <div class="card mb-5 mx-3 shadow">
@@ -152,7 +152,45 @@
 
         
       <% } %>
-  </section>
+    </section>
+
+    <!--? Events -->
+    <section class="data-sections event-target d-none">
+      <% if (!data.events) {%>
+
+        <h1 class="display-2">Database Lookup Failed</h1>
+
+      <% } else if (data.events.length === 0) { %>
+
+        <h1 class="display-2">There are currently no events.</h1>
+
+      <% } else { %>
+        <h1 class="display-2 m-3 mb-5 border-bottom">Events</h1>
+
+
+      <% } %>
+    </section>
+
+    <!--? Users -->
+    <section class="data-sections user-target d-none">
+      <% if (!data.users) {%>
+
+        <h1 class="display-2">Database Lookup Failed</h1>
+
+      <% } else if (data.users.length === 0) { %>
+
+        <h1 class="display-2">There are currently no users.</h1>
+
+      <% } else { %>
+        <h1 class="display-2 m-3 mb-5 border-bottom">Users</h1>
+        
+
+
+      <% } %>
+    </section>
+
+
+
 </section>
 
 <script src="js/admin/adminIndex.js"></script>

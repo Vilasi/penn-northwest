@@ -101,8 +101,12 @@
             placeholder="*********"
             pattern="^(?=.*[A-Z])(?=.*\d).+$"
             minlength="6"
+            aria-describedby="passwordDescription"
             required
           />
+          <div id="passwordDescription" class="form-text text-center">
+            Min. 6 Characters. 1 Capital and 1 Number
+          </div>
           <div class="invalid-feedback">
             Password must be at least 6 characters long and include at least one
             capital letter and one number

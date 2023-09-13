@@ -7,6 +7,12 @@ const Application = require('../models/applications');
 const memberSorter = require('../utils/memberSorter.js');
 
 module.exports.adminIndex = async (req, res, next) => {
+  //TODO Admin authentication protect this route
+  console.log(
+    'BELOW IS THE REQ.USER========================================================='
+      .red
+  );
+  console.log(req.user);
   const data = {};
 
   //? Users lookup
