@@ -7,7 +7,7 @@ deleteEventButtons.forEach((button, index) => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
     const userConfirmed = window.confirm(
-      'Are you sure you want to delete document? If document is an Event, all attendants records will be deleted.'
+      'Are you sure you want to delete document? All associated records (attendants, user info, etc) will be deleted.'
     );
 
     if (userConfirmed) {
