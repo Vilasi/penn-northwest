@@ -53,6 +53,7 @@ module.exports.adminIndex = async (req, res, next) => {
   res.render('admin/index', { data });
 };
 
+//TODO Make the actions log viewable on the frontend on button press
 module.exports.promoteToAdmin = async (req, res, next) => {
   const { id } = req.params;
 

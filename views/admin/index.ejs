@@ -206,6 +206,7 @@
                 <!--? Delete User Form -->
                 <form class="delete-document-form" action="" method="post"><button class="btn btn-sm btn-danger delete-document-button" type="submit">Delete Account</button></form>
               <% } else if (user.role === 'admin') { %>
+                <!-- TODO Make the actions log viewable on the frontend on button press -->
                 <button class="btn btn-info mt-3">Actions Log</button>
 
               <% } %>
