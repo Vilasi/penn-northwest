@@ -12,6 +12,8 @@
     <!--TODO Add a honeypot field to this  -->
     <main class="container d-flex justify-content-center">
       <form class="needs-validation" action="/login" method="post" novalidate>
+        <input class="d-none" type="text" name="honeypot" />
+
         <!--* Username -->
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>

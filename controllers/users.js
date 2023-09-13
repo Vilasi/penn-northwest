@@ -7,6 +7,7 @@ module.exports.getRegisterPage = (req, res) => {
 
 //* Register new user
 module.exports.registerUser = async (req, res, next) => {
+  // Bot Detector
   if (req.body.honeypot) {
     req.flash('error', 'Bot detected');
     return res.redirect('/');
@@ -50,6 +51,15 @@ module.exports.registerUser = async (req, res, next) => {
 module.exports.getLoginPage = (req, res) => {
   // console.log(joiValidations.registrationSchema);
   res.render('users/login');
+};
+
+module.exports.loginHoneypot = async (req, res, next) => {
+  if (req.body.honeypot) {
+    req.flash('error', 'Bot detected');
+    return res.redirect('/');
+  } else {
+    next();
+  }
 };
 
 // module.exports.preLoginUrlSave = async (req, res, next) => {

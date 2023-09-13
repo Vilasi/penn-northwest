@@ -15,6 +15,7 @@ router
   .route('/login')
   .get(users.getLoginPage)
   .post(
+    users.loginHoneypot,
     passport.authenticate('local', {
       failureRedirect: '/login',
       failureMessage: true,
