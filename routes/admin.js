@@ -9,4 +9,8 @@ const isAdmin = require('../utils/middleware/isAdmin');
 
 router.route('/').get(isLoggedIn, isAdmin, admin.adminIndex);
 
+router
+  .route('/promote-to-admin/:id')
+  .patch(isLoggedIn, isAdmin, admin.promoteToAdmin);
+
 module.exports = router;

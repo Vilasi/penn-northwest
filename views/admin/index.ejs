@@ -189,24 +189,25 @@
         <% for (let user of data.users) { %>
           <div class="card mx-3 mb-3" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title"><strong>Username:</strong> <%= user.username %></h5>
+              <h5 class="card-title"><strong>User:</strong> <%= user.username %></h5>
               <h6 class="card-subtitle mb-2 text-body-secondary"><%= user.role %></h6>
 
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><%= user.firstName %> <%= user.lastName %></li>
-                <li class="list-group-item"><%= user.email %></li>
-                <li class="list-group-item"><%= user.companyName %></li>
+                <li class="list-group-item">Name: <%= user.firstName %> <%= user.lastName %></li>
+                <li class="list-group-item">Email: <%= user.email %></li>
+                <li class="list-group-item">Company: <%= user.company %></li>
               </ul>
               <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <a href="#" class="card-link">Card link</a>
               <a href="#" class="card-link">Another link</a> -->
               <% if (user.role === 'user') {%>
-                <form class="mb-3 delete-document-form" action="" method="post"><button class="btn btn-sm btn-warning delete-document-button" type="submit">Promote to Admin</button></form>
+                <!--? Promote to Admin Form -->
+                <form class="mb-3 delete-document-form" action="/admin/promote-to-admin/<%= user._id %>?_method=PATCH" method="post"><button class="btn btn-sm btn-warning delete-document-button" type="submit">Promote to Admin</button></form>
+                <!--? Delete User Form -->
                 <form class="delete-document-form" action="" method="post"><button class="btn btn-sm btn-danger delete-document-button" type="submit">Delete Account</button></form>
-                <div >
-                </div>
-                <div>
-                </div>
+              <% } else if (user.role === 'admin') { %>
+                <button class="btn btn-info mt-3">Actions Log</button>
+
               <% } %>
             </div>
           </div>
