@@ -5,6 +5,9 @@ const axios = require('axios');
  * @param {Object} req - The request object containing the reCAPTCHA response in req.body['g-recaptcha-response'].
  * @returns {Promise<boolean>} - A promise that resolves to true if the reCAPTCHA response is valid, and false otherwise.
  */
+
+//TODO FIX THIS - faulty key
+//https://stackoverflow.com/questions/36939870/google-recaptcha-returns-false-due-to-invalid-input-secret
 async function validateReCaptcha(req) {
   console.log('THIS IS THE RECAPTCHA VALIDATOR');
   // Check if the reCAPTCHA response exists in the request body
@@ -18,13 +21,17 @@ async function validateReCaptcha(req) {
       method: 'post',
       url: 'https://www.google.com/recaptcha/api/siteverify',
       params: {
-        secret: process.env.RECAPTCHA_KEY,
+        secret: `${process.env.RECAPTCHA_BACKEND_KEY}`,
         response: req.body['g-recaptcha-response'],
       },
     });
 
     // Extract the verification result from the response data
     const captchaVerificationResults = response.data.success;
+    console.log(
+      'BELOW IS THE CAPTCHA RESULT----------------------------------'.red
+    );
+    console.log(response.data);
     console.log(captchaVerificationResults);
     return captchaVerificationResults;
   } catch (err) {
