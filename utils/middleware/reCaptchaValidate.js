@@ -29,7 +29,8 @@ async function validateReCaptcha(req) {
     // Extract the verification result from the response data
     const captchaVerificationResults = response.data.success;
     console.log(
-      'BELOW IS THE CAPTCHA RESULT----------------------------------'.red
+      'BELOW IS THE CAPTCHA RESULT (from reCaptchavalidate.js file)----------------------------------'
+        .red
     );
     console.log(response.data);
     console.log(captchaVerificationResults);

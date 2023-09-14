@@ -1,3 +1,4 @@
+//! NOTE - This is currently unused and would need refactoring if used for another recaptcha/bootstrap validation
 //*This applies client-side validations (from Bootstrap) and programmatically executes Google's reCaptcha
 //*--Only submitting the form once both are validated.
 

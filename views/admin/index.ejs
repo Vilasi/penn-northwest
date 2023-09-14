@@ -185,7 +185,7 @@
         <h1 class="display-2 m-3 mb-5 border-bottom">Users</h1>
 
         <div class="container d-flex justify-content-start flex-wrap">
-        <!--TODO Add Admin Promotion Route and role===user Deletion  -->
+        <% let modalIndex = 0; %>
         <% for (let user of data.users) { %>
           <div class="card mx-3 mb-3" style="width: 18rem;">
             <div class="card-body">
@@ -207,11 +207,25 @@
                 <form class="delete-document-form" action="" method="post"><button class="btn btn-sm btn-danger delete-document-button" type="submit">Delete Account</button></form>
               <% } else if (user.role === 'admin') { %>
                 <!-- TODO Make the actions log viewable on the frontend on button press -->
-                <button class="btn btn-info mt-3">Actions Log</button>
+                <button class="modal-button btn btn-info mt-3" data-modal-index-number="<%= modalIndex %>">Actions Log</button>
+                <% modalIndex++; %>
 
               <% } %>
             </div>
           </div>
+
+          <% if (user.role === 'admin') { %>
+            <dialog class="dialog">
+              <% if (user.actionsLog.length === 0) { %>
+                <p class="lead">There is no data to display</p>                
+              <% } else {%>
+                <% for (let i = 0; i < user.actionsLog.length; i++) { %>
+                  <p class="lead max-text-width">Log <%= i + 1 %>: <%= user.actionsLog[i] %></p>
+                <% } %>
+              <% } %>
+              
+            </dialog> 
+          <% } %>
         <% } %>
         </div>  
 
@@ -225,3 +239,4 @@
 
 <script src="js/admin/adminIndex.js"></script>
 <script src="js/deleteDocumentConfirmation.js"></script>
+<script src="js/admin/modal.js"></script>
