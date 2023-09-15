@@ -15,6 +15,10 @@ deleteEventButtons.forEach((button, index) => {
         message =
           'Are you sure you want to promote account? They will gain full admin privileges and the action will be irreversible except by a developer with database access.';
         break;
+      case 'Delete Event':
+        message =
+          'Are you sure you want to delete event? All associated attendants records will be deleted.';
+        break;
 
       default:
         message =

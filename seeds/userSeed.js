@@ -14,42 +14,32 @@ async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/penn-northwest');
 }
 
-//* The following function creates a single user
-//? If the user has already been created, it first deletes that user.
-async function addDevAccount() {
-  const foundUser = await User.findByUsername('vilasi');
-  const foundUser2 = await User.findByUsername('a');
-  if (foundUser) {
-    console.log(foundUser);
-    await User.findByIdAndDelete(foundUser._id);
-  }
-  if (foundUser2) {
-    console.log(foundUser2);
-    await User.findByIdAndDelete(foundUser2._id);
-  }
-
-  const foundByEmail = await User.findOne({ email: 'vilasicoding@gmail.com' });
-  if (foundByEmail) {
-    console.log(foundByEmail);
-    await User.findByIdAndDelete(foundByEmail._id);
-  }
+//* The following function creates a single user with randomized name/email
+async function addUsers() {
+  await User.deleteMany({ role: 'user' });
 
   const user = new User({
-    email: 'vilasicoding@gmail.com',
-    username: 'vilasi',
-    role: 'admin',
-    firstName: 'Joe',
-    lastName: 'Vilasi',
-    company: 'Vilasi Web Consulting LLC',
+    email: `user${Math.floor(Math.random() * 1000)}@example.com`,
+    role: 'user',
+    firstName: 'John',
+    lastName: 'Doe',
+    company: 'Example Company',
+    actionsLog: [],
+    username: `username${Math.floor(Math.random() * 1000)}`,
   });
 
-  const registeredUser = await User.register(
-    user,
-    'saBbKJna3zbYZRDFhvoKtgceQ8tlSVkHmh'
-  );
+  const registeredUser = await User.register(user, 'Password1');
   console.log(registeredUser);
 }
 
-addDevAccount().then(() => {
-  mongoose.connection.close();
-});
+for (let i = 0; i < 15; i++) {
+  addUsers().then(() => {
+    console.log('user created');
+  });
+}
+
+// mongoose.connection.close();
+
+// addUsers().then(() => {
+//   mongoose.connection.close();
+// });

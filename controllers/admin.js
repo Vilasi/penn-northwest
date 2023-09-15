@@ -6,6 +6,7 @@ const Application = require('../models/applications');
 
 const memberSorter = require('../utils/memberSorter.js');
 const getTodaysDate = require('../utils/getTodaysDate.js');
+const fileAdminLog = require('../utils/middleware/fileAdminLog');
 
 module.exports.adminIndex = async (req, res, next) => {
   //TODO Admin authentication protect this route
@@ -56,6 +57,12 @@ module.exports.adminIndex = async (req, res, next) => {
 //TODO Make the actions log viewable on the frontend on button press
 module.exports.promoteToAdmin = async (req, res, next) => {
   const { id } = req.params;
+  const logSuccess = await fileAdminLog(req.user, 'Im the message');
+  console.log(logSuccess);
+  if (!logSuccess) {
+    req.flash('error', 'Admin not found');
+    return res.redirect('/admin');
+  }
 
   const adminAccount = await User.findById(req.user._id);
   if (!adminAccount) {

@@ -7,24 +7,6 @@ const modalButtons = document.querySelectorAll('.modal-button');
 function openModal(index) {
   const intIndex = Number(index);
   dialogs[intIndex].showModal();
-
-  //   switch (index) {
-  //     case '0':
-  //       dialogs[0].showModal();
-  //       break;
-  //     case '1':
-  //       dialogs[1].showModal();
-  //       break;
-  //     case '2':
-  //       dialogs[2].showModal();
-  //       break;
-  //     case '3':
-  //       dialogs[3].showModal();
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
 }
 
 //* This adds an event listener to all buttons, and fires the openModal function, passing the appropriate dataset index number

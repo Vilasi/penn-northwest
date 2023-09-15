@@ -214,6 +214,8 @@
             </div>
           </div>
 
+          <!--? Admin Audit Log Dialog -->
+          <!-- Controlled through the js/admin/modal.js file -->
           <% if (user.role === 'admin') { %>
             <dialog class="dialog">
               <% if (user.actionsLog.length === 0) { %>
@@ -223,12 +225,10 @@
                   <p class="lead max-text-width">Log <%= i + 1 %>: <%= user.actionsLog[i] %></p>
                 <% } %>
               <% } %>
-              
             </dialog> 
           <% } %>
         <% } %>
         </div>  
-
 
       <% } %>
     </section>

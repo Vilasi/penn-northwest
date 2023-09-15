@@ -18,6 +18,7 @@ const {
 
 //* Import Middleware
 const isLoggedIn = require('../utils/middleware/isLoggedIn.js');
+const isAdmin = require('../utils/middleware/isAdmin');
 router
   .route('/')
   .get(events.index)
@@ -31,7 +32,7 @@ router
   );
 
 //* For deleting individual events
-router.route('/:id').delete(isLoggedIn, events.deleteEvent);
+router.route('/:id').delete(isLoggedIn, isAdmin, events.deleteEvent);
 
 //* Paid Event Route - Stripe
 router
