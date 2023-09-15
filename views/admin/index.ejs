@@ -186,46 +186,72 @@
 
         <div class="container d-flex justify-content-start flex-wrap">
         <% let modalIndex = 0; %>
+        <!--? Displaying Admins  -->
         <% for (let user of data.users) { %>
-          <div class="card mx-3 mb-3" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title"><strong>User:</strong> <%= user.username %></h5>
-              <h6 class="card-subtitle mb-2 text-body-secondary"><%= user.role %></h6>
+          <% if (user.role === 'admin') {%>
+            <div class="card mx-3 mb-3" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title"><strong>User:</strong> <%= user.username %></h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary"><%= user.role %></h6>
 
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Name: <%= user.firstName %> <%= user.lastName %></li>
-                <li class="list-group-item">Email: <%= user.email %></li>
-                <li class="list-group-item">Company: <%= user.company %></li>
-              </ul>
-              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a> -->
-              <% if (user.role === 'user') {%>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Name: <%= user.firstName %> <%= user.lastName %></li>
+                  <li class="list-group-item">Email: <%= user.email %></li>
+                  <li class="list-group-item">Company: <%= user.company %></li>
+                </ul>
+                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a> -->
+                <button class="modal-button btn btn-info mt-3" data-modal-index-number="<%= modalIndex %>">Actions Log</button>
+                <% modalIndex++; %>
+                
+
+                
+              </div>
+            </div>
+
+            <!--? Admin Audit Log Dialog -->
+            <!-- Controlled through the js/admin/modal.js file -->
+            <% if (user.role === 'admin') { %>
+              <dialog class="dialog">
+                <% if (user.actionsLog.length === 0) { %>
+                  <p class="lead">There is no data to display</p>                
+                <% } else {%>
+                  <% for (let i = 0; i < user.actionsLog.length; i++) { %>
+                    <p class="lead max-text-width">Log <%= i + 1 %>: <%= user.actionsLog[i] %></p>
+                  <% } %>
+                <% } %>
+              </dialog> 
+            <% } %>
+          <% } %>
+        <% } %>
+
+        <!--? Displaying Users  -->
+        <% for (let user of data.users) { %>
+          <% if (user.role === 'user') {%>
+            <div class="card mx-3 mb-3" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title"><strong>User:</strong> <%= user.username %></h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary"><%= user.role %></h6>
+
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Name: <%= user.firstName %> <%= user.lastName %></li>
+                  <li class="list-group-item">Email: <%= user.email %></li>
+                  <li class="list-group-item">Company: <%= user.company %></li>
+                </ul>
+                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a> -->
                 <!--? Promote to Admin Form -->
                 <form class="mb-3 delete-document-form" action="/admin/promote-to-admin/<%= user._id %>?_method=PATCH" method="post"><button class="btn btn-sm btn-warning delete-document-button" type="submit">Promote to Admin</button></form>
                 <!--? Delete User Form -->
                 <form class="delete-document-form" action="" method="post"><button class="btn btn-sm btn-danger delete-document-button" type="submit">Delete Account</button></form>
-              <% } else if (user.role === 'admin') { %>
-                <!-- TODO Make the actions log viewable on the frontend on button press -->
-                <button class="modal-button btn btn-info mt-3" data-modal-index-number="<%= modalIndex %>">Actions Log</button>
-                <% modalIndex++; %>
-
-              <% } %>
+              </div>
             </div>
-          </div>
 
-          <!--? Admin Audit Log Dialog -->
-          <!-- Controlled through the js/admin/modal.js file -->
-          <% if (user.role === 'admin') { %>
-            <dialog class="dialog">
-              <% if (user.actionsLog.length === 0) { %>
-                <p class="lead">There is no data to display</p>                
-              <% } else {%>
-                <% for (let i = 0; i < user.actionsLog.length; i++) { %>
-                  <p class="lead max-text-width">Log <%= i + 1 %>: <%= user.actionsLog[i] %></p>
-                <% } %>
-              <% } %>
-            </dialog> 
+            <!--? Admin Audit Log Dialog -->
+            <!-- Controlled through the js/admin/modal.js file -->
+            
           <% } %>
         <% } %>
         </div>  

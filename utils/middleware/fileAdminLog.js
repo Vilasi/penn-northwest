@@ -3,11 +3,13 @@ const User = require('../../models/users');
 // If any errors along the way, return false,
 // Handle the true/false with a boolean detector in the controller that uses this
 async function fileAdminLog(user, logMessage) {
-  //   const admin = await User.findById(user._id);
-  //   if (!admin) {
-  //     req.flash('error', 'Database Error, Admin account could not be located.');
-  //     return res.redirect('/admin');
-  //   }
+  const admin = await User.findById(user._id);
+  if (!admin) {
+    return false;
+  }
+
+  admin.actionsLog.push(logMessage);
+  const updatedAdminLog = await admin.save();
   console.log(
     'THESE FROM FILEADMINLOG MIDDLEWARE=================================================='
       .red
@@ -16,7 +18,8 @@ async function fileAdminLog(user, logMessage) {
   //   console.log(req);
   //   console.log(res);
   console.log(logMessage);
-  return false;
+  console.log(updatedAdminLog);
+  return true;
 }
 
 module.exports = fileAdminLog;

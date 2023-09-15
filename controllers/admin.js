@@ -54,44 +54,47 @@ module.exports.adminIndex = async (req, res, next) => {
   res.render('admin/index', { data });
 };
 
-//TODO Make the actions log viewable on the frontend on button press
 module.exports.promoteToAdmin = async (req, res, next) => {
   const { id } = req.params;
-  const logSuccess = await fileAdminLog(req.user, 'Im the message');
-  console.log(logSuccess);
-  if (!logSuccess) {
-    req.flash('error', 'Admin not found');
-    return res.redirect('/admin');
-  }
 
-  const adminAccount = await User.findById(req.user._id);
-  if (!adminAccount) {
-    req.flash('error', 'Database Error, Admin account could not be located.');
-    return res.redirect('/admin');
-  }
-
+  // Find and update the user's role to 'admin', and return the updated user
   const userToPromote = await User.findByIdAndUpdate(
     id,
     { role: 'admin' },
     { new: true }
   );
+
+  // If the user to promote is not found, display an error message and redirect
   if (!userToPromote) {
     req.flash('error', 'Error, Promote to Admin operation failed.');
     return res.redirect('/admin');
   }
 
+  // Get the username of the newly promoted admin user
   const newAdmin = userToPromote.username;
-  adminAccount.actionsLog.push(
+
+  // Log the successful promotion operation in the relevant admin account from req.user
+  const logSuccess = await fileAdminLog(
+    req.user,
+
     `Promoted user ${newAdmin} to Admin on ${getTodaysDate()}`
   );
-  const updatedAdminLog = await adminAccount.save();
 
+  // If logging fails, display an error message and redirect
+  if (!logSuccess) {
+    req.flash('error', 'Admin not found');
+    return res.redirect('/admin');
+  }
+
+  // Redirect on success
   req.flash(
     'success',
     `User ${newAdmin} has been successfully update to Admin.`
   );
   res.redirect('/admin');
 };
+
+//TODO Add admin account deletion
 
 //TODO Implement the following for looping through the event attendees
 // for (let event of data.events) {
