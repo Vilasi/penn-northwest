@@ -54,6 +54,33 @@ module.exports.adminIndex = async (req, res, next) => {
   res.render('admin/index', { data });
 };
 
+module.exports.deleteUser = async (req, res, next) => {
+  const { id } = req.params;
+  const deletedUser = await User.findByIdAndDelete(id);
+  if (!deletedUser) {
+    req.flash('error', 'Error. User was not deleted.');
+    return res.redirect('/admin');
+  }
+
+  // Log delete action to admin actionsLog
+  const logSuccess = await fileAdminLog(
+    req.user,
+    `Deleted User Account ${deletedUser.username} on ${getTodaysDate()}`
+  );
+
+  // If actionsLog fails, display an error message and redirect
+  if (!logSuccess) {
+    req.flash('error', 'Admin not found');
+    return res.redirect('/admin');
+  }
+
+  req.flash(
+    'success',
+    `User account ${deletedUser.username} successfully deleted.`
+  );
+  res.redirect('/admin');
+};
+
 module.exports.promoteToAdmin = async (req, res, next) => {
   const { id } = req.params;
 
@@ -73,10 +100,9 @@ module.exports.promoteToAdmin = async (req, res, next) => {
   // Get the username of the newly promoted admin user
   const newAdmin = userToPromote.username;
 
-  // Log the successful promotion operation in the relevant admin account from req.user
+  // Log promotion action to admin actionsLog
   const logSuccess = await fileAdminLog(
     req.user,
-
     `Promoted user ${newAdmin} to Admin on ${getTodaysDate()}`
   );
 

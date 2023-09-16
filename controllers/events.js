@@ -8,6 +8,8 @@ const Attendant = require('../models/attendants');
 //* Import Utils
 const sendMessage = require('../utils/middleware/freeEventEmail.js');
 const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
+const fileAdminLog = require('../utils/middleware/fileAdminLog');
+const getTodaysDate = require('../utils/getTodaysDate');
 //* Connect Stripe
 const stripe = require('../config/stripe');
 
@@ -40,6 +42,18 @@ module.exports.createEvent = async (req, res, next) => {
   const finalDoc = await eventDocument.save();
   if (!finalDoc) {
     next(createError(500, 'Failed to create event.'));
+  }
+
+  // Log event creation to admin actionsLog
+  const logSuccess = await fileAdminLog(
+    req.user,
+    `Event "${finalDoc.name}" Created on ${getTodaysDate()}`
+  );
+
+  // If actionsLog fails, display an error message and redirect
+  if (!logSuccess) {
+    req.flash('error', 'Admin not found');
+    return res.redirect('/events');
   }
 
   req.flash('success', `Your event, ${finalDoc.name}, has been created!`);
@@ -167,6 +181,18 @@ module.exports.deleteEvent = async (req, res, next) => {
   const filename = event.image.filename;
   await cloudinary.uploader.destroy(filename);
 
+  // Log delete action to admin actionsLog
+  const logSuccess = await fileAdminLog(
+    req.user,
+    `Event ${event.name} Deleted on ${getTodaysDate()}`
+  );
+
+  // If actionsLog fails, display an error message and redirect
+  if (!logSuccess) {
+    req.flash('error', 'Admin not found');
+    return res.redirect('/events');
+  }
+
   req.flash('success', `Event "${event.name}" Successfully Deleted.`);
   res.redirect('/events');
 };
@@ -250,12 +276,10 @@ module.exports.registerFreeEvent = async (req, res, next) => {
   res.redirect('/events/free-registration-confirmation');
 };
 
-//TODO Integrate Google ReCaptcha into this since it can be accessed by unlogged in users
 module.exports.renderRegistrationConfirmation = async (req, res, next) => {
   const attendant = req.session.attendant;
   try {
-    //TODO Uncomment out the email bit after reCaptcha is setup
-    // sendMessage(attendant);
+    sendMessage(attendant);
   } catch (error) {
     req.flash('error', 'Confirmation email failed to send.');
   }

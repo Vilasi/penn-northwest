@@ -13,4 +13,5 @@ router
   .route('/promote-to-admin/:id')
   .patch(isLoggedIn, isAdmin, admin.promoteToAdmin);
 
+router.route('/delete-user/:id').delete(isLoggedIn, isAdmin, admin.deleteUser);
 module.exports = router;

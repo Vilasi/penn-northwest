@@ -1,8 +1,12 @@
 const path = require('path');
 const joi = require('../validations/joiSchemas.js');
 const createError = require('http-errors');
+
+//* Import Middleware Utils
 const sendMessage = require('../utils/middleware/sendMemberEmail.js');
 const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
+const fileAdminLog = require('../utils/middleware/fileAdminLog');
+const getTodaysDate = require('../utils/getTodaysDate');
 
 //* Import Middleware
 const memberSorter = require('../utils/memberSorter.js');
@@ -17,6 +21,18 @@ module.exports.deleteMember = async (req, res, next) => {
   if (!member) {
     req.flash('error', 'The member was not found in the database.');
     return res.redirect('/membership');
+  }
+
+  // Log delete action to admin actionsLog
+  const logSuccess = await fileAdminLog(
+    req.user,
+    `Member ${member.name} Deleted on ${getTodaysDate()}`
+  );
+
+  // If actionsLog fails, display an error message and redirect
+  if (!logSuccess) {
+    req.flash('error', 'Admin not found');
+    return res.redirect('/events');
   }
 
   req.flash(
@@ -34,6 +50,18 @@ module.exports.adminDeleteMember = async (req, res, next) => {
     return res.redirect('/admin');
   }
 
+  // Log delete action to admin actionsLog
+  const logSuccess = await fileAdminLog(
+    req.user,
+    `Member ${member.name} Deleted on ${getTodaysDate()}`
+  );
+
+  // If actionsLog fails, display an error message and redirect
+  if (!logSuccess) {
+    req.flash('error', 'Admin not found');
+    return res.redirect('/events');
+  }
+
   req.flash(
     'success',
     `Member Deleted. Name: ${member.name}. Website: ${member.href}`
@@ -47,6 +75,18 @@ module.exports.deleteApplication = async (req, res, next) => {
   if (!application) {
     req.flash('error', `Database Error: Application with ID ${id} not found.`);
     res.redirect('/admin');
+  }
+
+  // Log delete action to admin actionsLog
+  const logSuccess = await fileAdminLog(
+    req.user,
+    `${application.companyName} Application Deleted on ${getTodaysDate()}`
+  );
+
+  // If actionsLog fails, display an error message and redirect
+  if (!logSuccess) {
+    req.flash('error', 'Admin not found');
+    return res.redirect('/events');
   }
 
   req.flash(

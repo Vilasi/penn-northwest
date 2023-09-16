@@ -24,6 +24,7 @@ router
   .get(events.index)
   .post(
     isLoggedIn,
+    isAdmin,
     upload.single('eventImage'),
     errorHandler.handleCloudinaryError,
     imageUploadValidation,

@@ -11,6 +11,9 @@ const {
 
 //* Import Middleware
 const isLoggedIn = require('../utils/middleware/isLoggedIn.js');
+const isAdmin = require('../utils/middleware/isAdmin.js');
+const fileAdminLog = require('../utils/middleware/fileAdminLog');
+const getTodaysDate = require('../utils/getTodaysDate');
 
 //* Init Router
 const express = require('express');
@@ -28,11 +31,11 @@ router
 
 router
   .route('/post-new-member/:id')
-  .delete(isLoggedIn, memberships.deleteMember);
+  .delete(isLoggedIn, isAdmin, memberships.deleteMember);
 
 router
   .route('/post-new-member/admin/:id')
-  .delete(memberships.adminDeleteMember);
+  .delete(isLoggedIn, isAdmin, memberships.adminDeleteMember);
 
 router.route('/membership-brochure-pdf').get(memberships.getMembershipBrochure);
 
