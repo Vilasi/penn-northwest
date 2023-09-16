@@ -26,6 +26,13 @@ module.exports.registerUser = async (req, res, next) => {
       company: company,
     });
     const registeredUser = await User.register(newUser, password);
+    if (!registeredUser) {
+      req.flash(
+        'error',
+        'There was an error creating your account. Please try again.'
+      );
+      res.redirect('/register');
+    }
 
     req.login(registeredUser, (err) => {
       if (err) {

@@ -93,9 +93,6 @@
               <li class="list-group-item"><%= app.annualContribution %> yearly pledge.</li>
               <li class="list-group-item"><a href="<%= app.website %>" class="card-link text-decoration-underline"><%= app.website %></a></li>
             </ul>
-            <!-- <div class="card-body">
-              <a href="<%= app.website %>" class="card-link text-decoration-underline"><%= app.website %></a>
-            </div> -->
             <div class="card-footer text-body-secondary">
                 Submitted <%= app.formattedDate %> by <%= app.submittedBy %>, <%= app.submitterTitle %>
                 <hr />
@@ -190,7 +187,7 @@
         <% for (let user of data.users) { %>
           <% if (user.role === 'admin') {%>
             <div class="card mx-3 mb-3" style="width: 18rem;">
-              <div class="card-body">
+              <div class="card-body d-flex flex-column align-items-between">
                 <h5 class="card-title"><strong>User:</strong> <%= user.username %></h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary"><%= user.role %></h6>
 
@@ -199,10 +196,10 @@
                   <li class="list-group-item">Email: <%= user.email %></li>
                   <li class="list-group-item">Company: <%= user.company %></li>
                 </ul>
-                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a> -->
-                <button class="modal-button btn btn-info mt-3" data-modal-index-number="<%= modalIndex %>">Actions Log</button>
+                <div class="mt-auto">
+                  <button class="modal-button btn btn-info" data-modal-index-number="<%= modalIndex %>">Actions Log</button>
+                  
+                </div>
                 <% modalIndex++; %>
                 
 
@@ -230,7 +227,7 @@
         <% for (let user of data.users) { %>
           <% if (user.role === 'user') {%>
             <div class="card mx-3 mb-3" style="width: 18rem;">
-              <div class="card-body">
+              <div class="card-body d-flex flex-column align-items-between">
                 <h5 class="card-title"><strong>User:</strong> <%= user.username %></h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary"><%= user.role %></h6>
 
@@ -239,13 +236,13 @@
                   <li class="list-group-item">Email: <%= user.email %></li>
                   <li class="list-group-item">Company: <%= user.company %></li>
                 </ul>
-                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a> -->
-                <!--? Promote to Admin Form -->
-                <form class="mb-3 delete-document-form" action="/admin/promote-to-admin/<%= user._id %>?_method=PATCH" method="post"><button class="btn btn-sm btn-warning delete-document-button" type="submit">Promote to Admin</button></form>
-                <!--? Delete User Form -->
-                <form class="delete-document-form" action="/admin/delete-user/<%= user._id %>?_method=DELETE" method="post"><button class="btn btn-sm btn-danger delete-document-button" type="submit">Delete Account</button></form>
+
+                <div class="mt-auto">
+                  <!--? Promote to Admin Form -->
+                  <form class="mb-3 delete-document-form" action="/admin/promote-to-admin/<%= user._id %>?_method=PATCH" method="post"><button class="btn btn-sm btn-warning delete-document-button" type="submit">Promote to Admin</button></form>
+                  <!--? Delete User Form -->
+                  <form class="delete-document-form" action="/admin/delete-user/<%= user._id %>?_method=DELETE" method="post"><button class="btn btn-sm btn-danger delete-document-button" type="submit">Delete Account</button></form>
+                </div>
               </div>
             </div>
 

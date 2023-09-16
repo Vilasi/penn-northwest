@@ -189,6 +189,9 @@ module.exports.postNewMember = async (req, res, next) => {
 module.exports.renderMembershipPage = async (req, res, next) => {
   //TODO Error Handle This
   const members = await Member.find({});
+  // if (!members) {
+  //   req.flash('Error')
+  // }
   const sortedMembers = memberSorter(members);
 
   const user = req.user || null;

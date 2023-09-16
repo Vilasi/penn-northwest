@@ -12,8 +12,8 @@ const {
 //* Import Middleware
 const isLoggedIn = require('../utils/middleware/isLoggedIn.js');
 const isAdmin = require('../utils/middleware/isAdmin.js');
-const fileAdminLog = require('../utils/middleware/fileAdminLog');
-const getTodaysDate = require('../utils/getTodaysDate');
+// const fileAdminLog = require('../utils/middleware/fileAdminLog');
+// const getTodaysDate = require('../utils/getTodaysDate');
 
 //* Init Router
 const express = require('express');
@@ -27,7 +27,7 @@ router
 
 router
   .route('/post-new-member')
-  .post(isLoggedIn, newMemberValidation, memberships.postNewMember);
+  .post(isLoggedIn, isAdmin, newMemberValidation, memberships.postNewMember);
 
 router
   .route('/post-new-member/:id')
@@ -43,6 +43,6 @@ router.route('/membership-levels-pdf').get(memberships.getLevelsBrochure);
 
 router
   .route('/application/:id')
-  .delete(isLoggedIn, memberships.deleteApplication);
+  .delete(isLoggedIn, isAdmin, memberships.deleteApplication);
 
 module.exports = router;
