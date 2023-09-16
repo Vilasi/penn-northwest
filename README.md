@@ -1,5 +1,7 @@
 # Penn-Northwest Web Server
 
+**NOTE! This is an interim development README and does not fully reflect the state of the project**
+
 This is a web server for the Penn-Northwest Community built using Node.js and Express. It features user authentication, event and membership management, and other core functionalities.
 
 **Link to project:** [http://your-live-demo-link.com/](#)
