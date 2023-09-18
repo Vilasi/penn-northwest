@@ -20,6 +20,10 @@ for (let modalButton of modalButtons) {
 //* This allows the user to close the modal if they click outside of it
 for (let dialog of dialogs) {
   dialog.addEventListener('click', (e) => {
+    if (e.target.classList.contains('dialog-close-button')) {
+      dialog.close();
+    }
+
     const dialogDimensions = dialog.getBoundingClientRect();
     if (
       e.clientX < dialogDimensions.left ||

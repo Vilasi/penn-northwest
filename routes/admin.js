@@ -14,4 +14,7 @@ router
   .patch(isLoggedIn, isAdmin, admin.promoteToAdmin);
 
 router.route('/delete-user/:id').delete(isLoggedIn, isAdmin, admin.deleteUser);
+router
+  .route('/delete-event/:id')
+  .delete(isLoggedIn, isAdmin, admin.deleteEvent);
 module.exports = router;

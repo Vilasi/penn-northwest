@@ -1,5 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="css/adminIndex.css" />
+<!--? modalIndex is for targeting correct modals to open throughout the page. -->
+<% let modalIndex = 0; %>
 <section
   class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5"
 >
@@ -52,7 +54,7 @@
     <!-- We'll code each of the thing the admin should be able to see here, rendering dynamically in EJS -->
     <!-- Everything will be hidden via CSS with the d-none class or some such -->
     <!-- When a user clicks on one of the above nav buttons, it will remove the class -->
-    <!-- When another button is clicked, the class will be readded, and removed from the relevant button/section clicked, etc -->
+    <!-- When another button is clicked, the class will be re-added, and removed from the relevant button/section clicked, etc -->
 
     <!-- Other option is to generate the html dynamically with JS -->
     <!-- This may not work with the dynamic data calls and the serverside data generation, etc -->
@@ -151,23 +153,6 @@
       <% } %>
     </section>
 
-    <!--? Events -->
-    <section class="data-sections event-target d-none">
-      <% if (!data.events) {%>
-
-        <h1 class="display-2">Database Lookup Failed</h1>
-
-      <% } else if (data.events.length === 0) { %>
-
-        <h1 class="display-2">There are currently no events.</h1>
-
-      <% } else { %>
-        <h1 class="display-2 m-3 mb-5 border-bottom">Events</h1>
-
-
-      <% } %>
-    </section>
-
     <!--? Users -->
     <section class="data-sections user-target d-none">
       <% if (!data.users) {%>
@@ -182,7 +167,7 @@
         <h1 class="display-2 m-3 mb-5 border-bottom">Users</h1>
 
         <div class="container d-flex justify-content-start flex-wrap">
-        <% let modalIndex = 0; %>
+        
         <!--? Displaying Admins  -->
         <% for (let user of data.users) { %>
           <% if (user.role === 'admin') {%>
@@ -211,8 +196,9 @@
             <!-- Controlled through the js/admin/modal.js file -->
             <% if (user.role === 'admin') { %>
               <dialog class="dialog">
+                <button class=" btn btn-sm  btn-danger inline mb-3 dialog-close-button">Close</button>  
                 <% if (user.actionsLog.length === 0) { %>
-                  <p class="lead">There is no data to display</p>                
+                  <p class="lead">There is no data to display</p>
                 <% } else {%>
                   <% for (let i = 0; i < user.actionsLog.length; i++) { %>
                     <p class="lead max-text-width">Log <%= i + 1 %>: <%= user.actionsLog[i] %></p>
@@ -246,8 +232,7 @@
               </div>
             </div>
 
-            <!--? Admin Audit Log Dialog -->
-            <!-- Controlled through the js/admin/modal.js file -->
+            
             
           <% } %>
         <% } %>
@@ -256,40 +241,71 @@
       <% } %>
     </section>
 
+    <!--? Events -->
     <section class="data-sections event-target d-none d-flex justify-content-center">
-      <% if (!data.users) {%>
+      <% if (!data.events) {%>
 
         <h1 class="display-2">Database Lookup Failed</h1>
 
-      <% } else if (data.users.length === 0) { %>
+      <% } else if (data.events.length === 0) { %>
 
-        <h1 class="display-2">There are currently no users.</h1>
+        <h1 class="display-2">There are currently no events.</h1>
 
       <% } else { %>
         <section class="container d-flex flex-wrap justify-content-evenly">
+        <!--? Start Event Card -->
         <% for (let event of data.events) {%>
           <div class="card mb-5" style="width: 18rem;">
             <img src="<%= event.image.url %>" class="card-img-top border" alt="Event card image header">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column align-items-between">
               <!--? Name -->
-              <h5 class="card-title"><%= event.name %></h5>
+              <h5 class="card-title text-decoration-underline"><%= event.name %></h5>
+
               <!--? Price -->
               <% if (event.priceInCents === 0) { %>
                 <p class="card-text lead">Free Event</p>
               <% } else { %>
                 <p class="card-text lead"><%= event.formattedPrice %></p>
               <% } %>
+
+              <!--? Description -->
+              <p class="card-text"><%= event.description %></p>
               
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <!--? Attendants Dialog Opening Button -->
+              <div class="mt-auto">
+                <button class="modal-button btn btn-info mb-3" data-modal-index-number="<%= modalIndex %>">View Attendants</button>
+                <form class="mb-3 delete-document-form" action="/admin/delete-event/<%= event._id %>?_method=DELETE" method="post"><button class="btn btn-sm btn-danger delete-document-button" type="submit">Delete Event</button></form>
+
+              </div>
+              <% modalIndex++; %>
             </div>
           </div>
+
+          <!--? Dialog for displaying Attendees -->
+          <dialog class="dialog">
+            <% if (event.attendees.length === 0) { %>
+              <p class="lead">There are no attendants to display</p>            
+            <% } else {%>
+              <p class="lead">Total Attendants Registered: <%= event.attendees.length %></p>
+              <button class=" btn btn-sm  btn-danger inline mb-3 dialog-close-button">Close</button>  
+              <section class="d-flex justify-content-evenly flex-wrap">
+              <% for (let i = 0; i < event.attendees.length; i++) { %>
+                <div class="card mb-3" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Attendant <%= i + 1 %>:</h5>
+                    <h5 class="card-title mb-3"><%= event.attendees[i].attendantName %></h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary"><%= event.attendees[i].dateTime %></h6>
+                    <h6 class="card-subtitle mb-2 text-body-secondary"><%= event.attendees[i].ticketQuantity %> Ticket(s)</h6>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Email: <%= event.attendees[i].email %></h6>
+                  </div>
+                </div>
+              <% } %>
+              </section>
+            <% } %>
+          </dialog> 
         <% } %>
         </section>
       <% } %>
-
-
-
 </section>
 
 <script src="js/admin/adminIndex.js"></script>

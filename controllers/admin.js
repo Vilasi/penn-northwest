@@ -11,7 +11,7 @@ const fileAdminLog = require('../utils/middleware/fileAdminLog');
 module.exports.adminIndex = async (req, res, next) => {
   //TODO Admin authentication protect this route
   console.log(
-    'BELOW IS THE REQ.USER========================================================='
+    'BELOW IS THE REQ.USER=========controllers/admin.js==Line+13================================================'
       .red
   );
   console.log(req.user);
@@ -52,6 +52,39 @@ module.exports.adminIndex = async (req, res, next) => {
   //   console.log(data);
 
   res.render('admin/index', { data });
+};
+
+// TODO Add functionality that deletes all attendants
+module.exports.deleteEvent = async (req, res, next) => {
+  const { id } = req.params;
+  const deletedEvent = await Event.findByIdAndDelete(id);
+  if (!deletedEvent) {
+    req.flash('error', 'Error. User was not deleted.');
+    return res.redirect('/admin');
+  }
+
+  if (deletedEvent.attendees.length > 0) {
+    for (let attendee of deletedEvent.attendees) {
+      const deletedAttendant = await Attendant.findByIdAndDelete(attendee);
+      console.log('deletedAttendant:======================'.red);
+      console.log(deletedAttendant);
+    }
+  }
+
+  // Log delete action to admin actionsLog
+  const logSuccess = await fileAdminLog(
+    req.user,
+    `Deleted Event ${deletedEvent.name} on ${getTodaysDate()}`
+  );
+
+  // If actionsLog fails, display an error message and redirect
+  if (!logSuccess) {
+    req.flash('error', 'Admin not found');
+    return res.redirect('/admin');
+  }
+
+  req.flash('success', `Event ${deletedEvent.name} successfully deleted.`);
+  res.redirect('/admin');
 };
 
 module.exports.deleteUser = async (req, res, next) => {

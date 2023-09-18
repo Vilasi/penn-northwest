@@ -1,5 +1,8 @@
 async function isAdmin(req, res, next) {
-  console.log('below is the user role================================'.green);
+  console.log(
+    'below is the user role=====utils/middleware/isAdmin.js===================================='
+      .red
+  );
   console.log(req.user.role);
   if (req.user.role !== 'admin') {
     req.flash(
