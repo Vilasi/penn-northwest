@@ -157,6 +157,7 @@ app.use('/', userRoutes);
 //* Catchall 404
 app.get('*', (req, res, next) => {
   // next();
+  console.log(req.originalUrl);
   return next(createError(404, 'Page not found'));
 });
 

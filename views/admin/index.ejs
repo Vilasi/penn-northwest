@@ -256,6 +256,38 @@
       <% } %>
     </section>
 
+    <section class="data-sections event-target d-none d-flex justify-content-center">
+      <% if (!data.users) {%>
+
+        <h1 class="display-2">Database Lookup Failed</h1>
+
+      <% } else if (data.users.length === 0) { %>
+
+        <h1 class="display-2">There are currently no users.</h1>
+
+      <% } else { %>
+        <section class="container d-flex flex-wrap justify-content-evenly">
+        <% for (let event of data.events) {%>
+          <div class="card mb-5" style="width: 18rem;">
+            <img src="<%= event.image.url %>" class="card-img-top border" alt="Event card image header">
+            <div class="card-body">
+              <!--? Name -->
+              <h5 class="card-title"><%= event.name %></h5>
+              <!--? Price -->
+              <% if (event.priceInCents === 0) { %>
+                <p class="card-text lead">Free Event</p>
+              <% } else { %>
+                <p class="card-text lead"><%= event.formattedPrice %></p>
+              <% } %>
+              
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        <% } %>
+        </section>
+      <% } %>
+
 
 
 </section>

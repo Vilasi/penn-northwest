@@ -7,8 +7,9 @@ async function isAdmin(req, res, next) {
       'You do not have the necessary permissions to access this page.'
     );
     return res.redirect('/');
+  } else {
+    next();
   }
-  next();
 }
 
 module.exports = isAdmin;
