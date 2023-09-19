@@ -93,7 +93,12 @@
               <li class="list-group-item"><%= app.phone %></li>
               <li class="list-group-item"><%= app.companyType %></li>
               <li class="list-group-item"><%= app.annualContribution %> yearly pledge.</li>
-              <li class="list-group-item"><a href="<%= app.website %>" class="card-link text-decoration-underline"><%= app.website %></a></li>
+              <!-- The following prepends 'http:// to the website link if it did not include it' -->
+              <% if (app.website.includes('http')) { %>
+                <li class="list-group-item"><a href="<%= app.website %>" target="_blank" class="card-link text-decoration-underline"><%= app.website %></a></li>
+                <% } else { %>
+                  <li class="list-group-item"><a href="//<%= app.website %>" target="_blank" class="card-link text-decoration-underline"><%= app.website %></a></li>
+              <% } %>
             </ul>
             <div class="card-footer text-body-secondary">
                 Submitted <%= app.formattedDate %> by <%= app.submittedBy %>, <%= app.submitterTitle %>
