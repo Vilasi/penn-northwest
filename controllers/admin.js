@@ -71,6 +71,10 @@ module.exports.deleteEvent = async (req, res, next) => {
     }
   }
 
+  // This deletes the relevant image in the cloudinary photo repo
+  const filename = deletedEvent.image.filename;
+  await cloudinary.uploader.destroy(filename);
+
   // Log delete action to admin actionsLog
   const logSuccess = await fileAdminLog(
     req.user,
