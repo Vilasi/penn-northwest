@@ -69,6 +69,7 @@ app.use(morgan('dev'));
 // checkout npm connect-mongo
 app.use(
   session({
+    name: 'miImCp',
     secret: process.env.SECRET_KEY,
     store: MongoStore.create({
       mongoUrl: 'mongodb://127.0.0.1:27017/penn-northwest',
@@ -83,6 +84,9 @@ app.use(
       maxAge: 7 * 24 * 60 * 60 * 1000,
       //This sets the httpOnly to true - preventing client-side scripts from gaining access to the cookie
       httpOnly: true,
+      //! NOTE! The below forces the cookie to only work over https
+      //TODO Implement the below once https is setup
+      // secure: true,
     },
   })
 );
