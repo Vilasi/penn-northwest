@@ -8,6 +8,7 @@
 >
   <section class="bg-light rounded px-0">
     <header id="header" class="position-relative">
+      <!--TODO Upload this image to Cloudinary and set crossorigin="anonymous" attribute  -->
       <img
         class="img-fluid rounded shadow-lg"
         srcset="
@@ -235,6 +236,7 @@
 
                 <aside class="col-lg-6 mt-3 d-flex flex-column align-items-center py-5">
                   <img
+                    crossorigin="anonymous"
                     class="img-fluid rounded shadow-sm event-image mb-4"
                     src="<%= event.image.url %>"
                     alt="<%= event.name %> Event Image"
