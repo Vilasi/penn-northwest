@@ -16,6 +16,10 @@ const createError = require('http-errors');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
+const allowedSources = require('./config/content-security-policy/index');
+
+console.log(allowedSources);
 
 //* Initialize Express App and Port:
 const app = express();
@@ -92,6 +96,31 @@ app.use(
 );
 //? Initialize connect-flash
 app.use(flash());
+//? Initialize Helmet Header Package
+//TODO Setup Custom Content Security Policy and remove the {contentSecurityPolicy: false} flag
+app.use(helmet({ contentSecurityPolicy: false }));
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: [],
+      connectSrc: ["'self'", ...allowedSources.connectSrcUrls],
+      scriptSrc: ["'unsafe-inline'", "'self'", ...allowedSources.scriptSrcUrls],
+      styleSrc: ["'self'", "'unsafe-inline'", ...allowedSources.styleSrcUrls],
+      workerSrc: ["'self'", 'blob:'],
+      objectSrc: [],
+      imgSrc: [
+        "'self'",
+        'blob:',
+        'data:',
+        'https://res.cloudinary.com/dypchgtip/', //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
+        'https://images.unsplash.com/',
+      ],
+      fontSrc: ["'self'", ...allowedSources.fontSrcUrls],
+    },
+  })
+);
+
 //? Initialize Passport and setup User Session Serialization for storing User info in the session
 app.use(passport.initialize());
 app.use(passport.session());
