@@ -19,8 +19,6 @@ const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const allowedSources = require('./config/content-security-policy/index');
 
-console.log(allowedSources);
-
 //* Initialize Express App and Port:
 const app = express();
 const PORT = 3000;
@@ -44,6 +42,7 @@ mongoose.connection.once('open', () => {
 });
 
 async function main() {
+  // await mongoose.connect(process.env.DB_URL);
   await mongoose.connect('mongodb://127.0.0.1:27017/penn-northwest');
 }
 
@@ -76,6 +75,7 @@ app.use(
     name: 'miImCp',
     secret: process.env.SECRET_KEY,
     store: MongoStore.create({
+      // mongoUrl: process.env.DB_URL,
       mongoUrl: 'mongodb://127.0.0.1:27017/penn-northwest',
       dbName: 'penn-northwest',
     }),
@@ -99,11 +99,12 @@ app.use(flash());
 //? Initialize Helmet Header Package
 //TODO Setup Custom Content Security Policy and remove the {contentSecurityPolicy: false} flag
 app.use(helmet({ contentSecurityPolicy: false }));
+// console.log(helmet.contentSecurityPolicy.dangerouslyDisableDefaultSrc);
 
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: [],
+      defaultSrc: ['https://www.youtube.com/', 'https://www.google.com/'],
       connectSrc: ["'self'", ...allowedSources.connectSrcUrls],
       scriptSrc: ["'unsafe-inline'", "'self'", ...allowedSources.scriptSrcUrls],
       styleSrc: ["'self'", "'unsafe-inline'", ...allowedSources.styleSrcUrls],

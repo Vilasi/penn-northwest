@@ -5,6 +5,8 @@ module.exports.scriptSrcUrls = [
   'https://kit.fontawesome.com/',
   'https://cdnjs.cloudflare.com/',
   'https://cdn.jsdelivr.net',
+  'https://www.google.com/',
+  'https://www.gstatic.com/',
 ];
 module.exports.styleSrcUrls = [
   'https://kit-free.fontawesome.com/',
@@ -14,6 +16,7 @@ module.exports.styleSrcUrls = [
   'https://fonts.googleapis.com/',
   'https://use.fontawesome.com/',
   'https://cdn.jsdelivr.net/',
+  'https://cdnjs.cloudflare.com/',
 ];
 module.exports.connectSrcUrls = [
   'https://api.mapbox.com/',
