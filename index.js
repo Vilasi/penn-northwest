@@ -42,11 +42,7 @@ mongoose.connection.once('open', () => {
 });
 
 async function main() {
-  if (process.env.NODE_ENV === 'production') {
-    await mongoose.connect(process.env.DB_URL);
-  } else {
-    await mongoose.connect('mongodb://127.0.0.1:27017/penn-northwest');
-  }
+  await mongoose.connect(process.env.DB_URL);
 }
 
 //* SET VIEW ENGINE && SET EJS-Mate Template Engine
