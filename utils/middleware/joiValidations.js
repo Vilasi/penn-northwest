@@ -64,6 +64,23 @@ const paidEventValidation = async (req, res, next) => {
   }
 };
 
+const freeEventValidation = async (req, res, next) => {
+  const freeAttendantData = req.body.attendant;
+  const result = joiValidations.freeEventSchema.validate(freeAttendantData);
+
+  if (result.error) {
+    const message = result.error.details[0].message;
+    req.flash('error', message);
+    console.log('Joi Error'.yellow);
+    console.log(result.error.details[0].message);
+
+    return res.redirect('/events');
+  } else {
+    console.log('ATTENDANT VALIDATION SUCCESS!!!!'.green);
+    next();
+  }
+};
+
 //* Handles validation for the user registration form
 const registrationValidation = async (req, res, next) => {
   const registrationData = req.body.register;
@@ -119,6 +136,7 @@ module.exports = {
   eventValidation,
   imageUploadValidation,
   paidEventValidation,
+  freeEventValidation,
   registrationValidation,
   membershipApplicationValidation,
   newMemberValidation,

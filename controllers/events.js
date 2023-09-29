@@ -168,7 +168,6 @@ module.exports.checkoutCancel = async (req, res, next) => {
   res.redirect('/events');
 };
 
-//TODO Delete all attendants when the event is deleted.
 module.exports.deleteEvent = async (req, res, next) => {
   const { id } = req.params;
   const event = await Event.findByIdAndDelete(id);

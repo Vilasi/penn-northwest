@@ -42,8 +42,11 @@ mongoose.connection.once('open', () => {
 });
 
 async function main() {
-  // await mongoose.connect(process.env.DB_URL);
-  await mongoose.connect('mongodb://127.0.0.1:27017/penn-northwest');
+  if (process.env.NODE_ENV === 'production') {
+    await mongoose.connect(process.env.DB_URL);
+  } else {
+    await mongoose.connect('mongodb://127.0.0.1:27017/penn-northwest');
+  }
 }
 
 //* SET VIEW ENGINE && SET EJS-Mate Template Engine
@@ -77,7 +80,11 @@ app.use(
     store: MongoStore.create({
       // mongoUrl: process.env.DB_URL,
       mongoUrl: 'mongodb://127.0.0.1:27017/penn-northwest',
-      dbName: 'penn-northwest',
+      dbName: process.env.DB_NAME,
+      touchAfter: 24 * 60 * 60,
+      crypto: {
+        secret: process.env.SECRET_KEY,
+      },
     }),
     resave: false,
     saveUninitialized: false,
@@ -94,11 +101,12 @@ app.use(
     },
   })
 );
+
 //? Initialize connect-flash
 app.use(flash());
 //? Initialize Helmet Header Package
 //TODO Setup Custom Content Security Policy and remove the {contentSecurityPolicy: false} flag
-app.use(helmet({ contentSecurityPolicy: false }));
+app.use(helmet());
 // console.log(helmet.contentSecurityPolicy.dangerouslyDisableDefaultSrc);
 
 app.use(
@@ -143,23 +151,35 @@ app.use((req, res, next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   res.locals.deleted = req.flash('deleted');
+
   next();
 });
 
 //* req.user logger
 //! DEV ONLY - DELETE LATER
-// app.use((req, res, next) => {
-//   // console.log(process.env.STG_EMAIL_API_KEY);
-//   console.log(req.session);
-//   if (req.user) {
-//     console.log('req.user was found, [log from index.js]:'.yellow);
-//     console.log(req.user);
-
-//     console.log('below is the req.session'.yellow);
+// if (process.env.NODE_ENV !== 'production') {
+//   app.use((req, res, next) => {
+//     console.log(
+//       'DEV LOGGER========================================index.js--Line-161========================'
+//         .red
+//     );
+//     // console.log(process.env.STG_EMAIL_API_KEY);
 //     console.log(req.session);
-//   }
-//   next();
-// });
+//     // if (req.user) {
+//     //   console.log('req.user was found, [log from index.js]:'.yellow);
+//     //   console.log(req.user);
+
+//     //   console.log('below is the req.session'.yellow);
+//     //   console.log(req.session);
+//     // }
+
+//     console.log(
+//       'END-DEV-LOGGER=================================================================================='
+//         .red
+//     );
+//     next();
+//   });
+// }
 
 //! Routes
 //* Home
