@@ -74,8 +74,8 @@ app.use(
     name: 'miImCp',
     secret: process.env.SECRET_KEY,
     store: MongoStore.create({
-      // mongoUrl: process.env.DB_URL,
-      mongoUrl: 'mongodb://127.0.0.1:27017/penn-northwest',
+      mongoUrl: process.env.DB_URL,
+      // mongoUrl: 'mongodb://127.0.0.1:27017/penn-northwest',
       dbName: process.env.DB_NAME,
       touchAfter: 24 * 60 * 60,
       crypto: {
