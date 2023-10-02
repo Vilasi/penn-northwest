@@ -26,3 +26,8 @@ Welcome to Penn-Northwest, the leading catalyst for economic growth and prosperi
     Business Expansion Support: We are committed to supporting the growth and success of our members. Whether you're a small local business or an established industry leader, we provide a range of value-added programs and services tailored to meet your unique needs. From access to capital resources and grant programs to educational workshops and training opportunities, we're here to help you thrive.
 
     Networking and Collaboration: Your Penn-Northwest membership opens doors to a vibrant community of like-minded professionals. Attend exclusive networking events, seminars,
+
+
+Idea for About Page 
+    Move the "All Roads Lead Through Mercer County" Image to About Page 
+    Give it either a topology SVG background, or a roadmap of Mercer County, or some such

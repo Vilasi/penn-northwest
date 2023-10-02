@@ -648,8 +648,7 @@
               <div class="invalid-feedback">Please enter your affiliations or enter N/A if none.</div>
             </div>
           </section>
-          <!--TODO # RECAPTCHA_KEY=6LcHjhwnAAAAANYGIq-bSxqjD0YZA9iMBSegs0gA #TODO delete this old one when you ensure it's not in use -->
-
+ 
           <!--? reCaptcha -->
           <div class="g-recaptcha" data-sitekey="<%= process.env.RECAPTCHA_FRONTEND_KEY %>" data-callback="onSubmit"></div>
 
@@ -705,109 +704,122 @@
             srcset=""
           />
         </div>
-        <div class="col-lg-3 container">
-          <% for (let i = 0; i < 10; i++) {%> 
-            <% if (members[i].href) {%>
-              <div class="position-relative">
-                <p class="">
-                  <a
-                    class="text-decoration-underline"
-                    href="<%= members[i].href %>"
-                    target="_blank"
-                    ><%= members[i].name %></a
-                  >
-                </p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-            <% } else {%>
-              <div class="position-relative">
-                <p><%= members[i].name %></p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-          <% } %> <% } %>
-        </div>
-        <div class="col-lg-3 container">
-          <% for (let i = 11; i < 21; i++) {%> 
-            <% if (members[i].href) {%>
-              <div class="position-relative">
-                <p>
-                  <a
-                    class="text-decoration-underline"
-                    href="<%= members[i].href %>"
-                    target="_blank"
-                    ><%= members[i].name %></a
-                  >
-                </p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-            <% } else {%>
-              <div class="position-relative">
-                <p><%= members[i].name %></p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-          <% } %> <% } %>
-        </div>
+        <% if (members.length > 0) {%>
+
+          <div class="col-lg-3 container">
+            <% for (let i = 0; i < 10; i++) {%> 
+              <% if (members[i].href) {%>
+                <div class="position-relative">
+                  <p class="">
+                    <a
+                      class="text-decoration-underline"
+                      href="<%= members[i].href %>"
+                      target="_blank"
+                      ><%= members[i].name %></a
+                    >
+                  </p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+              <% } else {%>
+                <div class="position-relative">
+                  <p><%= members[i].name %></p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+            <% } %> <% } %>
+          </div>
+          <div class="col-lg-3 container">
+            <% for (let i = 11; i < 21; i++) {%> 
+              <% if (members[i].href) {%>
+                <div class="position-relative">
+                  <p>
+                    <a
+                      class="text-decoration-underline"
+                      href="<%= members[i].href %>"
+                      target="_blank"
+                      ><%= members[i].name %></a
+                    >
+                  </p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+              <% } else {%>
+                <div class="position-relative">
+                  <p><%= members[i].name %></p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+            <% } %> <% } %>
+          </div>
+        <% } else if (!members) {%>
+          <div class="col-lg-6 container"><p class="lead">Error: Database Lookup for Members Failed</p></div>
+        <% } else {%>
+            <div class="col-lg-6 container"><p class="lead text-center">No Members in Database</p></div>
+        <% } %>
         <!--* ----------------------------->
 
         <!--* Picture/Members Row 2 ------------------------------------------------------->
-        <div class="col-lg-3 container">
-          <% for (let i = 22; i < 33; i++) {%> 
-            <% if (members[i].href) {%>
-              <div class="position-relative">
-                <p>
-                  <a
-                    class="text-decoration-underline"
-                    href="<%= members[i].href %>"
-                    target="_blank"
-                    ><%= members[i].name %></a
-                  >
-                </p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>            
-            <% } else {%>
-              <div class="position-relative">
-                <p><%= members[i].name %></p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-            <% } %> <% } %>
-        </div>
-        <div class="col-lg-3 container">
-          <% for (let i = 34; i < 45; i++) {%> 
-            <% if (members[i].href) {%>
-              <div class="position-relative">
-                <p>
-                  <a
-                    class="text-decoration-underline"
-                    href="<%= members[i].href %>"
-                    target="_blank"
-                    ><%= members[i].name %></a
-                  >
-                </p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-            <% } else {%>
-              <div class="position-relative">
-                <p><%= members[i].name %></p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-            <% } %> <% } %>
-        </div>
+        <% if (members.length > 0) {%>
+          <div class="col-lg-3 container">
+            <% for (let i = 22; i < 33; i++) {%> 
+              <% if (members[i].href) {%>
+                <div class="position-relative">
+                  <p>
+                    <a
+                      class="text-decoration-underline"
+                      href="<%= members[i].href %>"
+                      target="_blank"
+                      ><%= members[i].name %></a
+                    >
+                  </p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>            
+              <% } else {%>
+                <div class="position-relative">
+                  <p><%= members[i].name %></p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+              <% } %> <% } %>
+          </div>
+          <div class="col-lg-3 container">
+            <% for (let i = 34; i < 45; i++) {%> 
+              <% if (members[i].href) {%>
+                <div class="position-relative">
+                  <p>
+                    <a
+                      class="text-decoration-underline"
+                      href="<%= members[i].href %>"
+                      target="_blank"
+                      ><%= members[i].name %></a
+                    >
+                  </p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+              <% } else {%>
+                <div class="position-relative">
+                  <p><%= members[i].name %></p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+              <% } %> <% } %>
+          </div>
+        <% } else if (!members) {%>
+          <div class="col-lg-6 container"><p class="lead">Error: Database Lookup for Members Failed</p></div>
+        <% } else {%>
+          <div class="col-lg-6 container"><p class="lead">No Members in Database</p></div>
+        <% } %>
         <div class="col-lg-6 mb-5">
           <!--TODO Upload this image to cloudinary and set attribute: crossorigin="anonymous" -->
           <img
@@ -829,109 +841,123 @@
             srcset=""
           />
         </div>
-        <div class="col-lg-3 container">
-          <% for (let i = 46; i < 57; i++) {%> 
-            <% if (members[i].href) {%>
-              <div class="position-relative">
-                <p>
-                  <a
-                    class="text-decoration-underline"
-                    href="<%= members[i].href %>"
-                    target="_blank"
-                    ><%= members[i].name %></a
-                  >
-                </p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-            <% } else {%>
-              <div class="position-relative">
-                <p><%= members[i].name %></p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-            <% } %> <% } %>
-        </div>
-        <div class="col-lg-3 container">
-          <% for (let i = 58; i < 69; i++) {%> 
-            <% if (members[i].href) {%>
-              <div class="position-relative">
-                <p>
-                  <a
-                    class="text-decoration-underline"
-                    href="<%= members[i].href %>"
-                    target="_blank"
-                    ><%= members[i].name %></a
-                  >
-                </p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-            <% } else {%>
-              <div class="position-relative">
-                <p><%= members[i].name %></p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-            <% } %> <% } %>
-        </div>
+
+        <% if (members.length > 0) {%>
+          <div class="col-lg-3 container">
+            <% for (let i = 46; i < 57; i++) {%> 
+              <% if (members[i].href) {%>
+                <div class="position-relative">
+                  <p>
+                    <a
+                      class="text-decoration-underline"
+                      href="<%= members[i].href %>"
+                      target="_blank"
+                      ><%= members[i].name %></a
+                    >
+                  </p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+              <% } else {%>
+                <div class="position-relative">
+                  <p><%= members[i].name %></p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+              <% } %> <% } %>
+          </div>
+          <div class="col-lg-3 container">
+            <% for (let i = 58; i < 69; i++) {%> 
+              <% if (members[i].href) {%>
+                <div class="position-relative">
+                  <p>
+                    <a
+                      class="text-decoration-underline"
+                      href="<%= members[i].href %>"
+                      target="_blank"
+                      ><%= members[i].name %></a
+                    >
+                  </p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+              <% } else {%>
+                <div class="position-relative">
+                  <p><%= members[i].name %></p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+              <% } %> <% } %>
+          </div>
+        <% } else if (!members) {%>
+          <div class="col-lg-6 container"><p class="lead">Error: Database Lookup for Members Failed</p></div>
+        <% } else {%>
+          <div class="col-lg-6 container"><p class="lead">No Members in Database</p></div>
+        <% } %>
         <!--* -------------------------- -->
 
         <!--* Picture/Members Row 4 ------------------------------------------------------->
-        <div class="col-lg-3 container">
-          <% for (let i = 70; i < 81; i++) {%> 
-            <% if (members[i].href) {%>
-              <div class="position-relative">
-                <p>
-                  <a
-                    class="text-decoration-underline"
-                    href="<%= members[i].href %>"
-                    target="_blank"
-                    ><%= members[i].name %></a
-                  >
-                </p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-            <% } else {%>
-              <div class="position-relative">
-                <p><%= members[i].name %></p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-          <% } %> <% } %>
-        </div>
-        <div class="col-lg-3 container">
-          <% for (let i = 82; i < 93; i++) {%> 
-            <% if (members[i].href) {%>
-              <div class="position-relative">
-                <p>
-                  <a
-                    class="text-decoration-underline"
-                    href="<%= members[i].href %>"
-                    target="_blank"
-                    ><%= members[i].name %></a
-                  >
-                </p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
-            <% } else {%>
-              <div class="position-relative">
-                <p><%= members[i].name %></p>
-                <% if (user && user.role === 'admin') {%> 
-                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-                <% } %>
-              </div>
+        <% if (members.length > 0) {%>
+
+          <div class="col-lg-3 container">
+            <% for (let i = 70; i < 81; i++) {%> 
+              <% if (members[i].href) {%>
+                <div class="position-relative">
+                  <p>
+                    <a
+                      class="text-decoration-underline"
+                      href="<%= members[i].href %>"
+                      target="_blank"
+                      ><%= members[i].name %></a
+                    >
+                  </p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+              <% } else {%>
+                <div class="position-relative">
+                  <p><%= members[i].name %></p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
             <% } %> <% } %>
-        </div>
+          </div>
+          <div class="col-lg-3 container">
+            <% for (let i = 82; i < 93; i++) {%> 
+              <% if (members[i].href) {%>
+                <div class="position-relative">
+                  <p>
+                    <a
+                      class="text-decoration-underline"
+                      href="<%= members[i].href %>"
+                      target="_blank"
+                      ><%= members[i].name %></a
+                    >
+                  </p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+              <% } else {%>
+                <div class="position-relative">
+                  <p><%= members[i].name %></p>
+                  <% if (user && user.role === 'admin') {%> 
+                    <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                  <% } %>
+                </div>
+              <% } %> <% } %>
+          </div>
+        <% } else if (!members) {%>
+          <div class="col-lg-6 container"><p class="lead">Error: Database Lookup for Members Failed</p></div>
+        <% } else {%>
+          <div class="col-lg-6 container"><p class="lead">No Members in Database</p></div>
+        <% } %>
         <div class="col-lg-6 mb-5">
           <!--TODO Upload this image to cloudinary and set attribute: crossorigin="anonymous" -->
           <img
@@ -951,62 +977,69 @@
           </header>
         </div>
 
-        <!-- These define the starting/ending indexes of the final members list -->
-        <% const remaining = (members.length - 1) - 93; %> 
-        <% const leftMostFinalIndex = 94 + Math.floor(remaining / 2) %>
-
-        <!-- Print members to the page: -->
-        <div class="col-lg-3 offset-lg-2 mb-3">
-          <% for (let i = 94; i < leftMostFinalIndex; i++) {%> 
-          <% if (members[i].href) {%>
-            <div class="position-relative">
-              <p>
-                <a
-                  class="text-decoration-underline"
-                  href="<%= members[i].href %>"
-                  target="_blank"
-                  ><%= members[i].name %></a
-                >
-              </p>
-              <% if (user && user.role === 'admin') {%> 
-                <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-              <% } %>
-            </div>
-          <% } else {%>
-            <div class="position-relative">
-              <p><%= members[i].name %></p>
-              <% if (user && user.role === 'admin') {%> 
-                <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-              <% } %>
-            </div>
-          <% } %> <% }%>
-        </div>
-
-        <div class="col-lg-3 offset-lg-2 mb-3">
-          <% for (let i = leftMostFinalIndex; i < members.length; i++) {%> 
-          <% if (members[i].href) {%>
-            <div class="position-relative">
-              <p>
-                <a
-                  class="text-decoration-underline"
-                  href="<%= members[i].href %>"
-                  target="_blank"
-                  ><%= members[i].name %></a
-                >
-              </p>
-              <% if (user && user.role === 'admin') {%> 
-                <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-              <% } %>
-            </div>
-          <% } else {%>
-            <div class="position-relative">
-              <p><%= members[i].name %></p>
-              <% if (user && user.role === 'admin') {%> 
-                <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
-              <% } %>
-            </div>
-          <% } %> <% } %>
-        </div>
+        <% if (members.length === 0) {%>
+          <div class="col-12"><h3 class="display-5 text-center">No Members Found in Database</h3></div>
+        <% } else if (!members) {%>
+          <div class="col-12"><h3 class="display-5 text-center">Database Lookup Failed</h3></div>
+        <% } else { %>
+          <!--? Begin Final Members List -->
+          <!-- These define the starting/ending indexes of the final members list, ensuring that the two lists are even in number of members displayed -->
+          <% const remaining = (members.length - 1) - 93; %> 
+          <% const leftMostFinalIndex = 94 + Math.floor(remaining / 2) %>
+  
+          <!-- Print members to the page: -->
+          <div class="col-lg-3 offset-lg-2 mb-3">
+            <% for (let i = 94; i < leftMostFinalIndex; i++) {%> 
+            <% if (members[i].href) {%>
+              <div class="position-relative">
+                <p>
+                  <a
+                    class="text-decoration-underline"
+                    href="<%= members[i].href %>"
+                    target="_blank"
+                    ><%= members[i].name %></a
+                  >
+                </p>
+                <% if (user && user.role === 'admin') {%> 
+                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                <% } %>
+              </div>
+            <% } else {%>
+              <div class="position-relative">
+                <p><%= members[i].name %></p>
+                <% if (user && user.role === 'admin') {%> 
+                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                <% } %>
+              </div>
+            <% } %> <% }%>
+          </div>
+  
+          <div class="col-lg-3 offset-lg-2 mb-3">
+            <% for (let i = leftMostFinalIndex; i < members.length; i++) {%> 
+            <% if (members[i].href) {%>
+              <div class="position-relative">
+                <p>
+                  <a
+                    class="text-decoration-underline"
+                    href="<%= members[i].href %>"
+                    target="_blank"
+                    ><%= members[i].name %></a
+                  >
+                </p>
+                <% if (user && user.role === 'admin') {%> 
+                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                <% } %>
+              </div>
+            <% } else {%>
+              <div class="position-relative">
+                <p><%= members[i].name %></p>
+                <% if (user && user.role === 'admin') {%> 
+                  <form class="position-absolute top-0 end-0 delete-document-form" action="/membership/post-new-member/<%= members[i]._id %>?_method=DELETE" method="post">- <button class="btn btn-danger btn-sm delete-document-button" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .65rem;" type="submit">Delete</button></form>
+                <% } %>
+              </div>
+            <% } %> <% } %>
+          </div>
+        <% } %>
       </section>
     </section>
   </main>

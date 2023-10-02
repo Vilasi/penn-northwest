@@ -1,6 +1,23 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
+
+//* Environment Setup
+//? Database Environment
+const dbURL = `${
+  process.env.NODE_ENV === 'production'
+    ? process.env.DB_URL
+    : `mongodb://127.0.0.1:27017/${process.env.DB_NAME}`
+}`;
+
+//? Cookie Security
+let secureCookieBoolean;
+process.env.NODE_ENV === 'production'
+  ? (secureCookieBoolean = true)
+  : (secureCookieBoolean = false);
+
+console.log(secureCookieBoolean);
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -42,7 +59,7 @@ mongoose.connection.once('open', () => {
 });
 
 async function main() {
-  await mongoose.connect(process.env.DB_URL);
+  await mongoose.connect(dbURL);
 }
 
 //* SET VIEW ENGINE && SET EJS-Mate Template Engine
@@ -74,8 +91,7 @@ app.use(
     name: 'miImCp',
     secret: process.env.SECRET_KEY,
     store: MongoStore.create({
-      mongoUrl: process.env.DB_URL,
-      // mongoUrl: 'mongodb://127.0.0.1:27017/penn-northwest',
+      mongoUrl: dbURL,
       dbName: process.env.DB_NAME,
       touchAfter: 24 * 60 * 60,
       crypto: {
@@ -93,17 +109,17 @@ app.use(
       httpOnly: true,
       //! NOTE! The below forces the cookie to only work over https
       //TODO Implement the below once https is setup
-      // secure: true,
+      secure: secureCookieBoolean,
     },
   })
 );
 
 //? Initialize connect-flash
 app.use(flash());
-//? Initialize Helmet Header Package
-//TODO Setup Custom Content Security Policy and remove the {contentSecurityPolicy: false} flag
+
+//? Initialize Helmet HTTP Header Package
+//TODO Fully Setup Custom Content Security Policy
 app.use(helmet());
-// console.log(helmet.contentSecurityPolicy.dangerouslyDisableDefaultSrc);
 
 app.use(
   helmet.contentSecurityPolicy({

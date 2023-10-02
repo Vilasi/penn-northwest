@@ -68,11 +68,11 @@
   padding-bottom: 1.75em;
 }
 
-.hero-gradient {
+/* .hero-gradient {
   background: linear-gradient(150deg, #f8f9fa 50%, transparent 100%);
-}
+} */
 .hero-gradient {
-  background: linear-gradient(180deg, #f8f9fa 50%, transparent 100%);
+  background: #f8f9fa;
 }
 
 .make-it-in-gradient {
