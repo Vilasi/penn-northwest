@@ -31,3 +31,6 @@ Welcome to Penn-Northwest, the leading catalyst for economic growth and prosperi
 Idea for About Page 
     Move the "All Roads Lead Through Mercer County" Image to About Page 
     Give it either a topology SVG background, or a roadmap of Mercer County, or some such
+
+Homepage
+    Significantly reduce the amount of text the user has to read in the Hero Section
