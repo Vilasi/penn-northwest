@@ -60,12 +60,12 @@ async function main() {
   await mongoose.connect(dbURL);
 }
 
-//* SET VIEW ENGINE && SET EJS-Mate Template Engine
+//? SET VIEW ENGINE && SET EJS-Mate Template Engine
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
-//* LOAD STATIC FILES
+//? LOAD STATIC FILES
 const pathToPublic = path.join(__dirname, '/public');
 app.use(express.static(pathToPublic));
 
@@ -73,17 +73,28 @@ app.use(express.static(pathToPublic));
 //*----- Related blocks are separated by //? comments
 //? Allows express to be able to parse incoming JSON payloads
 app.use(express.json());
+
 //? Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 //? Method Override for Overriding POST requests
 // override with POST having ?_method=DELETE, such that:
 //[IN <FORM>]: action="http://localhost:3000/comments/<%= desiredComment.id %>?_method=PATCH"
 app.use(methodOverride('_method'));
+
 //? Morgan Logger Middleware
-app.use(morgan('dev'));
+//--When in production, only errors will be logged
+process.env.NODE_ENV === 'production'
+  ? app.use(
+      morgan('combined', {
+        skip: function (req, res) {
+          return res.statusCode < 400;
+        },
+      })
+    )
+  : app.use(morgan('dev'));
+
 //? Express Session Middleware
-//TODO CONFIGURE A PROPER DATASTORE FOR SESSION
-// checkout npm connect-mongo
 app.use(
   session({
     name: 'miImCp',

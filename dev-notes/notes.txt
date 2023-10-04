@@ -7,7 +7,7 @@ Domain Provider: Network Solutions.
 
 Dream Host + Blue Host - Server Hosting?
 
-Become a member sends an email when a member submits a form.
+(DONE) Become a member sends an email when a member submits a form.
 
 MAPS Technologies are currently handling the payment details for members.
 --Alisha Rodgers. Renner is their tech guy.
