@@ -16,8 +16,6 @@ process.env.NODE_ENV === 'production'
   ? (secureCookieBoolean = true)
   : (secureCookieBoolean = false);
 
-console.log(secureCookieBoolean);
-
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');

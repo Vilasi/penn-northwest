@@ -15,43 +15,48 @@
   class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5"
 >
   <section class="row mx-0 py-5 hero-gradient rounded">
-    <div class="col-lg-6 text-start">
+    <!--? XXL Screen -->
+    <div class="d-none d-xxl-block col-xxl-6 text-start">
       <article class="container position-relative">
         <!-- Large Screen -->
-        <h1
+        <!-- <h1
           class="d-none d-sm-block ff-2 display-1 mt-4 mb-3 border-bottom border-1 z-3"
+        >
+          Penn-Northwest Development Corporation
+        </h1> -->
+        <h1
+          id="large-screen-hero-header"
+          class="d-none d-sm-block ff-1 lh-1 mt-4 mb-5 border-bottom border-1 z-3"
         >
           Penn-Northwest Development Corporation
         </h1>
         <!-- Small Screen -->
         <h1
-          class="d-sm-none ff-2 font-size-2 mt-4 mb-3 border-bottom border-1 z-3"
+          class="d-sm-none ff-1 font-size-2 mt-4 mb-3 border-bottom border-1 z-3"
         >
           Penn-Northwest Development Corporation
         </h1>
-        <p class="ff-4 font-size-6 mt-4">
+        <p class="lead mt-4 max-text-width hero-lead-text">
           Welcome to Penn-Northwest Development Corporation, your trusted
-          partner for economic development in Northwestern Pennsylvania. We are
-          a non-profit organization dedicated to promoting business growth,
-          community revitalization, and job creation in the region.
+          partner for economic development in Northwestern Pennsylvania.
         </p>
-        <p class="ff-4 font-size-6 mt-4 mb-5 mb-lg-0">
+        <p class="lead mt-4 max-text-width hero-lead-text">
+          We are a non-profit organization dedicated to promoting business
+          growth, community revitalization, and job creation in the region.
+        </p>
+        <!-- <p class="ff-4 font-size-6 mt-4 mb-5 mb-lg-0">
           With over 40 years of experience, we have a proven track record of
           success in attracting and retaining businesses, supporting
           entrepreneurs, and fostering economic growth. Our team of experts is
           committed to providing you with the resources, guidance, and support
           you need to achieve your business goals.
-        </p>
+        </p> -->
 
         <div class="container-fluid">
-          <!-- <button type="button" class="btn btn-primary btn-lg">
-          Large button
-        </button> -->
-
           <a
             href="#icon-divider"
             id="call-to-action-button"
-            class="btn btn-background-slide my-4 d-none d-lg-flex ff-4"
+            class="btn btn-background-slide mt-5 mb-4 d-none d-lg-flex ff-4"
           >
             Start your journey today!
             <i class="gg-arrow-right d-inline-block"></i>
@@ -62,14 +67,60 @@
         </div>
       </article>
     </div>
-    <div class="col-lg-6 text-center my-3">
-      <!--TODO Upload this image to cloudinary and set attribute: crossorigin="anonymous" -->
+
+    <!--?  -->
+    <div class="d-xxl-none col-lg-8 text-start">
+      <article class="container position-relative">
+        <!-- Large Screen -->
+        <!-- <h1
+          class="d-none d-sm-block ff-2 display-1 mt-4 mb-3 border-bottom border-1 z-3"
+        >
+          Penn-Northwest Development Corporation
+        </h1> -->
+        <h1
+          id="large-screen-hero-header"
+          class="d-none d-sm-block ff-1 lh-1 mt-4 mb-5 border-bottom border-1 z-3"
+        >
+          Penn-Northwest Development Corporation
+        </h1>
+        <!-- Small Screen -->
+        <h1
+          class="d-sm-none ff-1 font-size-2 mt-4 mb-3 border-bottom border-1 z-3"
+        >
+          Penn-Northwest Development Corporation
+        </h1>
+        <p class="lead mt-4 max-text-width hero-lead-text">
+          Welcome to Penn-Northwest Development Corporation, your trusted
+          partner for economic development in Northwestern Pennsylvania.
+        </p>
+        <p class="lead mt-4 max-text-width hero-lead-text">
+          We are a non-profit organization dedicated to promoting business
+          growth, community revitalization, and job creation in the region.
+        </p>
+
+        <div class="container-fluid">
+          <a
+            href="#icon-divider"
+            id="call-to-action-button"
+            class="btn btn-background-slide mt-5 mb-4 d-none d-lg-flex ff-4"
+          >
+            Start your journey today!
+            <i class="gg-arrow-right d-inline-block"></i>
+            <div
+              class="text-light btn-background-slide--blue btn-background-slide-bg"
+            ></div>
+          </a>
+        </div>
+      </article>
+    </div>
+    <!--TODO Upload this image to cloudinary and set attribute: crossorigin="anonymous" (if it is reused) -->
+    <!-- <div class="col-lg-6 text-center my-3">
       <img
         class="img-fluid w-90 mw-90 h-auto shadow-lg border rounded"
         src="/assets/images/home/0011.jpg"
         alt="All roads lead to and through Mercer County"
       />
-    </div>
+    </div> -->
   </section>
 
   <!--! Icons Divider ------------------------------------------------------------------------------------------------------------------>

@@ -72,7 +72,17 @@
   background: linear-gradient(150deg, #f8f9fa 50%, transparent 100%);
 } */
 .hero-gradient {
-  background: #f8f9fa;
+  /* background: #f8f9fa; */
+  background: url(../assets/svgs/home/fluid.svg);
+  background-size: cover;
+}
+
+.hero-lead-text {
+  font-size: 1.5rem;
+}
+
+#large-screen-hero-header {
+  font-size: 6rem;
 }
 
 .make-it-in-gradient {
@@ -90,6 +100,8 @@
   max-height: 15rem;
 }
 
-/* dialog {
-  border: none;
-} */
+@media (max-width: 991px) {
+  #large-screen-hero-header {
+    font-size: 4.5rem;
+  }
+}
