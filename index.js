@@ -56,6 +56,9 @@ mongoose.connection.once('open', () => {
   console.log('Database Connected!');
 });
 
+console.log(dbURL);
+
+//? Connect to Database
 async function main() {
   await mongoose.connect(dbURL);
 }
@@ -95,6 +98,8 @@ process.env.NODE_ENV === 'production'
   : app.use(morgan('dev'));
 
 //? Express Session Middleware
+//-- trust proxy helps our cookie be accepted when running in a prod environment on Render, which runs through a reverse proxy
+app.set('trust proxy', 1);
 app.use(
   session({
     name: 'miImCp',
@@ -116,6 +121,7 @@ app.use(
       maxAge: 7 * 24 * 60 * 60 * 1000,
       //This sets the httpOnly to true - preventing client-side scripts from gaining access to the cookie
       httpOnly: true,
+      sameSite: 'none',
       //! NOTE! The below forces the cookie to only work over https
       //TODO Implement the below once https is setup
       secure: secureCookieBoolean,
