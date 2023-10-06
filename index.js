@@ -56,8 +56,6 @@ mongoose.connection.once('open', () => {
   console.log('Database Connected!');
 });
 
-console.log(dbURL);
-
 //? Connect to Database
 async function main() {
   await mongoose.connect(dbURL);
@@ -132,7 +130,7 @@ app.use(
 //? Initialize connect-flash
 app.use(flash());
 
-//? Initialize Helmet HTTP Header Package
+//? Initialize Helmet HTTP Header Package - setup allowed CSP
 //TODO Fully Setup Custom Content Security Policy
 app.use(helmet());
 
