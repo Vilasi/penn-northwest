@@ -3,19 +3,14 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 //* Environment Setup
-//? Database Environment
-const dbURL = `${
-  process.env.NODE_ENV === 'production'
-    ? process.env.DB_URL
-    : `mongodb://127.0.0.1:27017/${process.env.DB_NAME}`
-}`;
+const {
+  secureCookieBoolean,
+  dbURL,
+  sameSitePolicy,
+} = require('./config/env/index');
+console.log(secureCookieBoolean, dbURL, sameSitePolicy);
 
-//? Cookie Security
-let secureCookieBoolean;
-process.env.NODE_ENV === 'production'
-  ? (secureCookieBoolean = true)
-  : (secureCookieBoolean = false);
-
+//* Import Dependencies
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -61,24 +56,22 @@ async function main() {
   await mongoose.connect(dbURL);
 }
 
-//? SET VIEW ENGINE && SET EJS-Mate Template Engine
+//* SET VIEW ENGINE && SET EJS-Mate Template Engine
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
-//? LOAD STATIC FILES
+//* LOAD STATIC FILES
 const pathToPublic = path.join(__dirname, '/public');
 app.use(express.static(pathToPublic));
 
-//* Initialization Middleware
-//*----- Related blocks are separated by //? comments
-//? Allows express to be able to parse incoming JSON payloads
+//* Parse incoming JSON payloads
 app.use(express.json());
 
-//? Parse URL-encoded bodies (as sent by HTML forms)
+//* Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-//? Method Override for Overriding POST requests
+//* Method Override for Overriding POST requests
 // override with POST having ?_method=DELETE, such that:
 //[IN <FORM>]: action="http://localhost:3000/comments/<%= desiredComment.id %>?_method=PATCH"
 app.use(methodOverride('_method'));
@@ -119,18 +112,19 @@ app.use(
       maxAge: 7 * 24 * 60 * 60 * 1000,
       //This sets the httpOnly to true - preventing client-side scripts from gaining access to the cookie
       httpOnly: true,
-      sameSite: 'none',
+      // TODO - Figure out why sameSite is making the cookie not save
+      //https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-03#section-4.1.2.7
+      sameSite: sameSitePolicy,
       //! NOTE! The below forces the cookie to only work over https
-      //TODO Implement the below once https is setup
       secure: secureCookieBoolean,
     },
   })
 );
 
-//? Initialize connect-flash
+//* Initialize connect-flash messages
 app.use(flash());
 
-//? Initialize Helmet HTTP Header Package - setup allowed CSP
+//* Initialize Helmet HTTP Header Package - setup allowed Content Security Policy
 //TODO Fully Setup Custom Content Security Policy
 app.use(helmet());
 
@@ -155,7 +149,7 @@ app.use(
   })
 );
 
-//? Initialize Passport and setup User Session Serialization for storing User info in the session
+//* Initialize PassportJS and setup User Session Serialization for storing User info in the session
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -169,7 +163,7 @@ app.use(
   })
 );
 
-//* Connect-Flash variable definitions
+//* Connect-Flash message variable definitions
 app.use((req, res, next) => {
   //currentUser is used for user authentication
   res.locals.currentUser = req.user || null;

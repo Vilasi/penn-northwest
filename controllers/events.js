@@ -81,6 +81,11 @@ module.exports.handleCheckout = async (req, res, next) => {
     attendantName: attendant.name,
     email: attendant.email,
   };
+  console.log(
+    'THIS IS THE SESSION FROM HANDLECHECKOUT==================================='
+      .red
+  );
+  console.log(req.session);
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -116,6 +121,12 @@ module.exports.handleCheckout = async (req, res, next) => {
 //https://stripe.com/docs/api/events/list?lang=node
 //https://stripe.com/docs/api/events/types?lang=node
 module.exports.checkoutSuccess = async (req, res, next) => {
+  console.log(
+    'BELOW IS THE REQ.SESSION FROM checkoutSuccess events.js Ln 123========================================='
+      .red
+  );
+  console.log(req.session);
+
   // Fetch the last 3 'charge.succeeded' events from Stripe
   const events = await stripe.events.list({
     limit: 3,
