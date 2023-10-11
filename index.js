@@ -2,13 +2,13 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-//* Environment Setup
+//* Environment Setup and Config
 const {
   secureCookieBoolean,
   dbURL,
   sameSitePolicy,
 } = require('./config/env/index');
-console.log(secureCookieBoolean, dbURL, sameSitePolicy);
+const corsMiddleware = require('./config/cors/index');
 
 //* Import Dependencies
 const express = require('express');
@@ -112,7 +112,7 @@ app.use(
       maxAge: 7 * 24 * 60 * 60 * 1000,
       //This sets the httpOnly to true - preventing client-side scripts from gaining access to the cookie
       httpOnly: true,
-      // TODO - Figure out why sameSite is making the cookie not save
+      // TODO - Figure out why sameSite is making the cookie not save ~~~~~~~~~~ MAYBE FIXED ~~~~~~~~~~
       //https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-03#section-4.1.2.7
       sameSite: sameSitePolicy,
       //! NOTE! The below forces the cookie to only work over https
@@ -123,6 +123,9 @@ app.use(
 
 //* Initialize connect-flash messages
 app.use(flash());
+
+//* Initialize CORS
+app.use('*', corsMiddleware);
 
 //* Initialize Helmet HTTP Header Package - setup allowed Content Security Policy
 //TODO Fully Setup Custom Content Security Policy
