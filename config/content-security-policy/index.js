@@ -29,3 +29,9 @@ module.exports.fontSrcUrls = [
   'https://fonts.gstatic.com/',
   'https://fonts.googleapis.com/',
 ];
+
+module.exports.imgSrcUrls = [
+  'https://placehold.co',
+  'https://res.cloudinary.com/dypchgtip/', //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
+  'https://images.unsplash.com/',
+];

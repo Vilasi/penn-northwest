@@ -140,13 +140,7 @@ app.use(
       styleSrc: ["'self'", "'unsafe-inline'", ...allowedSources.styleSrcUrls],
       workerSrc: ["'self'", 'blob:'],
       objectSrc: [],
-      imgSrc: [
-        "'self'",
-        'blob:',
-        'data:',
-        'https://res.cloudinary.com/dypchgtip/', //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
-        'https://images.unsplash.com/',
-      ],
+      imgSrc: ["'self'", 'blob:', 'data:', ...allowedSources.imgSrcUrls],
       fontSrc: ["'self'", ...allowedSources.fontSrcUrls],
     },
   })

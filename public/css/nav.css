@@ -58,6 +58,10 @@ hr.m-0.scroll {
   height: 5rem !important;
 }
 
+.custom-z-index {
+  z-index: 99 !important;
+}
+
 @media (max-width: 991.98px) {
   .navbar-collapse {
     background-color: #003a69;

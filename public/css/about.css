@@ -6,5 +6,27 @@
 }
 
 #hero-header {
-  font-size: clamp(2rem, 25vw, 9rem);
+  font-size: clamp(2rem, 25vw, 11rem);
+}
+
+.w-fit-content {
+  width: fit-content !important;
+}
+
+.custom-z-index {
+  z-index: 5 !important;
+}
+
+#visual {
+  top: 85px !important;
+  right: -100px !important;
+}
+
+@media screen and (max-width: 992px) {
+  #visual {
+    /* top: 35rem !important; */
+    top: 450px !important;
+
+    right: -100px !important;
+  }
 }
