@@ -100,6 +100,23 @@ const registrationValidation = async (req, res, next) => {
   }
 };
 
+const resetPasswordValidation = async (req, res, next) => {
+  const email = req.body;
+  const result = joiValidations.resetPasswordSchema.validate(email);
+
+  //* Validation error handler
+  if (result.error) {
+    const message = result.error.details[0].message;
+    req.flash('error', message);
+    console.log('Joi Error'.yellow);
+    console.log(result.error.details[0].message);
+
+    return res.redirect('/forgot-password');
+  } else {
+    next();
+  }
+};
+
 const membershipApplicationValidation = async (req, res, next) => {
   const application = req.body.application;
   const result =
@@ -138,6 +155,7 @@ module.exports = {
   paidEventValidation,
   freeEventValidation,
   registrationValidation,
+  resetPasswordValidation,
   membershipApplicationValidation,
   newMemberValidation,
 };

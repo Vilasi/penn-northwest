@@ -66,7 +66,7 @@ const eventSchema = new Schema(
     //? The below commented out attendees is saved for potential later reintegration
     attendees: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId, // Keeping this verbose for later reference
         ref: 'Attendant', // Reference to the User model
       },
     ],

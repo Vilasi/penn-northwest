@@ -4,11 +4,11 @@ const objectIdType = Schema.Types.ObjectId;
 
 const tokenSchema = new Schema({
   userId: {
-    type: Schema.Types.ObjectId,
+    type: objectIdType,
     required: true,
-    ref: 'user',
+    ref: 'User',
   },
-  token: {
+  secret: {
     type: String,
     required: true,
   },

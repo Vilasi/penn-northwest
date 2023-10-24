@@ -6,6 +6,7 @@ const User = require('../models/users.js');
 //* Import Validation Middleware
 const {
   registrationValidation,
+  resetPasswordValidation,
 } = require('../utils/middleware/joiValidations.js');
 //* Import Express and Initialize Router
 const express = require('express');
@@ -31,6 +32,12 @@ router
 
 router.route('/logout').post(users.logout);
 
-router.route('/forgot-password').get(users.getForgotPasswordPage);
+//TODO Write Verification for post route
+router
+  .route('/forgot-password')
+  .get(users.getForgotPasswordPage)
+  .post(resetPasswordValidation, users.sendPasswordResetEmail);
+
+router.route('/reset-password/:id/:token').get(users.getResetPasswordPage);
 
 module.exports = router;
