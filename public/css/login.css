@@ -3,6 +3,10 @@ form {
   width: 50%;
 }
 
+#forgot-password-link {
+  text-decoration: underline;
+}
+
 @media (max-width: 992px) {
   form {
     width: 100%;

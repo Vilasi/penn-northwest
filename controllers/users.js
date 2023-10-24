@@ -85,3 +85,7 @@ module.exports.logout = (req, res, next) => {
     return res.redirect('/');
   });
 };
+
+module.exports.getForgotPasswordPage = (req, res, next) => {
+  res.render('users/forgot-password');
+};

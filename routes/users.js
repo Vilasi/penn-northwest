@@ -31,4 +31,6 @@ router
 
 router.route('/logout').post(users.logout);
 
+router.route('/forgot-password').get(users.getForgotPasswordPage);
+
 module.exports = router;

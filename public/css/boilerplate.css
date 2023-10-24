@@ -302,6 +302,9 @@ body {
 .min-height-100-vh {
   min-height: 100vh;
 }
+.min-height-90-vh {
+  min-height: 90vh;
+}
 
 .dividing-section-height {
   min-height: 33dvh;

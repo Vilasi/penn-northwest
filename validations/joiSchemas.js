@@ -56,7 +56,7 @@ module.exports.imageSchema = Joi.object({
   filename: Joi.string().escapeHtml().required(),
 });
 
-//TODO Expand Attendant Data Collection
+//TODO Expand Attendant Data Collection -- Waiting on CRM people
 module.exports.paidEventSchema = Joi.object({
   id: Joi.string().escapeHtml().required(),
   dateTime: Joi.string().escapeHtml().required(),
