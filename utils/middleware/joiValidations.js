@@ -117,6 +117,24 @@ const resetPasswordValidation = async (req, res, next) => {
   }
 };
 
+const matchingPasswordValidation = async (req, res, next) => {
+  const passwords = req.body;
+  const result = joiValidations.matchingPasswordSchema.validate(passwords);
+  console.log('FROM THE JOI VALIDATIONS FILE'.red);
+
+  //* Validation error handler
+  if (result.error) {
+    const message = result.error.details[0].message;
+    req.flash('error', message);
+    console.log('Joi Error'.yellow);
+    console.log(result.error.details[0].message);
+
+    return res.redirect(req.originalUrl);
+  } else {
+    next();
+  }
+};
+
 const membershipApplicationValidation = async (req, res, next) => {
   const application = req.body.application;
   const result =
@@ -156,6 +174,7 @@ module.exports = {
   freeEventValidation,
   registrationValidation,
   resetPasswordValidation,
+  matchingPasswordValidation,
   membershipApplicationValidation,
   newMemberValidation,
 };

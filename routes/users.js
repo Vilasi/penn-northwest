@@ -7,6 +7,7 @@ const User = require('../models/users.js');
 const {
   registrationValidation,
   resetPasswordValidation,
+  matchingPasswordValidation,
 } = require('../utils/middleware/joiValidations.js');
 //* Import Express and Initialize Router
 const express = require('express');
@@ -38,6 +39,10 @@ router
   .get(users.getForgotPasswordPage)
   .post(resetPasswordValidation, users.sendPasswordResetEmail);
 
-router.route('/reset-password/:id/:token').get(users.getResetPasswordPage);
+// TODO Write validations for post
+router
+  .route('/reset-password/:id/:token')
+  .get(users.getResetPasswordPage)
+  .post(matchingPasswordValidation, users.resetPassword);
 
 module.exports = router;

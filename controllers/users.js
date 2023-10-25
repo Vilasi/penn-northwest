@@ -206,6 +206,19 @@ module.exports.getResetPasswordPage = async (req, res, next) => {
   }
 };
 
+module.exports.resetPassword = async (req, res, next) => {
+  const { password, password2 } = req.body;
+  const { id, token } = req.params;
+
+  // Redirect back to the password reset page if the passwords do not match -- For backend/postman attacks
+  if (password !== password2) {
+    req.flash('error', 'Passwords do not match.');
+    return res.redirect(req.originalUrl);
+  }
+
+  res.redirect('/login');
+};
+
 // try {
 // } catch (error) {
 //   req.flash('error', 'There was an error sending the email.');
