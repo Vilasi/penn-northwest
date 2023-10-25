@@ -95,6 +95,7 @@ module.exports.sendPasswordResetEmail = async (req, res, next) => {
 
   const user = await User.findOne({ email: email });
 
+  // If no user is found, show a generic message (security reasons) and redirect to forgot-password
   if (!user) {
     req.flash(
       'success',
@@ -103,13 +104,15 @@ module.exports.sendPasswordResetEmail = async (req, res, next) => {
     return res.redirect('/forgot-password');
   }
 
-  // Generate signing secret and save it to User Doc
+  // Generate a crypto token to be used in the JWT secret
   const cryptoToken = crypto.randomBytes(32).toString('hex');
   const secret = process.env.JWT_SECRET + cryptoToken;
 
+  // Save the generated secret to the user document
   user.token = secret;
   const savedUser = await user.save();
 
+  // If an error occurs while saving the user, show an error message and redirect to forgot-password
   if (!savedUser) {
     req.flash('error', 'There was an error sending email. Please try again.');
     console.log(
@@ -119,20 +122,30 @@ module.exports.sendPasswordResetEmail = async (req, res, next) => {
     return res.redirect('/forgot-password');
   }
 
+  // Construct the payload to be signed into the JWT
   const payload = {
     email: user.email,
     id: user._id,
   };
 
-  // Sign token and send it to user via email
+  // Sign a JWT token with the secret and payload, set expiration to 20 minutes
   const token = jwt.sign(payload, secret, {
     expiresIn: '20m',
   });
 
+  // Create a link with the token to be sent in the password reset email - send email with sendPasswordResetEmail util function
   const link = `${process.env.SERVER_URL}/reset-password/${user._id}/${token}`;
-  //TODO Send email with above link
-  sendPasswordResetEmail(link, user, process.env.SERVER_URL);
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // TODO DELETE THIS CONSOLE LOG AND REENABLE EMAIL FUNCTION
+  console.log(link);
+  // sendPasswordResetEmail(link, user, process.env.SERVER_URL);
+  //! REENABLE ^^^^^^^^
 
+  // After sending the email, show a success message (generic) and redirect to forgot-password
   req.flash(
     'success',
     'If an account is found with that email address, an email will be sent to it with instructions on how to reset your password.'
@@ -141,8 +154,56 @@ module.exports.sendPasswordResetEmail = async (req, res, next) => {
 };
 
 module.exports.getResetPasswordPage = async (req, res, next) => {
-  console.log(req.params);
-  res.send(req.params);
+  const { id, token } = req.params;
+
+  // Retrieve the user from the database using the provided ID
+  const user = await User.findById(id);
+
+  // Check if the user is found, or if they have a token - redirect and flash message if falsey
+  if (!user || !user.token) {
+    console.log(
+      'RESET PASSWORD ERROR -- user variable falsey, user or user token missin==========/controllers/users.js LINE 149=============='
+        .red
+    );
+    req.flash(
+      'error',
+      'There was an error communicating with the database. Please try again.'
+    );
+
+    return res.redirect('/forgot-password');
+  }
+
+  // Store the user.token as the JWT secret
+  const secret = user.token;
+
+  try {
+    // Verify the JWT token using the secret
+    const payload = jwt.verify(token, secret);
+
+    return res.render('users/reset-password', { username: user.username });
+  } catch (error) {
+    // Log the JWT verification error for debugging purposes
+    console.log(
+      'ERROR VERIFYING JWT TOKEN. What follows is the jwt error message:'.red
+    );
+    console.log(error.message);
+
+    // Handle specific JWT error for invalid signature which could indicate the link has expired
+    if (error.message === 'invalid signature') {
+      req.flash(
+        'error',
+        'The password reset link has expired. Please try again.'
+      );
+      return res.redirect('/forgot-password');
+    } else {
+      // Handle general JWT verification errors
+      req.flash(
+        'error',
+        'There was an error verifying your password reset link. Please try again.'
+      );
+      return res.redirect('/forgot-password');
+    }
+  }
 };
 
 // try {

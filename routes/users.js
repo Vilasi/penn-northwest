@@ -12,6 +12,7 @@ const {
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 
+//TODO Build a functionality such that if the user enters their email it will search the database for that user and try to log them in that way
 router
   .route('/login')
   .get(users.getLoginPage)
@@ -32,7 +33,6 @@ router
 
 router.route('/logout').post(users.logout);
 
-//TODO Write Verification for post route
 router
   .route('/forgot-password')
   .get(users.getForgotPasswordPage)
