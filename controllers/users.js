@@ -3,6 +3,7 @@ const joiValidations = require('../validations/joiSchemas.js');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const sendPasswordResetEmail = require('../utils/middleware/sendPasswordResetEmail.js');
+const sendPasswordResetConfirmationEmail = require('../utils/middleware/sendPasswordConfirmationEmail.js');
 
 module.exports.getRegisterPage = (req, res) => {
   res.render('users/register');
@@ -142,7 +143,7 @@ module.exports.sendPasswordResetEmail = async (req, res, next) => {
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   // TODO DELETE THIS CONSOLE LOG AND REENABLE EMAIL FUNCTION
   console.log(link);
-  // sendPasswordResetEmail(link, user, process.env.SERVER_URL);
+  sendPasswordResetEmail(link, user, process.env.SERVER_URL);
   //! REENABLE ^^^^^^^^
 
   // After sending the email, show a success message (generic) and redirect to forgot-password
@@ -216,7 +217,63 @@ module.exports.resetPassword = async (req, res, next) => {
     return res.redirect(req.originalUrl);
   }
 
-  res.redirect('/login');
+  const user = await User.findById(id);
+  if (!user || !user.token) {
+    console.log(
+      'ERROR FINDING USER OR USER TOKEN======= controllers/users.js -> Line 221'
+        .red
+    );
+    req.flash(
+      'error',
+      'There was an error communicating with the database. Please try again.'
+    );
+    return res.redirect(req.originalUrl);
+  }
+
+  const secret = user.token;
+  try {
+    const payload = jwt.verify(token, secret);
+    const userUpdateCheck = await user.setPassword(password);
+    const newUser = await user.save();
+
+    if (!newUser || !userUpdateCheck) {
+      console.log(
+        'ERROR UPDATING USER PASSWORD======= controllers/users.js -> Line 237'
+          .red
+      );
+      req.flash(
+        'error',
+        'There was an error communicating with the database. Please try again.'
+      );
+      return res.redirect(req.originalUrl);
+    }
+
+    console.log(userUpdateCheck);
+    sendPasswordResetConfirmationEmail(user, process.env.SERVER_URL);
+
+    req.flash('success', 'Password successfully reset.');
+    return res.redirect('/login');
+  } catch (error) {
+    console.log(
+      'ERROR VERIFYING JWT TOKEN. What follows is the jwt error message:'.red
+    );
+    console.log(error.message);
+
+    if (error.message === 'invalid signature') {
+      req.flash(
+        'error',
+        'The password reset link has expired. Please try again.'
+      );
+      return res.redirect('/forgot-password');
+    } else {
+      // Handle general JWT verification errors
+      req.flash(
+        'error',
+        'There was an error verifying your password reset. Please try again.'
+      );
+      return res.redirect('/forgot-password');
+    }
+  }
 };
 
 // try {

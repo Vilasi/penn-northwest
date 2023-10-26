@@ -39,7 +39,6 @@ router
   .get(users.getForgotPasswordPage)
   .post(resetPasswordValidation, users.sendPasswordResetEmail);
 
-// TODO Write validations for post
 router
   .route('/reset-password/:id/:token')
   .get(users.getResetPasswordPage)
