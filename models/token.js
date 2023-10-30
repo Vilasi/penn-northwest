@@ -1,3 +1,6 @@
+//TODO Delete this! It is currently unused
+//!  THIS MAY GET USED IN THE FUTURE BUT IS UNLIKELY..
+
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const objectIdType = Schema.Types.ObjectId;

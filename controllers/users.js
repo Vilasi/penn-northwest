@@ -60,7 +60,6 @@ module.exports.registerUser = async (req, res, next) => {
 };
 
 module.exports.getLoginPage = (req, res) => {
-  // console.log(joiValidations.registrationSchema);
   res.render('users/login');
 };
 
@@ -136,15 +135,8 @@ module.exports.sendPasswordResetEmail = async (req, res, next) => {
 
   // Create a link with the token to be sent in the password reset email - send email with sendPasswordResetEmail util function
   const link = `${process.env.SERVER_URL}/reset-password/${user._id}/${token}`;
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // TODO DELETE THIS CONSOLE LOG AND REENABLE EMAIL FUNCTION
   console.log(link);
   sendPasswordResetEmail(link, user, process.env.SERVER_URL);
-  //! REENABLE ^^^^^^^^
 
   // After sending the email, show a success message (generic) and redirect to forgot-password
   req.flash(
@@ -275,10 +267,3 @@ module.exports.resetPassword = async (req, res, next) => {
     }
   }
 };
-
-// try {
-// } catch (error) {
-//   req.flash('error', 'There was an error sending the email.');
-//   console.log('ERROR SIGNING JWT TOKEN')
-//   return res.redirect('/forgot-password');
-// }

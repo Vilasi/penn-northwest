@@ -105,3 +105,20 @@
     font-size: 4.5rem;
   }
 }
+
+#maps-contact-form {
+  background: url('../assets/svgs/blob-3.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.maps-contact-form-iframe {
+  background-color: #024878;
+}
+
+@media (max-width: 768px) {
+  #maps-contact-form-iframe {
+    width: 360 !important;
+  }
+}

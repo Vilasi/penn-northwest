@@ -41,6 +41,7 @@
           We are a non-profit organization dedicated to promoting business
           growth, community revitalization, and job creation in the region.
         </p>
+        <!--? The following is saved as the original copy material here -->
         <!-- <p class="ff-4 font-size-6 mt-4 mb-5 mb-lg-0">
           With over 40 years of experience, we have a proven track record of
           success in attracting and retaining businesses, supporting
@@ -106,6 +107,7 @@
       </article>
     </div>
     <!--TODO Upload this image to cloudinary and set attribute: crossorigin="anonymous" (if it is reused) -->
+    <!--? Previously held image. Delete later -->
     <!-- <div class="col-lg-6 text-center my-3">
       <img
         class="img-fluid w-90 mw-90 h-auto shadow-lg border rounded"
@@ -127,7 +129,7 @@
         inception to expansion.
       </p>
       <a
-        href="/"
+        href="/#services-section"
         id="work-button"
         class="btn btn-background-slide my-4 d-flex ff-4"
       >
@@ -154,7 +156,7 @@
         growth.
       </p>
       <a
-        href="/"
+        href="/membership#signup"
         id="work-button"
         class="btn btn-background-slide my-4 d-flex ff-4"
       >
@@ -181,7 +183,7 @@
         growth.
       </p>
       <a
-        href="/"
+        href="/membership#signup"
         id="work-button"
         class="btn btn-background-slide my-4 d-flex ff-4"
       >
@@ -211,7 +213,7 @@
         upcoming catalogue of events!
       </p>
       <a
-        href="/"
+        href="/events"
         id="work-button"
         class="btn btn-background-slide my-4 d-flex ff-4"
       >
@@ -495,7 +497,7 @@
     </header>
 
     <!--? Section 1 CORPORATE EXPANSION SOLUTIONS -->
-    <section class="row w-100 my-5 pb-5 g-5">
+    <section class="row w-100 mt-5 pb-5 g-5">
       <article class="col-lg-6">
         <h3 class="display-5 text-center border-bottom mb-5">
           Corporate Expansion Solutions
@@ -741,7 +743,9 @@
       </section>
 
       <!--? Final Incentive Info and Disclaimer -->
-      <aside class="col-12 d-flex flex-column align-items-center">
+      <aside
+        class="col-12 d-flex flex-column align-items-center shadow-sm pb-5"
+      >
         <h4 class="display-6 border-bottom mb-3">Further Incentive Info:</h4>
         <p class="lead max-text-width text-center mb-3">
           If your competitive project has a significant economic impact, there
@@ -762,6 +766,47 @@
           >
         </p>
       </aside>
+    </section>
+
+    <!-- <section class="w-100 my-5 pb-5 d-flex flex-column align-items-center"> -->
+    <section class="w-100 mb-5 pb-3">
+      <!-- <h1>Test</h1> -->
+      <header class="container d-flex flex-column align-items-center">
+        <h2 class="ff-4 font-size-1 display-2 text-center mb-3">
+          Get in contact!
+        </h2>
+        <p class="lead max-text-width text-center mb-5">
+          Ready to grow your business in Mercer County? Reach out to us now!
+        </p>
+      </header>
+      <article
+        id="maps-contact-form"
+        class="w-100 d-flex flex-column align-items-center"
+      >
+        <div id="iframe-div-test" class="shadow-lg border rounded mb-0 pb-0">
+          <!--? Medium and Up Screens -->
+          <iframe
+            class="maps-contact-form-iframe z-3 d-none d-md-block"
+            width="640"
+            height="1000"
+            src="https://app.mapstechnologies.com/external/form/widget/wDoaPR1Ta0uuZZo9iOWMjA"
+          ></iframe>
+          <!--? Between small and medium screens -->
+          <iframe
+            class="maps-contact-form-iframe z-3 d-none d-sm-block d-md-none"
+            width="480"
+            height="1000"
+            src="https://app.mapstechnologies.com/external/form/widget/wDoaPR1Ta0uuZZo9iOWMjA"
+          ></iframe>
+          <!--? Smallest screens only (phones) -->
+          <iframe
+            class="maps-contact-form-iframe z-3 d-sm-none"
+            width="360"
+            height="1000"
+            src="https://app.mapstechnologies.com/external/form/widget/wDoaPR1Ta0uuZZo9iOWMjA"
+          ></iframe>
+        </div>
+      </article>
     </section>
 
     <script src="/js/home/ColCalc.js"></script>

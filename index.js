@@ -134,7 +134,11 @@ app.use(helmet());
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ['https://www.youtube.com/', 'https://www.google.com/'],
+      defaultSrc: [
+        'https://www.youtube.com/',
+        'https://www.google.com/',
+        'https://app.mapstechnologies.com/',
+      ],
       connectSrc: ["'self'", ...allowedSources.connectSrcUrls],
       scriptSrc: ["'unsafe-inline'", "'self'", ...allowedSources.scriptSrcUrls],
       styleSrc: ["'self'", "'unsafe-inline'", ...allowedSources.styleSrcUrls],
