@@ -187,11 +187,8 @@ module.exports.postNewMember = async (req, res, next) => {
 };
 
 module.exports.renderMembershipPage = async (req, res, next) => {
-  //TODO Error Handle This
+  //The error handling for the following is handled on the frontend - rendering null if error/database empty/etc
   const members = await Member.find({});
-  // if (!members) {
-  //   req.flash('Error')
-  // }
   const sortedMembers = memberSorter(members);
 
   const user = req.user || null;

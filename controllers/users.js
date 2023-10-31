@@ -91,7 +91,8 @@ module.exports.getForgotPasswordPage = (req, res, next) => {
 };
 
 module.exports.sendPasswordResetEmail = async (req, res, next) => {
-  const { email } = req.body;
+  // Bot detection is being done in the joi validation middleware function for this one
+  const { email } = req.body.email;
 
   const user = await User.findOne({ email: email });
 

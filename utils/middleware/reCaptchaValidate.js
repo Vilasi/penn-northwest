@@ -6,8 +6,6 @@ const axios = require('axios');
  * @returns {Promise<boolean>} - A promise that resolves to true if the reCAPTCHA response is valid, and false otherwise.
  */
 
-//TODO FIX THIS - faulty key
-//https://stackoverflow.com/questions/36939870/google-recaptcha-returns-false-due-to-invalid-input-secret
 async function validateReCaptcha(req) {
   console.log('THIS IS THE RECAPTCHA VALIDATOR');
   // Check if the reCAPTCHA response exists in the request body

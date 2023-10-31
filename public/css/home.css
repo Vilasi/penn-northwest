@@ -68,11 +68,7 @@
   padding-bottom: 1.75em;
 }
 
-/* .hero-gradient {
-  background: linear-gradient(150deg, #f8f9fa 50%, transparent 100%);
-} */
 .hero-gradient {
-  /* background: #f8f9fa; */
   background: url(../assets/svgs/home/fluid.svg);
   background-size: cover;
 }
@@ -94,10 +90,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
-
-.mh-15 {
-  max-height: 15rem;
 }
 
 @media (max-width: 991px) {

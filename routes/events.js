@@ -44,7 +44,6 @@ router
 //* Stripe integrated redirects for payment success and payment cancel
 router.route('/checkout/success').get(events.checkoutSuccess);
 router.route('/checkout/cancel').get(events.checkoutCancel);
-//TODO Add Joi Validations for free event registration
 router
   .route('/free-registration-confirmation')
   .get(events.renderRegistrationConfirmation);

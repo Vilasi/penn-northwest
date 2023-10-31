@@ -1,4 +1,5 @@
 //! -- Joi Data Validations
+//? These validations are utilized in /utils/middleware/joiValidations.js
 const BaseJoi = require('joi');
 const sanitizeHtml = require('sanitize-html');
 

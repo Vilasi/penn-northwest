@@ -9,12 +9,6 @@ const getTodaysDate = require('../utils/getTodaysDate.js');
 const fileAdminLog = require('../utils/middleware/fileAdminLog');
 
 module.exports.adminIndex = async (req, res, next) => {
-  //TODO Admin authentication protect this route
-  console.log(
-    'BELOW IS THE REQ.USER=========controllers/admin.js==Line+13================================================'
-      .red
-  );
-  console.log(req.user);
   const data = {};
 
   //? Users lookup
@@ -54,7 +48,6 @@ module.exports.adminIndex = async (req, res, next) => {
   res.render('admin/index', { data });
 };
 
-// TODO Add functionality that deletes all attendants
 module.exports.deleteEvent = async (req, res, next) => {
   const { id } = req.params;
   const deletedEvent = await Event.findByIdAndDelete(id);
@@ -158,10 +151,3 @@ module.exports.promoteToAdmin = async (req, res, next) => {
 };
 
 //TODO Add admin account deletion
-
-//TODO Implement the following for looping through the event attendees
-// for (let event of data.events) {
-//   for (let attendant of event.attendees) {
-//     console.log(attendant);
-//   }
-// }

@@ -101,7 +101,14 @@ const registrationValidation = async (req, res, next) => {
 };
 
 const resetPasswordValidation = async (req, res, next) => {
-  const email = req.body;
+  // Bot detector
+  if (req.body.honeypot) {
+    req.flash('error', 'Bot detected');
+    return res.redirect('/');
+  }
+
+  const email = req.body.email;
+
   const result = joiValidations.resetPasswordSchema.validate(email);
 
   //* Validation error handler

@@ -13,7 +13,7 @@ const {
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 
-//TODO Build a functionality such that if the user enters their email it will search the database for that user and try to log them in that way
+//TODO Build a functionality that sends the user their username if their email exists
 router
   .route('/login')
   .get(users.getLoginPage)

@@ -107,12 +107,11 @@ app.use(
     saveUninitialized: false,
     // rolling: true,
     cookie: {
-      //One week from today
-      // maxAge: Date.now() + 60480000,
+      //One week from today (In milliseconds)
       maxAge: 7 * 24 * 60 * 60 * 1000,
       //This sets the httpOnly to true - preventing client-side scripts from gaining access to the cookie
       httpOnly: true,
-      // TODO - Figure out why sameSite is making the cookie not save ~~~~~~~~~~ MAYBE FIXED ~~~~~~~~~~
+      //? Same Site Documentation
       //https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-03#section-4.1.2.7
       sameSite: sameSitePolicy,
       //! NOTE! The below forces the cookie to only work over https
@@ -128,7 +127,6 @@ app.use(flash());
 app.use('*', corsMiddleware);
 
 //* Initialize Helmet HTTP Header Package - setup allowed Content Security Policy
-//TODO Fully Setup Custom Content Security Policy
 app.use(helmet());
 
 app.use(
