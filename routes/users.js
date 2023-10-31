@@ -8,6 +8,7 @@ const {
   registrationValidation,
   resetPasswordValidation,
   matchingPasswordValidation,
+  requestUsernameEmailValidation,
 } = require('../utils/middleware/joiValidations.js');
 //* Import Express and Initialize Router
 const express = require('express');
@@ -43,5 +44,10 @@ router
   .route('/reset-password/:id/:token')
   .get(users.getResetPasswordPage)
   .post(matchingPasswordValidation, users.resetPassword);
+
+router
+  .route('/forgot-username')
+  .get(users.getForgotUsernamePage)
+  .post(requestUsernameEmailValidation, users.sendUsernameEmail);
 
 module.exports = router;

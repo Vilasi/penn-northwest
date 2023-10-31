@@ -201,7 +201,8 @@ module.exports.getResetPasswordPage = async (req, res, next) => {
 };
 
 module.exports.resetPassword = async (req, res, next) => {
-  const { password, password2 } = req.body;
+  //Bot detection honeypot is done in the joi validation middleware function for this one
+  const { password, password2 } = req.body.passwords;
   const { id, token } = req.params;
 
   // Redirect back to the password reset page if the passwords do not match -- For backend/postman attacks
@@ -267,4 +268,21 @@ module.exports.resetPassword = async (req, res, next) => {
       return res.redirect('/forgot-password');
     }
   }
+};
+
+module.exports.getForgotUsernamePage = (req, res, next) => {
+  res.render('users/forgot-username');
+};
+
+module.exports.sendUsernameEmail = async (req, res, next) => {
+  //Honeypot is handled in the joi validation middleware function for this one
+  const { email } = req.body.email;
+  const user = await User.findOne({ email: email });
+  return res.send(user);
+
+  req.flash(
+    'success',
+    'If an account is found with that email address, an email will be sent to it with your username.'
+  );
+  res.redirect('/login');
 };

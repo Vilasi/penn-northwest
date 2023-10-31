@@ -92,6 +92,10 @@ module.exports.matchingPasswordSchema = Joi.object({
   password2: Joi.string().escapeHtml().min(6).required(),
 });
 
+module.exports.requestUsernameEmailSchema = Joi.object({
+  email: Joi.string().escapeHtml().email().required(),
+});
+
 module.exports.membershipApplicationSchema = Joi.object({
   companyName: Joi.string().escapeHtml().required(),
   website: Joi.string().escapeHtml().required(),

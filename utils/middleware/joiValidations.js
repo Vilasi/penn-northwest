@@ -125,9 +125,13 @@ const resetPasswordValidation = async (req, res, next) => {
 };
 
 const matchingPasswordValidation = async (req, res, next) => {
-  const passwords = req.body;
+  if (req.body.honeypot) {
+    req.flash('error', 'Bot detected');
+    return res.redirect('/');
+  }
+
+  const passwords = req.body.passwords;
   const result = joiValidations.matchingPasswordSchema.validate(passwords);
-  console.log('FROM THE JOI VALIDATIONS FILE'.red);
 
   //* Validation error handler
   if (result.error) {
@@ -137,6 +141,28 @@ const matchingPasswordValidation = async (req, res, next) => {
     console.log(result.error.details[0].message);
 
     return res.redirect(req.originalUrl);
+  } else {
+    next();
+  }
+};
+
+const requestUsernameEmailValidation = async (req, res, next) => {
+  if (req.body.honeypot) {
+    req.flash('error', 'Bot detected');
+    return res.redirect('/');
+  }
+
+  const email = req.body.email;
+  const result = joiValidations.requestUsernameEmailSchema.validate(email);
+
+  //* Validation error handler
+  if (result.error) {
+    const message = result.error.details[0].message;
+    req.flash('error', message);
+    console.log('Joi Error'.yellow);
+    console.log(result.error.details[0].message);
+
+    return res.redirect('/forgot-username');
   } else {
     next();
   }
@@ -181,6 +207,7 @@ module.exports = {
   freeEventValidation,
   registrationValidation,
   resetPasswordValidation,
+  requestUsernameEmailValidation,
   matchingPasswordValidation,
   membershipApplicationValidation,
   newMemberValidation,
