@@ -117,8 +117,14 @@
   background-color: #024878;
 }
 
+@media (max-height: 768px) {
+  .maps-contact-form-iframe {
+    width: 480px !important;
+  }
+}
+
 @media (max-width: 768px) {
-  #maps-contact-form-iframe {
-    width: 360 !important;
+  .maps-contact-form-iframe {
+    width: 360px !important;
   }
 }
