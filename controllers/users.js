@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const sendPasswordResetEmail = require('../utils/middleware/sendPasswordResetEmail.js');
 const sendPasswordResetConfirmationEmail = require('../utils/middleware/sendPasswordConfirmationEmail.js');
+const sendUsernameEmail = require('../utils/middleware/sendUsernameEmail.js');
 
 module.exports.getRegisterPage = (req, res) => {
   res.render('users/register');
@@ -278,7 +279,15 @@ module.exports.sendUsernameEmail = async (req, res, next) => {
   //Honeypot is handled in the joi validation middleware function for this one
   const { email } = req.body.email;
   const user = await User.findOne({ email: email });
-  return res.send(user);
+  if (!user) {
+    req.flash(
+      'success',
+      'If an account is found with that email address, an email will be sent to it with your username.'
+    );
+    return res.redirect('/login');
+  }
+
+  sendUsernameEmail(user, process.env.SERVER_URL);
 
   req.flash(
     'success',
