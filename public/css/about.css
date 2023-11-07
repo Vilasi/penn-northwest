@@ -168,3 +168,8 @@
     width: 110%;
   }
 }
+
+.staff-cards {
+  width: 25rem;
+  margin-bottom: 3rem;
+}
