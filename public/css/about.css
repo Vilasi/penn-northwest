@@ -155,7 +155,26 @@
   }
 }
 
-#test {
-  /* background: url('../assets/svgs/about/topography.svg'); */
-  /* width: fit-content; */
+#to-and-through-image {
+  width: 40%;
+}
+@media (max-width: 700px) {
+  #to-and-through-image {
+    width: 60%;
+  }
+}
+@media (max-width: 576px) {
+  #to-and-through-image {
+    width: 75%;
+  }
+}
+
+#blob-anchor-3::before {
+  content: url('../assets/svgs/about/blob-4.svg');
+  position: absolute;
+  top: -9vw;
+  left: 1.5%;
+  width: 100%;
+  height: auto;
+  z-index: 1;
 }
