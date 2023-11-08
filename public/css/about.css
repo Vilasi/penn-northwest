@@ -1,4 +1,6 @@
 #hero-header {
+  position: relative;
+  top: 1rem;
   font-size: clamp(2rem, 25vw, 11rem);
 }
 
@@ -6,18 +8,17 @@
   width: fit-content !important;
 }
 
-#introduction-header {
-  max-width: 25vw;
-}
-
-@media (max-width: 1800px) {
-  #introduction-header {
-    max-width: 30vw;
+@media (min-width: 1825px) {
+  #group-photo {
+    position: relative;
+    right: 6.5%;
   }
 }
-
-.custom-z-index {
-  z-index: 5 !important;
+@media (min-width: 2030px) {
+  #group-photo {
+    position: relative;
+    right: 10.5%;
+  }
 }
 
 #svg-1 {
@@ -172,4 +173,8 @@
 .staff-cards {
   width: 25rem;
   margin-bottom: 3rem;
+}
+
+#our-mission-header {
+  font-size: clamp(2rem, 25vw, 8rem);
 }
