@@ -178,3 +178,27 @@
 #our-mission-header {
   font-size: clamp(2rem, 25vw, 8rem);
 }
+
+@media (max-width: 992px) {
+  .border-sm-none {
+    border: none !important;
+  }
+}
+
+#peg-1 {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 10%;
+}
+@media (max-width: 992px) {
+  #peg-1 {
+    display: none;
+  }
+}
+#peg-2 {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 10%;
+}
