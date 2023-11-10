@@ -185,20 +185,25 @@
   }
 }
 
-#peg-1 {
+.peg-left {
   position: absolute;
   top: 50%;
   right: 0;
   width: 10%;
 }
 @media (max-width: 992px) {
-  #peg-1 {
+  .peg-left {
     display: none;
   }
 }
-#peg-2 {
+.peg-right {
   position: absolute;
   top: 50%;
   left: 0;
   width: 10%;
+}
+@media (max-width: 992px) {
+  .peg-right {
+    display: none;
+  }
 }
