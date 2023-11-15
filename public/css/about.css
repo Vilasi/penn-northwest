@@ -281,3 +281,50 @@
   height: auto;
   z-index: -1;
 }
+
+#customer-testimonials-second-section {
+  margin-top: 15rem;
+}
+
+#customer-testimonial-video-2 {
+  max-width: 65%;
+}
+@media (max-width: 1250px) {
+  #customer-testimonial-video-2 {
+    max-width: 75%;
+  }
+}
+
+@media (max-width: 992px) {
+  #customer-testimonial-video-2 {
+    margin-bottom: 15rem;
+  }
+}
+
+#customer-testimonial-video-2::after {
+  content: url('../assets/svgs/about/blob-9.svg') !important;
+  position: absolute;
+  top: -115%;
+  left: -25.5%;
+  width: 175%;
+  height: auto;
+  z-index: -1;
+}
+#customer-testimonial-video-3 {
+  max-width: 65%;
+}
+@media (max-width: 1250px) {
+  #customer-testimonial-video-3 {
+    max-width: 75%;
+  }
+}
+
+#customer-testimonial-video-3::after {
+  content: url('../assets/svgs/about/blob-9.svg') !important;
+  position: absolute;
+  top: -115%;
+  left: -25.5%;
+  width: 175%;
+  height: auto;
+  z-index: -1;
+}
