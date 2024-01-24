@@ -1,6 +1,7 @@
 //* This module sends the user their username, if a user was found in the database
 const sgMail = require('@sendgrid/mail');
 const apiKey = process.env.SENDGRID_EMAIL_API_KEY;
+const verifiedSender = process.env.SENDGRID_VERIFIED_SENDER;
 sgMail.setApiKey(apiKey);
 
 // TODO Change Verified sender to env variable
@@ -8,7 +9,7 @@ sgMail.setApiKey(apiKey);
 function sendUsernameEmail(user, url) {
   const message = {
     to: `${user.email}`,
-    from: 'penn.northwest.member.contact@gmail.com', // TODO Change to your verified sender
+    from: verifiedSender, // TODO Change to your verified sender
     subject: `Penn Northwest Username Requested`,
     text: `Hello, ${user.firstName}\nWe received a request for you username at ${url}.\nYour username is: ${user.username}\nIf you have any issues or questions, please contact our support team at info@penn-northwest.com or 724-662-3705.\nThank you for choosing Penn Northwest Development Corporation!\nConsider using a strong, unique password that you don't use on other sites.\nIf you have any issues or questions, please contact our support team at info@penn-northwest.com or 724-662-3705.\nThank you for choosing Penn Northwest Development Corporation!\nBest regards,\nThe PNDC Team`,
     html: `

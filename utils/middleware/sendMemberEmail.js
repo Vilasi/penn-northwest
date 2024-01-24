@@ -1,5 +1,6 @@
 const sgMail = require('@sendgrid/mail');
 const apiKey = process.env.SENDGRID_EMAIL_API_KEY;
+const verifiedSender = process.env.SENDGRID_VERIFIED_SENDER;
 sgMail.setApiKey(apiKey);
 
 //* This function sends an email after a membership application is submitted
@@ -9,8 +10,8 @@ sgMail.setApiKey(apiKey);
 //TODO Change the `to` field to actual membership application recipient
 function sendMessage(app) {
   const message = {
-    to: `vilasicoding@gmail.com`, //TODO Change to your recipient
-    from: 'penn.northwest.member.contact@gmail.com', // Change to your verified sender
+    to: `melinda@penn-northwest.com`, //TODO Change to your recipient
+    from: verifiedSender, // Change to your verified sender
     subject: `Membership Application from ${app.submittedBy} at ${app.companyName}`,
     text: `Company: ${app.companyName}\nWebsite: ${app.website}\nRepresentative: ${app.representative}\nEmail: ${app.email}\nPhone Number: ${app.phone}\nAddress: ${app.address}, ${app.city}, ${app.state} ${app.zip}\nCompany Type: ${app.companyType}\n\nDescription: ${app.descriptionOfBusiness}\n\nAffiliations: ${app.affiliations}\n\nAnnual Contribution: ${app.annualContribution}\n\nSubmitted By: ${app.submittedBy}\nSubmitter Title: ${app.submitterTitle}`,
     html: `

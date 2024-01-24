@@ -1,12 +1,13 @@
 //* This module sends an email to the user when they register for a free event
 const sgMail = require('@sendgrid/mail');
 const apiKey = process.env.SENDGRID_EMAIL_API_KEY;
+const verifiedSender = process.env.SENDGRID_VERIFIED_SENDER;
 sgMail.setApiKey(apiKey);
 
 function sendMessage(att) {
   const message = {
     to: `${att.email}`, // Change to your recipient
-    from: 'penn.northwest.member.contact@gmail.com', // Change to your verified sender
+    from: verifiedSender, // Change to your verified sender
     subject: `${att.eventName} Event Registration Confirmation`,
     text: `Event Registration Confirmation:\nCongrats, ${att.attendantName}, you are registered for ${att.eventName}!\nThe event will be at <strong>${att.location}</strong>.\nThe date and time is: ${att.dateTime}\nLooking forward to seeing you there!`,
     html: `
