@@ -7,6 +7,7 @@ const Event = require('../models/events');
 const Attendant = require('../models/attendants');
 //* Import Utils
 const sendMessage = require('../utils/middleware/freeEventEmail.js');
+const sendPaidEventReceipt = require('../utils/middleware/paidEventEmail.js');
 const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
 const fileAdminLog = require('../utils/middleware/fileAdminLog');
 const getTodaysDate = require('../utils/getTodaysDate');
@@ -80,7 +81,13 @@ module.exports.handleCheckout = async (req, res, next) => {
     eventName: event.name,
     attendantName: attendant.name,
     email: attendant.email,
+    location: event.location,
   };
+
+  console.log(
+    'THIS IS THE EVENT FROM HANDLECHECKOUT=========================='.red
+  );
+  console.log(event);
   console.log(
     'THIS IS THE SESSION FROM HANDLECHECKOUT==================================='
       .red
@@ -120,6 +127,8 @@ module.exports.handleCheckout = async (req, res, next) => {
 //https://stripe.com/docs/api/events/retrieve
 //https://stripe.com/docs/api/events/list?lang=node
 //https://stripe.com/docs/api/events/types?lang=node
+
+// TODO Build email sending module for checkout success receipt
 module.exports.checkoutSuccess = async (req, res, next) => {
   console.log(
     'BELOW IS THE REQ.SESSION FROM checkoutSuccess events.js Ln 123========================================='
@@ -147,6 +156,12 @@ module.exports.checkoutSuccess = async (req, res, next) => {
   }
 
   const attendant = req.session.attendant; // Get the attendant data from the session
+
+  console.log(
+    'THIS IS THE ATTENDANT OBJECT:============================================'
+      .red
+  );
+  console.log(attendant);
   // Create a new Attendant document with relevant data
   const newAttendantDoc = new Attendant({
     dateTime: attendant.dateTime,
@@ -156,6 +171,12 @@ module.exports.checkoutSuccess = async (req, res, next) => {
     email: attendant.email,
     event: attendant.id,
   });
+
+  try {
+    sendPaidEventReceipt(attendant, receipt.receiptURL);
+  } catch (error) {
+    req.flash('error', 'Confirmation email failed to send.');
+  }
 
   const createdAttendant = await newAttendantDoc.save(); // Save the new Attendant document to the database
   const event = await Event.findById(attendant.id); // Find the relevant Event by ID
