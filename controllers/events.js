@@ -128,7 +128,6 @@ module.exports.handleCheckout = async (req, res, next) => {
 //https://stripe.com/docs/api/events/list?lang=node
 //https://stripe.com/docs/api/events/types?lang=node
 
-// TODO Build email sending module for checkout success receipt
 module.exports.checkoutSuccess = async (req, res, next) => {
   console.log(
     'BELOW IS THE REQ.SESSION FROM checkoutSuccess events.js Ln 123========================================='

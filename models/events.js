@@ -73,11 +73,6 @@ const eventSchema = new Schema(
   },
   options
 );
-//TODO ADD:
-//? - Date
-//? - Location
-//? - Time
-//? - Map??
 
 //* Virtual definitions
 

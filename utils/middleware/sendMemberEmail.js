@@ -7,10 +7,9 @@ sgMail.setApiKey(apiKey);
 //---- param [app] is short for application
 //! Check the process.env if this is not working!
 
-//TODO Change the `to` field to actual membership application recipient
 function sendMessage(app) {
   const message = {
-    to: `melinda@penn-northwest.com`, //TODO Change to your recipient
+    to: `melinda@penn-northwest.com`,
     from: verifiedSender, // Change to your verified sender
     subject: `Membership Application from ${app.submittedBy} at ${app.companyName}`,
     text: `Company: ${app.companyName}\nWebsite: ${app.website}\nRepresentative: ${app.representative}\nEmail: ${app.email}\nPhone Number: ${app.phone}\nAddress: ${app.address}, ${app.city}, ${app.state} ${app.zip}\nCompany Type: ${app.companyType}\n\nDescription: ${app.descriptionOfBusiness}\n\nAffiliations: ${app.affiliations}\n\nAnnual Contribution: ${app.annualContribution}\n\nSubmitted By: ${app.submittedBy}\nSubmitter Title: ${app.submitterTitle}`,
