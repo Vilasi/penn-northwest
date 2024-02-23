@@ -17,6 +17,32 @@ a:active {
   top: 1px;
 }
 
+#logo-header {
+  font-size: 7rem;
+  /* font-size: clamp(5rem, 8vw, 7rem); */
+}
+
+@media screen and (max-width: 1399px) {
+  #logo-header {
+    font-size: 6rem;
+  }
+}
+@media screen and (max-width: 1199px) {
+  #logo-header {
+    font-size: 5rem;
+  }
+}
+@media screen and (max-width: 991px) {
+  #logo-header {
+    font-size: 7rem;
+  }
+}
+@media screen and (max-width: 358px) {
+  #logo-header {
+    font-size: 5rem;
+  }
+}
+
 /** The below will make the form logout button in the nav look like a normal link */
 .inline {
   display: inline;

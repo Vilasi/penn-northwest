@@ -6,28 +6,41 @@
     <!--* Logo -->
     <aside class="col-lg-3 text-center">
       <div class="d-inline-block">
-        <img
+        <!--? Saving following image link for later reference -->
+        <!-- <img
           crossorigin="anonymous"
           src="https://res.cloudinary.com/dypchgtip/image/upload/v1694459436/PN_oddw0i.jpg"
           alt=""
           class="img-fluid"
-        />
+        /> -->
+        <!--? Header - PNDC Logo -->
+        <h1 id="logo-header" class="ff-1 font-size-1">
+          <span class="pndc-blue">P</span><span class="pndc-orange">N</span
+          ><span class="pndc-blue">D</span><span class="pndc-orange">C</span>
+        </h1>
         <!--? User login/logout buttons -->
         <div class="mt-3 d-flex justify-content-evenly">
           <% if (currentUser) {%>
           <form action="/logout" method="post" class="inline">
-            <button class="link-button" type="submit">Logout</button>
+            <button
+              class="link-button border rounded py-1 px-3 shadow"
+              type="submit"
+            >
+              Logout
+            </button>
           </form>
 
           <% } else { %>
-          <a href="/login">Login</a>
-          <a href="/register">Register</a>
+          <a class="border rounded py-1 px-3 shadow" href="/login">Login</a>
+          <a class="border rounded py-1 px-3 shadow" href="/register"
+            >Register</a
+          >
           <% } %>
         </div>
 
         <% if (currentUser) {%>
         <div class="mt-3 text-center">
-          <p class="lead">Hello, <%= currentUser.username %></p>
+          <p class="lead font-size-4">Hello, <%= currentUser.username %></p>
         </div>
         <% } %>
 
@@ -35,7 +48,7 @@
         <div class="mt-3">
           <% if (currentUser) { %> <% if (currentUser.role === 'admin') {%>
 
-          <a class="btn btn-info" href="/admin">View Admin Panel</a>
+          <a class="btn btn-info shadow" href="/admin">View Admin Panel</a>
           <% } %> <% } %>
         </div>
       </div>
