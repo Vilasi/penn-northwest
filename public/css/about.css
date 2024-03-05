@@ -43,6 +43,16 @@
   width: fit-content !important;
 }
 
+/* #group-photo-div::before {
+  content: url('../assets/svgs/about/team-photo-blob.svg') !important;
+  position: absolute;
+  top: -5vw;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+} */
+
 @media (min-width: 1825px) {
   #group-photo {
     position: relative;
