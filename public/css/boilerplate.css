@@ -298,6 +298,11 @@ body {
   font-size: 1rem;
 }
 
+/*! Cursor Types */
+.cursor-pointer {
+  cursor: pointer;
+}
+
 /*! Element Sizings */
 .min-height-100-vh {
   min-height: 100vh;

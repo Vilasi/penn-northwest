@@ -758,8 +758,8 @@
         </article>
       </section>
 
-      <!--? Our Resolution and Results -->
-      <section class="col-12 row my-5">
+      <!--? One Step at a Time - Programs Links and Business Results -->
+      <section class="col-12 row my-5 mx-1">
         <h4 class="text-center mb-5 pb-5 display-5">One step at a time</h4>
         <!--? Peg 1 - Amount Raised -->
         <div
@@ -800,7 +800,7 @@
           <img
             class="img-fluid mw-50 rounded shadow-lg border"
             src="https://res.cloudinary.com/dypchgtip/image/upload/v1699503166/Mercer-County-500-mile-radius-map_lvisd6.jpg"
-            alt="Money Raised"
+            alt="Business Action team nearby major economies"
             crossorigin="anonymous"
           />
 
@@ -824,7 +824,7 @@
           <img
             class="img-fluid mw-50 rounded shadow-lg border"
             src="https://res.cloudinary.com/dypchgtip/image/upload/v1699504756/pndc-program-of-work-cover_awbenm.png"
-            alt="Money Raised"
+            alt="Program of Work Image Preview"
             crossorigin="anonymous"
           />
 
@@ -847,7 +847,7 @@
         </div>
         <div class="col-6 d-none d-lg-block"></div>
 
-        <!--? Peg 4 - Business Action Team  -->
+        <!--? Peg 4 - Employers in the County  -->
         <!-- This controls div spacing on large screens -->
         <div
           class="col-6 d-none d-lg-block pe-0 border-end border-dark-subtle"
@@ -863,7 +863,7 @@
           <img
             class="img-fluid mw-75 rounded shadow-lg border"
             src="https://res.cloudinary.com/dypchgtip/image/upload/v1699581492/Mercer-County-Industries-Pie-Chart_ezsu9u.png"
-            alt="Money Raised"
+            alt="Employers in the County Pie Chart"
             crossorigin="anonymous"
           />
 
@@ -880,6 +880,302 @@
               this rich network, facilitating growth and opportunity for
               businesses in the region.
             </p>
+          </div>
+        </div>
+
+        <!--? Peg 5 - Homegrown Mercer County Link -->
+        <div
+          class="col-lg-6 border-end border-dark-subtle border-sm-none pe-0 mb-5 mb-lg-0 position-relative d-flex flex-column align-items-center"
+        >
+          <div class="peg-left border-bottom border-dark-subtle"></div>
+
+          <img
+            class="img-fluid mw-50 rounded shadow-lg border"
+            src="https://res.cloudinary.com/dypchgtip/image/upload/v1709766948/Homegrown_medwet.png"
+            alt="Mercer County Homegrown Logo"
+            crossorigin="anonymous"
+          />
+
+          <div class="card mt-5 shadow-lg">
+            <p class="lead max-text-width text-center mb-0 px-3 py-3">
+              <a
+                class="text-decoration-underline text-primary"
+                href="https://homegrownmc.com/"
+                target="_blank"
+                >The Homegrown Initiative</a
+              >, sponsored by Penn-Northwest Development Corporation's Future
+              Leaders, comprises young professionals committed to enhancing
+              their community. Their aim is to empower young adults with local
+              resources, leveraging connections with businesses and educational
+              institutions to create pathways for community members to access
+              opportunities within our area.
+            </p>
+          </div>
+        </div>
+        <!-- Spacing controller Large Screens -->
+        <div class="col-6 d-none d-lg-block"></div>
+
+        <!--? Peg 6 - MCIDA  -->
+        <!-- This controls div spacing on large screens -->
+        <div
+          class="col-6 d-none d-lg-block pe-0 border-end border-dark-subtle"
+        ></div>
+        <!-- Note: This is given a Z index to prevent the youtube embed from overlapping and preventing link clicking -->
+        <div
+          class="col-lg-6 border-sm-none ps-0 mb-5 mt-5 mt-lg-0 position-relative d-flex flex-column align-items-center z-3"
+        >
+          <div
+            id="peg-2"
+            class="peg-right border-bottom border-dark-subtle"
+          ></div>
+
+          <img
+            class="img-fluid mw-75 rounded shadow-lg border"
+            src="https://res.cloudinary.com/dypchgtip/image/upload/v1709767458/MCIDA-Logo_ozptna.jpg"
+            alt="MCIDA Logo Image"
+            crossorigin="anonymous"
+          />
+
+          <div class="card mt-5 shadow-lg">
+            <p class="lead max-text-width text-center mb-0 px-3 py-3">
+              MCIDA mainly issues tax-exempt bonds to facilitate low-interest
+              loans for businesses, essentially acting as a conduit. These funds
+              can be used by eligible small manufacturers and non-profit
+              501(c)(3) corporations to finance land, buildings, and new
+              machinery.
+              <button
+                id="mcida-modal-button"
+                class="text-decoration-underline text-primary cursor-pointer link-button inline"
+              >
+                Click here for more information.
+              </button>
+              <!-- <button class="btn btn-primary btn-sm">Click to view</button> -->
+            </p>
+          </div>
+
+          <!--? Popup dialog for MCIDA information -->
+          <dialog id="mcida-dialog">
+            <!-- Close button -->
+            <button
+              id="mcida-dialog-close-button"
+              class="btn btn-sm btn-danger inline mb-3 dialog-close-button"
+            >
+              Close
+            </button>
+
+            <!-- Main Content -->
+            <section class="container d-flex flex-column align-items-center">
+              <!-- Header and introductory info -->
+              <h2
+                class="display-5 max-text-width text-decoration-underline mb-4"
+              >
+                Mercer County Industrial Development Authority
+              </h2>
+              <p class="lead max-text-width text-center border shadow mb-5 p-3">
+                MCIDA primarily serves as an issuer of tax-exempt bonds as
+                stand-alone transactions. (Basically, a way of turning a bank
+                loan to a business into a low interest loan by using the MCIDA
+                as a conduit.) Bond funds are loaned to businesses and can be
+                used to finance land, building, and new machinery and equipment.
+                Primarily, the eligible companies include small manufacturers
+                and non-profit 501(c)(3) corporations.
+              </p>
+
+              <!-- Board of Directors -->
+              <div class="border shadow mb-5 p-3">
+                <h3 class="display-6">MCIDA Board of Directors</h3>
+                <ul class="list-group list-group-flush mb-3">
+                  <li class="list-group-item lead">
+                    Douglas W. Riley &ndash; Chairman
+                  </li>
+                  <li class="list-group-item lead">
+                    Robert A. Donatelli &ndash; First Vice Chairman
+                  </li>
+                  <li class="list-group-item lead">
+                    J. Marc Buskirk &ndash; Secretary
+                  </li>
+                  <li class="list-group-item lead">
+                    William F. McKnight &ndash; Treasurer
+                  </li>
+                  <li class="list-group-item lead">
+                    Evan A. Watkins &ndash; Board Member
+                  </li>
+                </ul>
+              </div>
+
+              <div class="border shadow mb-5 p-3">
+                <h3 class="display-6 display-7 text-decoration-underline">
+                  Past Meeting Minutes:
+                </h3>
+                <a
+                  class="text-decoration-underline text-primary"
+                  href="https://res.cloudinary.com/dypchgtip/image/upload/v1709771321/MCIDA-2023-Meeting-Agenda_zjybwe.png"
+                  target="_blank"
+                  >April 2023 Meeting Agenda</a
+                >
+                <a
+                  class="text-decoration-underline text-primary"
+                  href="https://res.cloudinary.com/dypchgtip/image/upload/v1709771321/MCIDA-2021-Meeting-Minutes_ik4twr.png"
+                  target="_blank"
+                  >January 2021 Meeting Minutes</a
+                >
+              </div>
+
+              <!-- Interest Rate and Terms -->
+              <h3 class="display-6 display-7 text-decoration-underline">
+                Interest Rate and Terms:
+              </h3>
+              <p class="max-text-width lead mb-5">
+                The bank providing the money sets the interest rate and terms.
+                The rate is usually about 85% of the prime rate and terms
+                similar to conventional financing. The term of loan cannot
+                exceed 120% of the depreciable life of the assets financed.
+              </p>
+
+              <!-- Key Information for Loan Qualifications -->
+              <div class="row">
+                <div class="col-lg-6 mb-5">
+                  <h3 class="display-6 display-7 text-decoration-underline">
+                    Key points for small manufacturing business bonds:
+                  </h3>
+                  <ul class="list-group list-group-flush mb-5">
+                    <li class="list-group-item lead max-text-width">
+                      Manufacturer must be “small”, with small defined as a
+                      company that does not incur more than $20,000,000 of
+                      capital costs over a six-year period beginning three years
+                      to the date of closing.
+                    </li>
+                    <li class="list-group-item lead">
+                      At least 75% of tax-exempt proceeds must be used for
+                      manufacturing activities; a limit of 25% of the proceeds
+                      may be used for office, research & development, and
+                      warehousing.
+                    </li>
+                    <li class="list-group-item lead">
+                      For building acquisition, must spend an amount equal to at
+                      least 15% of the building acquisition financing amount on
+                      rehabilitation.
+                    </li>
+                    <li class="list-group-item lead">
+                      Must create and/or retain, within three years, one
+                      full-time permanent job for every $50,000 financed.
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="col-lg-6 mb-5">
+                  <h3 class="display-6 display-7 text-decoration-underline">
+                    Key points for non-profit 501(c)(3) bonds:
+                  </h3>
+
+                  <ul class="list-group list-group-flush mb-5">
+                    <li class="list-group-item lead">
+                      Non-profit must have received 501(c)(3) status from the
+                      Internal Revenue Service.
+                    </li>
+                    <li class="list-group-item lead">
+                      Must create and/or retain, within three years, at least 10
+                      fulltime permanent jobs.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="border shadow mb-5 p-3">
+                <h3 class="display-6 display-7">Contact:</h3>
+                <ul class="list-group list-group-flush mb-3">
+                  <li class="list-group-item lead">
+                    Phone: 724-662-3705 ext. 1585
+                  </li>
+                  <li class="list-group-item lead">Fax: 724-662-0283</li>
+                  <li class="list-group-item lead">
+                    E-mail:
+                    <a
+                      class="text-decoration-underline text-primary"
+                      href="mailto:kerri@penn-northwest.com"
+                      >kerri@penn-northwest.com</a
+                    >
+                  </li>
+                </ul>
+                <div class="border shadow-sm p-3">
+                  <p class="lead">
+                    Mercer County Industrial Development Authority
+                  </p>
+                  <p class="lead">3580 Innovation Way, Hermitage, PA 16148</p>
+                </div>
+              </div>
+            </section>
+          </dialog>
+        </div>
+
+        <!--? Peg 7 - Mercer County Innovation Fund -->
+        <div
+          class="col-lg-6 border-end border-dark-subtle border-sm-none pe-0 mb-5 mb-lg-0 position-relative d-flex flex-column align-items-center z-3"
+        >
+          <div class="peg-left border-bottom border-dark-subtle"></div>
+
+          <img
+            class="img-fluid mw-50 rounded shadow-lg border"
+            src="https://res.cloudinary.com/dypchgtip/image/upload/v1709775402/Mercer-County-Innovation-Fund_s3lvqb.png"
+            alt="Mercer County Innovation Fund Banner Image"
+            crossorigin="anonymous"
+          />
+
+          <div class="card mt-5 shadow-lg">
+            <p class="lead max-text-width text-center mb-0 px-3 py-3">
+              <a
+                class="text-decoration-underline text-primary"
+                href="https://cnp.benfranklin.org/mercer-county-innovation-fund/"
+                target="_blank"
+                >The Mercer County Innovation Fund (MCIF)</a
+              >
+              is a partnership between Penn-Northwest Development Corporation
+              and Ben Franklin Technology Partners of Central and Northern PA to
+              provide funding to tech-based start-ups and small, existing
+              manufacturers located in Mercer County that are in the process of
+              developing a new product or process.
+            </p>
+          </div>
+        </div>
+        <!-- Spacing controller Large Screens -->
+        <div class="col-6 d-none d-lg-block"></div>
+
+        <!--? Peg 8 - Annual Report 2022/2023  -->
+        <!-- This controls div spacing on large screens -->
+        <div
+          class="col-6 d-none d-lg-block pe-0 border-end border-dark-subtle"
+        ></div>
+        <div
+          class="col-lg-6 border-sm-none ps-0 mb-5 mt-5 mt-lg-0 position-relative d-flex flex-column align-items-center z-3"
+        >
+          <div
+            id="peg-2"
+            class="peg-right border-bottom border-dark-subtle"
+          ></div>
+
+          <img
+            class="img-fluid mw-75 rounded shadow-lg border"
+            src="https://res.cloudinary.com/dypchgtip/image/upload/v1709775746/Annual-Report-2022-2023_csv4gs.png"
+            alt="Annual Report 2022/2023 Image"
+            crossorigin="anonymous"
+          />
+
+          <div class="card mt-5 shadow-lg">
+            <p class="lead max-text-width text-center mb-0 px-3 p2-3">
+              The purpose of this report is to communicate to our membership and
+              the public how Penn-Northwest performed in administering the
+              agency&rsquo;s Program of Work (POW) for economic development
+              initiatives in Mercer County. This report includes information
+              about the companies that received support directly from
+              Penn-Northwest in conjunction with our many partners that make up
+              the Improvement Movement Team.
+            </p>
+            <a
+              class="lead max-text-width text-center mb-0 px-3 pb-3 text-decoration-underline text-primary"
+              href="/assets/pdf/Annual-Report-2022-2023.pdf"
+              target="_blank"
+              >Click here to view.</a
+            >
           </div>
         </div>
       </section>
@@ -994,3 +1290,5 @@
     </main>
   </section>
 </section>
+
+<script src="js/about/aboutModal.js"></script>

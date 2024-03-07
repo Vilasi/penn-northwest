@@ -342,3 +342,33 @@
 #blockquote {
   margin-top: 15rem;
 }
+
+.display-7 {
+  font-size: 1.75rem;
+}
+
+/** The following restyles button elements to look like a normal link */
+.inline {
+  display: inline;
+}
+
+.link-button {
+  background: none;
+  border: none;
+
+  color: black;
+  cursor: pointer;
+  font-size: 1em;
+
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+.link-button:focus {
+  outline: none;
+}
+.link-button:hover {
+  text-decoration: underline;
+}
+
+/***************************************************************  */
