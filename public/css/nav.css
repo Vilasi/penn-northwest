@@ -25,6 +25,50 @@ hr.m-0.scroll {
   border-color: #f8f9fa;
 }
 
+#nav-logo-image-div {
+  max-width: 15vw;
+  /* max-height: 100%; */
+}
+
+.logo-image {
+  max-height: 100%;
+}
+
+/** The following resizes the logo on scroll ****************************/
+/* .logo-resize class is added by the navAnimation.js file */
+@media screen and (min-width: 1400px) {
+  .logo-resize {
+    max-width: 10vw;
+  }
+}
+@media screen and (min-width: 2300px) {
+  .logo-resize {
+    max-width: 8vw;
+  }
+}
+@media screen and (min-width: 3000px) {
+  .logo-resize {
+    max-width: 5vw;
+  }
+}
+@media screen and (min-width: 3000px) {
+  .logo-resize {
+    max-width: 2vw;
+  }
+}
+/**********************************  */
+
+@media screen and (max-width: 500px) {
+  #nav-logo-image-div {
+    max-width: 20vw;
+  }
+}
+@media screen and (max-width: 350px) {
+  #nav-logo-image-div {
+    max-width: 25vw;
+  }
+}
+
 .nav-link:hover {
   text-decoration: underline;
   /** shadow-lg */
