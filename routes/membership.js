@@ -37,10 +37,6 @@ router
   .route('/post-new-member/admin/:id')
   .delete(isLoggedIn, isAdmin, memberships.adminDeleteMember);
 
-router.route('/membership-brochure-pdf').get(memberships.getMembershipBrochure);
-
-router.route('/membership-levels-pdf').get(memberships.getLevelsBrochure);
-
 router
   .route('/application/:id')
   .delete(isLoggedIn, isAdmin, memberships.deleteApplication);
