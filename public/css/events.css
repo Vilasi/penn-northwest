@@ -15,6 +15,10 @@
   font-weight: 600;
 }
 
+#hero-image {
+  filter: brightness(75%);
+}
+
 /* Header H1 margin */
 #call-to-action-button-div {
   margin-top: 22rem;

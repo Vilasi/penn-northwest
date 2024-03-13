@@ -86,7 +86,7 @@
 }
 
 #dividing-section {
-  background-image: url(../assets/images/membership-1.jpg);
+  background-image: url(https://res.cloudinary.com/dypchgtip/image/upload/v1710275462/membership-1_qgeuxt.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -95,6 +95,11 @@
 @media (max-width: 991px) {
   #large-screen-hero-header {
     font-size: 4.5rem;
+  }
+
+  #amplifying-financial-success-card {
+    border-right: none !important;
+    border-left: none !important;
   }
 }
 
