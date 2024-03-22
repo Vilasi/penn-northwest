@@ -347,6 +347,10 @@
   font-size: 1.75rem;
 }
 
+#mcida-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
 /** The following restyles button elements to look like a normal link */
 .inline {
   display: inline;
