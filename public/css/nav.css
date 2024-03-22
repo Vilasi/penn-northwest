@@ -56,6 +56,10 @@ hr.m-0.scroll {
     max-width: 2vw;
   }
 }
+
+.homegrown-logo-resize {
+  max-width: 50% !important;
+}
 /**********************************  */
 
 @media screen and (max-width: 500px) {

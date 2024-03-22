@@ -13,6 +13,7 @@
 window.addEventListener('scroll', function () {
   const navbar = document.querySelector('.navbar');
   const logoImage = document.querySelector('#logo-image');
+  const homegrownLogoImage = document.querySelector('#homegrown-logo-image');
   const hrElements = document.querySelectorAll('hr.m-0');
   const elementsToHide = document.querySelectorAll('.scroll-hide');
   const scrollPosition = window.scrollY;
@@ -20,6 +21,7 @@ window.addEventListener('scroll', function () {
   if (scrollPosition > 0) {
     navbar.classList.add('scroll');
     logoImage.classList.add('logo-resize');
+    homegrownLogoImage.classList.add('homegrown-logo-resize');
     hrElements.forEach((hr) => hr.classList.add('scroll'));
     elementsToHide.forEach((el) => {
       return el.classList.add('to-hide');
@@ -27,6 +29,7 @@ window.addEventListener('scroll', function () {
   } else {
     navbar.classList.remove('scroll');
     logoImage.classList.remove('logo-resize');
+    homegrownLogoImage.classList.remove('homegrown-logo-resize');
     hrElements.forEach((hr) => hr.classList.remove('scroll'));
     elementsToHide.forEach((el) => {
       return el.classList.remove('to-hide');
