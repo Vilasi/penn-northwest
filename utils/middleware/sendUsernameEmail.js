@@ -28,6 +28,7 @@ function sendUsernameEmail(user, url) {
     })
     .catch((err) => {
       console.log(err);
+      console.log(err.response.body.errors);
     });
 }
 
