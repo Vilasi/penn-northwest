@@ -4,7 +4,7 @@ const createError = require('http-errors');
 
 //* Import Middleware Utils
 const sendMessage = require('../utils/middleware/sendMemberEmail.js');
-const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
+// const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
 const fileAdminLog = require('../utils/middleware/fileAdminLog');
 const getTodaysDate = require('../utils/getTodaysDate');
 
@@ -103,17 +103,18 @@ module.exports.handleApplicationForm = async (req, res, next) => {
     return res.redirect('/pages/error');
   }
 
+  // TODO Remove captcha when confirmed
   // Validate reCAPTCHA response
-  const captchaValidateBoolean = await validateReCaptcha(req);
+  // const captchaValidateBoolean = await validateReCaptcha(req);
 
   // If reCAPTCHA validation fails, display an error message and redirect to the membership application page
-  if (!captchaValidateBoolean) {
-    req.flash(
-      'error',
-      'The captcha check failed to validate. Please retry the membership application, or contact us directly.'
-    );
-    return res.redirect('/membership');
-  }
+  // if (!captchaValidateBoolean) {
+  //   req.flash(
+  //     'error',
+  //     'The captcha check failed to validate. Please retry the membership application, or contact us directly.'
+  //   );
+  //   return res.redirect('/membership');
+  // }
 
   const application = req.body.application;
 

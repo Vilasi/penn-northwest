@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/css/membership.css" />
 <link rel="stylesheet" href="/css/scrollin.css" />
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 
 
 <section
@@ -658,7 +658,8 @@
           </section>
  
           <!--? reCaptcha -->
-          <div class="g-recaptcha" data-sitekey="<%= process.env.RECAPTCHA_FRONTEND_KEY %>" data-callback="onSubmit"></div>
+          <!-- TODO Remove captcha -->
+          <!-- <div class="g-recaptcha" data-sitekey="<%= process.env.RECAPTCHA_FRONTEND_KEY %>" data-callback="onSubmit"></div> -->
 
           <button
             type="submit"

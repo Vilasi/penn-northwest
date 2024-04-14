@@ -8,7 +8,7 @@ const Attendant = require('../models/attendants');
 //* Import Utils
 const sendMessage = require('../utils/middleware/freeEventEmail.js');
 const sendPaidEventReceipt = require('../utils/middleware/paidEventEmail.js');
-const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
+// const validateReCaptcha = require('../utils/middleware/reCaptchaValidate.js');
 const fileAdminLog = require('../utils/middleware/fileAdminLog');
 const getTodaysDate = require('../utils/getTodaysDate');
 //* Connect Stripe
@@ -242,17 +242,18 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     res.redirect('/events');
   }
 
+  //TODO Remove reCAPTCHA when confirmed off the page
   // Validate reCAPTCHA response
-  const captchaValidateBoolean = await validateReCaptcha(req);
+  // const captchaValidateBoolean = await validateReCaptcha(req);
 
   // If reCAPTCHA validation fails, display an error message and redirect to the membership application page
-  if (!captchaValidateBoolean) {
-    req.flash(
-      'error',
-      'The captcha check failed to validate. Please retry the membership application, or contact us directly.'
-    );
-    return res.redirect('/events');
-  }
+  // if (!captchaValidateBoolean) {
+  //   req.flash(
+  //     'error',
+  //     'The captcha check failed to validate. Please retry the membership application, or contact us directly.'
+  //   );
+  //   return res.redirect('/events');
+  // }
 
   // Extracting the 'attendant' object from the request body
   const attendant = req.body.attendant;

@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/css/events.css" />
 <link rel="stylesheet" href="/css/buttons.css" />
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 
 <section
   class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5"
@@ -217,7 +217,7 @@
             <button class="btn btn-primary" type="submit">Submit</button>
           </form>
         </div>
-        <!-- <div class="card-footer text-body-secondary">2 days ago</div> -->
+        
       </div>
 
       <% } %>
@@ -327,7 +327,8 @@
                           </div>
 
                           <!--? reCaptcha -->
-                          <div class="g-recaptcha my-3" data-sitekey="<%= process.env.RECAPTCHA_FRONTEND_KEY %>" data-callback="onSubmit"></div>
+                          <!-- TODO Remove Recaptcha -->
+                          <!-- <div class="g-recaptcha my-3" data-sitekey="<%= process.env.RECAPTCHA_FRONTEND_KEY %>" data-callback="onSubmit"></div> -->
 
                           <!--? Submit Button -->
                           <button id="free-event-submit-button" class="btn btn-success mt-3 mb-1">Click to Register</button>
