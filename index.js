@@ -247,12 +247,9 @@ app.use((err, req, res, next) => {
   console.log('THE ERROR MESSAGE FOLLOWS. [From index.js error handler]'.red);
   console.log(err);
   console.log(
-    `err.http_code------------------------------------------------`.red
+    `The Error Code:------------------------------------------------`.yellow
   );
-  console.log(err.http_code);
-  // console.log(
-  //   `err.http_code------------------------------------------------`.red
-  // );
+  console.log(err.status);
   //* Mongoose Error
   if (errorHandler.handleMongooseError(err)) {
     const err = createError(
