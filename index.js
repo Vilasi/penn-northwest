@@ -144,7 +144,12 @@ app.use(
       objectSrc: [],
       imgSrc: ["'self'", 'blob:', 'data:', ...allowedSources.imgSrcUrls],
       fontSrc: ["'self'", ...allowedSources.fontSrcUrls],
-      formAction: ["'self'", process.env.SERVER_URL],
+      formAction: [
+        "'self'",
+        'https://checkout.stripe.com/',
+        process.env.SERVER_URL,
+        `${process.env.SERVER_URL}/events/create-checkout-session`,
+      ],
     },
   })
 );
