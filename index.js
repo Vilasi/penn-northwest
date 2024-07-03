@@ -144,9 +144,13 @@ app.use(
       objectSrc: [],
       imgSrc: ["'self'", 'blob:', 'data:', ...allowedSources.imgSrcUrls],
       fontSrc: ["'self'", ...allowedSources.fontSrcUrls],
+      formAction: ["'self'", process.env.SERVER_URL],
     },
   })
 );
+
+console.log('The following is the env server URL:'.yellow);
+console.log(process.env.SERVER_URL);
 
 //* Initialize PassportJS and setup User Session Serialization for storing User info in the session
 app.use(passport.initialize());
