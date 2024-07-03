@@ -14,11 +14,13 @@ const {
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 
+//TODO Investigate login honeypot route:
+// The following was removed as the first function in the post request - pending investigation
+// users.loginHoneypot,
 router
   .route('/login')
   .get(users.getLoginPage)
   .post(
-    users.loginHoneypot,
     passport.authenticate('local', {
       failureRedirect: '/login',
       failureMessage: true,

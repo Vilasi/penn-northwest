@@ -64,14 +64,15 @@ module.exports.getLoginPage = (req, res) => {
   res.render('users/login');
 };
 
-module.exports.loginHoneypot = async (req, res, next) => {
-  if (req.body.honeypot) {
-    req.flash('error', 'Bot detected');
-    return res.redirect('/');
-  } else {
-    next();
-  }
-};
+//TODO Investigate why this is being triggered on login for normal users
+// module.exports.loginHoneypot = async (req, res, next) => {
+//   if (req.body.honeypot) {
+//     req.flash('error', 'Bot detected');
+//     return res.redirect('/');
+//   } else {
+//     next();
+//   }
+// };
 
 module.exports.afterLoginRedirect = async (req, res, next) => {
   req.flash('success', `Welcome back, ${req.user.username}!`);
