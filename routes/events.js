@@ -34,12 +34,9 @@ router
   );
 
 //* For deleting individual events
-router
-  .route('/:id')
-  .delete(isLoggedIn, isAdmin, events.deleteEvent)
-  .patch(isLoggedIn, isAdmin, (req, res) => {
-    return res.send('h1!');
-  });
+router.route('/:id').delete(isLoggedIn, isAdmin, events.deleteEvent);
+
+// router.route('/:id').patch(isLoggedIn, isAdmin, events.patchEvent);
 
 //* Paid Event Route - Stripe
 router

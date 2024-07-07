@@ -245,6 +245,10 @@ module.exports.checkoutCancel = async (req, res, next) => {
   res.redirect('/events');
 };
 
+// module.exports.patchEvent = async (req, res, next) => {
+//   return res.send('asdf');
+// };
+
 module.exports.deleteEvent = async (req, res, next) => {
   const { id } = req.params;
   const event = await Event.findByIdAndDelete(id);

@@ -307,9 +307,8 @@
                       <li class="list-group-item bg-light"><%= listItem %></li>
                     <% } %>
                   </ul>
-                  <!--! Delete and Edit Event Route  -->
+                  <!--! Delete Event Route  -->
                   <% if (currentUser && currentUser.role === 'admin') {%>
-                    
                     <form class="mt-2 delete-document-form" action="/events/<%= event._id %>?_method=DELETE" method="post">
                       <button class="btn btn-danger delete-document-button" type="submit">Delete Event</button>
                     </form>
