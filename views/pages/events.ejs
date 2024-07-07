@@ -407,7 +407,7 @@
                               <select data-select-id="<%= event._id %>" id="sponsorshipTier" class="form-select sponsorhipTierSelects max-text-width" name="attendant[sponsorshipTier]" aria-label="Default select example">
                                 <option selected value="none">- Select Sponsorship Tier -</option>
                                 <% for (let i = 0; i < event.tierNames.length; i++) { %>
-                                  <option value="<%= i %>"><%= event.tierNames[i] %> Package: $<%= event.tierPrices[i] %> - Includes <%= event.tierTicketsIncluded[i] %> Tickets.</option>
+                                  <option value="<%= i %>"><%= event.tierNames[i] %>: $<%= event.tierPrices[i] %> - Includes <%= event.tierTicketsIncluded[i] %> Tickets.</option>
                                 <% } %>
                               </select>
                               <p class="max-text-width mx-2 mb-0"><small>Support our mission by purchasing a sponsorship tier for our upcoming event!</small></p>
