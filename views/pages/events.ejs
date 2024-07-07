@@ -102,13 +102,13 @@
                 class="form-control"
                 id="price"
                 name="event[priceInCents]"
-                min="0.5"
+                min="0"
                 step="0.01"
                 aria-describedby="priceHelp"
                 required
               />
               <div id="priceHelp" class="form-text">
-                Enter number in form dollar.cents. Eg. 9.95
+                Enter number in form dollar.cents. Eg. 9.95. 50¢ Min.
               </div>
             </div>
 
@@ -294,6 +294,7 @@
               <section class="row shadow-lg rounded">
 
                 <aside class="col-xl-12 mt-3 d-flex flex-column align-items-center pb-5">
+                 
                   <h2 class="display-3 my-5 max-text-width border-bottom"><%= event.name %></h2>
                   <img
                     crossorigin="anonymous"
@@ -306,9 +307,10 @@
                       <li class="list-group-item bg-light"><%= listItem %></li>
                     <% } %>
                   </ul>
-                  <!--! Delete Event Route  -->
+                  <!--! Delete and Edit Event Route  -->
                   <% if (currentUser && currentUser.role === 'admin') {%>
-                    <form class="mt-5 delete-document-form" action="/events/<%= event._id %>?_method=DELETE" method="post">
+                    
+                    <form class="mt-2 delete-document-form" action="/events/<%= event._id %>?_method=DELETE" method="post">
                       <button class="btn btn-danger delete-document-button" type="submit">Delete Event</button>
                     </form>
                   <% } %>
