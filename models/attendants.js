@@ -23,6 +23,11 @@ const attendantSchema = new Schema({
     type: String,
     required: true,
   },
+  sponsorship: {
+    type: String,
+    required: false,
+  },
+
   event: {
     type: Schema.Types.ObjectId,
     ref: 'Event',

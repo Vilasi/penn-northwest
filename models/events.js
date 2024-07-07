@@ -19,6 +19,26 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
+    tierNames: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
+    tierPrices: [
+      {
+        type: Number,
+        required: true,
+        set: (val) => Number(val),
+      },
+    ],
+    tierTicketsIncluded: [
+      {
+        type: Number,
+        required: true,
+        set: (val) => Number(val),
+      },
+    ],
     bulletPoints: [
       {
         type: String,

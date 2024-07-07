@@ -36,6 +36,18 @@ module.exports.eventSchema = Joi.object({
     Joi.array().items(Joi.string().escapeHtml()),
     Joi.string().escapeHtml()
   ),
+  tierNames: Joi.alternatives().try(
+    Joi.array().items(Joi.string().escapeHtml()),
+    Joi.string().escapeHtml()
+  ),
+  tierPrices: Joi.alternatives().try(
+    Joi.array().items(Joi.string().escapeHtml()),
+    Joi.string().escapeHtml()
+  ),
+  tierTicketsIncluded: Joi.alternatives().try(
+    Joi.array().items(Joi.string().escapeHtml()),
+    Joi.string().escapeHtml()
+  ),
   dates: Joi.alternatives().try(
     Joi.array().items(Joi.date().required()).required(),
     Joi.date().required()
@@ -57,13 +69,13 @@ module.exports.imageSchema = Joi.object({
   filename: Joi.string().escapeHtml().required(),
 });
 
-//TODO Expand Attendant Data Collection -- Waiting on CRM people
 module.exports.paidEventSchema = Joi.object({
   id: Joi.string().escapeHtml().required(),
   dateTime: Joi.string().escapeHtml().required(),
   ticketQuantity: Joi.string().escapeHtml().required(),
   name: Joi.string().escapeHtml().required(),
   email: Joi.string().escapeHtml().required(),
+  sponsorshipTier: Joi.string().escapeHtml().optional(),
 });
 
 module.exports.freeEventSchema = Joi.object({

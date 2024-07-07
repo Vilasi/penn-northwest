@@ -302,6 +302,7 @@
                     <h5 class="card-title">Attendant <%= i + 1 %>:</h5>
                     <h5 class="card-title mb-3"><%= event.attendees[i].attendantName %></h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary"><%= event.attendees[i].dateTime %></h6>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Sponsorship: <%= event.attendees[i].sponsorship %></h6>
                     <h6 class="card-subtitle mb-2 text-body-secondary"><%= event.attendees[i].ticketQuantity %> Ticket(s)</h6>
                     <h6 class="card-subtitle mb-2 text-body-secondary">Email: <%= event.attendees[i].email %></h6>
                   </div>

@@ -209,6 +209,12 @@ app.use((req, res, next) => {
 // }
 
 //! Routes
+
+//TODO Add robots.txt route.
+//Text file to allow search engines to access all parts of the site:
+//User-agent: *
+// Disallow:
+
 //* Home
 app.get('/', (req, res) => {
   res.render('pages/home');

@@ -29,7 +29,7 @@ addBulletPointButton.addEventListener('click', (e) => {
   );
 
   // Set inner HTML content for the bullet point and delete button divs
-  bulletPointDiv.innerHTML = `<input type="text" name="event[bulletPoints]" class="form-control" placeholder="Add a short event descriptor." />`;
+  bulletPointDiv.innerHTML = `<input required type="text" name="event[bulletPoints]" class="form-control" placeholder="Add a short event descriptor." />`;
   deleteDiv.innerHTML = `<button class="${divIterator} delete-bullet-button btn btn-danger">Delete</button>`;
 
   // Append the created div elements to the container

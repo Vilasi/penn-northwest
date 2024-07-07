@@ -27,8 +27,12 @@ module.exports.index = async (req, res, next) => {
 
 module.exports.createEvent = async (req, res, next) => {
   const newEvent = req.body.event;
+  console.log(
+    'A new event form has been received, pending adding to the database:'.green
+  );
+  console.log(newEvent);
 
-  newEvent.priceInCents = Number(newEvent.priceInCents) * 100;
+  newEvent.priceInCents = Math.floor(Number(newEvent.priceInCents) * 100);
 
   //If an image was uploaded, set it on newEvent
   if (req.file) {
@@ -57,6 +61,9 @@ module.exports.createEvent = async (req, res, next) => {
     return res.redirect('/events');
   }
 
+  console.log('A new event has been created and added to the database:'.yellow);
+  console.log(finalDoc);
+
   req.flash('success', `Your event, ${finalDoc.name}, has been created!`);
   res.redirect('/events');
 };
@@ -73,6 +80,40 @@ module.exports.handleCheckout = async (req, res, next) => {
     res.redirect('/events');
   }
 
+  //* Handle sponsorship unit creation
+  const sponsorshipSelected = {
+    name: 'No Sponsorship Selected',
+    description: 'N/A',
+    unit_amount: 0,
+    quantity: 1,
+    ticketQuantity: 0,
+  };
+
+  if (
+    attendant.sponsorshipTier !== 'none' &&
+    attendant.sponsorshipTier !== undefined
+  ) {
+    const sponsorshipTier = Number(attendant.sponsorshipTier);
+
+    sponsorshipSelected.name = event.tierNames[sponsorshipTier];
+    sponsorshipSelected.description = `${event.tierNames[sponsorshipTier]} Sponsorship Package. Includes ${event.tierTicketsIncluded[sponsorshipTier]} tickets.`;
+    sponsorshipSelected.ticketQuantity = `${event.tierTicketsIncluded[sponsorshipTier]}`;
+
+    const tierPriceInCents = Math.floor(
+      event.tierPrices[sponsorshipTier] * 100
+    );
+    sponsorshipSelected.unit_amount = tierPriceInCents;
+    sponsorshipSelected.quantity = 1;
+  }
+
+  console.log('New Event Attendee Information:'.green);
+  console.log('Event:'.yellow);
+  console.log(event);
+  console.log('Attendant:'.yellow);
+  console.log(attendant);
+  console.log('Sponsorship Stripe Line Item:'.yellow);
+  console.log(sponsorshipSelected);
+  // return res.send(sponsorshipSelected);
   // Builds an attendant object and stores it in the session for retrieval in checkoutSuccess below
   req.session.attendant = {
     id: attendant.id,
@@ -82,17 +123,9 @@ module.exports.handleCheckout = async (req, res, next) => {
     attendantName: attendant.name,
     email: attendant.email,
     location: event.location,
+    sponsorship: sponsorshipSelected.name,
+    sponsorshipTickets: sponsorshipSelected.ticketQuantity,
   };
-
-  console.log(
-    'THIS IS THE EVENT FROM HANDLECHECKOUT=========================='.red
-  );
-  console.log(event);
-  console.log(
-    'THIS IS THE SESSION FROM HANDLECHECKOUT==================================='
-      .red
-  );
-  console.log(req.session);
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -103,12 +136,26 @@ module.exports.handleCheckout = async (req, res, next) => {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: event.name,
+              name: `${event.name} Ticket(s)`,
               description: event.description,
             },
-            unit_amount: event.priceInCents,
+            // unit_amount: event.priceInCents,
+            unit_amount: attendant.ticketQuantity == 0 ? 0 : event.priceInCents,
           },
-          quantity: attendant.ticketQuantity,
+          // quantity: attendant.ticketQuantity,
+          quantity:
+            attendant.ticketQuantity == 0 ? 1 : attendant.ticketQuantity,
+        },
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: sponsorshipSelected.name,
+              description: sponsorshipSelected.description,
+            },
+            unit_amount: sponsorshipSelected.unit_amount,
+          },
+          quantity: sponsorshipSelected.quantity,
         },
       ],
       success_url: `${process.env.SERVER_URL}/events/checkout/success`,
@@ -129,12 +176,6 @@ module.exports.handleCheckout = async (req, res, next) => {
 //https://stripe.com/docs/api/events/types?lang=node
 
 module.exports.checkoutSuccess = async (req, res, next) => {
-  console.log(
-    'BELOW IS THE REQ.SESSION FROM checkoutSuccess events.js Ln 123========================================='
-      .red
-  );
-  console.log(req.session);
-
   // Fetch the last 3 'charge.succeeded' events from Stripe
   const events = await stripe.events.list({
     limit: 3,
@@ -156,20 +197,22 @@ module.exports.checkoutSuccess = async (req, res, next) => {
 
   const attendant = req.session.attendant; // Get the attendant data from the session
 
-  console.log(
-    'THIS IS THE ATTENDANT OBJECT:============================================'
-      .red
-  );
-  console.log(attendant);
   // Create a new Attendant document with relevant data
   const newAttendantDoc = new Attendant({
     dateTime: attendant.dateTime,
-    ticketQuantity: attendant.ticketQuantity,
+    ticketQuantity:
+      Number(attendant.ticketQuantity) + Number(attendant.sponsorshipTickets),
     eventName: attendant.eventName,
     attendantName: attendant.attendantName,
     email: attendant.email,
     event: attendant.id,
+    sponsorship: attendant.sponsorship,
   });
+
+  attendant.ticketQuantity = newAttendantDoc.ticketQuantity;
+
+  console.log('New Attendant Checked Out:'.yellow);
+  console.log(newAttendantDoc);
 
   try {
     sendPaidEventReceipt(attendant, receipt.receiptURL);
@@ -182,7 +225,10 @@ module.exports.checkoutSuccess = async (req, res, next) => {
 
   // Log an error message if the event lookup failed
   if (!event) {
-    console.log('The attendant id has failed to lookup a relevant Event.');
+    console.log(
+      'The attendant id has failed to lookup a relevant Event. See checkoutSuccess function in events controller.'
+        .red
+    );
   } else {
     // Add the newly created Attendant to the Event's attendees reference array and save the Event
     await event.attendees.push(createdAttendant);
@@ -210,7 +256,7 @@ module.exports.deleteEvent = async (req, res, next) => {
   if (event.attendees.length > 0) {
     for (let attendee of event.attendees) {
       const deletedAttendant = await Attendant.findByIdAndDelete(attendee);
-      console.log('deletedAttendant:======================'.red);
+      console.log('deletedAttendant:'.yellow);
       console.log(deletedAttendant);
     }
   }
