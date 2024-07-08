@@ -250,12 +250,12 @@ app.get('*', (req, res, next) => {
 
 //! ERROR Handler -----------------------------------
 app.use((err, req, res, next) => {
-  console.log('THE ERROR MESSAGE FOLLOWS. [From index.js error handler]'.red);
-  console.log(err);
-  console.log(
-    `The Error Code:------------------------------------------------`.yellow
-  );
-  console.log(err.status);
+  if (err.status !== 404) {
+    console.log('Client Error:');
+    console.log(err);
+    console.log(`Error Status`);
+    console.log(err.status);
+  }
   //* Mongoose Error
   if (errorHandler.handleMongooseError(err)) {
     const err = createError(
