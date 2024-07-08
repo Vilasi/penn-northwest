@@ -102,10 +102,12 @@ const registrationValidation = async (req, res, next) => {
 
 const resetPasswordValidation = async (req, res, next) => {
   // Bot detector
-  if (req.body.honeypot) {
-    req.flash('error', 'Bot detected');
-    return res.redirect('/');
-  }
+
+  //TODO Investigate why this is triggering erroneously
+  // if (req.body.honeypot) {
+  //   req.flash('error', 'Bot detected');
+  //   return res.redirect('/');
+  // }
 
   const email = req.body.email;
 
@@ -125,10 +127,11 @@ const resetPasswordValidation = async (req, res, next) => {
 };
 
 const matchingPasswordValidation = async (req, res, next) => {
-  if (req.body.honeypot) {
-    req.flash('error', 'Bot detected');
-    return res.redirect('/');
-  }
+  //TODO Investigate why this is triggering erroneously
+  // if (req.body.honeypot) {
+  //   req.flash('error', 'Bot detected');
+  //   return res.redirect('/');
+  // }
 
   const passwords = req.body.passwords;
   const result = joiValidations.matchingPasswordSchema.validate(passwords);
@@ -147,10 +150,11 @@ const matchingPasswordValidation = async (req, res, next) => {
 };
 
 const requestUsernameEmailValidation = async (req, res, next) => {
-  if (req.body.honeypot) {
-    req.flash('error', 'Bot detected');
-    return res.redirect('/');
-  }
+  //TODO Investigate why this is triggering erroneously
+  // if (req.body.honeypot) {
+  //   req.flash('error', 'Bot detected');
+  //   return res.redirect('/');
+  // }
 
   const email = req.body.email;
   const result = joiValidations.requestUsernameEmailSchema.validate(email);
