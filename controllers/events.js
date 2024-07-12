@@ -252,11 +252,9 @@ module.exports.checkoutCancel = async (req, res, next) => {
 
 //! Get Edit Page
 module.exports.editEventPage = async (req, res, next) => {
-  // console.log(req.query);
-  // console.log(req.params.id);
   const { id } = req.params;
-  console.log(id);
   const event = await Event.findById(id);
+  console.log('Event to be edited:'.green);
   console.log(event);
   res.render('events/edit', { event });
 };
