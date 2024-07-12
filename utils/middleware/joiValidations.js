@@ -17,6 +17,26 @@ const eventValidation = async (req, res, next) => {
   next();
 };
 
+//* Edit Event validation middleware:
+const editEventValidation = async (req, res, next) => {
+  const event = req.body.event;
+  const result = joiValidations.editEventSchema.validate(event);
+
+  console.log('Edit Event Validations Passed:'.green);
+  console.log(result);
+
+  if (result.error) {
+    const message = result.error.details[0].message;
+    req.flash('error', message);
+    console.log('Joi Error:'.yellow);
+    console.log(result.error.details[0].message);
+
+    return res.redirect('/events');
+  }
+
+  next();
+};
+
 //* Handles validation for the image upload
 const imageUploadValidation = async (req, res, next) => {
   //If an image upload from multer-storage-cloudinary is detected, validate it
@@ -59,7 +79,6 @@ const paidEventValidation = async (req, res, next) => {
 
     return res.redirect('/events');
   } else {
-    console.log('ATTENDANT VALIDATION SUCCESS!!!!'.green);
     next();
   }
 };
@@ -76,7 +95,6 @@ const freeEventValidation = async (req, res, next) => {
 
     return res.redirect('/events');
   } else {
-    console.log('ATTENDANT VALIDATION SUCCESS!!!!'.green);
     next();
   }
 };
@@ -215,4 +233,5 @@ module.exports = {
   matchingPasswordValidation,
   membershipApplicationValidation,
   newMemberValidation,
+  editEventValidation,
 };

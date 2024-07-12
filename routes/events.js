@@ -13,6 +13,7 @@ const events = require('../controllers/events.js');
 const {
   imageUploadValidation,
   eventValidation,
+  editEventValidation,
   paidEventValidation,
   freeEventValidation,
 } = require('../utils/middleware/joiValidations');
@@ -33,10 +34,21 @@ router
     events.createEvent
   );
 
-//* For deleting individual events
-router.route('/:id').delete(isLoggedIn, isAdmin, events.deleteEvent);
+router.route('/:id/edit').get(isLoggedIn, isAdmin, events.editEventPage);
 
-// router.route('/:id').patch(isLoggedIn, isAdmin, events.patchEvent);
+//* For deleting individual events
+router
+  .route('/:id')
+  .delete(isLoggedIn, isAdmin, events.deleteEvent)
+  .patch(
+    isLoggedIn,
+    isAdmin,
+    upload.single('eventImage'),
+    errorHandler.handleCloudinaryError,
+    imageUploadValidation,
+    editEventValidation,
+    events.patchEvent
+  );
 
 //* Paid Event Route - Stripe
 router

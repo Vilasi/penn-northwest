@@ -183,11 +183,6 @@
                 required
               />
             </div>
-            <!-- <div
-              class="mb-3 col-sm-1 d-flex align-items-end delete-date-button"
-            >
-              <button class="btn btn-danger delete-date-button">Delete</button>
-            </div> -->
 
             <!--? Add date/time button and appending row -->
             <div id="dateAppendingDiv" class="row"></div>
@@ -197,7 +192,7 @@
               </button>
             </div>
 
-            <!--? Photo Upload and Location -->
+            <!--? Photo Upload -->
             <div class="mb-3 col-lg-6">
               <label for="formFile" class="form-label"
                 >Event Header Photo</label
@@ -212,6 +207,8 @@
                 Maximum Filesize 10MB. Accepted Filetypes: .jpg .jpeg .png
               </div>
             </div>
+
+            <!-- Location -->
             <div class="mb-3 col-lg-6">
               <label for="location" class="form-label">Location</label>
               <input
@@ -238,17 +235,6 @@
             </div>
 
             <!--? Bullet List Event Descriptors  -->
-            <!-- TODO: Delete this after the whole tier update is complete -->
-            <!-- <div class="mb-3 col-lg-12">
-              <label class="form-label">Bullet point descriptor</label>
-              <input
-                type="text"
-                name="event[bulletPoints]"
-                class="form-control"
-                placeholder="Add a short event descriptor."
-              />
-            </div> -->
-
             <!--? bulletPoints button and appending row -->
             <div id="bulletPointsAppendingDiv" class="row"></div>
             <div class="mb-3 col-lg-12 d-flex justify-content-center">
@@ -311,6 +297,9 @@
                   <% if (currentUser && currentUser.role === 'admin') {%>
                     <form class="mt-2 delete-document-form" action="/events/<%= event._id %>?_method=DELETE" method="post">
                       <button class="btn btn-danger delete-document-button" type="submit">Delete Event</button>
+                    </form>
+                    <form class="mt-2" action="/events/<%= event._id %>/edit" method="get">
+                      <button class="btn btn-secondary" type="submit">Edit Event</button>
                     </form>
                   <% } %>
                 </aside>

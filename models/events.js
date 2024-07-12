@@ -127,6 +127,38 @@ eventSchema.virtual('formattedDates').get(function () {
   return formattedDateArray;
 });
 
+// This formats the date so that it works as a default date value in the event edit page
+eventSchema.virtual('editPageFormattedDates').get(function () {
+  const isoDates = this.dates.map((date) => new Date(date));
+  const formattedDateArray = isoDates.map((date) => {
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      timeZone: 'UTC',
+    });
+  });
+
+  const dateArrayCopy = [...formattedDateArray];
+  for (let i = 0; i < dateArrayCopy.length; i++) {
+    const dateValuesArray = dateArrayCopy[i].split('/');
+    let year = dateValuesArray[2];
+    let month = dateValuesArray[0];
+    let day = dateValuesArray[1];
+
+    if (Number(month) < 10) {
+      month = `0${Number(month)}`;
+    }
+    if (Number(day) < 10) {
+      day = `0${Number(day)}`;
+    }
+    console.log(year, month, day);
+    dateArrayCopy[i] = `${year}-${month}-${day}`;
+  }
+
+  return dateArrayCopy;
+});
+
 //* Formats the Times from 12 hour clock to 24 hour clock
 eventSchema.virtual('formattedStartTimes').get(function () {
   const times = [...this.startTimes];

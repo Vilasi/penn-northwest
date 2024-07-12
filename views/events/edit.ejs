@@ -1,0 +1,269 @@
+<% layout('layouts/boilerplate') %>
+<!-- <link rel="stylesheet" href="/css/events.css" /> -->
+<link rel="stylesheet" href="/css/buttons.css" />
+<section
+  class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5"
+>
+  <section class="bg-light rounded px-0 d-flex flex-column align-items-center">
+    <h1 class="display-2 border-bottom mb-5">Edit Event:</h1>
+    <div class="w-75 mb-3">
+      <a href="/events" class="btn btn-danger">Go Back</a>
+    </div>
+    <form
+      class="w-75 mb-5"
+      action="/events/<%= event._id %>?_method=PATCH"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <!--? Name -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Event Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="event[name]"
+          value="<%= event.name %>"
+          required
+        />
+      </div>
+      <!--? Location -->
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input
+          type="text"
+          class="form-control"
+          id="location"
+          name="event[location]"
+          value="<%= event.location %>"
+          required
+        />
+      </div>
+
+      <!--? Description -->
+      <div class="mb-5">
+        <label for="description" class="form-label">Event Description</label>
+        <textarea
+          class="form-control"
+          name="event[description]"
+          id="description"
+          rows="3"
+          value="<%= event.description %>"
+          required
+        >
+<%= event.description %></textarea
+        >
+      </div>
+
+      <!--? Photo Upload and Location -->
+      <div class="mt-3 mw-50">
+        <img
+          crossorigin="anonymous"
+          class="img-fluid rounded shadow border event-image mb-4"
+          src="<%= event.image.url %>"
+          alt="<%= event.name %> Event Image"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Replace Photo:</label>
+        <input
+          class="form-control"
+          type="file"
+          id="formFile"
+          name="eventImage"
+        />
+        <div id="photoHelp" class="form-text">
+          Newly Uploaded Photo Will Replace Old Photo. Maximum Filesize 10MB.
+          Accepted Filetypes: .jpg .jpeg .png
+        </div>
+      </div>
+
+      <!--? Single Ticket Price -->
+      <div class="mb-3">
+        <label for="price" class="form-label">Single Ticket Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price"
+          name="event[priceInCents]"
+          min="0"
+          step="0.01"
+          value="<%= event.priceInCents / 100 %>"
+          aria-describedby="priceHelp"
+          required
+        />
+        <div id="priceHelp" class="form-text">
+          Enter number in form dollar.cents. Eg. 9.95. 50¢ Min.
+        </div>
+      </div>
+
+      <!--? Sponsorship Tiers -->
+      <% if (event.priceInCents > 0) { %>
+      <div id="extantTiersContainer">
+        <% for (let i = 0; i < event.tierNames.length; i++) { %>
+
+        <div class="row col-lg-12 extantTiers" data-tierid="<%= i %>">
+          <div class="mb-3 col-lg-4">
+            <label for="date" class="form-label">Tier Name</label>
+            <input
+              class="w-100 form-control"
+              type="text"
+              name="event[tierNames]"
+              value="<%= event.tierNames[i] %>"
+            />
+          </div>
+          <div class="mb-3 col-lg-4">
+            <label for="time" class="form-label">Tier Price</label>
+            <input
+              class="form-control"
+              name="event[tierPrices]"
+              value="<%= event.tierPrices[i] %>"
+              type="number"
+              min="0"
+              step="0.01"
+            />
+          </div>
+          <div class="mb-3 col-lg-3">
+            <label for="tierTicketsIncluded" class="form-label">Tickets</label>
+            <input
+              class="form-control"
+              name="event[tierTicketsIncluded]"
+              type="number"
+              value="<%= event.tierTicketsIncluded[i] %>"
+              min="0"
+              step="1"
+            />
+          </div>
+          <div
+            class="mb-3 col-lg-1 d-flex flex-column align-items-end justify-content-end"
+          >
+            <button
+              data-delete-tierId="<%= i %>"
+              class="btn btn-sm btn-danger sponsorshipTierDeleteButton"
+              type="button"
+            >
+              X
+            </button>
+          </div>
+        </div>
+        <% } %>
+      </div>
+      <div id="sponsorshipAppendingDiv" class="row"></div>
+      <div class="mb-3 col-lg-12 d-flex justify-content-center">
+        <button
+          id="addSponsorshipButton"
+          class="btn btn-outline-success"
+          type="button"
+        >
+          Click to add sponsorship tier
+        </button>
+      </div>
+      <% } %>
+
+      <div id="date-time-appending-div">
+        <% for (let i = 0; i < event.dates.length; i++) { %>
+        <div class="row extantDateTimes" data-date-time-id="<%= i %>">
+          <!--? Dates -->
+          <div class="mb-3 col-lg-4">
+            <label for="date" class="form-label">Enter event date</label>
+            <input
+              class="w-100 form-control"
+              type="date"
+              name="event[dates]"
+              value="<%= event.editPageFormattedDates[i] %>"
+              required
+            />
+          </div>
+          <!--? Start Times -->
+          <div class="mb-3 col-lg-4">
+            <label for="time" class="form-label">Start Time</label>
+            <input
+              class="form-control"
+              name="event[startTimes]"
+              value="<%= event.startTimes[i] %>"
+              type="time"
+              required
+            />
+          </div>
+          <!--? End Times -->
+          <div class="mb-3 col-lg-3">
+            <label for="time" class="form-label">End Time</label>
+            <input
+              class="form-control"
+              name="event[endTimes]"
+              value="<%= event.endTimes[i] %>"
+              type="time"
+              required
+            />
+          </div>
+          <div
+            class="mb-3 col-lg-1 d-flex flex-column align-items-end justify-content-end"
+          >
+            <button
+              data-delete-date-time-id="<%= i %>"
+              class="btn btn-sm btn-danger dateTimeDeleteButton"
+              type="button"
+            >
+              X
+            </button>
+          </div>
+        </div>
+        <% } %>
+      </div>
+      <div class="mb-3 col-lg-12 d-flex justify-content-center">
+        <button
+          id="addDateTimeButton"
+          class="btn btn-outline-success"
+          type="button"
+        >
+          Click to add date/time
+        </button>
+      </div>
+
+      <!--? Bullet Points -->
+      <div id="bulletPointsAppendingDiv" class="row">
+        <% for (let i = 0; i < event.bulletPoints.length; i++) { %>
+        <div class="extantBulletPoints row" data-bullet-point-id="<%= i %>">
+          <div class="mb-3 col-lg-11">
+            <label class="form-label">Bullet point descriptor</label>
+            <input
+              type="text"
+              name="event[bulletPoints]"
+              class="form-control"
+              value="<%= event.bulletPoints[i] %>"
+            />
+          </div>
+          <div
+            class="mb-3 col-lg-1 d-flex flex-column align-items-end justify-content-end"
+          >
+            <button
+              data-delete-bullet-point-id="<%= i %>"
+              class="btn btn-sm btn-danger bulletPointDeleteButton"
+              type="button"
+            >
+              X
+            </button>
+          </div>
+        </div>
+
+        <% } %>
+      </div>
+
+      <div class="mb-3 col-lg-12 d-flex justify-content-center">
+        <button
+          id="addBulletPointsButton"
+          class="btn btn btn-outline-success"
+          type="button"
+        >
+          Click to add a bullet point.
+        </button>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    </form>
+  </section>
+</section>
+
+<script src="/js/editEvents/addSponsorshipTier.js"></script>
+<script src="/js/editEvents/addDateTime.js"></script>
+<script src="/js/editEvents/addBulletPoint.js"></script>

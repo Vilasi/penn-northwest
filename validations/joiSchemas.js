@@ -64,6 +64,38 @@ module.exports.eventSchema = Joi.object({
   attendees: Joi.number().default(0),
 });
 
+module.exports.editEventSchema = Joi.object({
+  name: Joi.string().escapeHtml(),
+  priceInCents: Joi.string().escapeHtml(),
+  description: Joi.string().escapeHtml(),
+  bulletPoints: Joi.alternatives().try(
+    Joi.array().items(Joi.string().escapeHtml()),
+    Joi.string().escapeHtml()
+  ),
+  tierNames: Joi.alternatives().try(
+    Joi.array().items(Joi.string().escapeHtml()),
+    Joi.string().escapeHtml()
+  ),
+  tierPrices: Joi.alternatives().try(
+    Joi.array().items(Joi.string().escapeHtml()),
+    Joi.string().escapeHtml()
+  ),
+  tierTicketsIncluded: Joi.alternatives().try(
+    Joi.array().items(Joi.string().escapeHtml()),
+    Joi.string().escapeHtml()
+  ),
+  dates: Joi.alternatives().try(Joi.array().items(Joi.date()), Joi.date()),
+  startTimes: Joi.alternatives().try(
+    Joi.array().items(Joi.string().escapeHtml().required()),
+    Joi.string().escapeHtml()
+  ),
+  endTimes: Joi.alternatives().try(
+    Joi.array().items(Joi.string().escapeHtml().required()),
+    Joi.string().escapeHtml()
+  ),
+  location: Joi.string().escapeHtml(),
+});
+
 module.exports.imageSchema = Joi.object({
   url: Joi.string().escapeHtml().required(),
   filename: Joi.string().escapeHtml().required(),

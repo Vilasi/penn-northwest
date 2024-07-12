@@ -33,3 +33,4 @@ function repositionMainOnClick() {
 navButton.addEventListener('click', repositionMainOnClick);
 window.addEventListener('resize', repositionMain);
 window.addEventListener('scroll', repositionMain);
+document.addEventListener('DOMContentLoaded', repositionMain);

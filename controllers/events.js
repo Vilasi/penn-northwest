@@ -25,6 +25,7 @@ module.exports.index = async (req, res, next) => {
   res.render('pages/events', { events, eventFailure: false });
 };
 
+//! Create Event
 module.exports.createEvent = async (req, res, next) => {
   const newEvent = req.body.event;
   console.log(
@@ -32,6 +33,7 @@ module.exports.createEvent = async (req, res, next) => {
   );
   console.log(newEvent);
 
+  //Standardize the price into cents (from string) accounting for JS multiplication decimal errors
   newEvent.priceInCents = Math.floor(Number(newEvent.priceInCents) * 100);
 
   //If an image was uploaded, set it on newEvent
@@ -61,13 +63,14 @@ module.exports.createEvent = async (req, res, next) => {
     return res.redirect('/events');
   }
 
-  console.log('A new event has been created and added to the database:'.yellow);
+  console.log('A new event has been created and added to the database:'.green);
   console.log(finalDoc);
 
   req.flash('success', `Your event, ${finalDoc.name}, has been created!`);
   res.redirect('/events');
 };
 
+//! Handle Checkout
 module.exports.handleCheckout = async (req, res, next) => {
   const attendant = req.body.attendant;
   const event = await Event.findById(attendant.id);
@@ -175,6 +178,7 @@ module.exports.handleCheckout = async (req, res, next) => {
 //https://stripe.com/docs/api/events/list?lang=node
 //https://stripe.com/docs/api/events/types?lang=node
 
+//! Checkout Success
 module.exports.checkoutSuccess = async (req, res, next) => {
   // Fetch the last 3 'charge.succeeded' events from Stripe
   const events = await stripe.events.list({
@@ -239,16 +243,100 @@ module.exports.checkoutSuccess = async (req, res, next) => {
   res.render('checkout/success', { receipt, attendant });
 };
 
+//! Checkout Cancel
 //* Fires when a user cancels a stripe checkout page
 module.exports.checkoutCancel = async (req, res, next) => {
   req.flash('error', 'Payment was cancelled.');
   res.redirect('/events');
 };
 
-// module.exports.patchEvent = async (req, res, next) => {
-//   return res.send('asdf');
-// };
+//! Get Edit Page
+module.exports.editEventPage = async (req, res, next) => {
+  // console.log(req.query);
+  // console.log(req.params.id);
+  const { id } = req.params;
+  console.log(id);
+  const event = await Event.findById(id);
+  console.log(event);
+  res.render('events/edit', { event });
+};
 
+//! Patch Event
+module.exports.patchEvent = async (req, res, next) => {
+  const { id } = req.params;
+  const eventToUpdate = await Event.findById(id);
+  if (!eventToUpdate) {
+    req.flash(
+      'error',
+      'Database Lookup Error - Could not find original event in database.'
+    );
+    res.redirect('/events');
+  }
+
+  const updatedEvent = req.body.event;
+
+  //Standardize the price into cents (from string) accounting for JS multiplication decimal errors
+  updatedEvent.priceInCents = Math.floor(
+    Number(updatedEvent.priceInCents) * 100
+  );
+
+  // This accounts for the user deleting all these fields - as they're not required.
+  if (
+    !updatedEvent.tierNames ||
+    !updatedEvent.tierPrices ||
+    !updatedEvent.tierTicketsIncluded
+  ) {
+    updatedEvent.tierNames = [];
+    updatedEvent.tierPrices = [];
+    updatedEvent.tierTicketsIncluded = [];
+  }
+  if (!updatedEvent.bulletPoints) {
+    updatedEvent.bulletPoints = [];
+  }
+
+  // This handles a new image being uploaded - destroying the old image in the Cloudinary Repository (if it's not the default image).
+  if (req.file) {
+    if (
+      eventToUpdate.image.filename !==
+      'penn-northwest-website/omcwig0tniucxrhnqnqn'
+    ) {
+      const imageFilename = eventToUpdate.image.filename;
+      await cloudinary.uploader.destroy(imageFilename);
+    }
+
+    const images = {
+      url: req.file.path,
+      filename: req.file.filename,
+    };
+    updatedEvent.image = images;
+  }
+
+  const updatedDoc = await Event.findByIdAndUpdate(id, updatedEvent, {
+    new: true,
+  });
+  if (!updatedDoc) {
+    next(createError(500, 'Failed to update event.'));
+  }
+  // Log event creation to admin actionsLog
+  const logSuccess = await fileAdminLog(
+    req.user,
+    `Updated event "${updatedDoc.name}" on ${getTodaysDate()}`
+  );
+  // If actionsLog fails, display an error message and redirect
+  if (!logSuccess) {
+    req.flash('error', 'Admin not found');
+    return res.redirect('/events');
+  }
+
+  console.log(`Event "${updatedEvent.name}" has been updated:`.green);
+  console.log(updatedEvent);
+
+  req.flash('success', `Event ${updatedEvent.name} has been updated.`);
+
+  return res.redirect('/events');
+};
+
+//! Delete Event
 module.exports.deleteEvent = async (req, res, next) => {
   const { id } = req.params;
   const event = await Event.findByIdAndDelete(id);
@@ -265,9 +353,11 @@ module.exports.deleteEvent = async (req, res, next) => {
     }
   }
 
-  // This deletes the relevant image in the cloudinary photo repo
-  const filename = event.image.filename;
-  await cloudinary.uploader.destroy(filename);
+  // This deletes the relevant image in the cloudinary photo repo (if it's not the default image)
+  if (event.image.filename !== 'penn-northwest-website/omcwig0tniucxrhnqnqn') {
+    const filename = event.image.filename;
+    await cloudinary.uploader.destroy(filename);
+  }
 
   // Log delete action to admin actionsLog
   const logSuccess = await fileAdminLog(
@@ -285,6 +375,7 @@ module.exports.deleteEvent = async (req, res, next) => {
   res.redirect('/events');
 };
 
+//! Register Free Event
 module.exports.registerFreeEvent = async (req, res, next) => {
   //Honeypot bot catcher
   if (req.body.honeypot) {
@@ -365,6 +456,7 @@ module.exports.registerFreeEvent = async (req, res, next) => {
   res.redirect('/events/free-registration-confirmation');
 };
 
+//! Registration Confirmation
 module.exports.renderRegistrationConfirmation = async (req, res, next) => {
   const attendant = req.session.attendant;
   try {
