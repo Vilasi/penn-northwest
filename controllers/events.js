@@ -16,7 +16,7 @@ const stripe = require('../config/stripe');
 
 //* Events Index Page
 module.exports.index = async (req, res, next) => {
-  const events = await Event.find({});
+  const events = await Event.find({}).sort({ position: 1 });
 
   // This logic will handle a database lookup failure
   if (!events) {
@@ -28,6 +28,7 @@ module.exports.index = async (req, res, next) => {
 //! Create Event
 module.exports.createEvent = async (req, res, next) => {
   const newEvent = req.body.event;
+  const eventCount = await Event.countDocuments();
   console.log(
     'A new event form has been received, pending adding to the database:'.green
   );
@@ -43,6 +44,7 @@ module.exports.createEvent = async (req, res, next) => {
       filename: req.file.filename,
     };
     newEvent.image = images;
+    newEvent.position = eventCount 
   }
 
   const eventDocument = new Event(newEvent);

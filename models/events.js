@@ -90,6 +90,10 @@ const eventSchema = new Schema(
         ref: 'Attendant', // Reference to the User model
       },
     ],
+    position: {
+          type: Number,
+          default: 0 
+      },
   },
   options
 );

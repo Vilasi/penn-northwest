@@ -136,6 +136,7 @@ app.use(
         'https://www.youtube.com/',
         'https://www.google.com/',
         'https://app.mapstechnologies.com/',
+        'https://heyzine.com',
       ],
       connectSrc: ["'self'", ...allowedSources.connectSrcUrls],
       scriptSrc: ["'unsafe-inline'", "'self'", ...allowedSources.scriptSrcUrls],
