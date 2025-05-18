@@ -249,72 +249,138 @@
     <!--? Events -->
     <section class="data-sections event-target d-none ">
       <% if (!data.events) {%>
-
+    
         <h1 class="display-2">Database Lookup Failed</h1>
+    
+        <% } else if (data.events.length===0) { %>
+    
+          <h1 class="display-2">There are currently no events.</h1>
+    
+          <% } else { %>
+    
+            <h1 class="display-2 m-3 mb-5 border-bottom">Events</h1>
+            <section class="container d-flex flex-wrap justify-content-evenly">
+              <!--? Start Event Card -->
+              <div id="eventsList">
+                  <% for (let event of data.events) {%>
+                    <div class="event-card" data-id="<%= event._id %>" data-position="<%= event.position %>">
+                      <!-- <div class="col-sm-auto"> -->
+                        <div class="card mb-5" style="width: 18rem;">
+                          <img crossorigin="anonymous" src="<%= event.image.url %>" class="card-img-top border"
+                            alt="Event card image header">
+                          <div class="card-body d-flex flex-column align-items-between">
+                            <!--? Name -->
+                            <h5 class="card-title text-decoration-underline">
+                              <%= event.name %>
+                            </h5>
+    
+                            <!--? Price -->
+                            <% if (event.priceInCents===0) { %>
+                              <p class="card-text lead">Free Event</p>
+                              <% } else { %>
+                                <p class="card-text lead">
+                                  <%= event.formattedPrice %>
+                                </p>
+                                <% } %>
+    
+                                  <!--? Description -->
+                                  <p class="card-text">
+                                    <%= event.description %>
+                                  </p>
+    
+                                  <!--? Attendants Dialog Opening Button -->
+                                  <div class="mt-auto">
+                                    <button class="modal-button btn btn-info mb-3"
+                                      data-modal-index-number="<%= modalIndex %>">View Attendants</button>
+                                    <form class="mb-3 delete-document-form"
+                                      action="/admin/delete-event/<%= event._id %>?_method=DELETE" method="post"><button
+                                        class="btn btn-sm btn-danger delete-document-button" type="submit">Delete
+                                        Event</button></form>
+    
+                                  </div>
+                                  <% modalIndex++; %>
+                          </div>
+                        </div>
 
-      <% } else if (data.events.length === 0) { %>
-
-        <h1 class="display-2">There are currently no events.</h1>
-
-      <% } else { %>
-
-        <h1 class="display-2 m-3 mb-5 border-bottom">Events</h1>
-        <section class="container d-flex flex-wrap justify-content-evenly">
-        <!--? Start Event Card -->
-        <% for (let event of data.events) {%>
-          <div class="card mb-5" style="width: 18rem;">
-            <img crossorigin="anonymous" src="<%= event.image.url %>" class="card-img-top border" alt="Event card image header">
-            <div class="card-body d-flex flex-column align-items-between">
-              <!--? Name -->
-              <h5 class="card-title text-decoration-underline"><%= event.name %></h5>
-
-              <!--? Price -->
-              <% if (event.priceInCents === 0) { %>
-                <p class="card-text lead">Free Event</p>
-              <% } else { %>
-                <p class="card-text lead"><%= event.formattedPrice %></p>
-              <% } %>
-
-              <!--? Description -->
-              <p class="card-text"><%= event.description %></p>
-              
-              <!--? Attendants Dialog Opening Button -->
-              <div class="mt-auto">
-                <button class="modal-button btn btn-info mb-3" data-modal-index-number="<%= modalIndex %>">View Attendants</button>
-                <form class="mb-3 delete-document-form" action="/admin/delete-event/<%= event._id %>?_method=DELETE" method="post"><button class="btn btn-sm btn-danger delete-document-button" type="submit">Delete Event</button></form>
-
+                        <!--? Dialog for displaying Attendees -->
+                        <dialog class="dialog">
+                          <% if (event.attendees.length===0) { %>
+                            <p class="lead">There are no attendants to display</p>
+                            <% } else {%>
+                              <p class="lead">Total Attendants Registered: <%= event.attendees.length %>
+                              </p>
+                              <button class=" btn btn-sm  btn-danger inline mb-3 dialog-close-button">Close</button>
+                              <section class="d-flex justify-content-evenly flex-wrap">
+                                <% for (let i=0; i < event.attendees.length; i++) { %>
+                                  <div class="card mb-3" style="width: 18rem;">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Attendant <%= i + 1 %>:</h5>
+                                      <h5 class="card-title mb-3">
+                                        <%= event.attendees[i].attendantName %>
+                                      </h5>
+                                      <h6 class="card-subtitle mb-2 text-body-secondary">
+                                        <%= event.attendees[i].dateTime %>
+                                      </h6>
+                                      <h6 class="card-subtitle mb-2 text-body-secondary">Sponsorship: <%=
+                                          event.attendees[i].sponsorship %>
+                                      </h6>
+                                      <h6 class="card-subtitle mb-2 text-body-secondary">
+                                        <%= event.attendees[i].ticketQuantity %> Ticket(s)
+                                      </h6>
+                                      <h6 class="card-subtitle mb-2 text-body-secondary">Email: <%= event.attendees[i].email
+                                          %>
+                                      </h6>
+                                    </div>
+                                  </div>
+                                  <% } %>
+                              </section>
+                              <% } %>
+                        </dialog>
+                      <!-- </div> -->
+                    </div>
+                    <% } %>
               </div>
-              <% modalIndex++; %>
-            </div>
-          </div>
-
-          <!--? Dialog for displaying Attendees -->
-          <dialog class="dialog">
-            <% if (event.attendees.length === 0) { %>
-              <p class="lead">There are no attendants to display</p>            
-            <% } else {%>
-              <p class="lead">Total Attendants Registered: <%= event.attendees.length %></p>
-              <button class=" btn btn-sm  btn-danger inline mb-3 dialog-close-button">Close</button>  
-              <section class="d-flex justify-content-evenly flex-wrap">
-              <% for (let i = 0; i < event.attendees.length; i++) { %>
-                <div class="card mb-3" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Attendant <%= i + 1 %>:</h5>
-                    <h5 class="card-title mb-3"><%= event.attendees[i].attendantName %></h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary"><%= event.attendees[i].dateTime %></h6>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">Sponsorship: <%= event.attendees[i].sponsorship %></h6>
-                    <h6 class="card-subtitle mb-2 text-body-secondary"><%= event.attendees[i].ticketQuantity %> Ticket(s)</h6>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">Email: <%= event.attendees[i].email %></h6>
-                  </div>
-                </div>
-              <% } %>
-              </section>
+            </section>
             <% } %>
-          </dialog> 
-        <% } %>
-        </section>
-      <% } %>
-</section>
+    </section>
+
+<!-- Allows for moveable icons to reorder  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const eventsList = document.getElementById("eventsList");
+    new Sortable(eventsList, {
+      animation: 150,
+      scroll: true,
+      scrollSensitivity: 300,
+      scrollSpeed: 10,
+      ghostClass: "sortable-ghost",
+      chosenClass: "sortable-chosen",
+      dragClass: "sortable-drag",
+      handle: ".event-card", // Restrict drag to event card only
+      onEnd: async (evt) => {
+        const eventCards = [...evt.to.querySelectorAll(".event-card")]; // Ensure correct selection
+
+        let newOrder = eventCards.map((el, index) => ({
+          id: el.getAttribute("data-id"), // Ensure data-id is properly retrieved
+          position: index
+        }));
+
+        // Debugging: Check if IDs are properly retrieved
+        console.log("Updated Order:", newOrder);
+
+        // Send updated order to backend
+        await fetch("/admin/update-event-order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ order: newOrder })
+        });
+      }
+    });
+  });
+</script>
+
+
 
 <script src="js/admin/adminIndex.js"></script>
 <script src="js/deleteDocumentConfirmation.js"></script>

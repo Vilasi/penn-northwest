@@ -29,7 +29,7 @@ module.exports.adminIndex = async (req, res, next) => {
   }
 
   //? Events lookup
-  const events = await Event.find({}).populate('attendees');
+  const events = await Event.find({}).populate('attendees').sort({ position: 1 });
   if (!events) {
     data.events = null;
   } else {
@@ -64,9 +64,26 @@ module.exports.deleteEvent = async (req, res, next) => {
     }
   }
 
+   try {
+    const remainingEvents = await Event.find();
+
+    const bulkOps = remainingEvents.map((event, index) => ({
+      updateOne: {
+        filter: { _id: event._id },
+        update: { $set: { position: index } }
+      }
+    }));
+    await Event.bulkWrite(bulkOps);
+
+  } catch (error) {
+    console.error("Error deleting event:", error);
+    res.status(500).send({ message: "Error deleting event" });
+  }
+
   // This deletes the relevant image in the cloudinary photo repo
   const filename = deletedEvent.image.filename;
   await cloudinary.uploader.destroy(filename);
+
 
   // Log delete action to admin actionsLog
   const logSuccess = await fileAdminLog(
@@ -148,6 +165,29 @@ module.exports.promoteToAdmin = async (req, res, next) => {
     `User ${newAdmin} has been successfully update to Admin.`
   );
   res.redirect('/admin');
+};
+
+exports.updateEventOrder = async (req, res) => {
+  try {
+    const { order } = req.body;
+
+    if (!order || !Array.isArray(order)) {
+      return res.status(400).send({ message: "Invalid order data" });
+    }
+
+    const bulkOps = order.map(({ id, position }) => ({
+      updateOne: {
+        filter: { _id: id },
+        update: { $set: { position } }
+      }
+    }));
+
+    await Event.bulkWrite(bulkOps);
+    res.status(200).send({ message: "Event order updated successfully" });
+  } catch (error) {
+    console.error("Error updating event order:", error);
+    res.status(500).send({ message: "Error updating event order" });
+  }
 };
 
 //TODO Add admin account deletion

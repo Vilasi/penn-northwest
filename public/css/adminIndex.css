@@ -2,6 +2,29 @@
   background-color: #e9ecef !important;
 }
 
+.sortable-ghost {
+  opacity: 0.4; /* Makes the ghosted item more transparent */
+}
+
+.sortable-chosen {
+  background-color: rgba(0, 123, 255, 0.2); /* Highlights the dragged item */
+}
+
+.sortable-drag {
+  opacity: 1 !important; /* Ensures only the dragged item moves */
+}
+
+#eventsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; /* Evenly distributes items */
+}
+
+.event-card {
+  width: 30%; /* Adjust as needed */
+  margin: 10px; /* Adds spacing */
+}
+
 /* @media (max-width: 991.98px) {
   .navbar-collapse {
     background-color: #e9ecef !important;
