@@ -108,6 +108,7 @@ module.exports.paidEventSchema = Joi.object({
   name: Joi.string().escapeHtml().required(),
   email: Joi.string().escapeHtml().required(),
   sponsorshipTier: Joi.string().escapeHtml().optional(),
+  guestNames: Joi.array().items(Joi.string().min(1).max(100)).optional(),
 });
 
 module.exports.freeEventSchema = Joi.object({
@@ -116,6 +117,7 @@ module.exports.freeEventSchema = Joi.object({
   ticketQuantity: Joi.string().escapeHtml().required(),
   name: Joi.string().escapeHtml().required(),
   email: Joi.string().escapeHtml().required(),
+  // guestNames: Joi.array().items(Joi.string().min(1).max(100)).optional(),
 });
 
 module.exports.registrationSchema = Joi.object({

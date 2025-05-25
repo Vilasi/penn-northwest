@@ -44,7 +44,7 @@ module.exports.createEvent = async (req, res, next) => {
       filename: req.file.filename,
     };
     newEvent.image = images;
-    newEvent.position = eventCount 
+    newEvent.position = eventCount;
   }
 
   const eventDocument = new Event(newEvent);
@@ -76,6 +76,17 @@ module.exports.createEvent = async (req, res, next) => {
 module.exports.handleCheckout = async (req, res, next) => {
   const attendant = req.body.attendant;
   const event = await Event.findById(attendant.id);
+
+if (!Array.isArray(attendant.guestNames)) {
+  try {
+    attendant.guestNames = JSON.parse(attendant.guestNames);
+    if (!Array.isArray(attendant.guestNames)) {
+      attendant.guestNames = []; // Ensure fallback to array
+    }
+  } catch (error) {
+    attendant.guestNames = []; // Ensure fallback to array
+  }
+}
 
   if (!event) {
     req.flash(
@@ -130,6 +141,7 @@ module.exports.handleCheckout = async (req, res, next) => {
     location: event.location,
     sponsorship: sponsorshipSelected.name,
     sponsorshipTickets: sponsorshipSelected.ticketQuantity,
+    guestNames: attendant.guestNames,
   };
 
   try {
@@ -213,6 +225,7 @@ module.exports.checkoutSuccess = async (req, res, next) => {
     email: attendant.email,
     event: attendant.id,
     sponsorship: attendant.sponsorship,
+    guestNames: attendant.guestNames,
   });
 
   attendant.ticketQuantity = newAttendantDoc.ticketQuantity;
@@ -409,6 +422,17 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     res.redirect('/events');
   }
 
+//   if (!Array.isArray(attendant.guestNames)) {
+//   try {
+//     attendant.guestNames = JSON.parse(attendant.guestNames);
+//     if (!Array.isArray(attendant.guestNames)) {
+//       attendant.guestNames = []; // Ensure fallback to array
+//     }
+//   } catch (error) {
+//     attendant.guestNames = []; // Ensure fallback to array
+//   }
+// }
+
   // Creating a new Attendant document with the provided details
   const newAttendantDoc = new Attendant({
     dateTime: attendant.dateTime,
@@ -417,6 +441,7 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     attendantName: attendant.name,
     email: attendant.email,
     event: attendant.id,
+    // guestNames: attendant.guestNames,
   });
   // Storing the attendant details in the session
   req.session.attendant = {
@@ -427,6 +452,7 @@ module.exports.registerFreeEvent = async (req, res, next) => {
     email: attendant.email,
     eventId: attendant.id,
     location: event.location,
+    // guestNames: attendant.guestNames,
   };
   // Saving the new Attendant document to the database
   const createdAttendant = await newAttendantDoc.save();

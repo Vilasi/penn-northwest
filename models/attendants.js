@@ -27,10 +27,13 @@ const attendantSchema = new Schema({
     type: String,
     required: false,
   },
-
   event: {
     type: Schema.Types.ObjectId,
     ref: 'Event',
+  },
+  guestNames: {
+    type: [String],
+    default: [],
   },
 });
 
