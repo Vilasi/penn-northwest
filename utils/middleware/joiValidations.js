@@ -69,8 +69,33 @@ const imageUploadValidation = async (req, res, next) => {
 //* Validates the attendant data using Joi, flashes an error message if validation fails, and redirects to '/events' or proceeds if validation is successful.
 const paidEventValidation = async (req, res, next) => {
   const attendantData = req.body.attendant;
-  const result = joiValidations.paidEventSchema.validate(attendantData);
 
+   console.log("Before conversion - Type of guestNames:" .yellow, typeof attendantData.guestNames);
+  console.log("Before conversion - guestNames:" .yellow, attendantData.guestNames);
+
+
+  // Ensure guestNames is properly parsed as an array
+  if (typeof attendantData.guestNames === "string") {
+    try {
+      attendantData.guestNames = JSON.parse(attendantData.guestNames);
+
+      // If parsing results in something other than an array, fix it
+      if (!Array.isArray(attendantData.guestNames)) {
+        attendantData.guestNames = [];
+      }
+    } catch (error) {
+      attendantData.guestNames = []; // Fallback to empty array if parsing fails
+    }
+  }
+
+  attendantData.guestNames = Array.isArray(attendantData.guestNames) ? attendantData.guestNames : [];
+
+
+  console.log("After conversion - Type of guestNames:", typeof attendantData.guestNames);
+  console.log("After conversion - guestNames:", attendantData.guestNames);
+
+  const result = joiValidations.paidEventSchema.validate(attendantData);
+ 
   if (result.error) {
     const message = result.error.details[0].message;
     req.flash('error', message);
@@ -83,8 +108,35 @@ const paidEventValidation = async (req, res, next) => {
   }
 };
 
+
+
 const freeEventValidation = async (req, res, next) => {
   const freeAttendantData = req.body.attendant;
+  
+
+  // console.log("Before conversion - Type of guestNames:".yellow, typeof freeAttendantData.guestNames);
+  // console.log("Before conversion - guestNames:".yellow, freeAttendantData.guestNames);
+
+
+  // // Ensure guestNames is properly parsed as an array
+  // if (typeof freeAttendantData.guestNames === "string") {
+  //   try {
+  //     freeAttendantData.guestNames = JSON.parse(freeAttendantData.guestNames);
+
+  //     // If parsing results in something other than an array, fix it
+  //     if (!Array.isArray(freeAttendantData.guestNames)) {
+  //       freeAttendantData.guestNames = [];
+  //     }
+  //   } catch (error) {
+  //     freeAttendantData.guestNames = []; // Fallback to empty array if parsing fails
+  //   }
+  // }
+
+  // freeAttendantData.guestNames = Array.isArray(freeAttendantData.guestNames) ? freeAttendantData.guestNames : [];
+
+  // console.log("After conversion - Type of guestNames:", typeof freeAttendantData.guestNames);
+  // console.log("After conversion - guestNames:", freeAttendantData.guestNames);
+
   const result = joiValidations.freeEventSchema.validate(freeAttendantData);
 
   if (result.error) {

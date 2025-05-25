@@ -84,3 +84,32 @@
     margin-top: 2.5rem;
   }
 }
+
+.guestList {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap onto a new row */
+  gap: 8px; /* Adds spacing between items */
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  flex-direction: row;
+}
+
+.guestList li {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  white-space: nowrap; /* Prevents text from wrapping inside items */
+  width: fit-content;
+}
+
+#removeGuestButton{
+  padding: 3px !important;
+}
+
+#removeGuestButton:hover{
+  filter: contrast(3);
+  background-color: #909090 !important;
+}
