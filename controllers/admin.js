@@ -50,11 +50,19 @@ module.exports.adminIndex = async (req, res, next) => {
 
 module.exports.deleteEvent = async (req, res, next) => {
   const { id } = req.params;
-  const deletedEvent = await Event.findByIdAndDelete(id);
+  const deletedEvent = await Event.findById(id);
+
   if (!deletedEvent) {
     req.flash('error', 'Error. User was not deleted.');
     return res.redirect('/admin');
   }
+
+  const deletedPosition = deletedEvent.position; 
+
+
+  // Delete the event
+  await Event.findByIdAndDelete(id);
+
 
   if (deletedEvent.attendees.length > 0) {
     for (let attendee of deletedEvent.attendees) {
@@ -65,15 +73,30 @@ module.exports.deleteEvent = async (req, res, next) => {
   }
 
    try {
-    const remainingEvents = await Event.find();
+      // Find remaining events and shift positions only for affected ones
+    const remainingEvents = await Event.find().sort({ position: 1 });
 
-    const bulkOps = remainingEvents.map((event, index) => ({
-      updateOne: {
-        filter: { _id: event._id },
-        update: { $set: { position: index } }
-      }
-    }));
-    await Event.bulkWrite(bulkOps);
+    const bulkOps = remainingEvents
+      .filter(event => event.position > deletedPosition) // Only shift events AFTER the deleted one
+      .map(event => ({
+        updateOne: {
+          filter: { _id: event._id },
+          update: { $inc: { position: -1 } } // Decrement position by 1
+        }
+      }));
+
+    if (bulkOps.length > 0) await Event.bulkWrite(bulkOps);
+
+
+    // const remainingEvents = await Event.find();
+
+    // const bulkOps = remainingEvents.map((event, index) => ({
+    //   updateOne: {
+    //     filter: { _id: event._id },
+    //     update: { $set: { position: index } }
+    //   }
+    // }));
+    // await Event.bulkWrite(bulkOps);
 
   } catch (error) {
     console.error("Error deleting event:", error);
