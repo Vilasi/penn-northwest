@@ -1,5 +1,9 @@
 const express = require('express');
+const mongoose = require('mongoose');
+
 const router = express.Router({ mergeParams: true });
+const { Parser } = require('json2csv');
+
 
 //* Import Controller
 const admin = require('../controllers/admin');
@@ -20,4 +24,9 @@ router.route('/delete-user/:id').delete(isLoggedIn, isAdmin, admin.deleteUser);
 router
   .route('/delete-event/:id')
   .delete(isLoggedIn, isAdmin, admin.deleteEvent);
+
+router
+  .route('/download-attendants/:eventId')
+  .get(isLoggedIn, isAdmin, admin.downloadAttendantsCSV);
+
 module.exports = router;

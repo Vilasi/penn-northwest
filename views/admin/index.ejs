@@ -292,6 +292,11 @@
                                   <div class="mt-auto">
                                     <button class="modal-button btn btn-info mb-3"
                                       data-modal-index-number="<%= modalIndex %>">View Attendants</button>
+                                    <div>
+                                    <form method="GET" action="/admin/download-attendants/<%= event._id %>">
+                                      <button type="submit" class="btn btn-warning mb-3">Export to CSV</button>
+                                    </form>
+                                  </div>
                                     <form class="mb-3 delete-document-form"
                                       action="/admin/delete-event/<%= event._id %>?_method=DELETE" method="post"><button
                                         class="btn btn-sm btn-danger delete-document-button" type="submit">Delete

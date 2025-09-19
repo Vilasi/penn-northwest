@@ -7,6 +7,8 @@ const Application = require('../models/applications');
 const memberSorter = require('../utils/memberSorter.js');
 const getTodaysDate = require('../utils/getTodaysDate.js');
 const fileAdminLog = require('../utils/middleware/fileAdminLog');
+const { Parser } = require('json2csv');
+
 
 module.exports.adminIndex = async (req, res, next) => {
   const data = {};
@@ -212,5 +214,66 @@ exports.updateEventOrder = async (req, res) => {
     res.status(500).send({ message: "Error updating event order" });
   }
 };
+
+exports.downloadAttendantsCSV = async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.eventId)
+      .populate('attendees')
+      .lean();
+
+    if (!event || !event.attendees || event.attendees.length === 0) {
+       req.flash('error', 'Event currently has no attendees');
+      return res.redirect('/admin');
+    }
+
+    // Flatten attendees and guests into rows
+    const flattenedRows = [];
+
+    for (const att of event.attendees) {
+      // Main attendee row
+      flattenedRows.push({
+        attendantName: att.attendantName,
+        email: att.email,
+        ticketQuantity: att.ticketQuantity,
+        sponsorship: att.sponsorship,
+        dateTime: att.dateTime,
+        type: 'Primary'
+      });
+
+      // Guest rows
+      for (const guest of att.guestNames) {
+        flattenedRows.push({
+          attendantName: guest,
+          email: att.email,
+          // ticketQuantity: '', // guests may not have this
+          sponsorship: att.sponsorship,
+          dateTime: att.dateTime,
+          type: 'Guest'
+        });
+      }
+    }
+
+    const fields = [
+      'attendantName',
+      'email',
+      'ticketQuantity',
+      'sponsorship',
+      'dateTime',
+      'type'
+    ];
+
+    const parser = new Parser({ fields });
+    const csv = parser.parse(flattenedRows);
+
+    res.header('Content-Type', 'text/csv');
+    res.attachment(`event_${req.params.eventId}_attendees.csv`);
+    res.send(csv);
+  } catch (err) {
+    console.error('CSV export error:', err);
+    res.status(500).send('Server error while generating CSV.');
+  }
+};
+
+
 
 //TODO Add admin account deletion
