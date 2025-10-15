@@ -58,9 +58,10 @@
 #icon-divider {
   background: radial-gradient(
     ellipse,
-    var(--dun-shade-1) 50%,
-    var(--dun-shade-2) 100%
+    #ffffff 50%,
+    #ffffff 100%
   );
+  margin: 20px, auto;
 }
 
 #call-to-action-button {
@@ -125,3 +126,73 @@
     width: 360px !important;
   }
 }
+
+/* new aside styling */
+
+.subtitle{
+  color: rgb(0, 0, 0);
+  justify-content: center;
+  align-self: center;
+  display: flex;
+}
+
+#portfolio{
+    padding: 30px 0;
+    margin: 30px, auto;
+ }
+
+ .work-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-gap: 45px;
+    margin-top: 50px;
+ }
+
+ .work{
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+ }
+ .work img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: block;
+    object-fit: cover;
+    object-position: 30%;
+    transition: transform 0.5s;
+ }
+
+ .layer{
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(#f97421c6, #0000007d);
+    border-radius: 10px;
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    transition: height 0.5s;
+    font-weight: 500;
+    font-size: large;
+    color: white;
+ }
+
+ .layer h3{
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: white;
+ }
+
+ .work:hover img{
+    transform: scale(1.1);
+ }
+ .work:hover .layer{
+    height: 100%;
+ }
