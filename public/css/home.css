@@ -152,6 +152,7 @@
     border-radius: 10px;
     position: relative;
     overflow: hidden;
+    font-family: (--bs-body-font-family);
  }
  .work img{
     width: 100%;
@@ -185,7 +186,7 @@
  }
 
  .layer h3{
-    font-weight: 600;
+    font-weight: 300;
     margin-bottom: 20px;
     color: white;
  }
@@ -196,3 +197,43 @@
  .work:hover .layer{
     height: 100%;
  }
+
+ #overText {
+  z-index: 100;
+  position: absolute;
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 300;
+  left: 59px;
+  top: 450px;
+  transition: opacity .3s, top .5s;
+  font-family: var(--bs-body-font-family);
+  text-align: center;
+  align-items: center;
+}
+.work:hover #overText {
+  opacity: 0;
+  top: 46px;
+  cursor: default;
+}
+
+#overTextS {
+  z-index: 100;
+  position: absolute;
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 300;
+  left: 60px;
+  top: 430px;
+  transition: opacity .3s, top .5s;
+  font-family: var(--bs-body-font-family);
+  text-align: center;
+  line-height: 1.2;
+  width: 70%;
+}
+
+.work:hover #overTextS {
+  opacity: 0;
+  top: 89px;
+  cursor: default;
+}
