@@ -1,5 +1,10 @@
+:root {
+  --pndc-beige: #c9b79c;
+  --pndc-blue: #003a69;
+}
+
 footer {
-  background: #c9b79c;
+  background: var(--pndc-beige);
   min-height: 33dvh;
 }
 
@@ -8,13 +13,24 @@ a {
   text-decoration: none;
 }
 
+
+aside a {
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s, color 0.3s;
+  cursor: pointer;
+}
+
 a:hover {
   text-decoration: underline;
+  transform: scale(1.2);
+  color: var(--pndc-blue);
 }
 
 a:active {
   position: relative;
   top: 1px;
+  color: var(--pndc-blue);
 }
 
 #logo-header {
@@ -67,4 +83,163 @@ a:active {
   text-decoration: underline;
 }
 
+/* Center align footer navigation text */
+footer nav ul {
+  text-align: center !important;
+}
+
+footer nav ul li {
+  text-align: center !important;
+}
+
+footer nav ul li a {
+  text-align: center !important;
+}
+
+/* Newsletter form spacing and layout - Modal version */
+.newsletter-container {
+  min-height: 120px; /* Reserve space for the form in modal */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ .ctct-inline-form {
+  min-height: 100px;
+  margin-top: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+
+.ctct-inline-form form {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+
+.ctct-inline-form input[type="email"],
+.ctct-inline-form input[type="text"] {
+  margin-bottom: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0.5rem !important;
+  border-radius: 0.25rem !important;
+  border: 1px solid #ccc !important;
+  flex-shrink: 0;
+} 
+
+.ctct-form-field {
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin-bottom: 5px !important;
+}
+
+.ctct-inline-form button,
+.ctct-inline-form input[type="submit"] {
+  background-color: var(--pndc-blue) !important;
+  border-color: var(--pndc-blue) !important;
+  font-family: var(--bs-body-font-family) !important;
+}
+
+.ctct-inline-form button:hover,
+.ctct-inline-form input[type="submit"]:hover {
+  filter: brightness(85%);
+}
+
+/* Modal specific styling */
+#newsletterModal .modal-content {
+  border: none;
+}
+
+#newsletterModal .modal-header {
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#newsletterModal .modal-title {
+  color: #495057;
+  font-family: var(--bs-body-font-family) !important;
+  font-weight: 500 !important;
+}
+
+
+#newsletterModal .close-button{
+  background: transparent;
+  color: #6c757d;
+  font-size: 1.2rem;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+#newsletterModal .close-button:hover {
+  color: rgb(255, 107, 107);
+}
+
+#newsletterModal .close-button:active,
+#newsletterModal .close-button:focus {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+#newsletterModal .close-button span {
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.ctct-form-embed.form_0 .ctct-form-defaults{
+  background-color: var(--pndc-beige) !important;
+}
+
+.ctct-form-defaults form h2{
+  font-family: var(--bs-body-font-family) !important;
+  color: var(--pndc-blue) !important;
+  font-weight: 300 !important;
+  font-size: clamp(2rem, 6vw, 3rem) !important;
+}
+
+.ctct-form-defaults form .ctct-form-text{
+  font-family: var(--bs-body-font-family) !important;
+  font-weight: 200 !important;
+  font-size: 1rem !important;
+  margin: 0 1rem 1rem 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.ctct-form-defaults form #gdpr_text{
+  font-family: var(--bs-body-font-family) !important;
+  font-weight: 200 !important;
+  font-size: 0.8rem !important;
+  margin: 0 1rem .2rem 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
 /***************************************************************  */
