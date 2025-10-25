@@ -35,6 +35,7 @@ const PORT = 3000;
 
 //* Import Models
 const User = require('./models/users');
+const Resource = require('./models/resources');
 
 //* Import Error Handlers
 const errorHandler = require('./utils/error-handlers/errorHandler');
@@ -234,6 +235,22 @@ app.get('/about', (req, res, next) => {
   // console.dir(createError);
   // return next(createError(404, 'This is a test error'));
   res.render('pages/about');
+});
+
+//* Services
+app.get('/services', (req, res) => {
+  res.render('pages/services');
+});
+
+//* Resources
+app.get('/resources', async (req, res) => {
+  try {
+    const resources = await Resource.find({}).sort({ createdAt: -1 });
+    res.render('pages/resources', { resources });
+  } catch (error) {
+    console.error('Error fetching resources:', error);
+    res.render('pages/resources', { resources: [] });
+  }
 });
 
 //* Admin

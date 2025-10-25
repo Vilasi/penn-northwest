@@ -28,6 +28,9 @@
   --bg-pearl: #efe3c7;
   --dun-shade-1: rgba(209, 198, 173, 1);
   --dun-shade-2: #a79e8a;
+
+  /** Yellows */
+  --pndc-yellow: #ffc60b;
 }
 
 .no-scrollbar {

@@ -3,6 +3,7 @@ const Member = require('../models/members');
 const Event = require('../models/events');
 const Attendant = require('../models/attendants');
 const Application = require('../models/applications');
+const Resource = require('../models/resources');
 
 const memberSorter = require('../utils/memberSorter.js');
 const getTodaysDate = require('../utils/getTodaysDate.js');
@@ -44,6 +45,14 @@ module.exports.adminIndex = async (req, res, next) => {
     data.applications = null;
   } else {
     data.applications = applications;
+  }
+
+  //? Resources lookup
+  const resources = await Resource.find({}).sort({ createdAt: -1 });
+  if (!resources) {
+    data.resources = null;
+  } else {
+    data.resources = resources;
   }
   //   console.log(data);
 
@@ -275,5 +284,126 @@ exports.downloadAttendantsCSV = async (req, res) => {
 };
 
 
+
+module.exports.addResource = async (req, res, next) => {
+  try {
+    const { 'resource-name': name, 'resource-description': description, 'resource-url': url, 'resource-type': type } = req.body;
+
+    // Validate that either URL or file is provided
+    if (!url && !req.file) {
+      req.flash('error', 'Please provide either a URL or upload a file.');
+      return res.redirect('/admin');
+    }
+
+    // Validate that both URL and file are not provided
+    if (url && req.file) {
+      req.flash('error', 'Please provide either a URL or a file, not both.');
+      return res.redirect('/admin');
+    }
+
+    const resourceData = {
+      name,
+      description,
+      type,
+    };
+
+    // Handle file upload or URL
+    if (req.file) {
+      resourceData.file = {
+        url: req.file.path,
+        filename: req.file.filename,
+        originalName: req.file.originalname, // Store the original filename with extension
+      };
+    } else {
+      resourceData.url = url;
+    }
+
+    const newResource = new Resource(resourceData);
+    await newResource.save();
+
+    // Log resource creation to admin actionsLog
+    const logSuccess = await fileAdminLog(
+      req.user,
+      `Created new resource "${name}" of type ${type} on ${getTodaysDate()}`
+    );
+
+    // If actionsLog fails, display an error message but still redirect
+    if (!logSuccess) {
+      req.flash('error', 'Resource created but logging failed.');
+    } else {
+      req.flash('success', `Resource "${name}" successfully added.`);
+    }
+
+    res.redirect('/admin');
+  } catch (error) {
+    console.error('Error creating resource:', error);
+    req.flash('error', 'Failed to create resource.');
+    res.redirect('/admin');
+  }
+};
+
+module.exports.deleteResource = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deletedResource = await Resource.findByIdAndDelete(id);
+
+    if (!deletedResource) {
+      req.flash('error', 'Error. Resource was not deleted.');
+      return res.redirect('/admin');
+    }
+
+    // Delete the file from Cloudinary if it exists
+    if (deletedResource.file && deletedResource.file.filename) {
+      const cloudinary = require('cloudinary').v2;
+      try {
+        await cloudinary.uploader.destroy(deletedResource.file.filename, { resource_type: 'raw' });
+      } catch (cloudinaryError) {
+        console.error('Error deleting file from Cloudinary:', cloudinaryError);
+        // Continue with deletion even if Cloudinary fails
+      }
+    }
+
+    // Log delete action to admin actionsLog
+    const logSuccess = await fileAdminLog(
+      req.user,
+      `Deleted Resource "${deletedResource.name}" on ${getTodaysDate()}`
+    );
+
+    // If actionsLog fails, display an error message
+    if (!logSuccess) {
+      req.flash('error', 'Resource deleted but logging failed.');
+    } else {
+      req.flash('success', `Resource "${deletedResource.name}" successfully deleted.`);
+    }
+
+    res.redirect('/admin');
+  } catch (error) {
+    console.error('Error deleting resource:', error);
+    req.flash('error', 'Failed to delete resource.');
+    res.redirect('/admin');
+  }
+};
+
+module.exports.toggleResourceFeatured = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const resource = await Resource.findById(id);
+
+    if (!resource) {
+      return res.status(404).json({ message: 'Resource not found' });
+    }
+
+    resource.featured = !resource.featured;
+    await resource.save();
+
+    res.status(200).json({ 
+      message: 'Resource featured status updated', 
+      featured: resource.featured 
+    });
+  } catch (error) {
+    console.error('Error toggling resource featured status:', error);
+    res.status(500).json({ message: 'Failed to update resource' });
+  }
+};
 
 //TODO Add admin account deletion

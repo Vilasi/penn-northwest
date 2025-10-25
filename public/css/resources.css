@@ -1,0 +1,165 @@
+/* Resources Page Styles */
+
+/* Resource Cards */
+.resource-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid #dee2e6;
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Resource Icons */
+.resource-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* Tab Navigation */
+.nav-tabs {
+  border-bottom: 2px solid #dee2e6;
+}
+
+.nav-tabs .nav-link {
+  color: #495057;
+  font-weight: 500;
+  border: none;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+  border-color: transparent;
+  color: var(--pndc-blue);
+  background-color: transparent;
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--pndc-blue);
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom: 3px solid var(--pndc-blue);
+}
+
+/* Badges */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.publication-badge {
+  background-color: var(--pndc-orange);
+  color: #f8f9fa;
+}
+
+.video-badge {
+  background-color: var(--pndc-yellow);
+  color: #212529;
+}
+
+.podcast-badge {
+  background-color: #6f42c1;
+  color: #f8f9fa;
+}
+
+.news-badge {
+  background-color: #0dcaf0;
+  color: #212529;
+}
+
+.blog-badge {
+  background-color: #198754;
+  color: #f8f9fa;
+}
+
+/* Video Containers */
+.ratio iframe {
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+/* Button Styles */
+.resource-card .btn {
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.resource-card .btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Text Constraints */
+.max-text-width {
+  max-width: 600px;
+}
+
+/* Card Title Styling */
+.resource-card .card-title {
+  color: #212529;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.resource-card .card-text {
+  color: #6c757d;
+  line-height: 1.6;
+}
+
+/* Placeholder States */
+.resource-card .bi {
+  line-height: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .nav-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-tabs .nav-link {
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
+
+  .resource-icon {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .display-1 {
+    font-size: 3rem;
+  }
+
+  .display-5 {
+    font-size: 2rem;
+  }
+}
+
+/* Section Spacing */
+section h2 {
+  color: #212529;
+  font-weight: 700;
+}
+
+section h3 {
+  color: #495057;
+  font-weight: 600;
+}
+
+/* Call to Action Section */
+.bg-white.rounded.shadow-sm {
+  border: 1px solid #e9ecef;
+}
+
+/* Add Bootstrap Icons support if not already included */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css");
+

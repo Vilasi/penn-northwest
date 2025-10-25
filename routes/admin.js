@@ -1,5 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const multer = require('multer');
+const { resourceStorage } = require('../config/cloudinary');
+const uploadResource = multer({ 
+  storage: resourceStorage,
+  limits: {
+    fileSize: 10 * 1024 * 1024, // 10MB limit
+  },
+});
 
 const router = express.Router({ mergeParams: true });
 const { Parser } = require('json2csv');
@@ -28,5 +36,17 @@ router
 router
   .route('/download-attendants/:eventId')
   .get(isLoggedIn, isAdmin, admin.downloadAttendantsCSV);
+
+router
+  .route('/add-new-resource')
+  .post(isLoggedIn, isAdmin, uploadResource.single('resource-file'), admin.addResource);
+
+router
+  .route('/delete-resource/:id')
+  .delete(isLoggedIn, isAdmin, admin.deleteResource);
+
+router
+  .route('/toggle-resource-featured/:id')
+  .patch(isLoggedIn, isAdmin, admin.toggleResourceFeatured);
 
 module.exports = router;
