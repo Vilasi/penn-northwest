@@ -9,7 +9,8 @@ module.exports.scriptSrcUrls = [
   'https://www.gstatic.com/',
   'https://static.ctctcdn.com/',
   'http://static.ctctcdn.com/',
-  
+  'https://docs.google.com/',
+  'http://docs.google.com/',
 ];
 module.exports.styleSrcUrls = [
   'https://kit-free.fontawesome.com/',
@@ -22,6 +23,8 @@ module.exports.styleSrcUrls = [
   'https://cdnjs.cloudflare.com/',
   'https://static.ctctcdn.com/',
   'http://static.ctctcdn.com/',
+  'https://docs.google.com/',
+  'http://docs.google.com/',
 ];
 module.exports.connectSrcUrls = [
   'https://api.mapbox.com/',
@@ -36,16 +39,28 @@ module.exports.connectSrcUrls = [
   'http://visitor2.constantcontact.com/',
   'https://www.google.com/',
   'http://www.google.com/',
+  'https://docs.google.com/',
+  'http://docs.google.com/',
+  'https://play.google.com/',
+  'https://www.gstatic.com/',
+  'https://accounts.google.com/',
+  'https://apis.google.com/',
+  'https://www.googleapis.com/',
 ];
+
 module.exports.fontSrcUrls = [
   'https://fonts.googleapis.com/',
   'https://fonts.gstatic.com/',
   'https://fonts.googleapis.com/',
+  'https://docs.google.com/',
+  'http://docs.google.com/',
 ];
 
 module.exports.imgSrcUrls = [
   'https://placehold.co',
   'https://res.cloudinary.com/dypchgtip/', //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
   'https://images.unsplash.com/',
-  'https://static.ctctcdn.com/',
+  'https://static.ctctcdn.com/',  
+  'https://docs.google.com/',
+  'http://docs.google.com/',
 ];
