@@ -133,6 +133,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: [
+        "'self'",
         'https://www.youtube.com/',
         'https://www.google.com/',
         'https://app.mapstechnologies.com/',
