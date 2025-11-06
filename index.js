@@ -178,7 +178,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    console.error('Error deserializing user:', err);
+    // If user doesn't exist or there's an error, clear the session
+    done(null, false);
+  }
+});
 
 //* Database input sanitization
 app.use(
