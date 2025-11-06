@@ -20,8 +20,9 @@
 
 /* Tab Navigation - Universal Styles */
 /* Make nav element extend beyond parent padding for full-width border */
-.bg-light nav,
-section nav {
+/* Only target nav-tabs, not all nav elements (to avoid affecting footer) */
+.bg-light .nav-tabs,
+section .nav-tabs {
   width: calc(100% + 1rem + 1rem);
   margin-left: -1rem;
   margin-right: -1rem;
@@ -30,8 +31,8 @@ section nav {
 }
 
 @media (min-width: 992px) {
-  .bg-light nav,
-  section nav {
+  .bg-light .nav-tabs,
+  section .nav-tabs {
     width: calc(100% + 3rem + 3rem);
     margin-left: -3rem;
     margin-right: -3rem;

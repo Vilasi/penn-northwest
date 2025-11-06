@@ -158,15 +158,7 @@ app.use(
         'https://heyzine.com/',
         'https://www.google.com/recaptcha/',
       ],
-      frameSrc: [
-        'https://www.youtube.com/',
-        'https://docs.google.com/',
-        'https://heyzine.com/',
-        'https://app.mapstechnologies.com/',
-        'https://www.google.com/recaptcha/',
-        'https://play.google.com/',
-        'https://www.gstatic.com/',
-      ],
+      frameSrc: allowedSources.frameSrcUrls,
       connectSrc: [
         "'self'",
         ...allowedSources.connectSrcUrls,
