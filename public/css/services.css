@@ -37,11 +37,13 @@
 /* Additional styling for better readability */
 #services-section ul li {
   line-height: 1.6;
+  font-size: 1.1rem;
 }
 
 #services-section .lead {
-  font-weight: 400;
-  line-height: 1.7;
+  font-weight: 300;
+  line-height: 2;
+  font-size: 1.3rem;
 }
 
 /* Card header styling */

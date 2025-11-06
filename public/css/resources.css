@@ -18,30 +18,63 @@
   display: block;
 }
 
-/* Tab Navigation */
+/* Tab Navigation - Universal Styles */
+/* Make nav element extend beyond parent padding for full-width border */
+.bg-light nav,
+section nav {
+  width: calc(100% + 1rem + 1rem);
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 992px) {
+  .bg-light nav,
+  section nav {
+    width: calc(100% + 3rem + 3rem);
+    margin-left: -3rem;
+    margin-right: -3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
 .nav-tabs {
   border-bottom: 2px solid #dee2e6;
+  width: 100%;
 }
 
 .nav-tabs .nav-link {
+  position: relative;
   color: #495057;
   font-weight: 500;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
   border: none;
   border-bottom: 3px solid transparent;
   transition: all 0.3s ease;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  overflow: hidden;
 }
 
 .nav-tabs .nav-link:hover {
   border-color: transparent;
   color: var(--pndc-blue);
-  background-color: transparent;
+  background: radial-gradient(
+    circle 380px at var(--mouse-x) var(--mouse-y),
+    rgba(249, 116, 33, 0.411),
+    rgba(250, 130, 55, 0.159),
+    transparent 70%
+  );
 }
 
 .nav-tabs .nav-link.active {
   color: var(--pndc-blue);
   background-color: transparent;
   border-color: transparent;
-  border-bottom: 3px solid var(--pndc-blue);
+  border-bottom: 6px solid var(--pndc-blue);
 }
 
 /* Badges */
@@ -118,15 +151,19 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .nav-tabs {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;
+    overflow-y: visible;
   }
 
   .nav-tabs .nav-link {
-    white-space: nowrap;
-    font-size: 0.9rem;
+    white-space: normal;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    flex: 1 1 auto;
+    min-width: fit-content;
+    text-align: center;
   }
 
   .resource-icon {
@@ -135,6 +172,13 @@
 }
 
 @media (max-width: 576px) {
+  .nav-tabs .nav-link {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.75rem;
+    flex: 1 1 100%;
+    margin-bottom: 0.25rem;
+  }
+
   .display-1 {
     font-size: 3rem;
   }

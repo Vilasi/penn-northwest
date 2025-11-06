@@ -1,5 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/css/membership.css" />
+<link rel="stylesheet" href="/css/resources.css" />
+<link rel="stylesheet" href="/css/buttons.css" />
 <link rel="stylesheet" href="/css/scrollin.css" />
 <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 
@@ -7,139 +9,133 @@
 <section
   class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5 rounded"
 >
-  <main class="bg-light">
-    <!--! Membership Buttons -->
-    <section id="membership-buttons" class="row mb-5 pt-3 pb-5">
-      <!--? Every element in each article has the same class, so that the link will trigger in JS no matter which element is clicked -->
-      <!--* Incentives -->
-      <article
-        class="incentives-link-anchor col-lg-4 p-3 d-flex flex-column align-items-center mb-5 mb-lg-0 bottom-shadow rounded no-hover-shadow"
-      >
-        <a
-          class="incentives-link-anchor header-links w-90 d-flex flex-column align-items-center"
+  <section class="bg-light rounded px-3 px-lg-5">
+    <!-- Hero Header -->
+    <header class="mt-5 pt-4 mb-5 text-center">
+      <h1 class="display-1 ff-1 mb-3">Membership</h1>
+      <p class="lead max-text-width mx-auto">
+        Join Penn-Northwest Development Corporation and unlock your business potential. 
+        Connect with influential leaders, access exclusive resources, and be part of Mercer County's economic growth.
+      </p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="mb-5">
+      <div class="nav nav-tabs justify-content-center" id="membershipTabs" role="tablist">
+        <button
+          class="nav-link active"
+          id="about-membership-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#about-membership"
+          type="button"
+          role="tab"
+          aria-controls="about-membership"
+          aria-selected="true"
         >
-          <img
-            class="incentives-link-anchor img-fluid mw-95 rounded border border-warning shadow-lg mb-5"
-            src="https://res.cloudinary.com/dypchgtip/image/upload/v1710289019/obrien-construction_wed2ms.jpg"
-            crossorigin="anonymous"
-            alt="Picture of the Obrien Construction Award Winners"
-            title="Membership Incentives - Obrien Construction Award Winners"
-          />
-          <button
-            href=""
-            class="incentives-link-anchor btn btn-primary bg-orange-2 border border-0"
-          >
-            <h2 class="incentives-link-anchor display-6 text-light">
-              Membership Incentives
-            </h2>
-          </button>
-        </a>
-      </article>
-
-      <!--* Become a Member -->
-      <article
-        class="signup-link-anchor col-lg-4 px-3 py-5 d-flex flex-column align-items-center mb-5 mb-lg-0 bottom-shadow rounded no-hover-shadow"
-      >
-        <a
-          id="become-a-member"
-          class="signup-link-anchor header-links w-90 d-flex flex-column align-items-center"
+          About Membership
+        </button>
+        <button
+          class="nav-link"
+          id="our-members-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#our-members"
+          type="button"
+          role="tab"
+          aria-controls="our-members"
+          aria-selected="false"
         >
-          <img
-            class="signup-link-anchor img-fluid mb-5 rounded border border-primary shadow-lg"
-            src="https://res.cloudinary.com/dypchgtip/image/upload/v1710289715/golf-members_laocfa.jpg"
-            crossorigin="anonymous"
-            alt="Become a member - a photo of our members on a golf outing"
-            title="Become a member - our members on a golf outing"
-          />
-          <button
-            href=""
-            class="signup-link-anchor btn btn-primary bg-true-blue border border-0 "
-          >
-            <h1 class="signup-link-anchor display-5">Become a Member!</h1>
-          </button>
-        </a>
-      </article>
-
-      <!--* Our Members -->
-      <article
-        class="member-list-link-anchor col-lg-4 p-3 d-flex flex-column align-items-center mb-5 mb-lg-0 bottom-shadow rounded no-hover-shadow"
-      >
-        <a
-          class="member-list-link-anchor header-links w-90 d-flex flex-column align-items-center"
+          Our Members / Directory
+        </button>
+        <button
+          class="nav-link"
+          id="membership-application-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#membership-application"
+          type="button"
+          role="tab"
+          aria-controls="membership-application"
+          aria-selected="false"
         >
-          <img
-            class="member-list-link-anchor img-fluid mb-5 mw-95 rounded border border-warning shadow-lg"
-            src="https://res.cloudinary.com/dypchgtip/image/upload/v1710277043/crowd1_qhgoxj.jpg"
-            alt="Rod Wilt addressing a room full of PNDC members"
-            title="Our Members - Rod Wilt giving a presentation to our members"
-          />
-          <button
-            href=""
-            class="member-list-link-anchor btn btn-success bg-orange-2 border border-0"
-          >
-            <h2 class="member-list-link-anchor display-6 text-light">
-              Our Members
-            </h2>
-          </button>
-        </a>
-      </article>
-    </section>
- 
-
-    <!--! Membership Incentives -->
-    <section
-      id="membership-incentives"
-      class="py-lg-5 d-flex flex-column align-items-center"
-    >
-      <header class="container text-center">
-        <!--* Header and underline svg (contained within the <div>) -->
-        <h1 class="display-5">
-          Unlock Your
-          <div class="underline-container">
-            Potential
-            <svg
-              id="underline-svg"
-              class="underline-svg"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 500 2"
-            >
-              <!--* Underline 1 -->
-              <path
-                d="M5,0 Q250,1 495,0"
-                fill="none"
-                stroke="#fb5607"
-                stroke-width="8"
-              ></path>
-            </svg>
-            <svg
-              id="underline-svg-2"
-              class="underline-svg"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 500 2"
-            >
-              <!--* Underline 1 -->
-              <path
-                d="M5,0 Q250,1 495,0"
-                fill="none"
-                stroke="#fb5607"
-                stroke-width="8"
-              ></path>
-            </svg>
-          </div>
-          with a Penn-Northwest Membership
-        </h1>
-        <!--  -->
-        <!-- Form: https://www.penn-northwest.com/economic-development/ -->
-      </header>
-
-      <div class="text-primary w-75 my-3">
-        <hr />
+          Membership Application
+        </button>
+        <button
+          class="nav-link"
+          id="pay-dues-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#pay-dues"
+          type="button"
+          role="tab"
+          aria-controls="pay-dues"
+          aria-selected="false"
+        >
+          Pay Dues Online
+        </button>
       </div>
+    </nav>
 
-      <!--* Membership Incentive Cards -->
-      <section class="row container mt-3 mb-5">
-        <!--* Article 1 -->
-        <article class="col-xl-4 d-flex flex-column align-items-center mb-5">
+    <!-- Tab Content -->
+    <div class="tab-content" id="membershipTabsContent">
+      <!-- About Membership Tab -->
+      <div
+        class="tab-pane fade show active"
+        id="about-membership"
+        role="tabpanel"
+        aria-labelledby="about-membership-tab"
+      >
+        <!--! Membership Incentives -->
+        <section
+          id="membership-incentives"
+          class="py-lg-5 d-flex flex-column align-items-center"
+        >
+          <header class="container text-center">
+            <!--* Header and underline svg (contained within the <div>) -->
+            <h1 class="display-5">
+              Unlock Your
+              <div class="underline-container">
+                Potential
+                <svg
+                  id="underline-svg"
+                  class="underline-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 500 2"
+                >
+                  <!--* Underline 1 -->
+                  <path
+                    d="M5,0 Q250,1 495,0"
+                    fill="none"
+                    stroke="#fb5607"
+                    stroke-width="8"
+                  ></path>
+                </svg>
+                <svg
+                  id="underline-svg-2"
+                  class="underline-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 500 2"
+                >
+                  <!--* Underline 1 -->
+                  <path
+                    d="M5,0 Q250,1 495,0"
+                    fill="none"
+                    stroke="#fb5607"
+                    stroke-width="8"
+                  ></path>
+                </svg>
+              </div>
+              with a Penn-Northwest Membership
+            </h1>
+            <!--  -->
+            <!-- Form: https://www.penn-northwest.com/economic-development/ -->
+          </header>
+
+          <div class="text-primary w-75 my-3">
+            <hr />
+          </div>
+
+          <!--* Membership Incentive Cards -->
+          <section class="row container mt-3 mb-5">
+            <!--* Article 1 -->
+            <article class="col-xl-4 d-flex flex-column align-items-center mb-5">
           <div class="card">
             <div class="card-body">
               <h5
@@ -240,13 +236,13 @@
             </div>
           </div>
         </article>
-      </section>
-    </section>
+          </section>
+        </section>
 
-    <!--! PDF Links -->
-    <section class="container d-flex justify-content-evenly flex-wrap mb-5">
-      <!-- PDF 1 -->
-      <div class="card shadow mb-3 mb-md-0" style="width: 18rem">
+        <!--! PDF Links -->
+        <section class="container d-flex justify-content-evenly flex-wrap mb-5">
+          <!-- PDF 1 -->
+          <div class="card shadow mb-3 mb-md-0" style="width: 22rem; max-width: 100%; padding: 2rem;">
         <a href="assets/pdf/PNDC-Membership-Application.pdf" target="_blank">
           <img
             crossorigin="anonymous"
@@ -263,17 +259,19 @@
             attract new businesses, create jobs, and ensure a prosperous future
             for all.
           </p>
-          <a
-            href="assets/pdf/PNDC-Membership-Application.pdf"
-            class="btn btn-primary"
-            target="_blank"
-            >Apply Today!</a
-          >
-        </div>
-      </div>
+          <div class="text-center mt-3">
+            <a
+              href="assets/pdf/PNDC-Membership-Application.pdf"
+              class="btn btn-background-slide"
+              target="_blank"
+              >Apply Today!</a
+            >
+          </div>
+          </div>
+          </div>
 
-      <!-- PDF 2 -->
-      <div class="card shadow" style="width: 18rem">
+          <!-- PDF 2 -->
+          <div class="card shadow" style="width: 22rem; max-width: 100%; padding: 2rem;">
         <a href="assets/pdf/membership-levels.pdf" target="_blank">
           <img
             crossorigin="anonymous"
@@ -290,27 +288,31 @@
             employment opportunities, and ensure a prosperous future. Make a
             difference in our hometown!
           </p>
-          <a
-            href="assets/pdf/membership-levels.pdf"
-            class="btn btn-primary"
-            target="_blank"
-            >Learn More</a
-          >
-        </div>
+          <div class="text-center mt-3">
+            <a
+              href="assets/pdf/membership-levels.pdf"
+              class="btn btn-background-slide"
+              target="_blank"
+              >Learn More</a
+            >
+          </div>
+          </div>
+          </div>
+        </section>
       </div>
-    </section>
 
-    <!--* Begin Form Section! ---------------------------------------------------->
-    <!--* Begin Form Section! -->
-    <!--* Begin Form Section! -->
-    <!--* Begin Form Section! -->
-    <!--* Begin Form Section! -->
-    <section id="signup" class="container mt-5 pt-5">
-      <header class="mb-5">
-        <h2 class="display-4">Apply for Membership</h2>
-        <h2 class="display-4">Already a member? <a href="https://donate.giving.corecommerce.com/penn-northwest-membership-dues-25-26" class="text-decoration-underline" target="_blank">Click here to pay your dues online!</a></h2>
-        <hr />
-      </header>
+      <!-- Membership Application Tab -->
+      <div
+        class="tab-pane fade"
+        id="membership-application"
+        role="tabpanel"
+        aria-labelledby="membership-application-tab"
+      >
+        <section id="signup" class="container mt-5 pt-5">
+          <header class="mb-5">
+            <h2 class="display-4">Apply for Membership</h2>
+            <hr />
+          </header>
 
       <section class="container">
         <form class="needs-validation" id="member-application-form" action="/membership" method="post" novalidate>
@@ -670,9 +672,17 @@
           </button>
         </form>
       </section>
-    </section>
+        </section>
+      </div>
 
-    <!--* Start Members List Section -->
+      <!-- Our Members / Directory Tab -->
+      <div
+        class="tab-pane fade"
+        id="our-members"
+        role="tabpanel"
+        aria-labelledby="our-members-tab"
+      >
+        <!--* Start Members List Section -->
     <!-- This programmatically generates the list of members from a general members collection call to the DB -->
     <!-- The # members displayed per section is for optimal responsive sizing -->
     <!-- If member.href is truthy , render <a></a>. Else render only member.name <p></p> -->
@@ -1059,7 +1069,58 @@
           </div>
         <% } %>
       </section>
-    </section>
+        </section>
+      </div>
+
+      <!-- Pay Dues Online Tab -->
+      <div
+        class="tab-pane fade"
+        id="pay-dues"
+        role="tabpanel"
+        aria-labelledby="pay-dues-tab"
+      >
+        <section class="container mt-5 pt-5">
+          <header class="mb-5 text-center">
+            <h2 class="display-4 mb-4">Pay Your Membership Dues Online</h2>
+            <p class="lead max-text-width mx-auto">
+              Already a member? You can now pay your membership dues conveniently online through our secure payment portal.
+            </p>
+          </header>
+
+          <div class="row justify-content-center mb-5">
+            <div class="col-lg-8">
+              <div class="card shadow-lg text-center p-5">
+                <div class="card-body">
+                  <h3 class="card-title display-6 mb-4">Annual Membership Dues Payment</h3>
+                  <p class="card-text lead mb-4">
+                    Click the button below to access our secure online payment system and pay your membership dues for the current year.
+                  </p>
+                  <a
+                    href="https://donate.giving.corecommerce.com/penn-northwest-membership-dues-25-26"
+                    class="btn btn-primary btn-lg"
+                    target="_blank"
+                  >
+                    Pay Dues Online
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-center mb-5">
+            <div class="col-lg-10">
+              <div class="alert alert-info">
+                <h5 class="alert-heading">Need Help?</h5>
+                <p class="mb-0">
+                  If you have questions about your membership dues or need assistance with payment, please contact us at 
+                  <a href="/#homepage-contact-form" class="alert-link">our contact form</a> or call our office.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
 
     <!--? Lands' End Store -->
     <section class="w-100 my-5 pb-3 row px-5 border-top py-5">
@@ -1087,13 +1148,12 @@
       </div>
     </section>
     <p class="text-end"><small>Header Photo Credit: <a href="https://workwithclever.com/" class="text-decoration-underline" target="_blank">Clever Marketing</a> & <a href="https://www.sharonherald.com/" class="text-decoration-underline" target="_blank">Sharon Herald</a></small></p>
-  </main>
+  </section>
 </section>
 
 
 <script src="/js/formValidation.js"></script>
 <script src="/js/membership/manualCaptchaValidation.js"></script>
-<script src="/js/membership/headerLinks.js"></script>
 <script src="/js/scrollin.js"></script>
 <script src="/js/deleteDocumentConfirmation.js"></script>
 
