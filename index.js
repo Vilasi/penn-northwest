@@ -31,7 +31,7 @@ const allowedSources = require('./config/content-security-policy/index');
 
 //* Initialize Express App and Port:
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 //* Import Models
 const User = require('./models/users');
@@ -54,7 +54,24 @@ mongoose.connection.once('open', () => {
 
 //? Connect to Database
 async function main() {
-  await mongoose.connect(dbURL);
+  try {
+    const mongooseOptions = {
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    };
+    
+    // MongoDB Atlas (mongodb+srv://) requires SSL by default
+    // For production MongoDB Atlas connections, SSL is automatically enabled
+    // Only set SSL explicitly if needed for non-Atlas connections
+    if (process.env.NODE_ENV === 'production' && !dbURL.includes('mongodb+srv://')) {
+      mongooseOptions.ssl = true;
+    }
+    
+    await mongoose.connect(dbURL, mongooseOptions);
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    throw err;
+  }
 }
 
 //* SET VIEW ENGINE && SET EJS-Mate Template Engine
@@ -134,6 +151,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: [
+        "'self'",
         'https://www.youtube.com/',
         'https://www.google.com/',
         'https://app.mapstechnologies.com/',
@@ -178,7 +196,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    console.error('Error deserializing user:', err);
+    // If user doesn't exist or there's an error, clear the session
+    done(null, false);
+  }
+});
 
 //* Database input sanitization
 app.use(
