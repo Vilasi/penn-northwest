@@ -31,7 +31,7 @@ const allowedSources = require('./config/content-security-policy/index');
 
 //* Initialize Express App and Port:
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 //* Import Models
 const User = require('./models/users');
