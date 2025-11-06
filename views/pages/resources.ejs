@@ -125,12 +125,12 @@
                           const recentUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
                         %>
                         <% if (resource.type === 'video') { %>
-                          <a href="<%= recentUrl %>" class="btn btn-background-slide">Watch Video</a>
+                          <a href="<%= recentUrl %>" target="_blank" class="btn btn-background-slide">Watch Video</a>
                         <% } else if (resource.type === 'podcast') { %>
                           <a href="<%= recentUrl %>" target="_blank" class="btn btn-background-slide">Listen Now</a>
                         <% } else { %>
                           <% if (resource.file && resource.file.url) { %>
-                            <a href="<%= recentUrl %>" download="<%= resource.file.originalName || resource.name %>" class="btn btn-background-slide">
+                            <a href="<%= recentUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
                               <i class="bi bi-eye"></i> View Resource
                             </a>
                           <% } else { %>
@@ -157,12 +157,12 @@
                           const featuredUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
                         %>
                         <% if (resource.type === 'video') { %>
-                          <a href="<%= featuredUrl %>" class="btn btn-background-slide">Watch Video</a>
+                          <a href="<%= featuredUrl %>" target="_blank" class="btn btn-background-slide">Watch Video</a>
                         <% } else if (resource.type === 'podcast') { %>
                           <a href="<%= featuredUrl %>" target="_blank" class="btn btn-background-slide">Listen Now</a>
                         <% } else { %>
                           <% if (resource.file && resource.file.url) { %>
-                            <a href="<%= featuredUrl %>" download="<%= resource.file.originalName || resource.name %>" class="btn btn-background-slide">
+                            <a href="<%= featuredUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
                               <i class="bi bi-eye"></i> View Resource
                             </a>
                           <% } else { %>
@@ -222,7 +222,7 @@
                         const pubUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
                       %>
                       <% if (resource.file && resource.file.url) { %>
-                        <a href="<%= pubUrl %>" download="<%= resource.file.originalName || resource.name %>" class="btn btn-background-slide">
+                        <a href="<%= pubUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
                           <i class="bi bi-eye"></i> View Resource
                         </a>
                       <% } else { %>
@@ -394,6 +394,7 @@
                           frameborder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowfullscreen
+                          referrerpolicy="strict-origin-when-cross-origin"
                         ></iframe>
                       </div>
                     <% } %>
@@ -404,7 +405,7 @@
                       </p>
                       <% if (!isYouTube && videoUrl) { %>
                         <% if (resource.file && resource.file.url) { %>
-                          <a href="<%= videoUrl %>" download="<%= resource.file.originalName || resource.name %>" class="btn btn-background-slide">
+                          <a href="<%= videoUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
                             <i class="bi bi-eye"></i> View Resource
                           </a>
                         <% } else { %>
@@ -460,7 +461,7 @@
                         const podcastUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
                       %>
                       <% if (resource.file && resource.file.url) { %>
-                        <a href="<%= podcastUrl %>" download="<%= resource.file.originalName || resource.name %>" class="btn btn-background-slide">
+                        <a href="<%= podcastUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
                           <i class="bi bi-eye"></i> View Resource
                         </a>
                       <% } else { %>
@@ -516,7 +517,7 @@
                         const newsUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
                       %>
                       <% if (resource.file && resource.file.url) { %>
-                        <a href="<%= newsUrl %>" download="<%= resource.file.originalName || resource.name %>" class="btn btn-background-slide">
+                        <a href="<%= newsUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
                           <i class="bi bi-eye"></i> View Resource
                         </a>
                       <% } else { %>
@@ -572,7 +573,7 @@
                         const blogUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
                       %>
                       <% if (resource.file && resource.file.url) { %>
-                        <a href="<%= blogUrl %>" download="<%= resource.file.originalName || resource.name %>" class="btn btn-background-slide">
+                        <a href="<%= blogUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
                           <i class="bi bi-eye"></i> View Resource
                         </a>
                       <% } else { %>
