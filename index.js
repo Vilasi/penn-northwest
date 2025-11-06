@@ -53,7 +53,24 @@ mongoose.connection.once('open', () => {
 
 //? Connect to Database
 async function main() {
-  await mongoose.connect(dbURL);
+  try {
+    const mongooseOptions = {
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    };
+    
+    // MongoDB Atlas (mongodb+srv://) requires SSL by default
+    // For production MongoDB Atlas connections, SSL is automatically enabled
+    // Only set SSL explicitly if needed for non-Atlas connections
+    if (process.env.NODE_ENV === 'production' && !dbURL.includes('mongodb+srv://')) {
+      mongooseOptions.ssl = true;
+    }
+    
+    await mongoose.connect(dbURL, mongooseOptions);
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    throw err;
+  }
 }
 
 //* SET VIEW ENGINE && SET EJS-Mate Template Engine
