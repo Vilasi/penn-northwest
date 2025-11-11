@@ -170,6 +170,7 @@ app.use(
         "'self'",
         ...allowedSources.connectSrcUrls,
         'https://play.google.com/',
+        'https://cdn.jsdelivr.net/',
       ],
       scriptSrc: ["'unsafe-inline'", "'self'", ...allowedSources.scriptSrcUrls],
       styleSrc: ["'self'", "'unsafe-inline'", ...allowedSources.styleSrcUrls],
