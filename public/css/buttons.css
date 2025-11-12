@@ -3,6 +3,8 @@
   --pndc-blue: #003a69;
   --mercer-county-blue: #054467;
   --pndc-orange: #f97521;
+  --bg-pearl: #efe3c7;
+  --pndc-yellow: #ffc60b;
 }
 
 .btn-background-slide {
@@ -31,6 +33,12 @@
   border-right: 1px solid #0d1b2a49;
 }
 
+#newsletter-button {
+  width: 100%;
+  max-width: 330px;
+  margin: 1rem auto;
+}
+
 .btn-background-slide:hover .btn-background-slide-bg {
   opacity: 1;
   transform: translateZ(0px);
@@ -42,4 +50,9 @@
   box-shadow: var(--mercer-county-blue) 8px 8px 0px,
     var(--pndc-orange) -8px -8px 0px;
   top: 2px;
+}
+
+.btn.btn-background-slide:hover{
+  background-color: var(--bg-pearl);
+  color: black !important;
 }

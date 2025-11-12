@@ -1,0 +1,614 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/css/resources.css" />
+<link rel="stylesheet" href="/css/buttons.css" />
+
+<section
+  class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5"
+>
+  <section class="bg-light rounded px-3 px-lg-5">
+    <!-- Hero Header -->
+    <header class="mt-5 pt-4 mb-5 text-center">
+      <h1 class="display-1 ff-1 mb-3">Resources</h1>
+      <p class="lead max-text-width mx-auto">
+        Explore our collection of publications, videos, podcasts, and news
+        articles. Stay informed about PNDC's initiatives and impact in Mercer
+        County.
+      </p>
+    </header>
+
+    <!-- Navigation Tabs for Resource Categories -->
+    <nav class="mb-5">
+      <div class="nav nav-tabs justify-content-center" id="resourceTabs" role="tablist">
+        <button
+          class="nav-link active"
+          id="all-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#all"
+          type="button"
+          role="tab"
+          aria-controls="all"
+          aria-selected="true"
+        >
+          Featured Resources
+        </button>
+        <button
+          class="nav-link"
+          id="publications-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#publications"
+          type="button"
+          role="tab"
+          aria-controls="publications"
+          aria-selected="false"
+        >
+          Publications
+        </button>
+        <button
+          class="nav-link"
+          id="videos-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#videos"
+          type="button"
+          role="tab"
+          aria-controls="videos"
+          aria-selected="false"
+        >
+          Videos
+        </button>
+        <button
+          class="nav-link"
+          id="podcasts-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#podcasts"
+          type="button"
+          role="tab"
+          aria-controls="podcasts"
+          aria-selected="false"
+        >
+          Podcasts
+        </button>
+        <button
+          class="nav-link"
+          id="news-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#news"
+          type="button"
+          role="tab"
+          aria-controls="news"
+          aria-selected="false"
+        >
+          News & Articles
+        </button>
+        <button
+          class="nav-link"
+          id="blog-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#blog"
+          type="button"
+          role="tab"
+          aria-controls="blog"
+          aria-selected="false"
+        >
+          Blog Posts
+        </button>
+      </div>
+    </nav>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="resourceTabsContent">
+      <!-- Featured Resources Tab -->
+      <div
+        class="tab-pane fade show active"
+        id="all"
+        role="tabpanel"
+        aria-labelledby="all-tab"
+      >
+        <section class="mb-5">
+          <h2 class="display-5 mb-4 border-bottom pb-2">Featured Resources</h2>
+          <p class="lead mb-4">Check out some of our featured resources below.</p>
+          
+          <!-- This section will show most recent resources -->
+          <div class="row g-4">
+            <% if (resources && resources.length > 0) { %>
+              <% const featuredResources = resources.filter(r => r.featured).slice(0, 6); %>
+              <% if (featuredResources.length === 0) { %>
+                <% resources.slice(0, 6).forEach(resource => { %>
+                  <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 resource-card">
+                      <div class="card-body">
+                        <span class="badge mb-2 <%= resource.type %>-badge"><%= resource.type.charAt(0).toUpperCase() + resource.type.slice(1) %></span>
+                        <h5 class="card-title"><%= resource.name %></h5>
+                        <p class="card-text">
+                          <%= resource.description %>
+                        </p>
+                        <% 
+                          const recentUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
+                        %>
+                        <% if (resource.type === 'video') { %>
+                          <a href="<%= recentUrl %>" target="_blank" class="btn btn-background-slide">Watch Video</a>
+                        <% } else if (resource.type === 'podcast') { %>
+                          <a href="<%= recentUrl %>" target="_blank" class="btn btn-background-slide">Listen Now</a>
+                        <% } else { %>
+                          <% if (resource.file && resource.file.url) { %>
+                            <a href="<%= recentUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
+                              <i class="bi bi-eye"></i> View Resource
+                            </a>
+                          <% } else { %>
+                            <a href="<%= recentUrl %>" target="_blank" class="btn btn-background-slide">
+                              View Resource
+                            </a>
+                          <% } %>
+                        <% } %>
+                      </div>
+                    </div>
+                  </div>
+                <% }) %>
+              <% } else { %>
+                <% featuredResources.forEach(resource => { %>
+                  <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 resource-card">
+                      <div class="card-body">
+                        <span class="badge mb-2 <%= resource.type %>-badge"><%= resource.type.charAt(0).toUpperCase() + resource.type.slice(1) %></span>
+                        <h5 class="card-title"><%= resource.name %></h5>
+                        <p class="card-text">
+                          <%= resource.description %>
+                        </p>
+                        <% 
+                          const featuredUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
+                        %>
+                        <% if (resource.type === 'video') { %>
+                          <a href="<%= featuredUrl %>" target="_blank" class="btn btn-background-slide">Watch Video</a>
+                        <% } else if (resource.type === 'podcast') { %>
+                          <a href="<%= featuredUrl %>" target="_blank" class="btn btn-background-slide">Listen Now</a>
+                        <% } else { %>
+                          <% if (resource.file && resource.file.url) { %>
+                            <a href="<%= featuredUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
+                              <i class="bi bi-eye"></i> View Resource
+                            </a>
+                          <% } else { %>
+                            <a href="<%= featuredUrl %>" target="_blank" class="btn btn-background-slide">
+                              View Resource
+                            </a>
+                          <% } %>
+                        <% } %>
+                      </div>
+                    </div>
+                  </div>
+                <% }) %>
+              <% } %>
+            <% } else { %>
+              <div class="col-12">
+                <div class="card resource-card">
+                  <div class="card-body text-center p-5">
+                    <i class="bi bi-folder2-open display-1 text-muted mb-3"></i>
+                    <h5 class="card-title">No Resources Yet</h5>
+                    <p class="card-text max-text-width mx-auto">
+                      Check back soon for new resources!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        </section>
+      </div>
+
+      <!-- Publications Tab -->
+      <div
+        class="tab-pane fade"
+        id="publications"
+        role="tabpanel"
+        aria-labelledby="publications-tab"
+      >
+        <section class="mb-5">
+          <h2 class="display-5 mb-4 border-bottom pb-2">Publications</h2>
+          
+          <!-- Dynamic Publications -->
+          <% const publicationResources = resources ? resources.filter(r => r.type === 'publication') : []; %>
+          <% if (publicationResources.length > 0) { %>
+            <div class="mb-5">
+              <h3 class="h4 mb-3">Added Publications</h3>
+              <div class="row g-4">
+                <% publicationResources.forEach(resource => { %>
+                  <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 resource-card">
+                      <div class="card-body">
+                        <i class="bi bi-file-pdf resource-icon text-danger"></i>
+                        <h5 class="card-title"><%= resource.name %></h5>
+                        <p class="card-text">
+                        <%= resource.description %>
+                      </p>
+                      <% 
+                        const pubUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
+                      %>
+                      <% if (resource.file && resource.file.url) { %>
+                        <a href="<%= pubUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
+                          <i class="bi bi-eye"></i> View Resource
+                        </a>
+                      <% } else { %>
+                        <a href="<%= pubUrl %>" target="_blank" class="btn btn-background-slide">
+                          <i class="bi bi-eye"></i> View Resource
+                        </a>
+                      <% } %>
+                      </div>
+                    </div>
+                  </div>
+                <% }) %>
+              </div>
+            </div>
+          <% } %>
+
+          <!-- Print Publications (PDFs) -->
+          <div class="mb-5">
+            <h3 class="h4 mb-3">Print Publications</h3>
+            <div class="row g-4">
+              <div class="col-md-6 col-lg-4">
+                <div class="card h-100 resource-card">
+                  <div class="card-body">
+                    <i class="bi bi-file-pdf resource-icon text-danger"></i>
+                    <h5 class="card-title">2024 Annual Report</h5>
+                    <p class="card-text">
+                      Our comprehensive annual report highlighting achievements, financial data, and future goals.
+                    </p>
+                    <a href="/assets/pdf/FINAL - Annual Rpt 2024.pdf" target="_blank" class="btn btn-background-slide">
+                      <i class="bi bi-eye"></i> View Resource
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4">
+                <div class="card h-100 resource-card">
+                  <div class="card-body">
+                    <i class="bi bi-file-pdf resource-icon text-danger"></i>
+                    <h5 class="card-title">Program of Work</h5>
+                    <p class="card-text">
+                      Our strategic plan and programs designed to support economic development.
+                    </p>
+                    <a href="/assets/pdf/program-of-work.pdf" target="_blank" class="btn btn-background-slide">
+                      <i class="bi bi-eye"></i> View Resource
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4">
+                <div class="card h-100 resource-card">
+                  <div class="card-body">
+                    <i class="bi bi-file-pdf resource-icon text-danger"></i>
+                    <h5 class="card-title">Membership Application</h5>
+                    <p class="card-text">
+                      Download and complete our membership application to join PNDC.
+                    </p>
+                    <a href="/assets/pdf/PNDC-Membership-Application.pdf" target="_blank" class="btn btn-background-slide">
+                      <i class="bi bi-eye"></i> View Resource
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4">
+                <div class="card h-100 resource-card">
+                  <div class="card-body">
+                    <i class="bi bi-file-pdf resource-icon text-danger"></i>
+                    <h5 class="card-title">Membership Brochure</h5>
+                    <p class="card-text">
+                      Overview of membership benefits and levels.
+                    </p>
+                    <a href="/assets/pdf/membership-brochure.pdf" target="_blank" class="btn btn-background-slide">
+                      <i class="bi bi-eye"></i> View Resource
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4">
+                <div class="card h-100 resource-card">
+                  <div class="card-body">
+                    <i class="bi bi-file-pdf resource-icon text-danger"></i>
+                    <h5 class="card-title">Membership Levels</h5>
+                    <p class="card-text">
+                      Detailed information about different membership tiers.
+                    </p>
+                    <a href="/assets/pdf/membership-levels.pdf" target="_blank" class="btn btn-background-slide">
+                      <i class="bi bi-eye"></i> View Resource
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4">
+                <div class="card h-100 resource-card">
+                  <div class="card-body">
+                    <i class="bi bi-file-pdf resource-icon text-danger"></i>
+                    <h5 class="card-title">Mercer County Top 50</h5>
+                    <p class="card-text">
+                      Featuring the top 50 businesses in Mercer County.
+                    </p>
+                    <a href="/assets/pdf/Mercer_County_Top_50.pdf" target="_blank" class="btn btn-background-slide">
+                      <i class="bi bi-eye"></i> View Resource
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Online Digests -->
+          <div class="mb-5">
+            <h3 class="h4 mb-3">Online Digests</h3>
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="card resource-card">
+                  <div class="card-body">
+                    <i class="bi bi-journal-text resource-icon text-primary"></i>
+                    <h5 class="card-title">Make It In! Mercer County Magazine</h5>
+                    <p class="card-text">
+                      Our digital magazine showcasing entrepreneurship opportunities and success stories in Mercer County.
+                    </p>
+                    <a href="/#digest" class="btn btn-background-slide">View Magazine</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Videos Tab -->
+      <div
+        class="tab-pane fade"
+        id="videos"
+        role="tabpanel"
+        aria-labelledby="videos-tab"
+      >
+        <section class="mb-5">
+          <h2 class="display-5 mb-4 border-bottom pb-2">Videos</h2>
+          
+          <div class="row g-4">
+            <% const videoResources = resources ? resources.filter(r => r.type === 'video') : []; %>
+            <% if (videoResources.length > 0) { %>
+              <% videoResources.forEach(resource => { %>
+                <div class="col-lg-6">
+                  <div class="card resource-card">
+                    <% 
+                      const videoUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
+                      const isYouTube = videoUrl && (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be'));
+                    %>
+                    <% if (isYouTube) { %>
+                      <% 
+                        let videoId = '';
+                        if (videoUrl.includes('youtube.com/watch')) {
+                          videoId = videoUrl.split('v=')[1]?.split('&')[0];
+                        } else if (videoUrl.includes('youtu.be/')) {
+                          videoId = videoUrl.split('youtu.be/')[1]?.split('?')[0];
+                        } else if (videoUrl.includes('youtube.com/embed/')) {
+                          videoId = videoUrl.split('embed/')[1]?.split('?')[0];
+                        }
+                      %>
+                      <div class="ratio ratio-16x9">
+                        <iframe
+                          class="rounded-top"
+                          src="https://www.youtube.com/embed/<%= videoId %>"
+                          title="<%= resource.name %>"
+                          frameborder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowfullscreen
+                          referrerpolicy="strict-origin-when-cross-origin"
+                        ></iframe>
+                      </div>
+                    <% } %>
+                    <div class="card-body">
+                      <h5 class="card-title"><%= resource.name %></h5>
+                      <p class="card-text">
+                        <%= resource.description %>
+                      </p>
+                      <% if (!isYouTube && videoUrl) { %>
+                        <% if (resource.file && resource.file.url) { %>
+                          <a href="<%= videoUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
+                            <i class="bi bi-eye"></i> View Resource
+                          </a>
+                        <% } else { %>
+                          <a href="<%= videoUrl %>" target="_blank" class="btn btn-background-slide">
+                            Watch Video
+                          </a>
+                        <% } %>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="col-12">
+                <div class="card resource-card">
+                  <div class="card-body text-center p-5">
+                    <i class="bi bi-youtube display-1 text-danger mb-3"></i>
+                    <h5 class="card-title">No Videos Yet</h5>
+                    <p class="card-text max-text-width mx-auto">
+                      Check back for video content about PNDC and Mercer County.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        </section>
+      </div>
+
+      <!-- Podcasts Tab -->
+      <div
+        class="tab-pane fade"
+        id="podcasts"
+        role="tabpanel"
+        aria-labelledby="podcasts-tab"
+      >
+        <section class="mb-5">
+          <h2 class="display-5 mb-4 border-bottom pb-2">Podcasts</h2>
+          
+          <div class="row g-4">
+            <% const podcastResources = resources ? resources.filter(r => r.type === 'podcast') : []; %>
+            <% if (podcastResources.length > 0) { %>
+              <% podcastResources.forEach(resource => { %>
+                <div class="col-md-6 col-lg-4">
+                  <div class="card h-100 resource-card">
+                    <div class="card-body">
+                      <i class="bi bi-mic resource-icon text-primary"></i>
+                      <h5 class="card-title"><%= resource.name %></h5>
+                      <p class="card-text">
+                        <%= resource.description %>
+                      </p>
+                      <% 
+                        const podcastUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
+                      %>
+                      <% if (resource.file && resource.file.url) { %>
+                        <a href="<%= podcastUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
+                          <i class="bi bi-eye"></i> View Resource
+                        </a>
+                      <% } else { %>
+                        <a href="<%= podcastUrl %>" target="_blank" class="btn btn-background-slide">Listen Now</a>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="col-12">
+                <div class="card resource-card">
+                  <div class="card-body text-center p-5">
+                    <i class="bi bi-mic display-1 text-primary mb-3"></i>
+                    <h5 class="card-title">Podcast Content Coming Soon</h5>
+                    <p class="card-text max-text-width mx-auto">
+                      We're working on bringing you engaging podcast content featuring interviews with local business leaders, economic development insights, and more.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        </section>
+      </div>
+
+      <!-- News & Articles Tab -->
+      <div
+        class="tab-pane fade"
+        id="news"
+        role="tabpanel"
+        aria-labelledby="news-tab"
+      >
+        <section class="mb-5">
+          <h2 class="display-5 mb-4 border-bottom pb-2">News & Articles</h2>
+          <p class="lead mb-4">
+            Recent news articles and press mentions featuring Penn-Northwest Development Corporation.
+          </p>
+          
+          <div class="row g-4">
+            <% const newsResources = resources ? resources.filter(r => r.type === 'news') : []; %>
+            <% if (newsResources.length > 0) { %>
+              <% newsResources.forEach(resource => { %>
+                <div class="col-md-6 col-lg-4">
+                  <div class="card h-100 resource-card">
+                    <div class="card-body">
+                      <i class="bi bi-newspaper resource-icon text-info"></i>
+                      <h5 class="card-title"><%= resource.name %></h5>
+                      <p class="card-text">
+                        <%= resource.description %>
+                      </p>
+                      <% 
+                        const newsUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
+                      %>
+                      <% if (resource.file && resource.file.url) { %>
+                        <a href="<%= newsUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
+                          <i class="bi bi-eye"></i> View Resource
+                        </a>
+                      <% } else { %>
+                        <a href="<%= newsUrl %>" target="_blank" class="btn btn-background-slide">Read Article</a>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="col-12">
+                <div class="card resource-card">
+                  <div class="card-body text-center p-5">
+                    <i class="bi bi-newspaper display-1 text-info mb-3"></i>
+                    <h5 class="card-title">News Articles Coming Soon</h5>
+                    <p class="card-text max-text-width mx-auto">
+                      This section will feature recent newspaper articles, press releases, and media coverage highlighting PNDC's work in the community.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        </section>
+      </div>
+
+      <!-- Blog Posts Tab -->
+      <div
+        class="tab-pane fade"
+        id="blog"
+        role="tabpanel"
+        aria-labelledby="blog-tab"
+      >
+        <section class="mb-5">
+          <h2 class="display-5 mb-4 border-bottom pb-2">Blog Posts</h2>
+          <p class="lead mb-4">
+            Insights, updates, and stories about current events and services in Mercer County.
+          </p>
+          
+          <div class="row g-4">
+            <% const blogResources = resources ? resources.filter(r => r.type === 'blog') : []; %>
+            <% if (blogResources.length > 0) { %>
+              <% blogResources.forEach(resource => { %>
+                <div class="col-md-6 col-lg-4">
+                  <div class="card h-100 resource-card">
+                    <div class="card-body">
+                      <i class="bi bi-pencil-square resource-icon text-success"></i>
+                      <h5 class="card-title"><%= resource.name %></h5>
+                      <p class="card-text">
+                        <%= resource.description %>
+                      </p>
+                      <% 
+                        const blogUrl = resource.file && resource.file.url ? resource.file.url : resource.url;
+                      %>
+                      <% if (resource.file && resource.file.url) { %>
+                        <a href="<%= blogUrl %>" download="<%= resource.file.originalName || resource.name %>" target="_blank" class="btn btn-background-slide">
+                          <i class="bi bi-eye"></i> View Resource
+                        </a>
+                      <% } else { %>
+                        <a href="<%= blogUrl %>" target="_blank" class="btn btn-background-slide">Read More</a>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="col-12">
+                <div class="card resource-card">
+                  <div class="card-body text-center p-5">
+                    <i class="bi bi-pencil-square display-1 text-success mb-3"></i>
+                    <h5 class="card-title">Blog Posts Coming Soon</h5>
+                    <p class="card-text max-text-width mx-auto">
+                      Stay tuned for blog posts about economic development, business services, success stories, and community initiatives.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <section class="my-5 py-5 text-center bg-white rounded shadow-sm">
+      <h3 class="display-6 mb-3">Looking for Something Specific?</h3>
+      <p class="lead max-text-width mx-auto mb-4">
+        Can't find what you're looking for? Contact us and we'll help you find the resources you need.
+      </p>
+      <a href="/#homepage-contact-form" class="btn btn-background-slide mx-auto">Contact Us</a>
+    </section>
+  </section>
+</section>
+

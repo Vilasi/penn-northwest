@@ -44,6 +44,11 @@
                 Site Users
               </button>
             </li>
+            <li class="nav-item">
+              <button data-button-index="4" class="nav-link btn btn-light adminNavButton resource-target">
+                Resources
+              </button>
+            </li>
           </ul>
         </div>
       </div>
@@ -353,6 +358,118 @@
             <% } %>
     </section>
 
+    <!--? Resources Management -->
+    <section class="data-sections resource-target d-none">
+      <h1 class="display-2 m-3 mb-5 border-bottom">Resources Management</h1>
+      
+      <!-- Existing Resources -->
+      <% if (data.resources && data.resources.length > 0) { %>
+        <div class="container mb-5">
+          <h2 class="display-5 mb-4">Existing Resources</h2>
+          <div class="row g-4">
+            <% data.resources.forEach(resource => { %>
+              <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <span class="badge bg-primary"><%= resource.type %></span>
+                      <% if (resource.featured) { %>
+                        <span class="badge bg-warning text-dark">Featured</span>
+                      <% } %>
+                    </div>
+                    <h5 class="card-title"><%= resource.name %></h5>
+                    <p class="card-text"><%= resource.description %></p>
+                    <% if (resource.file && resource.file.url) { %>
+                      <p class="card-text">
+                        <small class="text-muted">
+                          <i class="bi bi-file-earmark"></i> Uploaded File: 
+                          <a href="<%= resource.file.url %>" download="<%= resource.file.originalName || 'file' %>" target="_blank">
+                            <%= resource.file.originalName || 'Download File' %>
+                          </a>
+                        </small>
+                      </p>
+                    <% } else if (resource.url) { %>
+                      <p class="card-text">
+                        <small class="text-muted">
+                          <i class="bi bi-link-45deg"></i> URL: 
+                          <a href="<%= resource.url %>" target="_blank"><%= resource.url.substring(0, 50) %><%= resource.url.length > 50 ? '...' : '' %></a>
+                        </small>
+                      </p>
+                    <% } %>
+                    <p class="card-text"><small class="text-muted">Created: <%= new Date(resource.createdAt).toLocaleDateString() %></small></p>
+                    
+                    <div class="d-flex gap-2 mt-3">
+                      <button 
+                        class="btn btn-sm btn-warning toggle-featured-btn" 
+                        data-resource-id="<%= resource._id %>"
+                        data-current-featured="<%= resource.featured %>"
+                      >
+                        <% if (resource.featured) { %>
+                          Remove Featured
+                        <% } else { %>
+                          Make Featured
+                        <% } %>
+                      </button>
+                      <form action="/admin/delete-resource/<%= resource._id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this resource?')">Delete</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      <% } else { %>
+        <div class="container mb-5">
+          <p class="lead text-muted">No resources have been added yet.</p>
+        </div>
+      <% } %>
+      
+      <!-- Add New Resource Form -->
+      <div class="container">
+        <h2 class="display-5 mb-4 border-top pt-4">Add New Resource</h2>
+        <form action="/admin/add-new-resource" method="post" enctype="multipart/form-data" class="mb-5">
+        <div class="form-group mb-3">
+          <label for="resource-name">Resource Name</label>
+          <input type="text" class="form-control" id="resource-name" name="resource-name" required>
+        </div>
+        <div class="form-group mb-3">
+          <label for="resource-description">Resource Description</label>
+          <textarea class="form-control" id="resource-description" name="resource-description" rows="3" required></textarea>
+        </div>
+        <div class="form-group mb-3">
+          <label for="resource-type">Resource Type</label>
+          <select class="form-control" id="resource-type" name="resource-type" required>
+            <option value="publication">Publication</option>
+            <option value="video">Video</option>
+            <option value="podcast">Podcast</option>
+            <option value="news">News</option>
+            <option value="blog">Blog</option>
+          </select>
+        </div>
+        
+        <div class="alert alert-info mb-3">
+          <strong>Choose One:</strong> Either provide a URL or upload a file (not both)
+        </div>
+        
+        <div class="form-group mb-3">
+          <label for="resource-url">Resource URL (Optional)</label>
+          <input type="url" class="form-control" id="resource-url" name="resource-url" placeholder="https://example.com/resource">
+          <small class="form-text text-muted">For external links, YouTube videos, articles, etc.</small>
+        </div>
+        
+        <div class="form-group mb-3">
+          <label for="resource-file">Upload File (Optional)</label>
+          <input type="file" class="form-control" id="resource-file" name="resource-file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
+          <small class="form-text text-muted">Accepted formats: PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX (Max 10MB)</small>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-background-slide">Add Resource</button>
+        </form>
+      </div>
+    </section>
+
 <!-- Allows for moveable icons to reorder  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
 <script>
@@ -394,3 +511,32 @@
 <script src="js/admin/adminIndex.js"></script>
 <script src="js/deleteDocumentConfirmation.js"></script>
 <script src="js/admin/modal.js"></script>
+
+<script>
+  // Handle toggle featured button for resources
+  document.querySelectorAll('.toggle-featured-btn').forEach(button => {
+    button.addEventListener('click', async function() {
+      const resourceId = this.getAttribute('data-resource-id');
+      const currentFeatured = this.getAttribute('data-current-featured') === 'true';
+      
+      try {
+        const response = await fetch(`/admin/toggle-resource-featured/${resourceId}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        
+        if (response.ok) {
+          // Reload the page to show updated status
+          window.location.reload();
+        } else {
+          alert('Failed to update resource featured status');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while updating the resource');
+      }
+    });
+  });
+</script>

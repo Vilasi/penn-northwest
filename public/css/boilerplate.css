@@ -317,6 +317,9 @@ body {
 
 /*! Background Color Gradient */
 .blue-gradient {
+  position: relative;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
   background: linear-gradient(
     to bottom,
     var(--stratosphere-blue),
@@ -324,6 +327,30 @@ body {
     var(--bootstrap-white) 50%,
     var(--stratosphere-blue)
   );
+}
+
+/* Orange mouse gradient effect overlay */
+.blue-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 400px at var(--mouse-x) var(--mouse-y),
+    rgba(249, 116, 33, 0.411),
+    rgba(250, 130, 55, 0.159),
+    transparent 60%
+  );
+  z-index: 0;
+}
+
+/* Ensure content is above the gradient overlay */
+.blue-gradient > * {
+  position: relative;
+  z-index: 1;
 }
 /* .blue-gradient {
   background: linear-gradient(

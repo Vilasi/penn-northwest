@@ -35,6 +35,7 @@ const PORT = process.env.PORT || 3000;
 
 //* Import Models
 const User = require('./models/users');
+const Resource = require('./models/resources');
 
 //* Import Error Handlers
 const errorHandler = require('./utils/error-handlers/errorHandler');
@@ -157,15 +158,7 @@ app.use(
         'https://heyzine.com/',
         'https://www.google.com/recaptcha/',
       ],
-      frameSrc: [
-        'https://www.youtube.com/',
-        'https://docs.google.com/',
-        'https://heyzine.com/',
-        'https://app.mapstechnologies.com/',
-        'https://www.google.com/recaptcha/',
-        'https://play.google.com/',
-        'https://www.gstatic.com/',
-      ],
+      frameSrc: allowedSources.frameSrcUrls,
       connectSrc: [
         "'self'",
         ...allowedSources.connectSrcUrls,
@@ -196,14 +189,24 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
-passport.deserializeUser(async (id, done) => {
+passport.deserializeUser(async (identifier, done) => {
   try {
-    const user = await User.findById(id);
+    let user = null;
+
+    if (mongoose.isValidObjectId(identifier)) {
+      user = await User.findById(identifier);
+    } else if (typeof identifier === 'string' && identifier.trim() !== '') {
+      user = await User.findOne({ username: identifier });
+    }
+
+    if (!user) {
+      return done(null, false);
+    }
+
     done(null, user);
   } catch (err) {
     console.error('Error deserializing user:', err);
-    // If user doesn't exist or there's an error, clear the session
-    done(null, false);
+    done(err);
   }
 });
 
@@ -276,6 +279,22 @@ app.get('/about', (req, res, next) => {
   // console.dir(createError);
   // return next(createError(404, 'This is a test error'));
   res.render('pages/about');
+});
+
+//* Services
+app.get('/services', (req, res) => {
+  res.render('pages/services');
+});
+
+//* Resources
+app.get('/resources', async (req, res) => {
+  try {
+    const resources = await Resource.find({}).sort({ createdAt: -1 });
+    res.render('pages/resources', { resources });
+  } catch (error) {
+    console.error('Error fetching resources:', error);
+    res.render('pages/resources', { resources: [] });
+  }
 });
 
 //* Admin

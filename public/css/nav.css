@@ -73,10 +73,19 @@ hr.m-0.scroll {
   }
 }
 
+.nav-link {
+  position: relative;
+  /* Prevent the button from changing size on hover */
+  flex: 1 1 0;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
 .nav-link:hover {
-  text-decoration: underline;
-  /** shadow-lg */
-  box-shadow: 0 1rem 3rem rgba(33, 37, 41, 0.175);
+  text-decoration: none !important;
+  /* Ensure button size doesn't change on hover */
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .nav-link:active {

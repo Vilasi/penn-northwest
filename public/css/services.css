@@ -1,0 +1,55 @@
+/* Services Page Styles */
+
+/* Ensure proper spacing and layout */
+#services-section {
+  padding-top: 2rem;
+}
+
+/* Card styling for incentive cards */
+#services-section .card {
+  min-height: 400px;
+  transition: transform 0.2s ease-in-out;
+}
+
+#services-section .card:hover {
+  transform: translateY(-5px);
+}
+
+/* Ensure proper text width constraints */
+.max-text-width {
+  max-width: 600px;
+}
+
+/* Contact form iframe styling */
+.maps-contact-form-iframe {
+  border: none;
+  border-radius: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  #services-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Additional styling for better readability */
+#services-section ul li {
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+#services-section .lead {
+  font-weight: 300;
+  line-height: 2;
+  font-size: 1.3rem;
+}
+
+/* Card header styling */
+#services-section .card-header {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+

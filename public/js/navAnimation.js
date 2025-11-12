@@ -36,3 +36,28 @@ window.addEventListener('scroll', function () {
     });
   }
 });
+
+//* Track mouse position on entire page for radial gradient effect on blue background
+document.addEventListener('DOMContentLoaded', function () {
+  const mainElement = document.querySelector('#main');
+  if (mainElement) {
+    document.addEventListener('mousemove', function (e) {
+      const rect = mainElement.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      mainElement.style.setProperty('--mouse-x', x + '%');
+      mainElement.style.setProperty('--mouse-y', y + '%');
+    });
+  }
+
+  //* Track mouse position on nav-tab buttons for radial gradient effect
+  document.querySelectorAll('.nav-tabs .nav-link').forEach((link) => {
+    link.addEventListener('mousemove', function (e) {
+      const rect = this.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      this.style.setProperty('--mouse-x', x + '%');
+      this.style.setProperty('--mouse-y', y + '%');
+    });
+  });
+});
