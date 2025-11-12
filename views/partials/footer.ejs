@@ -1,6 +1,12 @@
 <link rel="stylesheet" href="/css/footer.css" />
 <link rel="stylesheet" href="/css/buttons.css" />
 
+<% if (currentUser && currentUser.role === 'admin') { %>
+  <div class="admin-panel-floating position-fixed">
+    <a class="btn btn-info shadow btn-sm" href="/admin">Admin Panel</a>
+  </div>
+<% } %>
+
 <footer class="shadow-lg d-flex flex-column align-items-center">
   <!--! Main Footer Content -->
   <section class="container py-5 border-bottom">
@@ -37,14 +43,7 @@
             <% } %>
 
               <!--? Admin Info for parsing Events/Members/Applications/Users, etc -->
-              <div class="mt-2">
-                <% if (currentUser) { %>
-                  <% if (currentUser.role==='admin' ) {%>
-
-                    <a class="btn btn-info shadow btn-sm" href="/admin">Admin Panel</a>
-                    <% } %>
-                      <% } %>
-              </div>
+              <% /* Admin panel link relocated to floating overlay */ %>
         </div>
       </aside>
 
@@ -236,7 +235,7 @@
 
   // Also check when DOM changes (form might load)
   if (window.MutationObserver) {
-    var observer = new MutationObserver(function (mutations) {
+    var newsletterObserver = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
         if (mutation.type === 'childList' && mutation.target.classList.contains('ctct-inline-form')) {
           ensureNewsletterSpacing();
@@ -246,7 +245,7 @@
 
     var formDiv = document.querySelector('.ctct-inline-form');
     if (formDiv) {
-      observer.observe(formDiv, { childList: true, subtree: true });
+      newsletterObserver.observe(formDiv, { childList: true, subtree: true });
     }
   }
 </script>

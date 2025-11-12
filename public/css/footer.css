@@ -96,6 +96,22 @@ footer nav ul li a {
   text-align: center !important;
 }
 
+.admin-panel-floating {
+  position: fixed;
+  top: 9.25rem;
+  left: 1.25rem;
+  z-index: 1080;
+  padding: 2rem;
+}
+
+@media (max-width: 575.98px) {
+  .admin-panel-floating {
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.25rem;
+  }
+}
+
 /* Newsletter form spacing and layout - Modal version */
 .newsletter-container {
   min-height: 120px; /* Reserve space for the form in modal */

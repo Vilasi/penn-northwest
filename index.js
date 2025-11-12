@@ -189,14 +189,24 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
-passport.deserializeUser(async (id, done) => {
+passport.deserializeUser(async (identifier, done) => {
   try {
-    const user = await User.findById(id);
+    let user = null;
+
+    if (mongoose.isValidObjectId(identifier)) {
+      user = await User.findById(identifier);
+    } else if (typeof identifier === 'string' && identifier.trim() !== '') {
+      user = await User.findOne({ username: identifier });
+    }
+
+    if (!user) {
+      return done(null, false);
+    }
+
     done(null, user);
   } catch (err) {
     console.error('Error deserializing user:', err);
-    // If user doesn't exist or there's an error, clear the session
-    done(null, false);
+    done(err);
   }
 });
 
