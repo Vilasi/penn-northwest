@@ -9,9 +9,23 @@
 <section
   class="row gx-5 mx-0 mx-lg-5 overflow-y-auto no-scrollbar min-height-100-vh pb-5"
 >
-  <section class="row mx-0 py-5 hero-gradient rounded">
+  <section class="row mx-0 py-5 hero-gradient position-relative overflow-hidden">
+    <!-- Local Video Background -->
+    <div class="hero-video-background">
+      <video
+        class="hero-video-element"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-label="Background Video"
+      >
+        <source src="/assets/video/Optimized-Background-1.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
     <!--? XXL Screen -->
-    <div class="d-none d-xxl-block col-xxl-6 text-start">
+    <div class="d-none d-xxl-block col-xxl-6 text-start background-fill">
       <article class="container position-relative">
         <!-- Large Screen -->
         <!-- <h1
@@ -65,7 +79,7 @@
     </div>
 
     <!--?  -->
-    <div class="d-xxl-none col-lg-8 text-start">
+    <div class="d-xxl-none col-lg-8 text-start background-fill">
       <article class="container position-relative">
         <!-- Large Screen -->
         <h1
