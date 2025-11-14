@@ -109,11 +109,27 @@ section:has(.hero-gradient) {
   filter: blur(4px) brightness(0.5);
 }
 
+@media (max-height: 850px) {
+  .hero-video-element {
+    height: 10vh;
+    max-height: 10vh;
+  }
+  .hero-gradient h1 {
+    font-size: 2rem;
+  }
+  .hero-lead-text {
+    font-size: 1rem !important;
+  }
+}
+
 /* Scale video height responsively for different screen sizes */
 @media (max-height: 667px) {
   .hero-video-element {
     height: 90vh;
     max-height: 90vh;
+  }
+  .hero-gradient h1 {
+    font-size: 2rem;
   }
 }
 
@@ -122,12 +138,18 @@ section:has(.hero-gradient) {
     height: 85vh;
     max-height: 85vh;
   }
+  .hero-gradient h1 {
+    font-size: 2rem;
+  }
 }
 
 @media (max-height: 500px) {
   .hero-video-element {
     height: 80vh;
     max-height: 80vh;
+  }
+  .hero-gradient h1 {
+    font-size: 2rem;
   }
 }
 
