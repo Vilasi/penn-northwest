@@ -274,7 +274,7 @@
         <% } else { %>
         <!--! Begin event creation ---------------------------------->
           <% for (let event of events) {%>
-            <section class="row d-flex justify-content-center mx-0 mx-sm-5 event-deletion-target">
+            <section id="event-<%= event._id %>" class="row d-flex justify-content-center mx-0 mx-sm-5 event-deletion-target">
 
               <!--* Individual Event Card ----------------------------------------------------------------------->
               <section class="row shadow-lg rounded">
