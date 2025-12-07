@@ -181,7 +181,7 @@
     </div>
   </aside>
 
-    
+  <section id="dividing-section" class="dividing-section-height shadow-lg border-top border-bottom border-dark"></section>
 
   <!--! Digest/magazine Section ---------------------------------------------------------------------------------------------------------------------------------------->
   <section
@@ -196,45 +196,85 @@
     </div>
   </section>
 
-  <!--! Make it in! Section --------------------------------------------------------------------------------------------------------------------------------------------->
-  <section
-    id="make-it-in"
-    class="py-5 d-flex flex-column align-items-center bg-light"
-  >
-    <header class="px-0 d-flex flex-column align-items-center">
-      <img
-        crossorigin="anonymous"
-        class="img-fluid mb-3"
-        src="https://res.cloudinary.com/dypchgtip/image/upload/v1708661360/make-it-in-no-bg_xya5f7.png"
-        alt=""
-      />
-      <p class="lead max-text-width text-center">
-        Looking to start or expand your business? Thinking of moving to the
-        area? Hear from some of our members to find out what makes Mercer County
-        so great!
-      </p>
-    </header>
-
-    <!--* Community Video  -->
-    <section class="container text-center my-5">
-      <article class="container">
-        <div class="ratio ratio-16x9">
-          <iframe
-            class="rounded shadow-lg border border-primary-subtle"
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/ZjlaPYu_0Wc?si=32O1MQ8vWqTqBAKO"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            referrerpolicy="strict-origin-when-cross-origin"
-          ></iframe>
-        </div>
-      </article>
-    </section>
-
     <hr class="w-100 my-5" />
+
+    <section id="dividing-section" class="dividing-section-height shadow-lg border-top border-bottom border-dark"></section>
+
+    <!--* Events Carousel Section -->
+    <% if (events && events.length > 0) { %>
+    <section id="events-carousel-section" class="py-5 bg-light">
+      <div class="container-fluid">
+        <header class="text-center mb-4">
+          <h2 class="display-4 ff-4 mb-3">Upcoming Events</h2>
+          <p class="lead">Join us at our upcoming events</p>
+        </header>
+        <div class="events-carousel-wrapper">
+          <div class="events-carousel-container">
+            <div class="events-carousel-track" id="eventsCarouselTrack">
+              <!-- First set of events -->
+              <% events.forEach(event => { %>
+              <div class="events-carousel-item">
+                <a href="/events#event-<%= event._id %>" class="text-decoration-none text-dark">
+                  <div class="events-carousel-card">
+                    <div class="events-carousel-image-container">
+                      <img 
+                        src="<%= event.image.url %>" 
+                        alt="<%= event.name %>" 
+                        class="events-carousel-image"
+                        crossorigin="anonymous"
+                      />
+                    </div>
+                    <div class="events-carousel-info">
+                      <h3 class="events-carousel-title"><%= event.name %></h3>
+                      <div class="events-carousel-price">
+                        <% if (event.priceInCents === 0) { %>
+                          <span class="price-label">Free Event</span>
+                        <% } else { %>
+                          <span class="price-label">Ticket Price:</span>
+                          <span class="price-value"><%= event.formattedPrice %></span>
+                        <% } %>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <% }); %>
+              <!-- Duplicate set for seamless infinite loop -->
+              <% events.forEach(event => { %>
+              <div class="events-carousel-item">
+                <a href="/events#event-<%= event._id %>" class="text-decoration-none text-dark">
+                  <div class="events-carousel-card">
+                    <div class="events-carousel-image-container">
+                      <img 
+                        src="<%= event.image.url %>" 
+                        alt="<%= event.name %>" 
+                        class="events-carousel-image"
+                        crossorigin="anonymous"
+                      />
+                    </div>
+                    <div class="events-carousel-info">
+                      <h3 class="events-carousel-title"><%= event.name %></h3>
+                      <div class="events-carousel-price">
+                        <% if (event.priceInCents === 0) { %>
+                          <span class="price-label">Free Event</span>
+                        <% } else { %>
+                          <span class="price-label">Ticket Price:</span>
+                          <span class="price-value"><%= event.formattedPrice %></span>
+                        <% } %>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <% }); %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <% } %>
+
+    <section id="dividing-section" class="dividing-section-height shadow-lg border-top border-bottom border-dark"></section>
 
     <!--* Start CoL Calculator Section  -->
     <section id="col-calc-section" class="row w-100 my-5">
@@ -428,7 +468,7 @@
                     <button
                       id="form-submit-button"
                       type="submit"
-                      class="btn btn-primary btn-lg"
+                      class="btn btn-background-slide btn-lg"
                     >
                       Submit
                     </button>
@@ -445,393 +485,58 @@
 
   <!--! Dividing Picture Section ---------------------------------------------------------------------------------------------------------------------------->
   <!--TODO Check this on the Production site to ensure it works -->
-  <section
-    id="dividing-section"
-    class="dividing-section-height shadow-lg border-top border-bottom border-dark"
-  ></section>
 
-  <!--TODO Find out about the Qualifications Estimator  -->
-  <!--! Services Section ----------------------------------------------------------------------------------------------------------------------->
-  <section
-    id="services-section"
-    class="bg-light d-flex flex-column align-items-center rounded-bottom"
-  >
-    <!--? Header -->
-    <header class="mt-5 px-0 d-flex flex-column align-items-center">
-      <h2 class="ff-4 font-size-1 display-1 text-center">
-        Explore Our Services
+  <section id="dividing-section" class="dividing-section-height shadow-lg border-top border-bottom border-dark"></section>
+
+  <section id="services-contact-form" class="w-100 mb-5 pb-3">
+    <header class="container d-flex flex-column align-items-center">
+      <h2 class="ff-4 font-size-1 display-2 text-center mb-3">
+        Get in contact!
       </h2>
-      <p class="lead max-text-width text-center">
-        We have all the incentives you need to Make it in! Mercer County!
+      <p class="lead max-text-width text-center mb-5">
+        Ready to grow your business in Mercer County? Reach out to us now!
       </p>
-      <p class="lead max-text-width text-center">
-        Our Affordable Solutions for Corporate Expansion include:
+      <p class="lead max-text-width text-center mb-5"> 
+        No mobile information will be shared with third parties/affiliates for marketing/promotional purposes.
       </p>
-      <ul class="list-group list-group-flush bg-light">
-        <li class="list-group-item bg-light text-center">
-          Low-cost land and buildings
-        </li>
-
-        <li class="list-group-item bg-light text-center">
-          Tax Credits and Abatements
-        </li>
-
-        <li class="list-group-item bg-light text-center">
-          No-cost technical assistance and more!
-        </li>
-      </ul>
     </header>
-
-    <!--? Section 1 CORPORATE EXPANSION SOLUTIONS -->
-    <section class="row w-100 mt-5 pb-5 g-5">
-      <article class="col-lg-6">
-        <h3 class="display-5 text-center border-bottom mb-5">
-          Corporate Expansion Solutions
-        </h3>
-
-        <p class="lead">Local low-interest revolving loan funds:</p>
-        <ul class="">
-          <li class="mb-2">
-            Penn-Northwest manages and administers a multimillion dollar
-            revolving loan fund that compliments many other sources of funding.
-          </li>
-          <li class="mb-2">
-            Available to eligible new and expanding industrial, manufacturing,
-            warehouse, distribution, business-to-business and advanced
-            technology firms in Mercer County.
-          </li>
-          <li class="mb-2">
-            Can be used for land and building acquisition, renovations, new/used
-            machinery and equipment purchases and limited working capital.
-          </li>
-        </ul>
-      </article>
-      <aside class="col-lg-6 d-flex align-items-center">
-        <img
-          crossorigin="anonymous"
-          src="https://res.cloudinary.com/dypchgtip/image/upload/v1695155506/original-header-img_fyzwr1.jpg"
-          alt="Make it in Mercer County Services Section  Photo"
-          title="Make it in! Mercer County, Pennsylvania"
-          class="img-fluid rounded shadow-lg border border-primary"
-        />
-      </aside>
-
-      <aside class="col-12 d-flex justify-content-center mb-5">
-        <div class="card">
-          <div class="card-body text-center max-text-width">
-            <p class="lead text-center max-text-width mb-0">
-              <strong>In Addition, </strong>our team can connect you with and
-              help you apply to other local sources of low-interest financing,
-              including the Shenango Valley Enterprise Zone Corporation, the
-              Sharon Industrial Development Authority, the City of Farrell, the
-              City of Hermitage and the Northwest Commission.
-            </p>
-          </div>
-        </div>
-      </aside>
-
-      <!--? Section 2 SITE SPECIFIC INCENTIVES -->
-      <aside class="col-lg-6 d-flex align-items-center mt-5">
-        <img
-          crossorigin="anonymous"
-          src="https://res.cloudinary.com/dypchgtip/image/upload/v1710292465/construction-crane1_grkyyb.jpg"
-          alt="Photo of a local construction project"
-          title="Mercer County provides opportunities for economic development"
-          class="img-fluid rounded shadow-lg border border-warning"
-        />
-      </aside>
-
-      <article class="col-lg-6">
-        <h3 class="display-5 text-center border-bottom mb-5">
-          Site-Specific Incentives
-        </h3>
-
-        <p class="lead">The PA Keystone Opportunity Zone:</p>
-        <ul class="">
-          <li class="mb-2">
-            Mercer County has over 500 acres of property located in designated
-            Keystone Opportunity Zones.
-          </li>
-          <li class="mb-2">
-            This designation eliminates specific state and local taxes within
-            identified underdeveloped and underutilized areas, including
-            Corporate Net Income Taxes, Capital Stock & Foreign Franchise Tax,
-            Personal Income Tax, Sales & Use Tax, Bank Shares & Trust Company
-            Shares Tax, Alternative Bank & Trust Company Shares Tax, Mutual
-            Thrift Institutions Tax, Insurance Premiums Tax.
-          </li>
-          <li class="mb-2">
-            Additionally, it exempts Earned Income/Net Profits Tax, Business
-            Gross Receipts, Business Occupancy, Business Privilege & Mercantile
-            Taxes, and Local Real Property Tax.
-          </li>
-        </ul>
-      </article>
-
-      <aside class="col-12 d-flex justify-content-center mb-5">
-        <div class="card">
-          <div class="card-body text-center max-text-width">
-            <p class="lead text-center max-text-width mb-0">
-              <strong>The Keystone Opportunity Zone </strong>is such a
-              breakthrough and high-impact incentive that
-              <em>Business Facilities Magazine</em> calls it
-              <strong
-                >"...the number one economic development strategy in the
-                nation!"</strong
-              >
-            </p>
-          </div>
-        </div>
-      </aside>
-
-      <!--? Section 3 Tax-Exempt Bond Financing + CORPORATE EXPANSION SOLUTIONS -->
-      <article class="col-lg-6">
-        <h3 class="display-5 text-center border-bottom mb-5">
-          Industrial Bond Financing
-        </h3>
-
-        <p class="lead">
-          Small manufacturers and non-profit 501(c)(3) corporations may be
-          eligible for taxable bonds through the Mercer County Industrial
-          Development Authority (MCIDA):
-        </p>
-        <ul class="">
-          <li class="mb-2">
-            The MCIDA issues taxable bonds as stand-alone transactions.
-          </li>
-          <li class="mb-2">
-            Bond funds are loaned to businesses and can be used to finance land,
-            building, and new machinery and equipment. The rate is usually about
-            85% of the prime rate with terms similar to conventional financing.
-          </li>
-        </ul>
-      </article>
-      <aside class="col-lg-6 d-flex align-items-center mb-5">
-        <img
-          crossorigin="anonymous"
-          src="https://res.cloudinary.com/dypchgtip/image/upload/v1710292824/make-it-in-magazine_l8qdv6.jpg"
-          alt="Penn Northwest Make it in! Magazines Photo"
-          title="Through the MCIDA program, we offer up to 10 Million in business loans"
-          class="img-fluid rounded shadow-lg border border-primary"
-        />
-      </aside>
-
-      <hr />
-
-      <!--? PA State Incentives -->
-      <div
-        id="PA-state-incentives"
-        class="col-12 d-flex flex-column align-items-center"
-      >
-        <h3 class="display-5 text-center mb-3">PA State Incentives</h3>
-        <p class="lead mb-5 text-center max-text-width">
-          The below is just a sample offering of the Affordable Solutions for
-          Corporate Expansion available in Mercer County.
-        </p>
+    <article
+      id="maps-contact-form"
+      class="w-100 d-flex flex-column align-items-center"
+    >
+      <div id="iframe-div-test" class="shadow-lg border rounded mb-0 pb-0">
+        <!--? Medium and Up Screens -->
+        <iframe
+          class="maps-contact-form-iframe z-3 d-none d-md-block"
+          style="width: 640px; height: 52rem;"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfJ0VLiYe8p0bnBjbJ1GQxPlENNAzjkci6HZ4yLsNvMLlgUYw/viewform?embedded=true"
+        >Loading…</iframe>
+        <!--? Between small and medium screens -->
+        <iframe
+          class="maps-contact-form-iframe z-3 d-none d-sm-block d-md-none"
+          style="width: 480px; height: 51rem;"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfJ0VLiYe8p0bnBjbJ1GQxPlENNAzjkci6HZ4yLsNvMLlgUYw/viewform?embedded=true"
+        >Loading…</iframe>
+        <!--? Smallest screens only (phones) -->
+        <iframe
+          class="maps-contact-form-iframe z-3 d-sm-none"
+          style="width: 360px; height: 55rem;"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfJ0VLiYe8p0bnBjbJ1GQxPlENNAzjkci6HZ4yLsNvMLlgUYw/viewform?embedded=true"
+        >Loading…</iframe>
       </div>
-      <section
-        class="col-12 d-flex flex-wrap justify-content-center align-items-start"
-      >
-        <!--? Card 1 - Pennsylvania Industrial Development Authority (PIDA)  -->
-        <div class="card max-text-width shadow mx-3 mb-5">
-          <div class="card-header">
-            Pennsylvania Industrial Development Authority (PIDA)
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Low-Interest Business Loans</h5>
-            <p class="card-text">
-              The Pennsylvania Industrial Development Authority (PIDA) provides
-              low-interest loans and lines of credit for eligible businesses
-              that commit to creating and retaining full-time jobs in
-              Pennsylvania. These funds can be used for various purposes,
-              including:
-            </p>
-            <ul>
-              <li>Land acquisition and building</li>
-              <li>Construction and renovation costs</li>
-              <li>Machinery and equipment purchases</li>
-              <li>Working capital and accounts receivable lines of credit</li>
-              <li>Multi-tenant facility projects</li>
-              <li>Industrial park projects</li>
-            </ul>
-            <p>
-              Penn-Northwest will package and help underwrite your loan
-              application in partnership with PIDA.
-            </p>
-          </div>
-        </div>
-
-        <!--? Card 2 - Manufacturing Tax Credits (MTC) -->
-        <div class="card max-text-width shadow mx-3 mb-5">
-          <div class="card-header">PA Manufacturing Tax Credits (MTC)</div>
-          <div class="card-body">
-            <h5 class="card-title">Offset Business Tax Liabilities</h5>
-            <p class="card-text">
-              Manufacturing Tax Credits (MTC) can be used to offset various
-              business tax liabilities. Our team specializes in helping eligible
-              businesses secure these tax credits, providing up to $1,000 or
-              more per new job created.
-            </p>
-          </div>
-        </div>
-
-        <!--? Card 3 - WEDnetPA Program -->
-        <div class="card max-text-width shadow mx-3 mb-5">
-          <div class="card-header">WEDnetPA Program</div>
-          <div class="card-body">
-            <h5 class="card-title">Employee Training Funds</h5>
-            <p class="card-text">
-              The Workforce and Economic Development Network of Pennsylvania -
-              WEDnetPA - program provides qualified employers with training
-              funds for both new and existing employees. These funds can be
-              utilized for a wide range of training programs, categorized as
-              follows:
-            </p>
-            <ul>
-              <li>
-                Essential Skills Training: Up to $2000 per trainee, per year
-              </li>
-            </ul>
-            <p>
-              We are here to assist you in securing these valuable training
-              funds for your workforce development needs.
-            </p>
-          </div>
-        </div>
-
-        <!--? Card 4 - Pennsylvania First Program (PA First) -->
-        <div class="card max-text-width shadow mx-3 mb-5">
-          <div class="card-header">Pennsylvania First Program (PA First)</div>
-          <div class="card-body">
-            <h5 class="card-title">Facilitate Investment and Job Creation</h5>
-            <p class="card-text">
-              The Pennsylvania First Program (PA First) serves as a
-              comprehensive funding tool to promote increased investment and job
-              creation within the commonwealth. Our team is dedicated to
-              assisting your eligible business in securing financial support,
-              which may include grants, loans, or loan guarantees for various
-              purposes, including:
-            </p>
-            <ul>
-              <li>Machinery and equipment purchases</li>
-              <li>Job training</li>
-              <li>Infrastructure development</li>
-              <li>Land and building improvements</li>
-              <li>Environmental assessment and remediation</li>
-              <li>Acquisition of land, buildings, or right-of-ways</li>
-              <li>Working capital</li>
-              <li>Site preparation, demolition, and clearance</li>
-            </ul>
-            <p>
-              Contact us to explore the opportunities provided by PA First and
-              how we can help your business thrive.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!--? Final Incentive Info and Disclaimer -->
-      <aside
-        class="col-12 d-flex flex-column align-items-center shadow-sm pb-5"
-      >
-        <h4 class="display-6 border-bottom mb-3">Further Incentive Info:</h4>
-        <p class="lead max-text-width text-center mb-3">
-          If your competitive project has a significant economic impact, there
-          are additional low-cost and no-cost tools, including grant funds,
-          available. Contact us today to check your eligibility and learn how
-          Mercer County can reduce your expansion project's costs!
-        </p>
-        <p class="max-text-width text-center">
-          <small
-            ><em
-              >Typical offerings for most industrial and manufacturing
-              businesses creating and/or retaining a significant number of jobs
-              and making capital investment in Pennsylvania. All state
-              incentives are subject to approval by the Governor, PIDA Board
-              and/or Pennsylvania Department of Community & Economic Development
-              Secretary.</em
-            ></small
-          >
-        </p>
-      </aside>
-    </section>
-
-    <section id="homepage-contact-form" class="w-100 mb-5 pb-3">
-      <header class="container d-flex flex-column align-items-center">
-        <h2 class="ff-4 font-size-1 display-2 text-center mb-3">
-          Get in contact!
-        </h2>
-        <p class="lead max-text-width text-center mb-5">
-          Ready to grow your business in Mercer County? Reach out to us now!
-        </p>
-        <p class="lead max-text-width text-center mb-5"> 
-          No mobile information will be shared with third parties/affiliates for marketing/promotional purposes.
-        </p>
-      </header>
-      <article
-        id="maps-contact-form"
-        class="w-100 d-flex flex-column align-items-center"
-      >
-        <div id="iframe-div-test" class="shadow-lg border rounded mb-0 pb-0">
-          <!--? Medium and Up Screens -->
-          <iframe
-            class="maps-contact-form-iframe z-3 d-none d-md-block"
-            width="640"
-            height="1000"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0"
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfJ0VLiYe8p0bnBjbJ1GQxPlENNAzjkci6HZ4yLsNvMLlgUYw/viewform?embedded=true"
-          >Loading…</iframe>
-          <!--? Between small and medium screens -->
-          <iframe
-            class="maps-contact-form-iframe z-3 d-none d-sm-block d-md-none"
-            width="480"
-            height="1000"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0"
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfJ0VLiYe8p0bnBjbJ1GQxPlENNAzjkci6HZ4yLsNvMLlgUYw/viewform?embedded=true"
-          >Loading…</iframe>
-          <!--? Smallest screens only (phones) -->
-          <iframe
-            class="maps-contact-form-iframe z-3 d-sm-none"
-            width="360"
-            height="1000"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0"
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfJ0VLiYe8p0bnBjbJ1GQxPlENNAzjkci6HZ4yLsNvMLlgUYw/viewform?embedded=true"
-          >Loading…</iframe>
-        </div>
-      </article>
-    </section>
-
-    <!--? Lands' End Store -->
-    <section class="w-100 my-5 pb-3 row px-5 border-top py-5">
-      <div class="col-lg-6">
-        <h2 class="display-3">Before You Go,</h2>
-        <h3 class="display-5">Checkout Our Storefront!</h3>
-        <p class="lead max-text-width">
-          Explore our online storefront for a wide range of quality products.
-          Discover exclusive deals, enjoy easy navigation, and experience secure
-          shopping from the comfort of your home.
-        </p>
-      </div>
-      <div class="col-lg-6 d-flex flex-column align-items-center">
-        <a href="https://business.landsend.com/store/pndc/" target="_blank">
-          <img
-            class="img-fluid"
-            src="https://res.cloudinary.com/dypchgtip/image/upload/v1709867137/lands-end-business-logo_qsqjow.png"
-            crossorigin="anonymous"
-            alt="Lands End Business Storefront Logo Image and Link"
-          />
-        </a>
-        <a href="https://business.landsend.com/store/pndc/" target="_blank"
-          ><button class="btn btn-outline-primary btn-lg">Open Store</button></a
-        >
-      </div>
-    </section>
+    </article>
+  </section>
+  <!--TODO Find out about the Qualifications Estimator  -->
+  
 
     <script src="/js/home/ColCalc.js"></script>
     <script src="/js/home/modal.js"></script>

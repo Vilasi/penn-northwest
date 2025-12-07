@@ -36,6 +36,7 @@ const PORT = process.env.PORT || 3000;
 //* Import Models
 const User = require('./models/users');
 const Resource = require('./models/resources');
+const Event = require('./models/events');
 
 //* Import Error Handlers
 const errorHandler = require('./utils/error-handlers/errorHandler');
@@ -262,8 +263,9 @@ app.use((req, res, next) => {
 // Disallow:
 
 //* Home
-app.get('/', (req, res) => {
-  res.render('pages/home');
+app.get('/', async (req, res) => {
+  const events = await Event.find({}).sort({ position: 1 });
+  res.render('pages/home', { events });
 });
 
 app.use('/events', eventRoutes);

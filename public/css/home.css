@@ -190,6 +190,7 @@ section:has(.hero-gradient) {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  filter: blur(4px)
 }
 
 @media (max-width: 991px) {
@@ -318,4 +319,256 @@ section:has(.hero-gradient) {
   align-content: center;
   align-items: center;
   max-width: 90%;
+}
+
+#services-contact-form{
+  background-color: white !important;
+}
+
+/* Events Carousel Styles */
+#events-carousel-section {
+  overflow: hidden;
+  position: relative;
+}
+
+.events-carousel-wrapper {
+  overflow: visible;
+  width: 100%;
+  position: relative;
+}
+
+.events-carousel-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.events-carousel-track {
+  display: flex;
+  gap: 3rem;
+  width: fit-content;
+  animation: scrollCarousel 30s linear infinite;
+  align-items: center;
+}
+
+.events-carousel-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollCarousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+.events-carousel-item {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 1200px;
+  height: 600px;
+}
+
+.events-carousel-card {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: white;
+}
+
+.events-carousel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.events-carousel-image-container {
+  flex: 0 0 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.events-carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.events-carousel-info {
+  flex: 0 0 50%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  background: linear-gradient(135deg, var(--pndc-blue) 0%, #004a7a 100%);
+  color: white;
+}
+
+.events-carousel-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0 0 2rem 0;
+  color: white;
+  font-family: var(--ff-4);
+  line-height: 1.2;
+}
+
+.events-carousel-price {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.price-label {
+  font-size: 1.25rem;
+  font-weight: 400;
+  opacity: 0.9;
+  font-family: var(--ff-4);
+}
+
+.price-value {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--pndc-yellow);
+  font-family: var(--ff-4);
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .events-carousel-item {
+    width: 100%;
+    max-width: 1000px;
+    height: 550px;
+  }
+  
+  .events-carousel-title {
+    font-size: 2rem;
+  }
+  
+  .price-value {
+    font-size: 2.5rem;
+  }
+  
+  .events-carousel-info {
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .events-carousel-item {
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+  }
+  
+  .events-carousel-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .price-label {
+    font-size: 1.1rem;
+  }
+  
+  .price-value {
+    font-size: 2rem;
+  }
+  
+  .events-carousel-info {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .events-carousel-item {
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .events-carousel-card {
+    flex-direction: column;
+  }
+  
+  .events-carousel-item {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    min-height: 600px;
+  }
+  
+  .events-carousel-image-container {
+    flex: 0 0 50%;
+    width: 100%;
+    height: 50%;
+  }
+  
+  .events-carousel-info {
+    flex: 0 0 50%;
+    width: 100%;
+    padding: 2rem;
+  }
+  
+  .events-carousel-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .price-label {
+    font-size: 1rem;
+  }
+  
+  .price-value {
+    font-size: 1.75rem;
+  }
+  
+  .events-carousel-track {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .events-carousel-item {
+    width: 100%;
+    max-width: 100%;
+    min-height: 500px;
+  }
+  
+  .events-carousel-image-container {
+    height: 50%;
+  }
+  
+  .events-carousel-info {
+    padding: 1.5rem;
+  }
+  
+  .events-carousel-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .price-label {
+    font-size: 0.9rem;
+  }
+  
+  .price-value {
+    font-size: 1.5rem;
+  }
 }
