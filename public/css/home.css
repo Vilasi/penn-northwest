@@ -370,8 +370,7 @@ section:has(.hero-gradient) {
 
 .events-carousel-item {
   flex-shrink: 0;
-  width: 100%;
-  max-width: 1200px;
+  width: 1200px;
   height: 600px;
 }
 
@@ -404,6 +403,7 @@ section:has(.hero-gradient) {
   object-fit: cover;
   object-position: center;
   display: block;
+  min-height: 100%;
 }
 
 .events-carousel-info {
@@ -451,8 +451,7 @@ section:has(.hero-gradient) {
 /* Responsive adjustments */
 @media (max-width: 1400px) {
   .events-carousel-item {
-    width: 100%;
-    max-width: 1000px;
+    width: 1000px;
     height: 550px;
   }
   
@@ -471,8 +470,7 @@ section:has(.hero-gradient) {
 
 @media (max-width: 1200px) {
   .events-carousel-item {
-    width: 100%;
-    max-width: 900px;
+    width: 900px;
     height: 500px;
   }
   
@@ -496,8 +494,7 @@ section:has(.hero-gradient) {
 
 @media (max-width: 992px) {
   .events-carousel-item {
-    width: 100%;
-    max-width: 800px;
+    width: 800px;
     height: 500px;
   }
 }
@@ -508,54 +505,21 @@ section:has(.hero-gradient) {
   }
   
   .events-carousel-item {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    min-height: 600px;
+    width: 400px;
+    height: 500px;
   }
   
   .events-carousel-image-container {
-    flex: 0 0 50%;
+    flex: 0 0 250px;
     width: 100%;
-    height: 50%;
+    height: 250px;
+    min-height: 250px;
+    max-height: 250px;
   }
   
   .events-carousel-info {
     flex: 0 0 50%;
     width: 100%;
-    padding: 2rem;
-  }
-  
-  .events-carousel-title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .price-label {
-    font-size: 1rem;
-  }
-  
-  .price-value {
-    font-size: 1.75rem;
-  }
-  
-  .events-carousel-track {
-    gap: 2rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .events-carousel-item {
-    width: 100%;
-    max-width: 100%;
-    min-height: 500px;
-  }
-  
-  .events-carousel-image-container {
-    height: 50%;
-  }
-  
-  .events-carousel-info {
     padding: 1.5rem;
   }
   
@@ -570,5 +534,77 @@ section:has(.hero-gradient) {
   
   .price-value {
     font-size: 1.5rem;
+  }
+  
+  .events-carousel-track {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .events-carousel-item {
+    width: 320px;
+    height: 450px;
+  }
+  
+  .events-carousel-image-container {
+    flex: 0 0 225px;
+    width: 100%;
+    height: 225px;
+    min-height: 225px;
+    max-height: 225px;
+  }
+  
+  .events-carousel-info {
+    padding: 1.25rem;
+  }
+  
+  .events-carousel-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .price-label {
+    font-size: 0.85rem;
+  }
+  
+  .price-value {
+    font-size: 1.25rem;
+  }
+  
+  .events-carousel-track {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .events-carousel-item {
+    width: 280px;
+    height: 400px;
+  }
+  
+  .events-carousel-image-container {
+    flex: 0 0 200px;
+    width: 100%;
+    height: 200px;
+    min-height: 200px;
+    max-height: 200px;
+  }
+  
+  .events-carousel-info {
+    padding: 1rem;
+  }
+  
+  .events-carousel-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .price-label {
+    font-size: 0.75rem;
+  }
+  
+  .price-value {
+    font-size: 1.1rem;
   }
 }
